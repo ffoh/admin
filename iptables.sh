@@ -3,6 +3,7 @@
 set -e
 
 IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
+echo "I: IP=$IP"
 ThisIsGateway=no
 ThisIsWebserver=no
 FreifunkDevice=bat0
@@ -15,18 +16,18 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
 
 for gw in $GatewayIp4List
 do
-    if [ "$gw"= "$IP" ]; then
+    if [ "x$gw" = "x$IP" ]; then
        # this is a gateway machine
        ThisIsGateway="yes"
     fi
 done
 
-if [ -x /usr/sbin/apache2 ]; then
+if [ -x /usr/sbin/apache2 -o "x$IP"="x$WWWIP" ]; then
     ThisIsWebserver="yes"
 else
     for www in $WWWip
     do
-        if [ "$www" = "$IP" ]; then
+        if [ "x$www" = "x$IP" ]; then
             # this is a Webserver
             ThisIsWebserver="yes"
         fi
@@ -136,17 +137,18 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
-   FWboth "Freifunk Network - Web access" "-A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT"
-   FWboth "Freifunk Network - Web access secure" "-A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT"
+   FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
+   FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
 
    FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
+fi
 
-else
-   echo "I: Machine is not a gateway"
+if [ "yes"="$ThisIsWebserver" ]; then
+   echo "I: Machine is a webserver"
    # Accept port 10000 when it comes from the network's IP Address
-   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice 10000 -j ACCEPT"
+   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
-   FWboth "From everywhere - Web access" '-A INPUT -p tcp --dport http -j ACCEPT'
+   FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
 
@@ -216,3 +218,4 @@ FWboth "" -P INPUT DROP
 #iptables -I INPUT -j blacklist_openbl_org
 
 echo "[OK]"
+
