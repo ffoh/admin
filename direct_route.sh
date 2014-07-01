@@ -30,6 +30,11 @@ gmail.com
 spotify.com
 www.spotify.com
 arte.tv
+info.arte.tv
+future.arte.tv
+creative.arte.tv
+concert.arte.tv
+cinema.arte.tv
 www.arte.tv
 tagesschau.de
 www.tagesschau.de
@@ -44,6 +49,15 @@ zatoo.com
 www.zatoo.com
 amazon.de
 www.amazon.de
+volksbank-luebeck.de
+www.volksbank-luebeck.de
+volksbank-eutin.de
+www.volksbank-eutin.de
+github.com
+last.fm
+www.last.fm
+lastfm.de
+www.lastfm.de
 EOIPS
 )
 
