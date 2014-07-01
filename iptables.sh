@@ -1,0 +1,218 @@
+#!/bin/bash
+
+set -e
+
+IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
+ThisIsGateway=no
+ThisIsWebserver=no
+FreifunkDevice=bat0
+
+WWWip=109.75.177.24
+#GatewayIp4List=141.101.36.19
+GatewayIp4List="141.101.36.19 141.101.36.67"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
+
+
+for gw in $GatewayIp4List
+do
+    if [ "$gw"= "$IP" ]; then
+       # this is a gateway machine
+       ThisIsGateway="yes"
+    fi
+done
+
+if [ -x /usr/sbin/apache2 ]; then
+    ThisIsWebserver="yes"
+else
+    for www in $WWWip
+    do
+        if [ "$www" = "$IP" ]; then
+            # this is a Webserver
+            ThisIsWebserver="yes"
+        fi
+    done
+fi
+
+function FWboth {
+   FW4="/sbin/iptables"
+   FW6="/sbin/ip6tables"
+   comment=$1
+   if [ -n "$comment" ];then
+       shift 1
+       echo $FW4 -m comment --comment "$comment" $*
+       $FW4 -m comment --comment "$comment" $*
+       echo $FW6 -m comment --comment "$comment" $*
+       $FW6 -m comment --comment "$comment" $*
+   else
+       echo $FW4 $*
+       $FW4 $*
+       $FW6 $*
+   fi
+}
+
+function FW4 {
+   FW4="/sbin/iptables"
+   #echo $FW6 $*
+   comment=$1
+   if [ -n "$comment" ]; then
+       shift 1
+       echo $FW4 -m comment --comment "$comment" $*
+       $FW4 -m comment --comment "$comment" $*
+   else
+       echo $FW4 $*
+       $FW4 $*
+   fi
+}
+
+function FW6 {
+   FW6="/sbin/ip6tables"
+   #echo $FW6 $*
+   comment=$1
+   if [ -n "$comment" ];then
+       shift 1
+       echo $FW6 -m comment --comment "$comment" $*
+       $FW6 -m comment --comment "$comment" $*
+   else
+       echo $FW6 $*
+       $FW6 $*
+   fi
+}
+
+echo "I: reset all prior rules"
+
+FWboth "" -F
+FWboth "" -X
+FW4 "" -t nat -F
+
+echo "I: Starting with a permissive default, restricted later in case script fails"
+FWboth "" -P INPUT   ACCEPT
+FWboth "" -P FORWARD ACCEPT
+FWboth "" -P OUTPUT  ACCEPT
+
+echo "I: Creating chain named 'log-drop'"
+FWboth "" -N log-drop
+FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
+# uncomment once important bits are no longer logged
+FWboth "" -A log-drop -j DROP
+
+FWboth "" -N log-drop-out
+FWboth "log and drop TCP" '-A log-drop-out -m limit --limit 5/min -j LOG --log-prefix Denied_OUT: --log-level 7'
+FWboth "" -A log-drop-out -j DROP
+
+FW4 "Chinese_hackers" -I INPUT -s 61.174.0.0/16 -j DROP
+FW4 "Chinese_hackers" -I OUTPUT -s 61.174.0.0/16 -j log-drop-out
+FW4 "Chinese_hackers" -I INPUT -s 202.103.0.0/16 -j DROP
+FW4 "Chinese_hackers" -I OUTPUT -s 202.103.0.0/16 -j log-drop
+FW4 "unknown_malicious_211.247.55.227" -I INPUT -s 211.247.0.0/16 -j DROP
+FW4 "unknown_malicious_211.247.55.227" -I OUTPUT -s 211.247.0.0/16 -j log-drop-out
+
+FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+echo "I: JA: trust myself on lo"
+FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
+
+echo "I: JA: trusting all gateway IP4 gateway addresses on eth0"
+for gw in $GatewayIp4List
+do
+	echo -n "       gateway $gw "
+	FW4 "Fully_trusting_gateway" -A INPUT -s $gw/32 -j ACCEPT
+	echo "- trusted"
+done
+
+#echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
+#FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
+FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/64 -j ACCEPT
+
+
+echo "I: JA fuer Freifunk: PING, FASTD, DNS"
+if [ "yes"="$ThisIsGateway" ]; then
+   echo "I: Machine recognised as gateway"
+   # Trust WWW machine to ping
+   FW4 "Freifunk Network -  ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
+   # DNS service
+   FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
+   # Gateways are gateways for fastd and always listen to port 10000
+   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 10000 -j ACCEPT'
+   # Intercity Gateway
+   FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
+   FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
+   FWboth "Freifunk Network - Web access" "-A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT"
+   FWboth "Freifunk Network - Web access secure" "-A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT"
+
+   FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
+
+else
+   echo "I: Machine is not a gateway"
+   # Accept port 10000 when it comes from the network's IP Address
+   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice 10000 -j ACCEPT"
+   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
+   FWboth "From everywhere - Web access" '-A INPUT -p tcp --dport http -j ACCEPT'
+   FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
+fi
+
+FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
+
+# Always trust all gateways and Webservers, also for their external IPs
+for $gw in $GatwayIp4List
+do
+    FW4 "Freifunk Network - ping from GW1 external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
+done 
+for $gw in $WWWip
+do
+    FW4 "Freifunk Network - ping from www external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
+done 
+
+
+if [ "yes"="$ThisIsGateway" ]; then
+   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
+   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
+   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+
+   FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --sport 179 -j ACCEPT"
+   FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
+fi
+
+echo "I: NEIN: FTP, PING"
+FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
+FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j log-drop'
+FWboth "Do not accept Pings from outside Freifunk" '-A INPUT -p icmp -j log-drop'
+FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
+
+echo "I: JA: SSH, WWW"
+FWboth "SSH login possible from everywhere" '-A INPUT -p tcp --dport ssh -j ACCEPT'
+
+echo "I: drop anything else"
+FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport microsoft-ds -j DROP'
+FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
+FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
+
+
+
+if [ -x /usr/sbin/dpkg-reconfigure ]; then
+   if [ -x /usr/bin/fail2ban-server ]; then
+      dpkg-reconfigure fail2ban
+   fi
+fi
+
+echo "I: NAT"
+FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
+FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+
+echo "I: update INPUT policy to DROP"
+FWboth "" -P INPUT DROP
+
+#echo "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
+#iptables -t blacklist_ip_projects_de -F || echo "[ignored]"
+#iptables -t blacklist_ip_projects_de -X || echo "[ignored]"
+#iptables -N blacklist_ip_projects_de 
+#wget -O - http://mirror.ip-projects.de/ip-blacklist |sort|xargs -n1 iptables -A blacklist_ip_projects_de -j DROP -s
+#iptables -I INPUT -j blacklist_ip_projects_de
+#
+#echo "I: adding blacklist from openbl.org - takes some minutes"
+#iptables -t blacklist_openbl_org -F || echo "[ignored]"
+#iptables -t blacklist_openbl_org -X || echo "[ignored]"
+#iptables -N blacklist_openbl_org
+#wget -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | egrep '^[0-9]' |sort|xargs -n1 iptables -A blacklist_openbl_org -j DROP -s
+#iptables -I INPUT -j blacklist_openbl_org
+
+echo "[OK]"
