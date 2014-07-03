@@ -58,6 +58,20 @@ last.fm
 www.last.fm
 lastfm.de
 www.lastfm.de
+google-analytics.com
+www.google-analytics.com
+facebook.com
+www.facebook.com
+gmx.de
+gmx.net
+www.gmx.de
+www.gmx.net
+navigator.gmx.net
+github.com
+www.github.com
+ostholstein.freifunk.net
+gw1.ostholstein.freifunk.net
+gw2.ostholstein.freifunk.net
 EOIPS
 )
 
