@@ -43,7 +43,9 @@ IPs=$(cat <<EOIPS | grep -v ^#
 ostholstein.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
-#
+# much sought after
+de.sitestat.com
+# 
 google-public-dns-a.google.com
 www.google.com
 google.com
@@ -132,12 +134,29 @@ mediathek.rbb-online.de
 rbb.ivwbox.de
 rbb.ic.llnwd.net
 # RBB - end
+# Tagesschau - start
 tagesschau.de
 www.tagesschau.de
+ard.de
+www.ard.de
+www.sportschau.de
+ardsport.ivwbox.de
+gsea.ivwbox.de
+swr.ivwbox.de
+adaptiv.wdr.de
+ard.ivwbox.de
+logi242.xiti.com
+tagessch.ivwbox.de
+media.tagesschau.de
+# Tagesschau - end
+www.ardmediathek.de
+cp229098.edgefcs.net
+script.ioam.de
 ndr.de
 ndr.ivwbox.de
 ndr_fs-lh.akamaidhd.net
 www.ndr.de
+www.hr.gl-systemhaus.de
 www.eurovision.de
 players.edgesuite.net
 hds.ndr.de
@@ -179,8 +198,7 @@ bronline.ivwbox.de
 cdn-vod-hds.br.de
 www.edgesuite.net
 79423.analytics.edgesuite.net
-mal140-r.analytics.edgesuite.net
-de.sitestat.com
+ma140-r.analytics.edgesuite.net
 #
 phoenix.de
 www.phoenix.de
