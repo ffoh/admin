@@ -134,7 +134,7 @@ mediathek.rbb-online.de
 rbb.ivwbox.de
 rbb.ic.llnwd.net
 # RBB - end
-# Tagesschau - start
+# ARD mit Tagesschau - start
 tagesschau.de
 www.tagesschau.de
 ard.de
@@ -148,7 +148,14 @@ ard.ivwbox.de
 logi242.xiti.com
 tagessch.ivwbox.de
 media.tagesschau.de
-# Tagesschau - end
+programm.ard.de
+www.sportschau.de
+www1.sportschau.de
+wmswr-lh.akamaihd.net
+79423.analytics.edgesuite.net
+wmswr-lh.akamaihd.net
+ma140-r.analytics.edgesuite.net
+# ARD mit Tagesschau - end
 www.ardmediathek.de
 cp229098.edgefcs.net
 script.ioam.de
