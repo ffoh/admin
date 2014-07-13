@@ -202,13 +202,28 @@ ma140-r.analytics.edgesuite.net
 #
 phoenix.de
 www.phoenix.de
+# ZDF - start
 webcam.zdf.de
+wwwdyn.zdf.de
 phoenix.ivwbox.de
 fstreaming.zdf.de
 secure-eu.imrworldwide.com
 zdf_hds_de-f.akamaihd.net
 zdf.de
 www.zdf.de
+zdf_hds_de-f.akamaihd.net
+79423.analytics.edgesuite.net
+code.etracker.com
+de.ioam.de
+fstreaming.zdf.de
+ma140-r.analytics.edgesuite.net
+module.zdf.de
+secure-eu.imrworldwide.com
+sofa01.zdf.de
+vqm.zdf.de
+www.etracker.de
+www.zdf.de
+# ZDF - end
 EOIPS
 )
 
