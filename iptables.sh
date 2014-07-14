@@ -121,8 +121,8 @@ do
 done
 
 #echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
-#FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
-FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/64 -j ACCEPT
+FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
+#FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/64 -j ACCEPT
 
 
 echo "I: JA fuer Freifunk: PING, FASTD, DNS"
@@ -153,6 +153,8 @@ if [ "yes"="$ThisIsWebserver" ]; then
 fi
 
 FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
+FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
+FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
 # Always trust all gateways and Webservers, also for their external IPs
 for $gw in $GatwayIp4List
@@ -201,7 +203,8 @@ FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 
 FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
 
 echo "I: update INPUT policy to DROP"
-FWboth "" -P INPUT DROP
+#FWboth "" -P INPUT DROP
+FW4 "" -P INPUT DROP
 
 #echo "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
 #iptables -t blacklist_ip_projects_de -F || echo "[ignored]"
