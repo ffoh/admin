@@ -44,6 +44,7 @@ ostholstein.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
 # much sought after
+ad.doubleclick.net
 de.sitestat.com
 # 
 google-public-dns-a.google.com
@@ -55,8 +56,12 @@ apis.google.de
 www.google-analytics.com
 mail.google.com
 gmail.com
+plus.google.com
+talkgadget.google.com
+# spiegel - start
 spiegel.de
 www.spiegel.de
+spiegel.de
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
@@ -64,6 +69,12 @@ cdn4.spiegel.de
 magazin.spiegel.de
 spiegel.ivwbox.de
 c.spiegel.de
+dc59.s290.meetrics.net
+dc61.s290.meetrics.net
+geschichte.spiegel.de
+plusone.google.com
+s290.mxcdn.net
+# spiegel - end
 spotify.com
 www.spotify.com
 # Arte - begin
@@ -155,19 +166,23 @@ wmswr-lh.akamaihd.net
 79423.analytics.edgesuite.net
 wmswr-lh.akamaihd.net
 ma140-r.analytics.edgesuite.net
+www1.wdr.de
 # ARD mit Tagesschau - end
 www.ardmediathek.de
 cp229098.edgefcs.net
 script.ioam.de
+# NRD - start
 ndr.de
 ndr.ivwbox.de
 ndr_fs-lh.akamaidhd.net
+www.n-joy.de
 www.ndr.de
 www.hr.gl-systemhaus.de
 www.eurovision.de
 players.edgesuite.net
 hds.ndr.de
 de.ioam.de
+# NDR - end
 spotify.com
 www.spotify.com
 ftp.de.debian.org
@@ -198,6 +213,7 @@ navigator.gmx.net
 github.com
 www.github.com
 freshmeat.net
+# BR - start
 bronline.de
 bralpha.de
 br.de
@@ -206,6 +222,11 @@ cdn-vod-hds.br.de
 www.edgesuite.net
 79423.analytics.edgesuite.net
 ma140-r.analytics.edgesuite.net
+www.br.de
+players.edgesuite.net
+www.bronline.de
+livestreams.br.de
+# BR - end
 #
 phoenix.de
 www.phoenix.de
@@ -231,6 +252,46 @@ vqm.zdf.de
 www.etracker.de
 www.zdf.de
 # ZDF - end
+# Radio
+rsh.de
+www.rsh.de
+ajax.googleapis.com
+bam.nr-data.net
+content.rsh.de
+i1.ytimg.com
+newscloud.fm
+rsh.ivwbox.de
+rum-collector.pingdom.net
+rum-static.pingdom.net
+s.ytimg.com
+i1.ytimg.com
+deltaradio.de
+www.deltaradio.de
+content.deltaradio.de
+deltarad.ivwbox.de
+ecx.images-amazon.com
+media1.deltaradio.de
+media2.deltaradio.de
+media3.deltaradio.de
+media4.deltaradio.de
+media5.deltaradio.de
+qs.ioam.de
+qs.ivwbox.de
+livestream.deltaradio.de
+streams.deltaradio.de
+deltarad.ivwbox.de
+# Radio - end
+# TED - start
+www.ted.com
+assets2.tedcdn.com
+img.tedcdn.com
+metrics.ted.com
+b.scorecardresearch.com
+# TED - end
+webmail.uksh.de
+www.uni-luebeck.de
+webmail.uk-sh.de
+www.uksh.de
 EOIPS
 )
 
