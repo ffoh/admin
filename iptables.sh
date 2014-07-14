@@ -4,11 +4,13 @@ set -e
 
 IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
 echo "I: IP=$IP"
-ThisIsGateway=no
-ThisIsWebserver=no
-FreifunkDevice=bat0
+ThisIsGateway="no"
+ThisIsWebserver="no"
+ThisIsMailserver="no"
+FreifunkDevice="bat0"
 
-WWWip=109.75.177.24
+WWWip="109.75.177.24"
+Mailip="109.75.177.24"
 #GatewayIp4List=141.101.36.19
 GatewayIp4List="141.101.36.19 141.101.36.67"
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
@@ -32,6 +34,10 @@ else
             ThisIsWebserver="yes"
         fi
     done
+fi
+
+if [ "x$IP" = "x$Mailip" ]; then
+    ThisIsMailserver="yes"
 fi
 
 function FWboth {
@@ -119,6 +125,10 @@ do
 	FW4 "Fully_trusting_gateway" -A INPUT -s $gw/32 -j ACCEPT
 	echo "- trusted"
 done
+
+if [ "yes" = "$ThisIsMailserver" ]; then
+    FWboth "Mailservers accept on port 25" -A INPUT -p tcp --dport 25 -j ACCEPT 
+fi
 
 #echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
 FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
