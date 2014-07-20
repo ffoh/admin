@@ -11,7 +11,8 @@ fi
 
 function ipdirect () {
 	ip=$1
-	if ! ip route list table freifunk | grep -q "$ip"; then
+	#if ! ip route list table freifunk | grep -q "$ip"; then
+	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
 		echo "I: Adding route for $ip via $gateway for table freifunk"
 		#ip route add $ip via 141.101.36.1 table freifunk
 		ip route replace $ip via 141.101.36.1 table freifunk
@@ -48,6 +49,7 @@ ad.doubleclick.net
 de.sitestat.com
 # 
 google-public-dns-a.google.com
+google-public-dns-b.google.com
 www.google.com
 google.com
 google.de
@@ -58,6 +60,9 @@ mail.google.com
 gmail.com
 plus.google.com
 talkgadget.google.com
+plusone.google.com
+ssl.gstatic.com
+accounts.google.com
 # spiegel - start
 spiegel.de
 www.spiegel.de
@@ -74,6 +79,10 @@ dc61.s290.meetrics.net
 geschichte.spiegel.de
 plusone.google.com
 s290.mxcdn.net
+prod.spiegel.de
+script.ioam.de
+qs.ioam.de
+qs.ivwbox.de
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -136,8 +145,39 @@ b.scorecardresearch.com
 go.disqus.com
 cloud.typography.com
 # Arte - end
+# ebay - start
 ebay.de
 www.ebay.de
+www.ebay.com
+ebay.ivwbox.de
+ir.ebaystatic.com
+p.ebaystatic.com
+q.ebaystatic.com
+pages.ebay.de
+pics.ebaystatic.com
+rover.ebay.de
+rtm.ebaystatic.com
+i.ebayimg.com
+svcs.ebay.com
+thumbs.ebaystatic.com
+thumbs1.ebaystatic.com
+thumbs2.ebaystatic.com
+thumbs3.ebaystatic.com
+thumbs4.ebaystatic.com
+vi.vipr.ebaydesc.com
+www.sainsmart.com
+i18.ebayimg.com
+# ebay - end
+# paypal - start
+www.paypal.de
+www.paypal.com
+www.paypalobjects.com
+paypal.d1.sc.omtrdc.net
+t.paypal.com
+paypal.de
+b.stats.paypal.com
+altfarm.mediaplex.com
+# paypal - end
 # RBB - start
 www.rbb-online.de
 rbb-online.de
@@ -167,6 +207,12 @@ wmswr-lh.akamaihd.net
 wmswr-lh.akamaihd.net
 ma140-r.analytics.edgesuite.net
 www1.wdr.de
+liveupdate1.scribblelive.com
+counter.scribblelive.com
+love.scribblelive.com
+cdn-storage.br.de
+media.ndr.de
+download.media.tagesschau.de
 # ARD mit Tagesschau - end
 www.ardmediathek.de
 cp229098.edgefcs.net
@@ -251,7 +297,24 @@ sofa01.zdf.de
 vqm.zdf.de
 www.etracker.de
 www.zdf.de
+sportstudio.zdf.de
+secure-eu.imrworldwide.com
+79423.analytics.edgesuite.net
+ma140-r.analytics.edgesuite.net
+vqm.zdf.de
+fgeostreaming.zdf.de
+cp125302.edgefcs.net
+2df.ivwbox.de
+heute.ivwbox.de
+www.etracker.de
+code.etracker.com
 # ZDF - end
+# HR - start
+www.hr-online.de
+www.hr.gl-systemhaus.de
+logi104.xiti.com
+hr.ivwbox.de
+# HR - end
 # Radio
 rsh.de
 www.rsh.de
@@ -292,6 +355,143 @@ webmail.uksh.de
 www.uni-luebeck.de
 webmail.uk-sh.de
 www.uksh.de
+# OOKLA Speedtest - start
+www.googleadservices.com
+www.gstatic.com
+www.speedtest.net
+a.adroll.com
+a.c.appier.net
+ads.ookla.com
+analytics.twitter.com
+by.uservoice.com
+c.speedtest.net
+cdn.ads.ookla.com
+cdn.optimizely.com
+cm.g.doubleclick.net
+d.adroll.com
+googleads.g.doubleclick.net
+ib.adnxs.com
+ih.adscale.de
+match.adsrvr.org
+pagead2.googlesyndication.com
+pixel.quantserve.com
+pubads.g.doubleclick.net
+px.adhigh.net
+sl-02.wemacom.de
+speedtest.csb-net.de
+speedtest.studiofunk.de
+speedtest.swnnms.net
+speedtest.wtnet.de
+us-u.openx.net
+view.atdmt.com
+www.google-analytics.com
+# OOKLA Speedtest - end
+imap.web.de
+service-st11-a.gc.apple.com
+www.apple.com
+api-7b.v.dropbox.com
+www.dropbox.com
+www.amung.us
+amung.us
+hsp.web.de
+www.web.de
+web.de
+home.navigator.web.de
+3c.web.de
+webdessl.ivwbox.de
+www.wikimedia.org
+wikimedia.org
+upload.wikimedia.org
+meta.wikimedia.org
+bits.wikimedia.org
+de.wikipedia.org
+commons.wikimedia.org
+login.wikimedia.org
+email01.t-online.de
+# ORF - start
+orf.at
+www.orf.at
+# ORF - end
+webtrends.de
+scs.webtrends.de
+mittelstein.de
+mail.mittelstein.de
+mapandroute.de
+www.mapandroute.de
+www1.mapandroute.de
+www2.mapandroute.de
+osm0.mapandroute.de
+osm1.mapandroute.de
+osm2.mapandroute.de
+osm3.mapandroute.de
+iw.mapandroute.de
+themes.googleusercontent.com
+www.norges-bank.no
+statse.webtrendslive.com
+www.nbim.no
+www.me.com
+mail.me.com
+www.openstreetmap.org
+piwi.openstreetmap.org
+a.tile.openstreetmap.org
+b.tile.openstreetmap.org
+c.tile.openstreetmap.org
+www.gravatar.com
+i0.wp.com
+dev.virtualearth.net
+ecn.t0.tiles.virtualearth.net
+ecn.t1.tiles.virtualearth.net
+ecn.t2.tiles.virtualearth.net
+ecn.t3.tiles.virtualearth.net
+a.tiles.mapbox.com
+b.tiles.mapbox.com
+c.tiles.mapbox.com
+# RTL - start
+hds.webclips.fra.rtl.de
+bilder.static-fra.de
+cdn.static-fra.de
+www.rtl.de
+static.plista.com
+autoimg.rtl.de
+autoimg.static-fra.de
+bilder.akamai.rtl.de
+fbcdn-profile-a.akamaihd.net
+px1.vtrtl.de
+bilder.rtl.de
+qs.ivwbox.de
+count.rtl.de
+rtl.ivwbox.de
+static.plista.com
+tracking.rtl.de
+# RLT - end
+# SAT1 - start
+www.sat1.de
+epg.kabeleins.de
+ad.71i.de
+common-st.p7s1digital.de
+epg.sat1.de
+www.googletagservices.com
+static.chartbeat.com
+script.ioam.de
+service.maxymiser.net
+common-st.p7s1digital.de
+fbcdn-profile-a.akamaihd.net
+scontent-b.xx.fbcdn.net
+ping.chartbeat.net
+sat1.ivwbox.de
+sat101.webtrekk.net
+stats.g.doubleclick.net
+psdvodhdsdrm.dcp.adaptive.level3.net
+is.myvideo.de
+fbstatic-a.akamaihd.net
+livepassdl.conviva.com
+thumbnails.sevenoneintermedia.de
+oauth.googleusercontent.com
+rec.sat1.de
+getdetails02.sim-technik.de
+ivwextern.sat1.de
+vas.sim-technik.de
+# SAT1 - end
 EOIPS
 )
 
