@@ -39,7 +39,7 @@ function ipindirect () {
 	fi
 }
 
-IPs=$(cat <<EOIPS | grep -v ^#
+IPs=$(cat <<EOIPS | grep -v ^# |cut -f1
 #
 ostholstein.freifunk.net
 gw1.ostholstein.freifunk.net
@@ -234,10 +234,24 @@ www.spotify.com
 ftp.de.debian.org
 anonscm.debian.org
 alioth.debian.org
+www.debian.org
+www.ubuntu.com
+canonical.com
 zatoo.com
 www.zatoo.com
+# amazon - start
 amazon.de
 www.amazon.de
+fls-eu.amazon.de
+ecx.images-amazon.com
+g-ecx.images-amazon.com
+images-na.ssl-images-amazon.com
+z-ecx.images-amazon.com
+cloudfront-labs.amazonaws.com
+z-ecx.images-amazon.com
+static.amazon.de
+fls-devo.vipinteg.amazon.com
+# amazon - end
 volksbank-luebeck.de
 www.volksbank-luebeck.de
 volksbank-eutin.de
@@ -492,6 +506,114 @@ getdetails02.sim-technik.de
 ivwextern.sat1.de
 vas.sim-technik.de
 # SAT1 - end
+# PRO7 - start
+www.prosieben.de
+ds.serving-sys.com
+ad.71i.de
+thumbnails.sevenoneintermedia.de
+service.maxymiser.net
+ad.de.doubleclick.net
+pubads.g.doubleclick.net
+adserver.71i.de
+s1.adform.net
+cdn.krxd.net
+i.ligatus.com
+thumbnails.sevenoneintermedia.de
+pro7.ivwbox.de
+ds.serving-sys.com
+rec3.prosieben.de
+t.prosieben.de
+rec.prosieben.de
+# PRO7 - end
+# Kabel1 - start
+kabel1.ivwbox.de
+www.kabeleins.de
+fbcdn-profile-a.akamaihd.net
+static.chartbeat.com
+rec.kabeleins.de
+qs.ivwbox.de
+qs.ioam.de
+thumbnails.sevenoneintermedia.de
+epg.kabeleins.de
+pagead2.googlesyndication.com
+cdn.flashtalking.com
+servedby.flashtalking.com
+ivwextern.kabeleins.de
+# Kabel1 - end
+imap.1und1.de
+iphone-xml-l.booking.com
+www.booking.com
+hrs.de
+www.hrs.de
+www.albamoda.de
+# NTP - start
+alvo.fungus.at
+arthur.testserver.li
+ashe.besaid.de
+bytesink.de
+callisto.mysnip.de
+cse-server.com
+donotuse.de
+fabiangruber.de
+frankfurt1.firstlinknetworks.com
+golem.canonical.com
+juniperberry.canonical.com
+license.aimms.com
+mail.elfert.de
+mokujin.gionn.net
+netz.smurf.noris.de
+ns1.blazing.de
+ns1.bvc-cloud.de
+ns1.newsnet.li
+ns2.customer-resolver.net
+ntp1.linuxhosted.ca
+public.streikt.net
+public.trexler.at
+pyxis.my-rz.de
+s1.kelker.info
+smtp01.it-wagenbrenner.de
+static.140.107.46.78.clients.your-server.de
+stratum2-3.NTP.TechFak.NET
+stratum2-3.NTP.TechFak.Uni-Bielefeld.de
+stratum2-4.NTP.TechFak.Uni-Bielefeld.de
+stratum2-4.NTP.TechFak.Uni-Bielefeld.de
+test.danzuck.ch
+triton916.startdedicated.de
+wotan.tuxli.ch
+# NTP - end
+# Zatoo - start
+adtech-ads-shared-frr.evip.aol.com
+92.122.214.0/24	Akamai
+91.123.100.0/24 Zatoo
+mqtt-shv-10-frc1.facebook.com
+# Zatoo - end
+# NIST Internet Time Servers - start
+time-a.nist.gov
+time-b.nist.gov
+time-c.nist.gov
+time-d.nist.gov
+nist1-ny.ustiming.org
+nist1-nj.ustiming.org
+nist1-nj2.ustiming.org
+nist1-ny2.ustiming.org
+nist1-pa.ustiming.org
+nist1.aol-va.symmetricom.com
+nist1-macon.macon.ga.us
+nist1-atl.ustiming.org
+wolfnisttime.com
+nist1-chi.ustiming.org
+nist.time.nosc.us
+nist.expertsmi.com
+nist.netservicesgroup.com
+nisttime.carsoncity.k12.mi.us
+nist1-lnk.binary.net
+wwv.nist.gov
+time-nist.symmetricom.com
+time-a.timefreq.bldrdoc.gov
+time-b.timefreq.bldrdoc.gov
+time-c.timefreq.bldrdoc.gov
+# NIST Internet Time Servers - end
+# 
 EOIPS
 )
 
@@ -512,9 +634,14 @@ do
 			done
 		fi
 	else
-		for IP in $(host $n |grep "has address" | cut -f4 -d\ )
-		do
-			ipdirect $IP
-		done
+		if [ -z "$(echo $n | tr -d '.0-9/')" ]; then
+			echo "I: Interpreting '$n' as IP Number"
+			ipdirect $n
+		else
+			for IP in $(host $n |grep "has address" | cut -f4 -d\ )
+			do
+				ipdirect $IP
+			done
+		fi
 	fi
 done
