@@ -208,9 +208,6 @@ if [ -x /usr/sbin/dpkg-reconfigure ]; then
    fi
 fi
 
-echo "I: NAT"
-FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
-FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
 
 echo "I: update INPUT policy to DROP"
 #FWboth "" -P INPUT DROP
@@ -230,5 +227,8 @@ FW4 "" -P INPUT DROP
 #wget -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | egrep '^[0-9]' |sort|xargs -n1 iptables -A blacklist_openbl_org -j DROP -s
 #iptables -I INPUT -j blacklist_openbl_org
 
-echo "[OK]"
+echo "I: NAT"
+FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
+FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
 
+echo "[OK]"
