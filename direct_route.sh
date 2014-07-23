@@ -39,33 +39,37 @@ function ipindirect () {
 	fi
 }
 
-IPs=$(cat <<EOIPS | grep -v ^# |cut -f1
+IPs=$(cat <<EOIPS | grep -v ^# |cut -f1|sort -u
 #
 ostholstein.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
 # much sought after
 ad.doubleclick.net
-de.sitestat.com
+#de.sitestat.com
+17.0.0.0/8	apple
 # 
-google-public-dns-a.google.com
-google-public-dns-b.google.com
-www.google.com
+accounts.google.com
+apis.google.de
+gmail.com
 google.com
 google.de
-www.google.de
-apis.google.de
-www.google-analytics.com
+google-public-dns-a.google.com
+google-public-dns-b.google.com
+id.google.de
 mail.google.com
-gmail.com
+oauth.googleusercontent.com
 plus.google.com
-talkgadget.google.com
 plusone.google.com
 ssl.gstatic.com
-accounts.google.com
+talkgadget.google.com
+www.google-analytics.com
+www.google.com
+www.google.de
 # spiegel - start
 spiegel.de
 www.spiegel.de
+m.spiegel.de
 spiegel.de
 cdn1.spiegel.de
 cdn2.spiegel.de
@@ -83,6 +87,11 @@ prod.spiegel.de
 script.ioam.de
 qs.ioam.de
 qs.ivwbox.de
+dc72.s290.meetrics.net
+ad2.adfarm1.adition.com
+adserv.quality-channel.de
+vt.adition.com
+www.google-analytics.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -112,6 +121,7 @@ logi104.xiti.com
 videos.arte.tv
 fonts.googleapis.com
 connect.facebook.net
+69.171.224.0/19	facebook
 www.googletagmanager.com
 graph.facebook.com
 www-secure.arte.tv
@@ -241,16 +251,20 @@ zatoo.com
 www.zatoo.com
 # amazon - start
 amazon.de
-www.amazon.de
-fls-eu.amazon.de
-ecx.images-amazon.com
-g-ecx.images-amazon.com
-images-na.ssl-images-amazon.com
-z-ecx.images-amazon.com
 cloudfront-labs.amazonaws.com
-z-ecx.images-amazon.com
-static.amazon.de
+ecx.images-amazon.com
 fls-devo.vipinteg.amazon.com
+fls-eu.amazon.de
+g-ecx.images-amazon.com
+g-ec2.images-amazon.com
+images-na.ssl-images-amazon.com
+static.amazon.de
+www.amazon.de
+z-ecx.images-amazon.com
+images-na.ssl-images-amazon.com
+cloudfront-labs.amazonaws.com
+atv-ps-eu.amazon.com
+smooth.l3.cdn.lovefilm.com
 # amazon - end
 volksbank-luebeck.de
 www.volksbank-luebeck.de
@@ -265,11 +279,20 @@ google-analytics.com
 www.google-analytics.com
 facebook.com
 www.facebook.com
+# GMX - start
 gmx.de
 gmx.net
 www.gmx.de
 www.gmx.net
 navigator.gmx.net
+s3.amazonaws.com
+fbcdn-profile-a.akamaihd.net
+i0.gmx.net
+s.uicdn.com
+gmx.ivwbox.de
+s.uicdn.com
+uim.tifbs.net
+# GMX - end
 github.com
 www.github.com
 freshmeat.net
@@ -386,6 +409,7 @@ d.adroll.com
 googleads.g.doubleclick.net
 ib.adnxs.com
 ih.adscale.de
+sadmin.brightcove.com
 match.adsrvr.org
 pagead2.googlesyndication.com
 pixel.quantserve.com
@@ -613,7 +637,147 @@ time-a.timefreq.bldrdoc.gov
 time-b.timefreq.bldrdoc.gov
 time-c.timefreq.bldrdoc.gov
 # NIST Internet Time Servers - end
+# Welt.de - start
+cdn.cxense.com
+cdn.flashtalking.com
+cdn4.emediate.eu
+www.welt.de
+ww251.smartadserver.com
+static.chartbeat.com
+cdn.krxd.net
+static.plista.com
+farm.plista.com
+iconist.de
+js.revsci.net
+wetter.welt.de
+pix04.revsci.net
+ads.heias.com
+servedby.flashtalking.com
+apiservices.krxd.net
+load.s3.amazonaws.com
+comcluster.cxense.com
+welt.ivwbox.de
+# Welt.de - end
+# Sky.com - start
+ad.doubleclick.net
+ad-emea.doubleclick.net
+ad.yieldlab.net
+admin.brightcove.com
+amv3-tslogging.touchcommerce.com
+api.adrtx.net
+api.bizographics.com
+www.skygo.sky.de
+assets.adobedtm.com
+sky.de.d3.sc.omtrdc.net
+skygo.sky.de
+dpm.demdex.net
+www.microsoft.com
+go.sky.com
+livepassdl.conviva.com
+gwb.lphbs.com
+79423.analytics.edgesuite.net
+sky.de.d3.sc.omtrdc.net
+ma100-r.analytics.edgekey.net
+apiservices.krxd.net
+assets.sky.com
+asv.nuggad.net
+beacon.krxd.net
+britishskybroadcasti.tt.omtrdc.net
+www.skygo.sky.de
+b.scorecardresearch.com
+cdn1.smartadserver.com
+cdn.adrtx.net
+cdn.krxd.net
+cm.g.doubleclick.net
+d2oh4tlt9mrke9.cloudfront.net
+dis.criteo.com
+eas.apm.emediate.eu
+ecustomeropinions.com
+fbstatic-a.akamaihd.net
+go.affec.tv
+googleads.g.doubleclick.net
+ib.adnxs.com
+i.ctnsnet.com
+id.impressiondesk.com
+js.revsci.net
+loadm.exelator.com
+metrics.sky.com
+my.sky.com
+omni.sky.de
+ds-aksb-a.akamaihd.net
+1.s10i.com
+p2.s10i.com
+pix04.revsci.net
+pixel.mathtag.com
+pixel.quantserve.com
+pix.impdesk.com
+rtax.criteo.com
+rtt.adrolays.de
+sales.liveperson.net
+sd.nakamitech.de
+secure.adnxs.com
+server.lon.liveperson.net
+service.maxymiser.net
+skyde.inq.com
+skystorage-a.akamaihd.net
+smetrics.sky.com
+sr2.liveperson.net
+storage.sky.com
+t13.intelliad.de
+t23.intelliad.de
+t.mookie1.com
+ws.sessioncam.com
+ww251.smartadserver.com
+www.sky.com
+premiede.ivwbox.de
+api.brightcove.com
+qs.ivwbox.de
+skydeutschland.edgesuite.net
+brightcove.vo.llnwd.net
+ced.sascdn.com
+gmads.net
+cdn1.smartadserver.com
+ak-ns.sascdn.com
+audienceinsights.net
+c.brightcove.com
+metrics.brightcove.com
+goku.brightcove.com
+skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
+# Sky.com - end
+# Carelink Medtronic - start
+carelink.minimed.com
+b.medtronic.com
+# Carelink Medtronic - end
+# Java - start
+java.com
+oracle.112.2o7.net
+javadl.sun.com
+sdlc-esd.sun.com
+# Java - end
+# Ryanair - start
+www.ryanair.com
+metrics.ryanair.com
+cdnjs.cloudflare.com
+connect.facebook.net
+www.bookryanair.com
+smetrics.ryanair.com
+ajax.googleapis.com
+code.jquery.com
+# Ryanair - end
+www.flughafen-luebeck.de
+bilder.static-fra.de
+mapwidget.11880.com
+count.rtl.de
+www.wetter.de
 # 
+i1.ytimg.com
+gg.google.com
+yt3.ggpht.com
+lh4.ggpht.com
+173.194.0.0/16	youtube.com
+#s.youtube.com	redundant
+#www.youtube.com	redundant
+#www.youtube-nocookie.com	redundant
 EOIPS
 )
 
