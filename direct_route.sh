@@ -802,6 +802,22 @@ djibeacon.dowjoneson.com
 mwstream.wsj.net
 sc.wsj.net
 sj.wsj.net
+zor.fyre.com
+platform.linkedin.com
+js.bankrate.com
+www.linkedin.com
+i.ytimg.com
+ei.marketwatch.com
+bootstrap.marketwatch.fyre.co
+partnerservices.bankrate.com
+bit.ly
+m.wsj.net
+cdn.livefyre.com
+gravatar.com
+cm.g.doubleclick.net
+om.dowjoneson.com
+api.wsj.net
+si4.s.dev.wsj.com
 # marksetwatch - end
 EOIPS
 )
