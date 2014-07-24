@@ -778,6 +778,31 @@ lh4.ggpht.com
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
+www.comdirect.de
+charts.comdirect.de
+kunde.comdirect.de
+# marksetwatch - start
+www.marketwatch.com
+mw1.wsj.net
+mw2.wsj.net
+mw3.wsj.net
+mw4.wsj.net
+s.wsj.net
+i.marketwatch.com
+widgets.outbrain.com
+odb.outbrain.com
+i.mktw.net
+i.marketwatch.com
+s.marketwatch.com
+tags.tiqcdn.com
+images.outbrain.com
+b.scorecardresearch.com
+mwstream.wsj.net
+djibeacon.dowjoneson.com
+mwstream.wsj.net
+sc.wsj.net
+sj.wsj.net
+# marksetwatch - end
 EOIPS
 )
 
