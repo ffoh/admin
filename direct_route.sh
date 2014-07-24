@@ -778,6 +778,7 @@ lh4.ggpht.com
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
+98.136.0.0/14	yahoo.com
 EOIPS
 )
 
