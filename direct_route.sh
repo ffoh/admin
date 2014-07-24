@@ -48,6 +48,8 @@ gw2.ostholstein.freifunk.net
 ad.doubleclick.net
 #de.sitestat.com
 17.0.0.0/8	apple
+173.194.0.0/16	youtube.com
+98.136.0.0/14	yahoo.com
 # 
 accounts.google.com
 apis.google.de
@@ -774,11 +776,51 @@ i1.ytimg.com
 gg.google.com
 yt3.ggpht.com
 lh4.ggpht.com
-173.194.0.0/16	youtube.com
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
-98.136.0.0/14	yahoo.com
+www.comdirect.de
+charts.comdirect.de
+kunde.comdirect.de
+# marksetwatch - start
+www.marketwatch.com
+mw1.wsj.net
+mw2.wsj.net
+mw3.wsj.net
+mw4.wsj.net
+s.wsj.net
+i.marketwatch.com
+widgets.outbrain.com
+odb.outbrain.com
+i.mktw.net
+i.marketwatch.com
+s.marketwatch.com
+tags.tiqcdn.com
+images.outbrain.com
+b.scorecardresearch.com
+mwstream.wsj.net
+djibeacon.dowjoneson.com
+mwstream.wsj.net
+sc.wsj.net
+sj.wsj.net
+zor.fyre.com
+platform.linkedin.com
+js.bankrate.com
+www.linkedin.com
+i.ytimg.com
+ei.marketwatch.com
+bootstrap.marketwatch.fyre.co
+partnerservices.bankrate.com
+bit.ly
+m.wsj.net
+cdn.livefyre.com
+gravatar.com
+cm.g.doubleclick.net
+om.dowjoneson.com
+api.wsj.net
+si4.s.dev.wsj.com
+# marksetwatch - end
+>>>>>>> b86e97183d3594bd8064161e0ec074fd006ae736
 EOIPS
 )
 
