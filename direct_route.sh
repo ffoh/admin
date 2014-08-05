@@ -49,7 +49,7 @@ gw2.ostholstein.freifunk.net
 #de.sitestat.com
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com ad.doubleclick.net
+173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com ad.doubleclick.net www.googletagmanager.com googleads.g.doubleclick.net
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
@@ -938,6 +938,32 @@ pvza-production.popcapsf.com
 0-channel-proxy-06-frc1.facebook.com
 # POPCAP - end
 imap.mail.de
+api.flattr.com
+# wetter.com - start
+wetter.com
+s7.addthis.com
+dev.visualwebsiteoptimizer.com
+wetter.ivwbox.de
+www.wetter.com
+m.addthis.com
+static.chartbeat.com
+ping.chartbeat.net
+ls1.wettercomassets.com
+# wetter.com - end
+# reichelt - start
+www.reichelt.de
+css.cdn-reichelt.de
+js.cdn-reichelt.de
+cdn-reichelt.de
+statistic2.reichelt.de
+css.cdn-reichelt.de
+cdn.exactag.com
+rwt.reichelt.de
+m.exactag.com
+t.flix360.com
+media.flixcar.com
+
+# reichelt - end
 EOIPS
 )
 
