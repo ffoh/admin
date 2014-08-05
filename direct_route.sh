@@ -42,32 +42,31 @@ function ipindirect () {
 IPs=$(cat <<EOIPS | grep -v ^# |cut -f1|sort -u
 #
 ostholstein.freifunk.net
+luebeck.freifunk.net
+www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
 # much sought after
 ad.doubleclick.net
 #de.sitestat.com
-17.0.0.0/8	apple
-173.194.0.0/16	youtube.com
+www.apple.com	# not redundant
+17.0.0.0/8	apple service addresses
+173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com
 98.136.0.0/14	yahoo.com
+141.83.0.0/16	uni-luebeck.de
+173.252.64.0/18	facebook
+193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
+74.125.0.0/16	google
+81.26.166.0/24	i.ligatus.com d.ligatus.com
+#s.youtube.com	redundant
+#www.youtube.com	redundant
+#www.youtube-nocookie.com	redundant
 # 
-accounts.google.com
-apis.google.de
-gmail.com
-google.com
-google.de
-google-public-dns-a.google.com
-google-public-dns-b.google.com
-id.google.de
-mail.google.com
+8.8.8.8	google-public-dns-a.google.com
+8.8.4.4	google-public-dns-b.google.com
+74.125.0.0/16	id.google.de
 oauth.googleusercontent.com
-plus.google.com
-plusone.google.com
 ssl.gstatic.com
-talkgadget.google.com
-www.google-analytics.com
-www.google.com
-www.google.de
 # spiegel - start
 spiegel.de
 www.spiegel.de
@@ -162,6 +161,7 @@ ebay.de
 www.ebay.de
 www.ebay.com
 ebay.ivwbox.de
+kleinanzeigen.ebay.de
 ir.ebaystatic.com
 p.ebaystatic.com
 q.ebaystatic.com
@@ -391,7 +391,6 @@ metrics.ted.com
 b.scorecardresearch.com
 # TED - end
 webmail.uksh.de
-www.uni-luebeck.de
 webmail.uk-sh.de
 www.uksh.de
 # OOKLA Speedtest - start
@@ -426,13 +425,12 @@ us-u.openx.net
 view.atdmt.com
 www.google-analytics.com
 # OOKLA Speedtest - end
-imap.web.de
-service-st11-a.gc.apple.com
-www.apple.com
 api-7b.v.dropbox.com
 www.dropbox.com
 www.amung.us
 amung.us
+imap.web.de
+navigator.web.de
 hsp.web.de
 www.web.de
 web.de
@@ -543,7 +541,6 @@ pubads.g.doubleclick.net
 adserver.71i.de
 s1.adform.net
 cdn.krxd.net
-i.ligatus.com
 thumbnails.sevenoneintermedia.de
 pro7.ivwbox.de
 ds.serving-sys.com
@@ -567,6 +564,8 @@ servedby.flashtalking.com
 ivwextern.kabeleins.de
 # Kabel1 - end
 imap.1und1.de
+smtp.1und1.de
+pop.1und1.de
 iphone-xml-l.booking.com
 www.booking.com
 hrs.de
@@ -776,9 +775,6 @@ i1.ytimg.com
 gg.google.com
 yt3.ggpht.com
 lh4.ggpht.com
-#s.youtube.com	redundant
-#www.youtube.com	redundant
-#www.youtube-nocookie.com	redundant
 www.comdirect.de
 charts.comdirect.de
 kunde.comdirect.de
@@ -820,7 +816,116 @@ om.dowjoneson.com
 api.wsj.net
 si4.s.dev.wsj.com
 # marksetwatch - end
->>>>>>> b86e97183d3594bd8064161e0ec074fd006ae736
+# LN - start
+www.ln-online.de
+lnonl.ivwbox.de
+api.brightcove.com
+media.ln-online.de
+code.etracker.com
+cdn-media.ln-und-oz.de
+maps.googleapis.com
+markt.ln-online.de
+ostseezt.ivwbox.de
+www.dhd24.com
+static-dhd24.dhd.de
+images0.dhd.de
+images1.dhd.de
+images2.dhd.de
+images3.dhd.de
+images4.dhd.de
+script.ioam.de
+dhd24.ivwbox.de
+# LN - end
+# ADAC - start
+www.adac.de
+webts.adac.de
+service.maxymiser.net
+routenplaner.adac.de
+www.marinafuehrer.adac.de
+stats.vektorrausch.de
+maps.googleapis.com
+csi.gstatic.com
+mt0.googleapis.com
+mt1.googleapis.com
+themes.googleusercontent.com
+fonts.googleapis.com
+www.windfinder.com
+# ADAC - end
+www.timmendorfer-strand.org
+www.niendorf-ostsee.de
+niendorf2014.avisto.eu
+www.buchen.travel
+z1.im-web.de
+images.im-web.de
+visitenkarten.im-web.de
+ajax.googleapis.com
+csi.gstatic.com
+maps.gstatic.com
+# facebook spiel - start
+173.244.184.34
+graph.facebook.com
+plarium.hs.llnwd.net
+173.244.184.114
+apps.facebook.com
+6-channel-proxy-07-ash2.facebook.com
+fbexternal-a.akamaihd.net
+s-assets.tp-cdn.com
+fbcdn-profile-a.akamaihd.net
+pixel.facebook.com
+totaldomination.x-plarium.com
+fbstatic-a.akamaihd.net
+fbcdn-photos-g-a.akamaihd.net
+fbcdn-photos-b-a.akamaihd.net
+fbcdn-photos-a-a.akamaihd.net
+fbcdn-profile-a.akamaihd.net
+cluster-3.skillclub.com
+fbexternal-a.akamaihd.net
+# facebook spiel - end
+# Apple TV - start
+securemetrics.apple.com
+store.storeimages.cdn-apple.com
+store.apple.com
+361250524.log.optimizely.com
+metrics.apple.com
+itunes.apple.com
+images.apple.com
+tw.appstore.com
+appstore.com
+www.appstore.com
+a248.e.akamai.net
+swdlp.apple.com
+s.mzstatic.com
+ssl.apple.com
+a1.mzstatic.com
+a2.mzstatic.com
+a3.mzstatic.com
+a4.mzstatic.com
+a5.mzstatic.com
+fbcdn-profile-a.akamaihd.net
+ax.itunes.apple.com
+# Apple TV - end
+# Westfaelische Nachrichten - start
+www.wn.de
+api.brightcove.com
+admin.brightcove.com
+c.brightcove.com
+static.wn.de
+cdn.nativendo.de
+www.energiefreiheit.com
+static.plista.com
+farm.plista.com
+cdn.taboola.com
+images.taboola.com
+trc.taboola.com
+rub-media.westfaelische-nachrichten.de
+event.yoochoose.net
+cdn.taboolasyndication.com
+westnach.ivwbox.de
+static2.wn.de
+qs.ioam.de
+de.ioam.de
+# Westfaelische Nachrichten - end
+# 
 EOIPS
 )
 
