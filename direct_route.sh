@@ -51,7 +51,7 @@ ad.doubleclick.net
 #de.sitestat.com
 www.apple.com	# not redundant
 17.0.0.0/8	apple service addresses
-173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com
+173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com www.googleadservices.com gstatic.com maps.gstatic.com csi.gstatic.com www.gstatic.com ssl.gstatic.com oauth.googleusercontent.com id.google.de
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 173.252.64.0/18	facebook
@@ -66,33 +66,38 @@ www.apple.com	# not redundant
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	id.google.de
 oauth.googleusercontent.com
-ssl.gstatic.com
 # spiegel - start
-spiegel.de
-www.spiegel.de
-m.spiegel.de
-spiegel.de
+ad2.adfarm1.adition.com
+adserv.quality-channel.de
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
 cdn4.spiegel.de
-magazin.spiegel.de
-spiegel.ivwbox.de
+cdn.api.twitter.com
+count.spiegel.de
 c.spiegel.de
+dc44.s290.meetrics.net
 dc59.s290.meetrics.net
 dc61.s290.meetrics.net
+dc72.s290.meetrics.net
+dc72.s290.meetrics.net
 geschichte.spiegel.de
+magazin.spiegel.de
+m.spiegel.de
+platform.twitter.com
 plusone.google.com
-s290.mxcdn.net
-prod.spiegel.de
-script.ioam.de
 qs.ioam.de
 qs.ivwbox.de
-dc72.s290.meetrics.net
-ad2.adfarm1.adition.com
-adserv.quality-channel.de
+s290.mxcdn.net
+script.ioam.de
+spiegel.de
+spiegel.ivwbox.de
+twitter.com
+video2.spiegel.de
+video.spiegel.de
 vt.adition.com
 www.google-analytics.com
+www.spiegel.de
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -394,8 +399,6 @@ webmail.uksh.de
 webmail.uk-sh.de
 www.uksh.de
 # OOKLA Speedtest - start
-www.googleadservices.com
-www.gstatic.com
 www.speedtest.net
 a.adroll.com
 a.c.appier.net
@@ -844,7 +847,6 @@ routenplaner.adac.de
 www.marinafuehrer.adac.de
 stats.vektorrausch.de
 maps.googleapis.com
-csi.gstatic.com
 mt0.googleapis.com
 mt1.googleapis.com
 themes.googleusercontent.com
@@ -859,8 +861,6 @@ z1.im-web.de
 images.im-web.de
 visitenkarten.im-web.de
 ajax.googleapis.com
-csi.gstatic.com
-maps.gstatic.com
 # facebook spiel - start
 173.244.184.34
 graph.facebook.com
@@ -925,6 +925,24 @@ static2.wn.de
 qs.ioam.de
 de.ioam.de
 # Westfaelische Nachrichten - end
+# stepstone - start
+stepston.ivwbox.de
+www.stepstone.de
+media.stepstone.com
+stepstone.112.2o7.net
+b.scorecardresearch.com
+qc.stepstone.de
+qc-de.stepstone.com
+# stepstone - end
+# slashdot.org - start
+stats.dice.com
+slashdot.org
+widget-cdn.rpxnow.com
+slashdot.org
+mx.sourceforge.net
+sourceforge.net
+politics.slashdot.org
+# slashdot.org - end
 # 
 EOIPS
 )
