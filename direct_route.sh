@@ -46,17 +46,16 @@ luebeck.freifunk.net
 www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
-# much sought after
-ad.doubleclick.net
 #de.sitestat.com
 www.apple.com	# not redundant
-17.0.0.0/8	apple service addresses
-173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com www.googleadservices.com gstatic.com maps.gstatic.com csi.gstatic.com www.gstatic.com ssl.gstatic.com oauth.googleusercontent.com id.google.de
+17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
-173.252.64.0/18	facebook
+173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
-74.125.0.0/16	google
+74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
+173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 #s.youtube.com	redundant
 #www.youtube.com	redundant
@@ -129,7 +128,6 @@ fonts.googleapis.com
 connect.facebook.net
 69.171.224.0/19	facebook
 www.googletagmanager.com
-graph.facebook.com
 www-secure.arte.tv
 limelight.cedexis.com
 wac.799d.i1.cdndelivery.com
@@ -863,10 +861,8 @@ visitenkarten.im-web.de
 ajax.googleapis.com
 # facebook spiel - start
 173.244.184.34
-graph.facebook.com
 plarium.hs.llnwd.net
 173.244.184.114
-apps.facebook.com
 6-channel-proxy-07-ash2.facebook.com
 fbexternal-a.akamaihd.net
 s-assets.tp-cdn.com
@@ -882,18 +878,15 @@ cluster-3.skillclub.com
 fbexternal-a.akamaihd.net
 # facebook spiel - end
 # Apple TV - start
-securemetrics.apple.com
+361250524.log.optimizely.com
+securemetrics.apple.com 66.235.135.144
 store.storeimages.cdn-apple.com
 store.apple.com
-361250524.log.optimizely.com
 metrics.apple.com
 itunes.apple.com
 images.apple.com
 tw.appstore.com
-appstore.com
-www.appstore.com
 a248.e.akamai.net
-swdlp.apple.com
 s.mzstatic.com
 ssl.apple.com
 a1.mzstatic.com
@@ -943,7 +936,52 @@ mx.sourceforge.net
 sourceforge.net
 politics.slashdot.org
 # slashdot.org - end
-# 
+# FAZ - start
+ping.chartbeat.net
+farm.plista.com
+193.227.144.0/20	www.FAZ.net media0.faz.net media1.faz.net
+faz.ivwbox.de
+rce.veeseo.com
+apis.google.com
+cdn.api.twitter.com
+pbs.twimg.com
+syndication.twitter.com
+faz.met.vgwort.de
+# FAZ - end
+204.69.221.0/24	tunein.com services.radiotime.com
+# POPCAP - start
+199.36.252.0/22	popcap draper.popcap.com popcap.com
+static-www.ecs.popcap.com	# not redundant
+fbexternal-a.akamaihd.net
+pvza-production.popcapsf.com
+0-channel-proxy-06-frc1.facebook.com
+# POPCAP - end
+imap.mail.de
+api.flattr.com
+# wetter.com - start
+wetter.com
+s7.addthis.com
+dev.visualwebsiteoptimizer.com
+wetter.ivwbox.de
+www.wetter.com
+m.addthis.com
+static.chartbeat.com
+ping.chartbeat.net
+ls1.wettercomassets.com
+# wetter.com - end
+# reichelt - start
+www.reichelt.de
+css.cdn-reichelt.de
+js.cdn-reichelt.de
+cdn-reichelt.de
+statistic2.reichelt.de
+css.cdn-reichelt.de
+cdn.exactag.com
+rwt.reichelt.de
+m.exactag.com
+t.flix360.com
+media.flixcar.com
+# reichelt - end
 EOIPS
 )
 
