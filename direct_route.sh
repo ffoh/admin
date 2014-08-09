@@ -57,6 +57,7 @@ www.apple.com	# not redundant
 74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
+141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -65,6 +66,7 @@ www.apple.com	# not redundant
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	id.google.de
 oauth.googleusercontent.com
+144.15.0.0/16	carelink.minimed.com medtronic.com
 # spiegel - start
 ad2.adfarm1.adition.com
 adserv.quality-channel.de
@@ -297,6 +299,20 @@ s.uicdn.com
 gmx.ivwbox.de
 s.uicdn.com
 uim.tifbs.net
+img.ui-portal.de
+info.gmx.net
+wa.ui-portal.de
+px.wa.ui-portal.de
+static.ak.facebook.com
+s-static.ak.facebook.com
+s.uicdn.com
+js.ui-portal.de
+trackbar.navigator.gmx.net
+home.navigator.gmx.net
+3c.gmx.net
+cdn.gmxpro.net
+freemail.web.de
+img.web.de
 # GMX - end
 github.com
 www.github.com
@@ -393,9 +409,7 @@ img.tedcdn.com
 metrics.ted.com
 b.scorecardresearch.com
 # TED - end
-webmail.uksh.de
-webmail.uk-sh.de
-www.uksh.de
+193.174.0.0/15	webmail.uksh.de webmail.uk-sh.de www.uksh.de # DFN
 # OOKLA Speedtest - start
 www.speedtest.net
 a.adroll.com
@@ -746,10 +760,7 @@ metrics.brightcove.com
 goku.brightcove.com
 skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
 # Sky.com - end
-# Carelink Medtronic - start
-carelink.minimed.com
-b.medtronic.com
-# Carelink Medtronic - end
+b.medtronic.com	# not redundant, pointing to adobe
 # Java - start
 java.com
 oracle.112.2o7.net
@@ -820,6 +831,7 @@ si4.s.dev.wsj.com
 # LN - start
 www.ln-online.de
 lnonl.ivwbox.de
+api.brightcove.com
 api.brightcove.com
 media.ln-online.de
 code.etracker.com
@@ -982,6 +994,13 @@ m.exactag.com
 t.flix360.com
 media.flixcar.com
 # reichelt - end
+imagesrv.adition.com
+filter1.adblockplus.org
+filter2.adblockplus.org
+# SCHUFA - start
+www.meineschufa.de
+www.etracker.dewww.etracker.de
+# SCHUFA - end
 EOIPS
 )
 
