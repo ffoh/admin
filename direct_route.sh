@@ -1001,6 +1001,21 @@ filter2.adblockplus.org
 www.meineschufa.de
 www.etracker.dewww.etracker.de
 # SCHUFA - end
+# www.vi.nl - start
+www.vi.nl
+wpg.blueconic.com
+b.scorecardresearch.com
+cdn.echoenabled.com
+api.echoenabled.com
+live.echoenabled.com
+sport1.cdp.triple-it.nl
+images.performgroup.com
+screenshots.rtl.nl
+p.jwpcdn.com
+vivod.download.kpnstreaming.nl
+i.n.jwpltx.com
+vivod.download.kpnstreaming.nl
+# www.vi.nl - end
 EOIPS
 )
 
