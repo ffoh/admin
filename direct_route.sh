@@ -410,6 +410,7 @@ metrics.ted.com
 b.scorecardresearch.com
 # TED - end
 193.174.0.0/15	webmail.uksh.de webmail.uk-sh.de www.uksh.de # DFN
+194.94.0.0/14	embl.de # DFN
 # OOKLA Speedtest - start
 www.speedtest.net
 a.adroll.com
@@ -1063,6 +1064,15 @@ support.cdn.mozilla.net
 mozorg.cdn.mozilla.net
 cdn.optimizely.com
 # Mozilla.org - end
+# Deutschlandradio - start
+www.deutschlandradio.de
+dradio.ivwbox.de
+srv.deutschlandradio.de
+logc279.xiti.com
+www.deutschlandradiokultur.de
+ondemand-mp3.dradio.de
+193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europäisches Bioinformatik Institut und Sanger Center
+# Deutschlandradio - end
 EOIPS
 )
 
