@@ -49,7 +49,7 @@ gw2.ostholstein.freifunk.net
 #de.sitestat.com
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
@@ -1016,6 +1016,17 @@ vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
 vivod.download.kpnstreaming.nl
 # www.vi.nl - end
+# Whatsapp - start
+www.whatsapp.com
+whatsappcdn.appspot.com
+s.ytimg.com
+# Whatsapp - end
+# Mozilla.org - start
+63.245.208.0/20	mozilla.org mozilla.net
+support.cdn.mozilla.net
+mozorg.cdn.mozilla.net
+cdn.optimizely.com
+# Mozilla.org - end
 EOIPS
 )
 
