@@ -410,6 +410,7 @@ metrics.ted.com
 b.scorecardresearch.com
 # TED - end
 193.174.0.0/15	webmail.uksh.de webmail.uk-sh.de www.uksh.de # DFN
+194.94.0.0/14	embl.de # DFN
 # OOKLA Speedtest - start
 www.speedtest.net
 a.adroll.com
