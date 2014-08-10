@@ -442,7 +442,30 @@ bits.wikimedia.org
 de.wikipedia.org
 commons.wikimedia.org
 login.wikimedia.org
-email01.t-online.de
+# T-online - start
+194.25.134.0/24	email01.t-online.de mail.t-online.de
+62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
+217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
+62.157.140.0/23	tipi.api.t-online.de # 62.157.140.0 - 62.157.141.255
+80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
+homad-global-configs.schneevonmorgen.com
+#img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
+s0.2mdn.net
+cj.madeleine.de
+dcs.netbiscuits.net
+logs1204.xiti.com
+toi-ssl.ivwbox.de
+sv.sheego.de
+toi.ivwbox.de
+logc205.xiti.com
+adclear.teufel.de
+cj.peterhahn.de
+s2.fs.t-online.de
+logc206.xiti.com
+accounts.login.idm.telekom.com
+www.wetter.info
+gfk-de.sensic.net
+# T-online - end
 # ORF - start
 orf.at
 www.orf.at
@@ -962,8 +985,15 @@ rwt.reichelt.de
 m.exactag.com
 t.flix360.com
 media.flixcar.com
-
 # reichelt - end
+# Wetter.de - start
+cdn.static-fra.de
+www.wetter.de
+bilder.rtl.de
+rtl.ivwbox.de
+count.rtl.de
+autoimg.rtl.de
+# Wetter.de - end
 EOIPS
 )
 
