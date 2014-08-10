@@ -49,7 +49,7 @@ gw2.ostholstein.freifunk.net
 #de.sitestat.com
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	youtube.com gmail.com google.com apis.google.de accounts.google.com mail.google.com plus.google.com plusone.google.com talkgadget.google.com www.google-analytics.com ad.doubleclick.net www.googletagmanager.com googleads.g.doubleclick.net
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
@@ -57,6 +57,7 @@ www.apple.com	# not redundant
 74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
+141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -65,32 +66,39 @@ www.apple.com	# not redundant
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	id.google.de
 oauth.googleusercontent.com
+144.15.0.0/16	carelink.minimed.com medtronic.com
 # spiegel - start
-spiegel.de
-www.spiegel.de
-m.spiegel.de
-spiegel.de
+ad2.adfarm1.adition.com
+adserv.quality-channel.de
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
 cdn4.spiegel.de
-magazin.spiegel.de
-spiegel.ivwbox.de
+cdn.api.twitter.com
+count.spiegel.de
 c.spiegel.de
+dc44.s290.meetrics.net
 dc59.s290.meetrics.net
 dc61.s290.meetrics.net
+dc72.s290.meetrics.net
+dc72.s290.meetrics.net
 geschichte.spiegel.de
+magazin.spiegel.de
+m.spiegel.de
+platform.twitter.com
 plusone.google.com
-s290.mxcdn.net
-prod.spiegel.de
-script.ioam.de
 qs.ioam.de
 qs.ivwbox.de
-dc72.s290.meetrics.net
-ad2.adfarm1.adition.com
-adserv.quality-channel.de
+s290.mxcdn.net
+script.ioam.de
+spiegel.de
+spiegel.ivwbox.de
+twitter.com
+video2.spiegel.de
+video.spiegel.de
 vt.adition.com
 www.google-analytics.com
+www.spiegel.de
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -291,6 +299,20 @@ s.uicdn.com
 gmx.ivwbox.de
 s.uicdn.com
 uim.tifbs.net
+img.ui-portal.de
+info.gmx.net
+wa.ui-portal.de
+px.wa.ui-portal.de
+static.ak.facebook.com
+s-static.ak.facebook.com
+s.uicdn.com
+js.ui-portal.de
+trackbar.navigator.gmx.net
+home.navigator.gmx.net
+3c.gmx.net
+cdn.gmxpro.net
+freemail.web.de
+img.web.de
 # GMX - end
 github.com
 www.github.com
@@ -387,12 +409,8 @@ img.tedcdn.com
 metrics.ted.com
 b.scorecardresearch.com
 # TED - end
-webmail.uksh.de
-webmail.uk-sh.de
-www.uksh.de
+193.174.0.0/15	webmail.uksh.de webmail.uk-sh.de www.uksh.de # DFN
 # OOKLA Speedtest - start
-www.googleadservices.com
-www.gstatic.com
 www.speedtest.net
 a.adroll.com
 a.c.appier.net
@@ -765,10 +783,7 @@ metrics.brightcove.com
 goku.brightcove.com
 skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
 # Sky.com - end
-# Carelink Medtronic - start
-carelink.minimed.com
-b.medtronic.com
-# Carelink Medtronic - end
+b.medtronic.com	# not redundant, pointing to adobe
 # Java - start
 java.com
 oracle.112.2o7.net
@@ -840,6 +855,7 @@ si4.s.dev.wsj.com
 www.ln-online.de
 lnonl.ivwbox.de
 api.brightcove.com
+api.brightcove.com
 media.ln-online.de
 code.etracker.com
 cdn-media.ln-und-oz.de
@@ -864,7 +880,6 @@ routenplaner.adac.de
 www.marinafuehrer.adac.de
 stats.vektorrausch.de
 maps.googleapis.com
-csi.gstatic.com
 mt0.googleapis.com
 mt1.googleapis.com
 themes.googleusercontent.com
@@ -879,8 +894,6 @@ z1.im-web.de
 images.im-web.de
 visitenkarten.im-web.de
 ajax.googleapis.com
-csi.gstatic.com
-maps.gstatic.com
 # facebook spiel - start
 173.244.184.34
 plarium.hs.llnwd.net
@@ -940,6 +953,24 @@ static2.wn.de
 qs.ioam.de
 de.ioam.de
 # Westfaelische Nachrichten - end
+# stepstone - start
+stepston.ivwbox.de
+www.stepstone.de
+media.stepstone.com
+stepstone.112.2o7.net
+b.scorecardresearch.com
+qc.stepstone.de
+qc-de.stepstone.com
+# stepstone - end
+# slashdot.org - start
+stats.dice.com
+slashdot.org
+widget-cdn.rpxnow.com
+slashdot.org
+mx.sourceforge.net
+sourceforge.net
+politics.slashdot.org
+# slashdot.org - end
 # FAZ - start
 ping.chartbeat.net
 farm.plista.com
@@ -994,6 +1025,39 @@ rtl.ivwbox.de
 count.rtl.de
 autoimg.rtl.de
 # Wetter.de - end
+imagesrv.adition.com
+filter1.adblockplus.org
+filter2.adblockplus.org
+# SCHUFA - start
+www.meineschufa.de
+www.etracker.dewww.etracker.de
+# SCHUFA - end
+# www.vi.nl - start
+www.vi.nl
+wpg.blueconic.com
+b.scorecardresearch.com
+cdn.echoenabled.com
+api.echoenabled.com
+live.echoenabled.com
+sport1.cdp.triple-it.nl
+images.performgroup.com
+screenshots.rtl.nl
+p.jwpcdn.com
+vivod.download.kpnstreaming.nl
+i.n.jwpltx.com
+vivod.download.kpnstreaming.nl
+# www.vi.nl - end
+# Whatsapp - start
+www.whatsapp.com
+whatsappcdn.appspot.com
+s.ytimg.com
+# Whatsapp - end
+# Mozilla.org - start
+63.245.208.0/20	mozilla.org mozilla.net
+support.cdn.mozilla.net
+mozorg.cdn.mozilla.net
+cdn.optimizely.com
+# Mozilla.org - end
 EOIPS
 )
 
