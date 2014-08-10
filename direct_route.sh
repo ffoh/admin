@@ -165,6 +165,8 @@ cloud.typography.com
 ebay.de
 www.ebay.de
 www.ebay.com
+cgi.ebay.com
+api.ebay.com
 ebay.ivwbox.de
 kleinanzeigen.ebay.de
 ir.ebaystatic.com
@@ -311,8 +313,6 @@ trackbar.navigator.gmx.net
 home.navigator.gmx.net
 3c.gmx.net
 cdn.gmxpro.net
-freemail.web.de
-img.web.de
 # GMX - end
 github.com
 www.github.com
@@ -444,6 +444,7 @@ api-7b.v.dropbox.com
 www.dropbox.com
 www.amung.us
 amung.us
+# web.de - start
 imap.web.de
 navigator.web.de
 hsp.web.de
@@ -452,6 +453,10 @@ web.de
 home.navigator.web.de
 3c.web.de
 webdessl.ivwbox.de
+freemail.web.de
+img.web.de
+smtp.web.de
+# web.de - end
 www.wikimedia.org
 wikimedia.org
 upload.wikimedia.org
