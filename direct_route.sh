@@ -1058,6 +1058,14 @@ support.cdn.mozilla.net
 mozorg.cdn.mozilla.net
 cdn.optimizely.com
 # Mozilla.org - end
+# Deutschlandradio - start
+www.deutschlandradio.de
+dradio.ivwbox.de
+srv.deutschlandradio.de
+logc279.xiti.com
+www.deutschlandradiokultur.de
+ondemand-mp3.dradio.de
+# Deutschlandradio - end
 EOIPS
 )
 
