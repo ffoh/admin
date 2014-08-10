@@ -1065,6 +1065,7 @@ srv.deutschlandradio.de
 logc279.xiti.com
 www.deutschlandradiokultur.de
 ondemand-mp3.dradio.de
+193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europäisches Bioinformatik Institut und Sanger Center
 # Deutschlandradio - end
 EOIPS
 )
