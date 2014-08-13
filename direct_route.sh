@@ -1092,6 +1092,7 @@ reiseauskunft.bahn.de	# Not redundant
 # Bahn - end
 www.ivz-aktuell.de
 pop3.strato.de
+193.60.0.0/14	JANET # UK DFN equivalent
 EOIPS
 )
 
