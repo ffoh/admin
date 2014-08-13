@@ -87,7 +87,6 @@ dc72.s290.meetrics.net
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
-platform.twitter.com
 plusone.google.com
 qs.ioam.de
 qs.ivwbox.de
@@ -95,7 +94,8 @@ s290.mxcdn.net
 script.ioam.de
 spiegel.de
 spiegel.ivwbox.de
-twitter.com
+199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
+platform.twitter.com	# not redundant
 video2.spiegel.de
 video.spiegel.de
 vt.adition.com
@@ -144,7 +144,7 @@ playout.3qsdn.com
 c3de.wpc.azureedge.net
 ak.c.ooyala.com
 az315059.vo.msecnd.net
-cdn.api.twitter.com
+cdn.api.twitter.com	# not redundant
 cedexis.gccdn.net
 cs600.wac.edgecastcdn.net
 gb2.cedexis.swiftserve.com
@@ -422,7 +422,6 @@ www.speedtest.net
 a.adroll.com
 a.c.appier.net
 ads.ookla.com
-analytics.twitter.com
 by.uservoice.com
 c.speedtest.net
 cdn.ads.ookla.com
@@ -992,7 +991,6 @@ rce.veeseo.com
 apis.google.com
 cdn.api.twitter.com
 pbs.twimg.com
-syndication.twitter.com
 faz.met.vgwort.de
 # FAZ - end
 204.69.221.0/24	tunein.com services.radiotime.com
