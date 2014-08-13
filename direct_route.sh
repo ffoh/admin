@@ -167,6 +167,7 @@ www.ebay.de
 www.ebay.com
 cgi.ebay.com
 api.ebay.com
+mobior.ebay.com
 ebay.ivwbox.de
 kleinanzeigen.ebay.de
 ir.ebaystatic.com
@@ -1073,6 +1074,9 @@ www.deutschlandradiokultur.de
 ondemand-mp3.dradio.de
 193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europäisches Bioinformatik Institut und Sanger Center
 # Deutschlandradio - end
+imap.arcor-online.net
+195.243.28.128/27	elektronikpraxis.vogel.de  # ...128 - 195.243.28.159
+193.158.250.96/27	vogel.de # 193.158.250.96 - 193.158.250.127
 EOIPS
 )
 
