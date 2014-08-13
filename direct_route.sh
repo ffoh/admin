@@ -1015,6 +1015,10 @@ m.addthis.com
 static.chartbeat.com
 ping.chartbeat.net
 ls1.wettercomassets.com
+ls2.wettercomassets.com
+m1.wettercomassets.com
+stream.livespotting.tv
+js.api.here.com
 # wetter.com - end
 # reichelt - start
 www.reichelt.de
@@ -1087,6 +1091,7 @@ reiseauskunft.bahn.de	# Not redundant
 81.200.198.0/23	BAHN.de
 # Bahn - end
 www.ivz-aktuell.de
+pop3.strato.de
 EOIPS
 )
 
