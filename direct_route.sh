@@ -47,6 +47,7 @@ www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
 #de.sitestat.com
+#wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com
@@ -58,6 +59,7 @@ www.apple.com	# not redundant
 173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
+132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tübingen
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -168,6 +170,8 @@ www.ebay.com
 cgi.ebay.com
 api.ebay.com
 mobior.ebay.com
+mobidcs.ebay.com
+rpsx.ebay.com
 ebay.ivwbox.de
 kleinanzeigen.ebay.de
 ir.ebaystatic.com
@@ -1078,6 +1082,11 @@ ondemand-mp3.dradio.de
 imap.arcor-online.net
 195.243.28.128/27	elektronikpraxis.vogel.de  # ...128 - 195.243.28.159
 193.158.250.96/27	vogel.de # 193.158.250.96 - 193.158.250.127
+# Bahn - start
+reiseauskunft.bahn.de	# Not redundant
+81.200.198.0/23	BAHN.de
+# Bahn - end
+www.ivz-aktuell.de
 EOIPS
 )
 
