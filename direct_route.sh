@@ -445,6 +445,7 @@ speedtest.wtnet.de
 us-u.openx.net
 view.atdmt.com
 www.google-analytics.com
+tiles.cdnst.net
 # OOKLA Speedtest - end
 api-7b.v.dropbox.com
 www.dropbox.com
@@ -717,6 +718,8 @@ amv3-tslogging.touchcommerce.com
 api.adrtx.net
 api.bizographics.com
 www.skygo.sky.de
+80.238.27.0/24	# Sky Broadcasting
+90.192.0.0/11	# BSkyB
 assets.adobedtm.com
 sky.de.d3.sc.omtrdc.net
 skygo.sky.de
@@ -743,6 +746,9 @@ d2oh4tlt9mrke9.cloudfront.net
 dis.criteo.com
 eas.apm.emediate.eu
 ecustomeropinions.com
+epgstatic.sky.com
+skymovies.sky.com
+skyid.sky.com
 fbstatic-a.akamaihd.net
 go.affec.tv
 googleads.g.doubleclick.net
