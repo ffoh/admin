@@ -298,6 +298,7 @@ gmx.de
 gmx.net
 www.gmx.de
 www.gmx.net
+pop.gmx.net
 navigator.gmx.net
 s3.amazonaws.com
 fbcdn-profile-a.akamaihd.net
@@ -710,6 +711,9 @@ comcluster.cxense.com
 welt.ivwbox.de
 # Welt.de - end
 # Sky.com - start
+198.63.0.0/16	liveperson.net
+198.64.0.0/15	liveperson.net
+198.66.0.0/16	liveperson.net
 ad.doubleclick.net
 ad-emea.doubleclick.net
 ad.yieldlab.net
@@ -737,6 +741,7 @@ asv.nuggad.net
 beacon.krxd.net
 britishskybroadcasti.tt.omtrdc.net
 www.skygo.sky.de
+skygo.sky.de
 b.scorecardresearch.com
 cdn1.smartadserver.com
 cdn.adrtx.net
@@ -748,6 +753,8 @@ eas.apm.emediate.eu
 ecustomeropinions.com
 epgstatic.sky.com
 skymovies.sky.com
+epgservices.sky.com
+m.webtrends.com
 skyid.sky.com
 fbstatic-a.akamaihd.net
 go.affec.tv
@@ -1097,6 +1104,9 @@ reiseauskunft.bahn.de	# Not redundant
 www.ivz-aktuell.de
 pop3.strato.de
 193.60.0.0/14	JANET # UK DFN equivalent
+31.12.64.0/21	radionomy.net # radio stations
+46.252.31.0	www.blitzer.de
+137.131.0.0/16	scripps.edu
 EOIPS
 )
 
