@@ -1107,6 +1107,8 @@ pop3.strato.de
 31.12.64.0/21	radionomy.net # radio stations
 46.252.31.0	www.blitzer.de
 137.131.0.0/16	scripps.edu
+208.65.72.0/21	blackberry.net
+imap-b-mtc-b.mx.aol.com
 EOIPS
 )
 
