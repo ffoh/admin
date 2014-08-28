@@ -299,6 +299,7 @@ gmx.net
 www.gmx.de
 www.gmx.net
 pop.gmx.net
+suche.gmx.net
 navigator.gmx.net
 s3.amazonaws.com
 fbcdn-profile-a.akamaihd.net
@@ -1103,12 +1104,18 @@ reiseauskunft.bahn.de	# Not redundant
 # Bahn - end
 www.ivz-aktuell.de
 pop3.strato.de
+imap.strato.de
 193.60.0.0/14	JANET # UK DFN equivalent
 31.12.64.0/21	radionomy.net # radio stations
 46.252.31.0	www.blitzer.de
 137.131.0.0/16	scripps.edu
 208.65.72.0/21	blackberry.net
 imap-b-mtc-b.mx.aol.com
+imap.strato.de
+130.75.0.0/16	Uni Hannover
+66.135.192.0/19	EBay
+66.211.160.0/19	EBay
+euw.leagueoflegends.com
 EOIPS
 )
 
