@@ -1115,6 +1115,7 @@ imap.strato.de
 130.75.0.0/16	Uni Hannover
 66.135.192.0/19	EBay
 66.211.160.0/19	EBay
+5.57.17.0/24	booking.com
 euw.leagueoflegends.com
 EOIPS
 )
