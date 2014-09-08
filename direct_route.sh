@@ -169,6 +169,7 @@ www.ebay.de
 www.ebay.com
 cgi.ebay.com
 api.ebay.com
+open.api.ebay.com
 mobior.ebay.com
 mobidcs.ebay.com
 rpsx.ebay.com
