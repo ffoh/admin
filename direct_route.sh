@@ -1118,6 +1118,7 @@ imap.strato.de
 66.211.160.0/19	EBay
 5.57.17.0/24	booking.com
 euw.leagueoflegends.com
+185.40.64.0/22	RIOT Games
 EOIPS
 )
 
