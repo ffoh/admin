@@ -300,6 +300,7 @@ gmx.net
 www.gmx.de
 www.gmx.net
 pop.gmx.net
+hsp.gmx.net
 suche.gmx.net
 navigator.gmx.net
 s3.amazonaws.com
@@ -1119,6 +1120,12 @@ imap.strato.de
 5.57.17.0/24	booking.com
 euw.leagueoflegends.com
 185.40.64.0/22	RIOT Games
+91.203.96.0/22	Opera.com (autoupdate)
+185.26.182.64/26	Opera.com (sitecheck website)
+# sport1.de
+farm.plista.com
+www.sport1.de
+rce.veeseo.com
 EOIPS
 )
 
