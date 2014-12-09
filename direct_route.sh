@@ -59,7 +59,7 @@ www.apple.com	# not redundant
 173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
-132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tübingen
+132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -1122,10 +1122,23 @@ euw.leagueoflegends.com
 185.40.64.0/22	RIOT Games
 91.203.96.0/22	Opera.com (autoupdate)
 185.26.182.64/26	Opera.com (sitecheck website)
+192.53.103.0/24	PTB physikalisch-technische bundesanstalt
 # sport1.de
 farm.plista.com
 www.sport1.de
 rce.veeseo.com
+# xbox
+macs.xboxlive.com
+xboxlive.com
+# nerd community
+linuxinsider.com
+lwn.net
+linuxtoday.net
+# indiegogo
+indiegogo.com
+bam.nr-data.net
+199.101.160.0/22	linkedin.com
+109.233.156.0/23	xing.com
 EOIPS
 )
 
