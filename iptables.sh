@@ -228,7 +228,7 @@ FW4 "" -P INPUT DROP
 #iptables -I INPUT -j blacklist_openbl_org
 
 echo "I: NAT"
-FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
+#FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
 FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
 
 echo "[OK]"
