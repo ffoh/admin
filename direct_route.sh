@@ -1139,6 +1139,7 @@ indiegogo.com
 bam.nr-data.net
 199.101.160.0/22	linkedin.com
 109.233.156.0/23	xing.com
+62.159.27.0/24	buhl.de
 EOIPS
 )
 
