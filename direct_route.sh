@@ -451,8 +451,7 @@ view.atdmt.com
 www.google-analytics.com
 tiles.cdnst.net
 # OOKLA Speedtest - end
-api-7b.v.dropbox.com
-www.dropbox.com
+108.160.160.0/20	dropbox.com
 www.amung.us
 amung.us
 # web.de - start
