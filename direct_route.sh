@@ -451,8 +451,7 @@ view.atdmt.com
 www.google-analytics.com
 tiles.cdnst.net
 # OOKLA Speedtest - end
-api-7b.v.dropbox.com
-www.dropbox.com
+108.160.160.0/20	dropbox.com
 www.amung.us
 amung.us
 # web.de - start
@@ -1139,6 +1138,7 @@ indiegogo.com
 bam.nr-data.net
 199.101.160.0/22	linkedin.com
 109.233.156.0/23	xing.com
+62.159.27.0/24	buhl.de
 EOIPS
 )
 
