@@ -106,12 +106,12 @@ FWboth "" -N log-drop-out
 FWboth "log and drop TCP" '-A log-drop-out -m limit --limit 5/min -j LOG --log-prefix Denied_OUT: --log-level 7'
 FWboth "" -A log-drop-out -j DROP
 
-FW4 "Chinese_hackers" -I INPUT -s 61.174.0.0/16 -j DROP
-FW4 "Chinese_hackers" -I OUTPUT -s 61.174.0.0/16 -j log-drop-out
-FW4 "Chinese_hackers" -I INPUT -s 202.103.0.0/16 -j DROP
-FW4 "Chinese_hackers" -I OUTPUT -s 202.103.0.0/16 -j log-drop
-FW4 "unknown_malicious_211.247.55.227" -I INPUT -s 211.247.0.0/16 -j DROP
-FW4 "unknown_malicious_211.247.55.227" -I OUTPUT -s 211.247.0.0/16 -j log-drop-out
+#FW4 "Chinese_hackers" -I INPUT -s 61.174.0.0/16 -j DROP
+#FW4 "Chinese_hackers" -I OUTPUT -s 61.174.0.0/16 -j log-drop-out
+#FW4 "Chinese_hackers" -I INPUT -s 202.103.0.0/16 -j DROP
+#FW4 "Chinese_hackers" -I OUTPUT -s 202.103.0.0/16 -j log-drop
+#FW4 "unknown_malicious_211.247.55.227" -I INPUT -s 211.247.0.0/16 -j DROP
+#FW4 "unknown_malicious_211.247.55.227" -I OUTPUT -s 211.247.0.0/16 -j log-drop-out
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
@@ -228,7 +228,7 @@ FW4 "" -P INPUT DROP
 #iptables -I INPUT -j blacklist_openbl_org
 
 echo "I: NAT"
-#FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
+FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
 FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
 
 echo "[OK]"
