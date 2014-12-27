@@ -301,6 +301,7 @@ www.gmx.de
 www.gmx.net
 pop.gmx.net
 hsp.gmx.net
+mail.gmx.net
 suche.gmx.net
 navigator.gmx.net
 s3.amazonaws.com
