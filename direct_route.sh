@@ -538,22 +538,23 @@ a.tiles.mapbox.com
 b.tiles.mapbox.com
 c.tiles.mapbox.com
 # RTL - start
-hds.webclips.fra.rtl.de
+217.118.168.0/22	RTL interactive Frankfurt
+#hds.webclips.fra.rtl.de	# redundant
 bilder.static-fra.de
 cdn.static-fra.de
-www.rtl.de
+#www.rtl.de		# redundant
 static.plista.com
-autoimg.rtl.de
+#autoimg.rtl.de		# redundant
 autoimg.static-fra.de
 bilder.akamai.rtl.de
 fbcdn-profile-a.akamaihd.net
 px1.vtrtl.de
-bilder.rtl.de
+#bilder.rtl.de		# redundant
 qs.ivwbox.de
-count.rtl.de
+#count.rtl.de		# redundant
 rtl.ivwbox.de
 static.plista.com
-tracking.rtl.de
+#tracking.rtl.de	# redundant
 # RLT - end
 # SAT1 - start
 www.sat1.de
@@ -1070,11 +1071,11 @@ api.echoenabled.com
 live.echoenabled.com
 sport1.cdp.triple-it.nl
 images.performgroup.com
-screenshots.rtl.nl
+217.118.160.0/24	RTL netherlands
+#screenshots.rtl.nl	# redundant
 p.jwpcdn.com
 vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
-vivod.download.kpnstreaming.nl
 # www.vi.nl - end
 # Whatsapp - start
 www.whatsapp.com
