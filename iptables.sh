@@ -200,14 +200,11 @@ FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport micros
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
 FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
 
-
-
 if [ -x /usr/sbin/dpkg-reconfigure ]; then
    if [ -x /usr/bin/fail2ban-server ]; then
       dpkg-reconfigure fail2ban
    fi
 fi
-
 
 echo "I: update INPUT policy to DROP"
 #FWboth "" -P INPUT DROP
