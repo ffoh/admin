@@ -53,6 +53,8 @@ www.apple.com	# not redundant
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
+134.245.0.0/16	uni-kiel.de 134.245
+134.246.0.0/15	uni-kiel.de 134.24[67]
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
 74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
@@ -285,7 +287,7 @@ volksbank-luebeck.de
 www.volksbank-luebeck.de
 volksbank-eutin.de
 www.volksbank-eutin.de
-github.com
+192.30.252.0/22	github.com
 last.fm
 www.last.fm
 lastfm.de
