@@ -1144,6 +1144,12 @@ bam.nr-data.net
 109.233.156.0/23	xing.com
 62.159.27.0/24	buhl.de
 198.136.44.0/22	gameloft.com
+# netflix start
+www.netflix.de
+www.netflix.com
+www2-ext-s.nflximg.net
+secure.netflix.com
+# netflix end
 EOIPS
 )
 
