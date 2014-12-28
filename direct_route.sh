@@ -1150,6 +1150,7 @@ www.netflix.com
 www2-ext-s.nflximg.net
 secure.netflix.com
 # netflix end
+app.dailyme.tv
 EOIPS
 )
 
