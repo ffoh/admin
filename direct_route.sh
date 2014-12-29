@@ -1151,6 +1151,7 @@ www2-ext-s.nflximg.net
 secure.netflix.com
 # netflix end
 app.dailyme.tv
+91.189.94.0/24	canonical
 EOIPS
 )
 
