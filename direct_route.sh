@@ -470,14 +470,7 @@ freemail.web.de
 img.web.de
 smtp.web.de
 # web.de - end
-www.wikimedia.org
-wikimedia.org
-upload.wikimedia.org
-meta.wikimedia.org
-bits.wikimedia.org
-de.wikipedia.org
-commons.wikimedia.org
-login.wikimedia.org
+91.198.174.0/24	de.wikipedia.org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
 # T-online - start
 194.25.134.0/24	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
@@ -1151,6 +1144,7 @@ www2-ext-s.nflximg.net
 secure.netflix.com
 # netflix end
 app.dailyme.tv
+212.58.240.0/20	bbc.co.uk
 EOIPS
 )
 
