@@ -3,19 +3,30 @@
 set -e
 
 gateway=$(LANG=C ifconfig eth0 | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
-echo "Identified gateway as '$gateway'"
+
 if [ -z "$gateway" ]; then
 	echo "E: Could not identify gateway via ifconfig eth0"
 	exit 1
 fi
+echo -n "Identified gateway as '$gateway'"
+
+via=$(echo $gateway|cut -f 1,2,3 -d .).1
+
+if [ -z "$via" -o ".1" = "$via" ]; then
+	echo
+	echo "E: Could not determine router through which to exit - yielded '$via'"
+	exit 1
+fi
+
+echo " routing via '$via'"
 
 function ipdirect () {
 	ip=$1
 	#if ! ip route list table freifunk | grep -q "$ip"; then
 	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
-		echo "I: Adding route for $ip via $gateway for table freifunk"
+		echo "I: Adding route for $ip via $via for table freifunk"
 		#ip route add $ip via 141.101.36.1 table freifunk
-		ip route replace $ip via 141.101.36.1 table freifunk
+		ip route replace $ip via $via table freifunk
 	else 
 		echo "I: Route for $ip is existing - skipped"
 	fi
@@ -71,6 +82,14 @@ www.apple.com	# not redundant
 74.125.0.0/16	id.google.de
 oauth.googleusercontent.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
+# Facebook - start
+connect.facebook.net
+173.252.64.0/18	facebook
+31.13.109.0/24	facebook
+69.171.224.0/19	facebook
+static.ak.facebook.com
+s-static.ak.facebook.com
+# Facebook - end
 # spiegel - start
 ad2.adfarm1.adition.com
 adserv.quality-channel.de
@@ -132,7 +151,6 @@ logi104.xiti.com
 videos.arte.tv
 fonts.googleapis.com
 connect.facebook.net
-69.171.224.0/19	facebook
 www.googletagmanager.com
 www-secure.arte.tv
 limelight.cedexis.com
@@ -294,8 +312,6 @@ lastfm.de
 www.lastfm.de
 google-analytics.com
 www.google-analytics.com
-facebook.com
-www.facebook.com
 # GMX - start
 gmx.de
 gmx.net
@@ -317,8 +333,6 @@ img.ui-portal.de
 info.gmx.net
 wa.ui-portal.de
 px.wa.ui-portal.de
-static.ak.facebook.com
-s-static.ak.facebook.com
 s.uicdn.com
 js.ui-portal.de
 trackbar.navigator.gmx.net
@@ -667,7 +681,6 @@ wotan.tuxli.ch
 adtech-ads-shared-frr.evip.aol.com
 92.122.214.0/24	Akamai
 91.123.100.0/24 Zatoo
-mqtt-shv-10-frc1.facebook.com
 # Zatoo - end
 # NIST Internet Time Servers - start
 time-a.nist.gov
@@ -824,7 +837,6 @@ sdlc-esd.sun.com
 www.ryanair.com
 metrics.ryanair.com
 cdnjs.cloudflare.com
-connect.facebook.net
 www.bookryanair.com
 smetrics.ryanair.com
 ajax.googleapis.com
@@ -1153,6 +1165,12 @@ secure.netflix.com
 app.dailyme.tv
 91.189.94.0/24	canonical
 osmand.net
+128.102.0.0/16	NASA
+64.4.0.0/18	Microsoft
+213.199.160/19	Microsoft
+157.60.0.0/16	Microsoft
+157.56.0.0/14	Microsoft
+157.54.0.0/15	Microsoft
 EOIPS
 )
 
