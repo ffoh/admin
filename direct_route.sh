@@ -72,12 +72,12 @@ gw2.ostholstein.freifunk.net
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com
+216.58.192.0/19	maps.googleapis.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
-173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
 74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
@@ -95,9 +95,11 @@ oauth.googleusercontent.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 # Facebook - start
 connect.facebook.net
+173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 31.13.109.0/24	facebook
 69.171.224.0/19	facebook
+31.13.100.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -905,7 +907,6 @@ api.brightcove.com
 media.ln-online.de
 code.etracker.com
 cdn-media.ln-und-oz.de
-maps.googleapis.com
 markt.ln-online.de
 ostseezt.ivwbox.de
 www.dhd24.com
@@ -925,9 +926,6 @@ service.maxymiser.net
 routenplaner.adac.de
 www.marinafuehrer.adac.de
 stats.vektorrausch.de
-maps.googleapis.com
-mt0.googleapis.com
-mt1.googleapis.com
 themes.googleusercontent.com
 fonts.googleapis.com
 www.windfinder.com
@@ -1050,9 +1048,14 @@ ping.chartbeat.net
 ls1.wettercomassets.com
 ls2.wettercomassets.com
 m1.wettercomassets.com
-stream.livespotting.tv
 js.api.here.com
 # wetter.com - end
+# livespotting.tv - start
+stream.livespotting.tv
+player.livespotting.tv
+piwik.windit.de
+cdnjs.cloudflare.com
+# livespotting.tv - end
 # reichelt - start
 www.reichelt.de
 css.cdn-reichelt.de
@@ -1180,6 +1183,8 @@ osmand.net
 80.149.246.0/24	Germanwings/Eurowings
 fast.fonts.net
 # Germanwings - end
+xmail.timmendorfer-strand.de
+www.timmendorfer-strand.de
 EOIPS
 )
 
