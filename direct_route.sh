@@ -20,6 +20,17 @@ fi
 
 echo " routing via '$via'"
 
+anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
+echo "Anonmizer is $anomizer"
+if [ -z "$anomizer" ]; then
+	echo "E: Could not determine IP of anonymizer."
+	exit
+fi
+echo "Resetting anonymizer to route via '$anomizer'"
+#ip route replace default via $anomizer table freifunk
+ip route replace 0.0.0.0/1 via $anomizer table freifunk
+ip route replace 128.0.0.0/1 via $anomizer table freifunk
+
 function ipdirect () {
 	ip=$1
 	#if ! ip route list table freifunk | grep -q "$ip"; then
@@ -1165,6 +1176,10 @@ osmand.net
 157.60.0.0/16	Microsoft
 157.56.0.0/14	Microsoft
 157.54.0.0/15	Microsoft
+# Germanwings - start
+80.149.246.0/24	Germanwings/Eurowings
+fast.fonts.net
+# Germanwings - end
 EOIPS
 )
 
