@@ -1185,6 +1185,10 @@ fast.fonts.net
 # Germanwings - end
 xmail.timmendorfer-strand.de
 www.timmendorfer-strand.de
+www.meetup.com
+208.65.72.0/21	blackberry.net
+imap.gmx.net
+212.8.197.168/29 maritim-hotels.de
 EOIPS
 )
 
