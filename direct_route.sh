@@ -1190,6 +1190,8 @@ www.meetup.com
 imap.gmx.net
 212.8.197.168/29 maritim-hotels.de
 mail.posteo.de
+immonet.de
+immobilienscout24.de
 EOIPS
 )
 
