@@ -497,6 +497,7 @@ tiles.cdnst.net
 www.amung.us
 amung.us
 # web.de - start
+pop3.web.de
 imap.web.de
 navigator.web.de
 hsp.web.de
@@ -1214,6 +1215,10 @@ translate.googleapis.com
 mail.dlrg.de
 imap3a.mail.vip.ir2.yahoo.com
 imap3.mail.vip.ir2.yahoo.com
+games.bigfishgames.com
+www.bigfishgames.com
+www.karls.de
+www.karls-shop.de
 EOIPS
 )
 
