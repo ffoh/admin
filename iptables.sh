@@ -12,8 +12,8 @@ FreifunkDevice="bat0"
 WWWip="109.75.177.24"
 Mailip="109.75.177.24"
 #GatewayIp4List=141.101.36.19
-GatewayIp4List="141.101.36.19 141.101.36.67"
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
+GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.10"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:198::1"
 
 
 for gw in $GatewayIp4List
@@ -59,7 +59,7 @@ function FWboth {
 
 function FW4 {
    FW4="/sbin/iptables"
-   #echo $FW6 $*
+   #echo $FW4 $*
    comment=$1
    if [ -n "$comment" ]; then
        shift 1
@@ -106,13 +106,6 @@ FWboth "" -N log-drop-out
 FWboth "log and drop TCP" '-A log-drop-out -m limit --limit 5/min -j LOG --log-prefix Denied_OUT: --log-level 7'
 FWboth "" -A log-drop-out -j DROP
 
-#FW4 "Chinese_hackers" -I INPUT -s 61.174.0.0/16 -j DROP
-#FW4 "Chinese_hackers" -I OUTPUT -s 61.174.0.0/16 -j log-drop-out
-#FW4 "Chinese_hackers" -I INPUT -s 202.103.0.0/16 -j DROP
-#FW4 "Chinese_hackers" -I OUTPUT -s 202.103.0.0/16 -j log-drop
-#FW4 "unknown_malicious_211.247.55.227" -I INPUT -s 211.247.0.0/16 -j DROP
-#FW4 "unknown_malicious_211.247.55.227" -I OUTPUT -s 211.247.0.0/16 -j log-drop-out
-
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 echo "I: JA: trust myself on lo"
@@ -127,7 +120,7 @@ do
 done
 
 if [ "yes" = "$ThisIsMailserver" ]; then
-    FWboth "Mailservers accept on port 25" -A INPUT -p tcp --dport 25 -j ACCEPT 
+    FWboth "Mailservers accept on port 25" -A INPUT -p tcp -m multiport --dports smtp,ssmtp -j ACCEPT 
 fi
 
 #echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
@@ -139,7 +132,7 @@ echo "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    echo "I: Machine recognised as gateway"
    # Trust WWW machine to ping
-   FW4 "Freifunk Network -  ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
+   FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000
@@ -157,6 +150,10 @@ if [ "yes"="$ThisIsWebserver" ]; then
    echo "I: Machine is a webserver"
    # Accept port 10000 when it comes from the network's IP Address
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
+   for gw in $GatewayIp4List
+   do
+	   FWboth "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+   done
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
@@ -224,8 +221,14 @@ FW4 "" -P INPUT DROP
 #wget -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | egrep '^[0-9]' |sort|xargs -n1 iptables -A blacklist_openbl_org -j DROP -s
 #iptables -I INPUT -j blacklist_openbl_org
 
-echo "I: NAT"
-FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
-FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+if [ "yes" = ThisIsGateway" ]; then
+	echo "I: NAT"
+	FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
+	FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+	echo "[OK]"
+else
+	echo "I: Skipping NAT since not a gateway"
+fi
 
-echo "[OK]"
+iptables -L -n
+ip6tables -L -n

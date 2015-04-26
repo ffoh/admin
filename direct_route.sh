@@ -24,7 +24,7 @@ anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 echo "Anonmizer is $anomizer"
 if [ -z "$anomizer" ]; then
 	echo "E: Could not determine IP of anonymizer."
-	exit
+	exit 1
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
 #ip route replace default via $anomizer table freifunk
@@ -72,7 +72,7 @@ gw2.ostholstein.freifunk.net
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com
 216.58.192.0/19	maps.googleapis.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -100,6 +100,7 @@ connect.facebook.net
 31.13.109.0/24	facebook
 69.171.224.0/19	facebook
 31.13.100.0/24	facebook
+31.13.93.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -208,6 +209,8 @@ mobidcs.ebay.com
 rpsx.ebay.com
 ebay.ivwbox.de
 kleinanzeigen.ebay.de
+static.criteo.net
+widget.criteo.com
 ir.ebaystatic.com
 p.ebaystatic.com
 q.ebaystatic.com
@@ -271,6 +274,7 @@ love.scribblelive.com
 cdn-storage.br.de
 media.ndr.de
 download.media.tagesschau.de
+www.mdr.de
 # ARD mit Tagesschau - end
 www.ardmediathek.de
 cp229098.edgefcs.net
@@ -453,11 +457,19 @@ b.scorecardresearch.com
 141.22.0.0/16	haw-hamburg.de # DFN
 # OOKLA Speedtest - start
 www.speedtest.net
+c.speedtest.net
 a.adroll.com
 a.c.appier.net
 ads.ookla.com
+c.betrad.com
+cse.google.com
+fast.wistia.net
+zdbb.net
+cdn.static.zdbb.net
+walker.zdbb.net
+pipedream.wistia.com
+distillery.wistia.com
 by.uservoice.com
-c.speedtest.net
 cdn.ads.ookla.com
 cdn.optimizely.com
 cm.g.doubleclick.net
@@ -485,6 +497,7 @@ tiles.cdnst.net
 www.amung.us
 amung.us
 # web.de - start
+pop3.web.de
 imap.web.de
 navigator.web.de
 hsp.web.de
@@ -547,11 +560,13 @@ www.me.com
 mail.me.com
 www.openstreetmap.org
 piwi.openstreetmap.org
+nominatim.openstreetmap.org
 a.tile.openstreetmap.org
 b.tile.openstreetmap.org
 c.tile.openstreetmap.org
 www.gravatar.com
 i0.wp.com
+i1.wp.com
 dev.virtualearth.net
 ecn.t0.tiles.virtualearth.net
 ecn.t1.tiles.virtualearth.net
@@ -1192,6 +1207,21 @@ imap.gmx.net
 mail.posteo.de
 immonet.de
 immobilienscout24.de
+alice-dsl.net
+91.190.218.0/24	skype
+omegle.com
+partner.googleadservices.com
+translate.googleapis.com
+194.149.251.0/24	Volksbank GAD
+194.149.250.0/24	Volksbank GAD
+mail.dlrg.de
+imap3a.mail.vip.ir2.yahoo.com
+imap3.mail.vip.ir2.yahoo.com
+games.bigfishgames.com
+www.bigfishgames.com
+www.karls.de
+www.karls-shop.de
+pop.udag.de
 EOIPS
 )
 
