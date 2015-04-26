@@ -24,7 +24,7 @@ anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 echo "Anonmizer is $anomizer"
 if [ -z "$anomizer" ]; then
 	echo "E: Could not determine IP of anonymizer."
-	exit
+	exit 1
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
 #ip route replace default via $anomizer table freifunk
