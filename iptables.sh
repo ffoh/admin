@@ -12,8 +12,8 @@ FreifunkDevice="bat0"
 WWWip="109.75.177.24"
 Mailip="109.75.177.24"
 #GatewayIp4List=141.101.36.19
-GatewayIp4List="141.101.36.19 141.101.36.67"
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
+GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.10"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:198::1"
 
 
 for gw in $GatewayIp4List
@@ -132,7 +132,7 @@ echo "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    echo "I: Machine recognised as gateway"
    # Trust WWW machine to ping
-   FW4 "Freifunk Network -  ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
+   FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000
