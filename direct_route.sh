@@ -355,6 +355,8 @@ trackbar.navigator.gmx.net
 home.navigator.gmx.net
 3c.gmx.net
 cdn.gmxpro.net
+hsp-bap.gmx.net
+uas2-bap.gmx.net
 # GMX Werbung
 adclient.uimserv.net
 pixelbox.uimserv.net
