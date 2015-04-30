@@ -140,8 +140,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
-   FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
+   #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
    FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+   FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
 
    FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
 fi
