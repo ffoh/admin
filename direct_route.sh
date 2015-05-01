@@ -116,6 +116,7 @@ count.spiegel.de
 c.spiegel.de
 dc44.s290.meetrics.net
 dc59.s290.meetrics.net
+dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc72.s290.meetrics.net
@@ -136,6 +137,7 @@ video.spiegel.de
 vt.adition.com
 www.google-analytics.com
 www.spiegel.de
+imagesrv.adition.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -164,7 +166,6 @@ ecadn-eu.cedexis.com
 logi104.xiti.com
 videos.arte.tv
 fonts.googleapis.com
-connect.facebook.net
 www.googletagmanager.com
 www-secure.arte.tv
 limelight.cedexis.com
@@ -658,8 +659,31 @@ ivwextern.kabeleins.de
 imap.1und1.de
 smtp.1und1.de
 pop.1und1.de
+# booking.com, villas.com - start
 iphone-xml-l.booking.com
 www.booking.com
+secure.booking.com
+q.bstatic.com
+r.bstatic.com
+gi.bttlcheck.com
+am-img.agoda.net
+eprofile.uimserv.net
+dis.criteo.com
+ads.adtiger.de
+pixel.rubiconproject.com
+ads.yahoo.com
+image2.pubmatic.com
+x.bidswitch.net
+dis.eu.criteo.com
+bat.bing.com
+bat.r.msn.com
+widget.criteo.com
+plick.yahoo.com
+tracking.smartstream.tv
+www.villas.com
+t-ec.vcomstatic.com
+ads.smartstream.tv
+# booking.com, villas.com - end
 hrs.de
 www.hrs.de
 www.albamoda.de
