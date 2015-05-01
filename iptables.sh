@@ -12,8 +12,8 @@ FreifunkDevice="bat0"
 WWWip="109.75.177.24"
 Mailip="109.75.177.24"
 #GatewayIp4List=141.101.36.19
-GatewayIp4List="141.101.36.19 141.101.36.67"
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2"
+GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.10"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:198::1"
 
 
 for gw in $GatewayIp4List
@@ -132,7 +132,7 @@ echo "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    echo "I: Machine recognised as gateway"
    # Trust WWW machine to ping
-   FW4 "Freifunk Network -  ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
+   FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000
@@ -140,8 +140,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
-   FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
+   #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
    FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+   FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
 
    FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
 fi
@@ -152,7 +153,11 @@ if [ "yes"="$ThisIsWebserver" ]; then
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
    for gw in $GatewayIp4List
    do
-	   FWboth "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+   done
+   for gw in $GatewayIp6List
+   do
+	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
    done
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
@@ -161,12 +166,13 @@ fi
 
 FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
 FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
+FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
 # Always trust all gateways and Webservers, also for their external IPs
 for $gw in $GatwayIp4List
 do
-    FW4 "Freifunk Network - ping from GW1 external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
+    FW4 "Freifunk Network - ping from GW external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
 done 
 for $gw in $WWWip
 do
@@ -221,14 +227,26 @@ FW4 "" -P INPUT DROP
 #wget -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | egrep '^[0-9]' |sort|xargs -n1 iptables -A blacklist_openbl_org -j DROP -s
 #iptables -I INPUT -j blacklist_openbl_org
 
-if [ "yes" = ThisIsGateway" ]; then
+if [ "yes" = "$ThisIsGateway" ]; then
 	echo "I: NAT"
 	FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
-	FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+	if ifconfig |grep -q mullvad; then
+		FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+	fi
 	echo "[OK]"
 else
 	echo "I: Skipping NAT since not a gateway"
 fi
 
-iptables -L -n
-ip6tables -L -n
+#iptables -L -n
+#ip6tables -L -n
+
+
+# Allow dedicated  ICMPv6 packettypes, do this in an extra chain because we need it everywhere
+FW6 " " "-N AllowICMPs"
+FW6 "Destination unreachable" "-A AllowICMPs -p icmpv6 --icmpv6-type 1 -j ACCEPT"
+FW6 "Packet too big" "-A AllowICMPs -p icmpv6 --icmpv6-type 2 -j ACCEPT"
+FW6 "Time exceeded" "-A AllowICMPs -p icmpv6 --icmpv6-type 3 -j ACCEPT"
+FW6 "Parameter problem" "-A AllowICMPs -p icmpv6 --icmpv6-type 4 -j ACCEPT"
+FW6 "Echo Request (protect against flood)" "-A AllowICMPs -p icmpv6 --icmpv6-type 128 -m limit --limit 5/sec --limit-burst 10 -j ACCEPT"
+FW6 "Echo Reply" "-A AllowICMPs -p icmpv6 --icmpv6-type 129 -j ACCEPT"

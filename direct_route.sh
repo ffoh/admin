@@ -24,10 +24,10 @@ anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 echo "Anonmizer is $anomizer"
 if [ -z "$anomizer" ]; then
 	echo "E: Could not determine IP of anonymizer."
-	exit
+	exit 1
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
-#ip route replace default via $anomizer table freifunk
+ip route replace default via $anomizer table freifunk
 ip route replace 0.0.0.0/1 via $anomizer table freifunk
 ip route replace 128.0.0.0/1 via $anomizer table freifunk
 
@@ -36,7 +36,6 @@ function ipdirect () {
 	#if ! ip route list table freifunk | grep -q "$ip"; then
 	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
 		echo "I: Adding route for $ip via $via for table freifunk"
-		#ip route add $ip via 141.101.36.1 table freifunk
 		ip route replace $ip via $via table freifunk
 	else 
 		echo "I: Route for $ip is existing - skipped"
@@ -357,6 +356,12 @@ trackbar.navigator.gmx.net
 home.navigator.gmx.net
 3c.gmx.net
 cdn.gmxpro.net
+hsp-bap.gmx.net
+uas2-bap.gmx.net
+# GMX Werbung
+adclient.uimserv.net
+pixelbox.uimserv.net
+uidbox.uimserv.net
 # GMX - end
 github.com
 www.github.com
@@ -1243,6 +1248,14 @@ games.bigfishgames.com
 www.bigfishgames.com
 www.karls.de
 www.karls-shop.de
+# clashofclans - start
+supercell.com
+174.36.210.49-static.reverse.softlayer.com
+ec2-54-195-240-74.eu-west-1.compute.amazonaws.com
+# clashofclans - end
+# boinc - start
+einstein.phys.uwm.edu
+# boinc - end
 EOIPS
 )
 
