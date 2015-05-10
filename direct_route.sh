@@ -1250,12 +1250,14 @@ www.karls.de
 www.karls-shop.de
 # clashofclans - start
 supercell.com
+service.supercell.net
 174.36.210.49-static.reverse.softlayer.com
 ec2-54-195-240-74.eu-west-1.compute.amazonaws.com
 # clashofclans - end
 # boinc - start
 einstein.phys.uwm.edu
 # boinc - end
+o2mail.de
 EOIPS
 )
 
