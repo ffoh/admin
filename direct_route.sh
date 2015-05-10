@@ -27,7 +27,7 @@ if [ -z "$anomizer" ]; then
 	exit 1
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
-#ip route replace default via $anomizer table freifunk
+ip route replace default via $anomizer table freifunk
 ip route replace 0.0.0.0/1 via $anomizer table freifunk
 ip route replace 128.0.0.0/1 via $anomizer table freifunk
 
@@ -36,7 +36,6 @@ function ipdirect () {
 	#if ! ip route list table freifunk | grep -q "$ip"; then
 	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
 		echo "I: Adding route for $ip via $via for table freifunk"
-		#ip route add $ip via 141.101.36.1 table freifunk
 		ip route replace $ip via $via table freifunk
 	else 
 		echo "I: Route for $ip is existing - skipped"
@@ -116,6 +115,7 @@ count.spiegel.de
 c.spiegel.de
 dc44.s290.meetrics.net
 dc59.s290.meetrics.net
+dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc72.s290.meetrics.net
@@ -136,6 +136,7 @@ video.spiegel.de
 vt.adition.com
 www.google-analytics.com
 www.spiegel.de
+imagesrv.adition.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -164,7 +165,6 @@ ecadn-eu.cedexis.com
 logi104.xiti.com
 videos.arte.tv
 fonts.googleapis.com
-connect.facebook.net
 www.googletagmanager.com
 www-secure.arte.tv
 limelight.cedexis.com
@@ -356,6 +356,12 @@ trackbar.navigator.gmx.net
 home.navigator.gmx.net
 3c.gmx.net
 cdn.gmxpro.net
+hsp-bap.gmx.net
+uas2-bap.gmx.net
+# GMX Werbung
+adclient.uimserv.net
+pixelbox.uimserv.net
+uidbox.uimserv.net
 # GMX - end
 github.com
 www.github.com
@@ -658,8 +664,31 @@ ivwextern.kabeleins.de
 imap.1und1.de
 smtp.1und1.de
 pop.1und1.de
+# booking.com, villas.com - start
 iphone-xml-l.booking.com
 www.booking.com
+secure.booking.com
+q.bstatic.com
+r.bstatic.com
+gi.bttlcheck.com
+am-img.agoda.net
+eprofile.uimserv.net
+dis.criteo.com
+ads.adtiger.de
+pixel.rubiconproject.com
+ads.yahoo.com
+image2.pubmatic.com
+x.bidswitch.net
+dis.eu.criteo.com
+bat.bing.com
+bat.r.msn.com
+widget.criteo.com
+plick.yahoo.com
+tracking.smartstream.tv
+www.villas.com
+t-ec.vcomstatic.com
+ads.smartstream.tv
+# booking.com, villas.com - end
 hrs.de
 www.hrs.de
 www.albamoda.de
@@ -1222,6 +1251,16 @@ www.bigfishgames.com
 www.karls.de
 www.karls-shop.de
 pop.udag.de
+# clashofclans - start
+supercell.com
+service.supercell.net
+174.36.210.49-static.reverse.softlayer.com
+ec2-54-195-240-74.eu-west-1.compute.amazonaws.com
+# clashofclans - end
+# boinc - start
+einstein.phys.uwm.edu
+# boinc - end
+o2mail.de
 EOIPS
 )
 
