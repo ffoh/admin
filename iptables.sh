@@ -108,6 +108,9 @@ FWboth "" -A log-drop-out -j DROP
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
+FW4 "dropping weird chinese attacker" -s 222.0.0.0/8 -I INPUT -j DROP
+FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
+
 echo "I: JA: trust myself on lo"
 FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
 
@@ -232,6 +235,12 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
 	if ifconfig |grep -q mullvad; then
 		FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+		anonymizer=$(ip route  |grep mullvad | awk '{print $9}')
+		if [ "" = "$anonymizer" ]; then
+			echo "E: Could not determine IP to Mullvad OpenVPN - restart that"
+			exit 1
+		fi
+		ip route replace default via $anonymizer table freifunk
 	fi
 	echo "[OK]"
 else
