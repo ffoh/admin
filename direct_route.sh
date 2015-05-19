@@ -67,6 +67,7 @@ luebeck.freifunk.net
 www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
+gw-test.functional.domains
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
