@@ -67,6 +67,8 @@ luebeck.freifunk.net
 www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
+gw3.ostholstein.freifunk.net
+109.75.188.36/32	gw3.ostholstein.freifunk.net
 gw-test.functional.domains
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
@@ -91,7 +93,6 @@ www.apple.com	# not redundant
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	id.google.de
-oauth.googleusercontent.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 # Facebook - start
 connect.facebook.net
