@@ -1263,6 +1263,8 @@ ec2-54-195-240-74.eu-west-1.compute.amazonaws.com
 einstein.phys.uwm.edu
 # boinc - end
 o2mail.de
+www.dict.cc
+www2.dict.cc
 EOIPS
 )
 
