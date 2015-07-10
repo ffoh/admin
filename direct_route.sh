@@ -1265,6 +1265,7 @@ einstein.phys.uwm.edu
 o2mail.de
 www.dict.cc
 www2.dict.cc
+king.com
 EOIPS
 )
 
