@@ -2,14 +2,16 @@
 
 LOGFILE=/var/log/opensshRestart.log
 
-if ifconfig | grep -q mullvad; then
-	#echo ok
+
+
+if [ -f /var/run/openvpn.mullvad.pid ] && ifconfig mullvad | grep -q inet; then
+	echo ok
 	defaultrouteno=$(ip route list table freifunk |grep default | wc -l)
 else
-	/etc/init.d/openvpn restart
-	sleep 5
 	date >> $LOGFILE
 	echo "* Restart" >> $LOGFILE
+	/etc/init.d/openvpn restart >> $LOGFILE
+	sleep 10
 	defaultrouteno=0
 fi
 #echo "I: defaultrouteno: $defaultrouteno"
