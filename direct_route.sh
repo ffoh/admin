@@ -78,6 +78,7 @@ www.apple.com	# not redundant
 216.58.192.0/19	maps.googleapis.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
+www.luebeck.de
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
@@ -230,6 +231,8 @@ thumbs4.ebaystatic.com
 vi.vipr.ebaydesc.com
 www.sainsmart.com
 i18.ebayimg.com
+api.ebaycommercenetwork.com
+forum.ebay-kleinanzeigen.de
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -668,7 +671,7 @@ smtp.1und1.de
 pop.1und1.de
 # booking.com, villas.com - start
 iphone-xml-l.booking.com
-www.booking.com
+5.57.16.0/24	www.booking.com admin.booking.com
 secure.booking.com
 q.bstatic.com
 r.bstatic.com
@@ -1266,6 +1269,12 @@ o2mail.de
 www.dict.cc
 www2.dict.cc
 king.com
+xmail.timmendorfer-strand.de
+rcp.eu.blackberry.com
+imap.netcologne.de
+pop3.netcologne.de
+www.zeit.de
+webmail.vodafone.com
 EOIPS
 )
 
