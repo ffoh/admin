@@ -367,7 +367,6 @@ uidbox.uimserv.net
 # GMX - end
 github.com
 www.github.com
-freshmeat.net
 # BR - start
 bronline.de
 bralpha.de
