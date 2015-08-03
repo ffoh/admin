@@ -33,7 +33,8 @@ ip route replace 128.0.0.0/1 via $anomizer table freifunk
 
 function ipdirect () {
 	ip=$1
-	#if ! ip route list table freifunk | grep -q "$ip"; then
+	
+#if ! ip route list table freifunk | grep -q "$ip"; then
 	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
 		echo "I: Adding route for $ip via $via for table freifunk"
 		ip route replace $ip via $via table freifunk
@@ -1212,6 +1213,7 @@ bam.nr-data.net
 109.233.156.0/23	xing.com
 62.159.27.0/24	buhl.de
 198.136.44.0/22	gameloft.com
+208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
 www.netflix.de
 www.netflix.com
@@ -1275,6 +1277,44 @@ imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
 webmail.vodafone.com
+# evernote - start
+204.154.94.0/23 evernote.com www.evernote.com
+cdn1.evernote.com
+# evernote - end
+193.104.215.0/24 www-du1.adobe.com www.adobe.com
+# unwetterwarnung / wetterspiegel - start
+www.wetterspiegel.de
+www2.wetterspiegel.de
+www4.wetterspiegel.de
+www.unwetterwarnung.de
+get.mirando.de
+t4ft.de
+dc62.s357.meetrics.net
+track.adform.net
+s357.meetrics.net
+c.t4ft.de
+cdn.adspirit.de
+a.twiago.com
+sub3.cosmosdirekt.de
+www.cosmosdirekt.de
+gmads.net
+tags.qservz.com
+s1.adform.net
+pixel.rubiconproject.com
+ad.yieldlab.net
+pixel.sitescout.com
+um.simpli.fi
+rcp.c.appier.net
+cm.adgrx.com
+px.owneriq.net
+pixel.quantserve.com
+match.runsdsp.com
+dsp.adfarm1.adition.com
+imagesrv.adition.com
+optimized-by.rubiconproject.com
+www.unwetterwarnungen.de
+dc13.s233.meetrics.net
+# unwetterwarnung / wetterspiegel - end
 EOIPS
 )
 
