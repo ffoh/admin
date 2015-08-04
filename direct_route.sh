@@ -213,6 +213,8 @@ mobidcs.ebay.com
 rpsx.ebay.com
 ebay.ivwbox.de
 kleinanzeigen.ebay.de
+api.ebay-kleinanzeigen.de
+m.ebay-kleinanzeigen.de
 static.criteo.net
 widget.criteo.com
 ir.ebaystatic.com
