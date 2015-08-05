@@ -98,7 +98,10 @@ FWboth "" -P OUTPUT  ACCEPT
 
 echo "I: Creating chain named 'log-drop'"
 FWboth "" -N log-drop
-FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
+
+# may not be a good idea to drop ICMP, in particular not for IPv6
+#FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
+
 # uncomment once important bits are no longer logged
 FWboth "" -A log-drop -j DROP
 
@@ -192,14 +195,14 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
 fi
 
-echo "I: NEIN: FTP, PING"
+echo "I: NEIN: FTP"
 FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
-FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j log-drop'
-FWboth "Do not accept Pings from outside Freifunk" '-A INPUT -p icmp -j log-drop'
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
 
-echo "I: JA: SSH, WWW"
+echo "I: JA: SSH, WWW, PING"
 FWboth "SSH login possible from everywhere" '-A INPUT -p tcp --dport ssh -j ACCEPT'
+FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j ACCEPT'
+FWboth "Do accept Pings from outside Freifunk" '-A INPUT -p icmp -j ACCEPT'
 
 echo "I: drop anything else"
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport microsoft-ds -j DROP'
@@ -251,7 +254,8 @@ fi
 #ip6tables -L -n
 
 
-# Allow dedicated  ICMPv6 packettypes, do this in an extra chain because we need it everywhere
+#Stopped blocking upfront
+## Allow dedicated  ICMPv6 packettypes, do this in an extra chain because we need it everywhere
 FW6 " " "-N AllowICMPs"
 FW6 "Destination unreachable" "-A AllowICMPs -p icmpv6 --icmpv6-type 1 -j ACCEPT"
 FW6 "Packet too big" "-A AllowICMPs -p icmpv6 --icmpv6-type 2 -j ACCEPT"
