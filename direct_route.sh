@@ -1317,6 +1317,95 @@ optimized-by.rubiconproject.com
 www.unwetterwarnungen.de
 dc13.s233.meetrics.net
 # unwetterwarnung / wetterspiegel - end
+pixel.quantserve.com
+# joyclub - start
+www.joyclub.de
+nimg.joyclub.de
+nup1.joyclub.de
+connect.ekomi.de
+# joyclub - end
+# hamburg.de - start
+hamburg.de
+www.hamburg.de
+fonts.hamburg.de
+ec-ns.sascdn.com
+cdn1.smartadserver.com
+rce.veeseo.com
+pagead2.googlesyndication.com
+fast.fonts.com
+eu-gmtdmp.gd1.mookie1.com
+dyn.emetriq.de
+cdn.krxd.net
+gmads.net
+ups.xplosion.de
+ib.adnxs.com
+s361.mxcdn.net
+ww251.smartadserver.com
+asv.nuggad.net
+cdn.xplosion.de
+site.hamburg.de
+wwwp.hamburg.de
+atsfi.de
+rce.veeseo.com
+dc42.s361.meetrics.net
+ak-ns.sascdn.com
+hamburg.co-move.de
+ams1.ib.adnxs.com
+uip.semasio.net
+x.bidswitch.net
+ip.casalemedia.com
+cs.meltdsp.com
+dsp.adfarm1.adition.com
+audienceinsights.net
+rs.gwallet.com
+pixel.sitescout.com
+cm.g.doubleclick.net
+uss.emetriq.de
+xpl.theadex.com
+p.yieldlab.net
+map1.hamburg.de
+map2.hamburg.de
+map3.hamburg.de
+map4.hamburg.de
+map5.hamburg.de
+adsrv.intelliad.com
+t23.intelliad.com
+cc.chango.com
+rtb-csync.smartadserver.com
+fw.adsafeprotected.com
+map.go.affec.tv
+rtb-csync.smartadserver.com
+sync.active-agent.com
+idpix.media6degrees.com
+pixel.mathtag.com
+sc.iasds01.com
+rtbcdn.doubleverify.com
+cdn3.doubleverify.com
+rtb2.doubleverify.com
+cdn.doubleverify.com
+204.154.110.0/23 doubleverify.com tps10230.doubleverify.com tps30.doubleverify.com tps10221.doubleverify.com
+pixel.adsafeprotected.com
+c.betrad.com
+l.betrad.com
+a248.e.akamai.net
+s1.2mdn.net
+su.addthis.com
+dt.adsafeprotected.com
+s0.2mdn.net
+static.adsafeprotected.com
+d.agkn.com
+secure.adnxs.com
+dt.adsafeprotected.com
+x.bidswitch.net
+rtb-csync.smartadserver.com
+secure-fra.adnxs.com
+beacon.krxd.net
+cdn.krxd.net
+js.revsci.net
+beacon.krxd.net
+pix04.revsci.net
+# hamburg.de - end
+194.94.0.0/15 uni-erfurt.de
 EOIPS
 )
 
