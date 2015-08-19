@@ -6,7 +6,7 @@ TEE=/usr/bin/tee
 DATE=/bin/date
 IP=/sbin/ip
 
-if [ -f /var/run/openvpn.mullvad.pid ] && /sbin/ifconfig mullvad | grep -q inet; then
+if  ps aux|grep openvpn|grep -q mullvad && /sbin/ifconfig mullvad | grep -q inet; then
 	#echo ok
 	defaultrouteno=$(/sbin/ip route list table freifunk |grep default | wc -l)
 else
