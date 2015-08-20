@@ -373,7 +373,6 @@ uidbox.uimserv.net
 # GMX - end
 github.com
 www.github.com
-freshmeat.net
 # BR - start
 bronline.de
 bralpha.de
@@ -475,6 +474,7 @@ c.speedtest.net
 a.adroll.com
 a.c.appier.net
 ads.ookla.com
+api.ookla.com
 c.betrad.com
 cse.google.com
 fast.wistia.net
@@ -1279,6 +1279,7 @@ imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
 webmail.vodafone.com
+speedtest.vodafone-ip.de
 # evernote - start
 204.154.94.0/23 evernote.com www.evernote.com
 cdn1.evernote.com

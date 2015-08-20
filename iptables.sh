@@ -131,8 +131,6 @@ fi
 
 #echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
 FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
-#FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/64 -j ACCEPT
-
 
 echo "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
