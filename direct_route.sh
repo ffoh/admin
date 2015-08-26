@@ -100,10 +100,11 @@ www.luebeck.de
 connect.facebook.net
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
-31.13.109.0/24	facebook
 69.171.224.0/19	facebook
+31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.93.0/24	facebook
+31.13.64.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
