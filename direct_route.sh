@@ -100,10 +100,11 @@ www.luebeck.de
 connect.facebook.net
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
-31.13.109.0/24	facebook
 69.171.224.0/19	facebook
+31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.93.0/24	facebook
+31.13.64.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -118,6 +119,7 @@ cdn.api.twitter.com
 count.spiegel.de
 c.spiegel.de
 dc44.s290.meetrics.net
+dc56.s290.meetrics.net
 dc59.s290.meetrics.net
 dc60.s290.meetrics.net
 dc61.s290.meetrics.net
@@ -141,6 +143,11 @@ vt.adition.com
 www.google-analytics.com
 www.spiegel.de
 imagesrv.adition.com
+de-ipd.videoplaza.tv
+ads.stickyadstv.com
+ad8.adfarm1.adition.com
+dt.adsafeprotected.com
+stat.flashtalking.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -1407,6 +1414,7 @@ beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
 194.94.0.0/15 uni-erfurt.de
+89.238.68.128/25 libreoffice.org
 EOIPS
 )
 
