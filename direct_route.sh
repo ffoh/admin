@@ -352,6 +352,7 @@ www.gmx.net
 pop.gmx.net
 hsp.gmx.net
 mail.gmx.net
+imap.gmx.net
 suche.gmx.net
 navigator.gmx.net
 s3.amazonaws.com
@@ -1095,13 +1096,16 @@ pvza-production.popcapsf.com
 # POPCAP - end
 imap.mail.de
 api.flattr.com
+# shared-by-many wetter.com
+s7.addthis.com
+m.addthis.com
+su.addthis.com
+# shared-by-many wetter.com
 # wetter.com - start
 wetter.com
-s7.addthis.com
 dev.visualwebsiteoptimizer.com
 wetter.ivwbox.de
 www.wetter.com
-m.addthis.com
 static.chartbeat.com
 ping.chartbeat.net
 ls1.wettercomassets.com
@@ -1247,7 +1251,6 @@ xmail.timmendorfer-strand.de
 www.timmendorfer-strand.de
 www.meetup.com
 208.65.72.0/21	blackberry.net
-imap.gmx.net
 212.8.197.168/29 maritim-hotels.de
 mail.posteo.de
 immonet.de
@@ -1397,7 +1400,6 @@ c.betrad.com
 l.betrad.com
 a248.e.akamai.net
 s1.2mdn.net
-su.addthis.com
 dt.adsafeprotected.com
 s0.2mdn.net
 static.adsafeprotected.com
@@ -1415,6 +1417,18 @@ pix04.revsci.net
 # hamburg.de - end
 194.94.0.0/15 uni-erfurt.de
 89.238.68.128/25 libreoffice.org
+# pistoiaalliance.org - start
+www.pistoiaalliance.org
+www.slideshare.net
+player.vimeo.com
+cdn4.pistoiaalliance.org
+cdn6.pistoiaalliance.org
+# pistoiaalliance.org - end
+stackoverflow.com
+139.30.0.0/16	#uni-rostock.de
+bioconductor.org
+www.r-project.org
+cran.r-project.org
 EOIPS
 )
 
