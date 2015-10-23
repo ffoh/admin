@@ -88,6 +88,18 @@ www.luebeck.de
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
+130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
+193.206.64.0/21	#University of Pavia, Italy - skype
+81.17.208.192/27	radio.de
+65.52.0.0/14	# Mirosoft, for skype
+111.221.64.0/18	# Mirosoft, for skype
+139.153.0.0/16	#university of sterling, skype
+132.180.0.0/16	#Uni Bayreuth, skype
+141.53.0.0/16	uni-greifswald.de
+193.156.0.0/15	uio.no #University of Oslo, skype
+85.239.108.0/26	hlkomm.de # Radio streamer
+138.48.0.0/16	# University of Notre Dame, Belgium, skype
+130.88.0.0/16	# University of Manchester, UK, skype
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -124,7 +136,6 @@ dc59.s290.meetrics.net
 dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
-dc72.s290.meetrics.net
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
@@ -148,6 +159,10 @@ ads.stickyadstv.com
 ad8.adfarm1.adition.com
 dt.adsafeprotected.com
 stat.flashtalking.com
+www.spiegel.tv
+prod-static.spiegel.tv
+purl.org
+get.adobe.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -474,6 +489,7 @@ metrics.ted.com
 b.scorecardresearch.com
 # TED - end
 193.174.0.0/15	webmail.uksh.de webmail.uk-sh.de www.uksh.de # DFN
+137.250.0.0/16	uni-augsburg.de # DFN
 194.94.0.0/15	embl.de # DFN
 141.22.0.0/16	haw-hamburg.de # DFN
 # OOKLA Speedtest - start
@@ -1257,6 +1273,7 @@ immonet.de
 immobilienscout24.de
 alice-dsl.net
 91.190.218.0/24	skype
+91.190.216.0/23	skype
 omegle.com
 partner.googleadservices.com
 translate.googleapis.com
@@ -1430,6 +1447,14 @@ bioconductor.org
 www.r-project.org
 cran.r-project.org
 www.jacob-computer.de
+# GotoMeeeting.com - start
+app.gotomeeting.com
+global.gotomeeting.com
+apiglobal.gotomeeting.com
+api.mixpanel.com
+api.demandbase.com
+citrixsaas.d1.sc.omtrdc.net
+# GotoMeeeting.com - end
 EOIPS
 )
 
