@@ -148,6 +148,10 @@ ads.stickyadstv.com
 ad8.adfarm1.adition.com
 dt.adsafeprotected.com
 stat.flashtalking.com
+www.spiegel.tv
+prod-static.spiegel.tv
+purl.org
+get.adobe.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -1429,6 +1433,14 @@ stackoverflow.com
 bioconductor.org
 www.r-project.org
 cran.r-project.org
+# GotoMeeeting.com - start
+app.gotomeeting.com
+global.gotomeeting.com
+apiglobal.gotomeeting.com
+api.mixpanel.com
+api.demandbase.com
+citrixsaas.d1.sc.omtrdc.net
+# GotoMeeeting.com - end
 EOIPS
 )
 
