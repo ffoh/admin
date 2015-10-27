@@ -149,6 +149,8 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
 
    FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
+
+   FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
 fi
 
 if [ "yes"="$ThisIsWebserver" ]; then

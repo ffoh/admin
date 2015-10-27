@@ -1454,6 +1454,12 @@ api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
 # GotoMeeeting.com - end
+www.csl-computer.com
+# Consors - start
+194.150.80.0/22 www.consorsbank.de
+om-ssl.consorsbank.de	# not redundant
+eu.ntrsupport.com
+# Consors - end
 EOIPS
 )
 
