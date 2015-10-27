@@ -12,7 +12,8 @@ FreifunkDevice="bat0"
 WWWip="109.75.177.24"
 Mailip="109.75.177.24"
 GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 109.75.188.10"
-#                     gw1          gw2          gw3          gw4            gw5           gw-test
+#                     gw1          gw2          gw3            gw4          gw5           gw-test
+
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 
 
@@ -157,13 +158,17 @@ if [ "yes"="$ThisIsWebserver" ]; then
    echo "I: Machine is a webserver"
    # Accept port 10000 when it comes from the network's IP Address
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
+   # Accept port 11426 when it comes from the network's IP Address - for that MTU
+   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11426 -j ACCEPT"
    for gw in $GatewayIp4List
    do
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    for gw in $GatewayIp6List
    do
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
