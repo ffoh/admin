@@ -101,6 +101,7 @@ www.luebeck.de
 138.48.0.0/16	# University of Notre Dame, Belgium, skype
 130.88.0.0/16	# University of Manchester, UK, skype
 91.186.179.128/26	ff-agent.com
+130.14.0.0/16	nlm.nih.gov
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
