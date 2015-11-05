@@ -185,9 +185,9 @@ if [ "yes"="$ThisIsWebserver" ]; then
    for gw in $GatewayIp6List
    do
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
-	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
+	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
-   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT'
+   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
