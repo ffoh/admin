@@ -5,8 +5,11 @@ set -e
 gateway=$(LANG=C ifconfig eth0 | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 
 if [ -z "$gateway" ]; then
-	echo "E: Could not identify gateway via ifconfig eth0"
-	exit 1
+	gateway=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	if [ -z "$gateway" ]; then
+		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
+		exit 1
+	fi
 fi
 echo -n "Identified gateway as '$gateway'"
 
@@ -20,11 +23,16 @@ fi
 
 echo " routing via '$via'"
 
+IIF=bat0
 anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 echo "Anonmizer is $anomizer"
 if [ -z "$anomizer" ]; then
-	echo "E: Could not determine IP of anonymizer."
-	exit 1
+	anomizer=$(LANG=C ifconfig mullvad|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	IIF=eth0.102
+	if [ -z "$anomizer" ]; then
+		echo "E: Could not determine IP of anonymizer."
+		exit 1
+	fi
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
 ip route replace default via $anomizer table freifunk
@@ -35,7 +43,7 @@ function ipdirect () {
 	ip=$1
 	
 #if ! ip route list table freifunk | grep -q "$ip"; then
-	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
+	if ! ip route get $ip from 10.135.8.100 iif $IIF | grep -q eth0; then
 		echo "I: Adding route for $ip via $via for table freifunk"
 		ip route replace $ip via $via table freifunk
 	else 
@@ -478,6 +486,8 @@ b.scorecardresearch.com
 # OOKLA Speedtest - start
 www.speedtest.net
 c.speedtest.net
+www.base-mail.de
+www.base-mail.us
 a.adroll.com
 a.c.appier.net
 ads.ookla.com
