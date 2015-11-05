@@ -13,16 +13,18 @@ FreifunkDevice="bat0"
 GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 109.75.188.10"
 #                     gw1          gw2          gw3          gw4            gw5           gw-test
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+#                     gw1                       gw2                       gw3                   gw4                       gw5                 gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de"
 LocalGatewayIpv4List="192.168.178.113"
 
-#IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
-IP=$(LANG=C ifconfig eth0|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
-if [ -z "$IP" ]; then
-    IP=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+DEVICE=eth0
+if ifconfig|grep -q eth0.101; then
+    DEVICE=eth0.101
     ThisIsGateway="yes"
 fi
+
+IP=$(LANG=C ip addr show $DEVICE|grep "inet "| sed -e 's/addr://'|awk '{print $2}'|cut -f1 -d/)
 
 if [ -z "$IP" ]; then
     echo "E: Could not determine IP"
