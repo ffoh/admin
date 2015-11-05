@@ -2,19 +2,34 @@
 
 set -e
 
-IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
-echo "I: IP=$IP"
+WWWip="109.75.177.24"
+Mailip="109.75.177.24"
+
 ThisIsGateway="no"
 ThisIsWebserver="no"
 ThisIsMailserver="no"
 FreifunkDevice="bat0"
 
-WWWip="109.75.177.24"
-Mailip="109.75.177.24"
 GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 109.75.188.10"
 #                     gw1          gw2          gw3          gw4            gw5           gw-test
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 
+LocalGatewayHostnames="gattywatty01.my-gateway.de"
+LocalGatewayIpv4List="192.168.178.113"
+
+#IP=$(LANG=C ifconfig eth0|grep "inet addr:"| sed -e "s/[ \t][ \t]*/\n/g"|grep addr|cut -f2 -d:)
+IP=$(LANG=C ifconfig eth0|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+if [ -z "$IP" ]; then
+    IP=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+    ThisIsGateway="yes"
+fi
+
+if [ -z "$IP" ]; then
+    echo "E: Could not determine IP"
+    exit
+fi
+
+echo "I: IP=$IP"
 
 for gw in $GatewayIp4List
 do
@@ -207,6 +222,9 @@ FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport micros
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
 FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
 
+FWboth "netperf" -I INPUT -p tcp --dport 12865 -j ACCEPT
+FWboth "netperf" -I INPUT -p udp --dport 12865 -j ACCEPT
+
 if [ -x /usr/sbin/dpkg-reconfigure ]; then
    if [ -x /usr/bin/fail2ban-server ]; then
       dpkg-reconfigure fail2ban
@@ -233,9 +251,19 @@ FW4 "" -P INPUT DROP
 
 if [ "yes" = "$ThisIsGateway" ]; then
 	echo "I: NAT"
-	FW4 "Directly leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/18 -o eth0 -j MASQUERADE'
-	if ifconfig |grep -q mullvad; then
-		FW4 "Routing remainder anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/18 -o mullvad -j MASQUERADE'
+	if ifconfig | grep -q eth0.102; then
+		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
+		FW4 "Directing 192.168.0.0/16 o the internet." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0.101 -j MASQUERADE'
+	else
+		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
+	fi
+	if ifconfig | grep -q mullvad; then
+		if ifconfig | grep -q eth0.102; then
+			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
+			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
+		else
+			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
+		fi
 		anonymizer=$(ip route  |grep mullvad | awk '{print $9}')
 		if [ "" = "$anonymizer" ]; then
 			echo "E: Could not determine IP to Mullvad OpenVPN - restart that"
