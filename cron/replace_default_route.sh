@@ -25,5 +25,14 @@ if [ 0 -eq $defaultrouteno ];  then
 		echo "* I: Update to $mullvadip" | $TEE -a $LOGFILE
 	else
 		echo "* E: Could not determine mullvadip" | $TEE -a $LOGFILE
+		exit 0
+	fi
+fi
+
+if [ "client" = $(batctl gw | cut -f1 -d\ ) ]; then
+	if batctl gw server 100Mbit/100Mbit; then
+		echo "* I: success turning batctl gw server on" | $TEE -a $LOGFILE
+	else
+		echo "* E: failed turning batctl gw server on" | $TEE -a $LOGFILE
 	fi
 fi
