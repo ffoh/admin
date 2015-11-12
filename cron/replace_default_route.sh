@@ -5,10 +5,12 @@ LOGFILE=/var/log/opensshRestart.log
 TEE=/usr/bin/tee
 DATE=/bin/date
 IP=/sbin/ip
+GREP=/bin/grep
+BATCTL=/usr/sbin/batctl
 
-if  ps aux|grep openvpn|grep -q mullvad && /sbin/ifconfig mullvad | grep -q inet; then
+if /bin/ps aux|$GREP openvpn|$GREP -q mullvad && /sbin/ifconfig mullvad | $GREP -q inet; then
 	#echo ok
-	defaultrouteno=$(/sbin/ip route list table freifunk |grep default | wc -l)
+	defaultrouteno=$(/sbin/ip route list table freifunk |$GREP default | wc -l)
 else
 	$DATE | $TEE -a $LOGFILE
 	echo "* Restart" | $TEE -a $LOGFILE
@@ -18,7 +20,7 @@ else
 fi
 #echo "I: defaultrouteno: $defaultrouteno"
 if [ 0 -eq $defaultrouteno ];  then
-	mullvadip=$(LANG=C /sbin/ifconfig mullvad | head -n 2 |grep inet|tr " " "\n" | grep addr | cut -f2 -d:)
+	mullvadip=$(LANG=C /sbin/ifconfig mullvad | head -n 2 |$GREP inet|tr " " "\n" | $GREP addr | cut -f2 -d:)
 	$DATE | $TEE -a $LOGFILE
 	if [ "x$mullvadip" != "x" ]; then
 		$IP route replace default via $mullvadip table freifunk | $TEE -a $LOGFILE
@@ -29,8 +31,8 @@ if [ 0 -eq $defaultrouteno ];  then
 	fi
 fi
 
-if [ "client" = $(batctl gw | cut -f1 -d\ ) ]; then
-	if batctl gw server 100Mbit/100Mbit; then
+if [ "client" = $($BATCTL gw | cut -f1 -d\ ) ]; then
+	if $BATCTL gw server 100Mbit/100Mbit; then
 		echo "* I: success turning batctl gw server on" | $TEE -a $LOGFILE
 	else
 		echo "* E: failed turning batctl gw server on" | $TEE -a $LOGFILE
