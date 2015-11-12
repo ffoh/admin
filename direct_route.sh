@@ -98,6 +98,7 @@ www.luebeck.de
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
+134.170.0.0/16	# microsoft - skype
 81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
 111.221.64.0/18	# Mirosoft, for skype
@@ -542,6 +543,8 @@ us-u.openx.net
 view.atdmt.com
 www.google-analytics.com
 tiles.cdnst.net
+37.202.1.0/24	# Stadtwerke Neum√nster
+37.202.2.0/24	# Stadtwerke Neum√nster
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 www.amung.us
