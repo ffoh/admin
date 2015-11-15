@@ -5,8 +5,11 @@ set -e
 gateway=$(LANG=C ifconfig eth0 | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 
 if [ -z "$gateway" ]; then
-	echo "E: Could not identify gateway via ifconfig eth0"
-	exit 1
+	gateway=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	if [ -z "$gateway" ]; then
+		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
+		exit 1
+	fi
 fi
 echo -n "Identified gateway as '$gateway'"
 
@@ -20,11 +23,16 @@ fi
 
 echo " routing via '$via'"
 
+IIF=bat0
 anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
 echo "Anonmizer is $anomizer"
 if [ -z "$anomizer" ]; then
-	echo "E: Could not determine IP of anonymizer."
-	exit 1
+	anomizer=$(LANG=C ifconfig mullvad|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	IIF=eth0.102
+	if [ -z "$anomizer" ]; then
+		echo "E: Could not determine IP of anonymizer."
+		exit 1
+	fi
 fi
 echo "Resetting anonymizer to route via '$anomizer'"
 ip route replace default via $anomizer table freifunk
@@ -35,7 +43,7 @@ function ipdirect () {
 	ip=$1
 	
 #if ! ip route list table freifunk | grep -q "$ip"; then
-	if ! ip route get $ip from 10.135.8.100 iif bat0 | grep -q eth0; then
+	if ! ip route get $ip from 10.135.8.100 iif $IIF | grep -q eth0; then
 		echo "I: Adding route for $ip via $via for table freifunk"
 		ip route replace $ip via $via table freifunk
 	else 
@@ -90,6 +98,7 @@ www.luebeck.de
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
+134.170.0.0/16	# microsoft - skype
 81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
 111.221.64.0/18	# Mirosoft, for skype
@@ -100,6 +109,8 @@ www.luebeck.de
 85.239.108.0/26	hlkomm.de # Radio streamer
 138.48.0.0/16	# University of Notre Dame, Belgium, skype
 130.88.0.0/16	# University of Manchester, UK, skype
+91.186.179.128/26	ff-agent.com
+130.14.0.0/16	nlm.nih.gov
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -495,6 +506,8 @@ b.scorecardresearch.com
 # OOKLA Speedtest - start
 www.speedtest.net
 c.speedtest.net
+www.base-mail.de
+www.base-mail.us
 a.adroll.com
 a.c.appier.net
 ads.ookla.com
@@ -530,6 +543,8 @@ us-u.openx.net
 view.atdmt.com
 www.google-analytics.com
 tiles.cdnst.net
+37.202.1.0/24	# Stadtwerke Neum√nster
+37.202.2.0/24	# Stadtwerke Neum√nster
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 www.amung.us
@@ -1455,6 +1470,12 @@ api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
 # GotoMeeeting.com - end
+www.csl-computer.com
+# Consors - start
+194.150.80.0/22 www.consorsbank.de
+om-ssl.consorsbank.de	# not redundant
+eu.ntrsupport.com
+# Consors - end
 EOIPS
 )
 
