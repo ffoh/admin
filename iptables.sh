@@ -198,11 +198,11 @@ FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j AC
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
 # Always trust all gateways and Webservers, also for their external IPs
-for $gw in $GatwayIp4List
+for gw in $GatwayIp4List
 do
     FW4 "Freifunk Network - ping from GW external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
 done 
-for $gw in $WWWip
+for gw in $WWWip
 do
     FW4 "Freifunk Network - ping from www external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
 done 
