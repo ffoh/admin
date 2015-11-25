@@ -98,7 +98,7 @@ www.luebeck.de
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
-195.176.48.0/19	#University della Svizzera italiana - skype
+#195.176.48.0/19	#University della Svizzera italiana - skype # error
 134.170.0.0/16	# microsoft - skype
 81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
@@ -112,6 +112,7 @@ www.luebeck.de
 130.88.0.0/16	# University of Manchester, UK, skype
 91.186.179.128/26	ff-agent.com
 130.14.0.0/16	nlm.nih.gov
+128.176.0.0/16	uni-muenster.de # important mirror
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -1478,6 +1479,8 @@ www.csl-computer.com
 om-ssl.consorsbank.de	# not redundant
 eu.ntrsupport.com
 # Consors - end
+homebrew.bintray.com
+brew.sh
 EOIPS
 )
 
