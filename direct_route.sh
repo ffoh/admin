@@ -98,6 +98,7 @@ www.luebeck.de
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
+195.176.48.0/19	#University della Svizzera italiana - skype
 134.170.0.0/16	# microsoft - skype
 81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
