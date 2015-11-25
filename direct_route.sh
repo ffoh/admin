@@ -174,6 +174,9 @@ www.spiegel.tv
 prod-static.spiegel.tv
 purl.org
 get.adobe.com
+files.adform.net
+server.adform.net
+jwpltx.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -914,7 +917,6 @@ qs.ivwbox.de
 skydeutschland.edgesuite.net
 brightcove.vo.llnwd.net
 ced.sascdn.com
-gmads.net
 cdn1.smartadserver.com
 ak-ns.sascdn.com
 audienceinsights.net
@@ -1327,6 +1329,7 @@ speedtest.vodafone-ip.de
 cdn1.evernote.com
 # evernote - end
 193.104.215.0/24 www-du1.adobe.com www.adobe.com
+gmads.net
 # unwetterwarnung / wetterspiegel - start
 www.wetterspiegel.de
 www2.wetterspiegel.de
@@ -1342,7 +1345,6 @@ cdn.adspirit.de
 a.twiago.com
 sub3.cosmosdirekt.de
 www.cosmosdirekt.de
-gmads.net
 tags.qservz.com
 s1.adform.net
 pixel.rubiconproject.com
@@ -1379,7 +1381,6 @@ fast.fonts.com
 eu-gmtdmp.gd1.mookie1.com
 dyn.emetriq.de
 cdn.krxd.net
-gmads.net
 ups.xplosion.de
 ib.adnxs.com
 s361.mxcdn.net
