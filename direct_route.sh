@@ -102,6 +102,7 @@ wieck.debian.org
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
+195.176.48.0/19	#University della Svizzera italiana - skype
 134.170.0.0/16	# microsoft - skype
 23.96.0.0/13	# microsoft - skype
 81.17.208.192/27	radio.de
@@ -191,6 +192,9 @@ www.spiegel.tv
 prod-static.spiegel.tv
 purl.org
 get.adobe.com
+files.adform.net
+server.adform.net
+jwpltx.com
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -931,7 +935,6 @@ qs.ivwbox.de
 skydeutschland.edgesuite.net
 brightcove.vo.llnwd.net
 ced.sascdn.com
-gmads.net
 cdn1.smartadserver.com
 ak-ns.sascdn.com
 audienceinsights.net
@@ -1344,6 +1347,7 @@ speedtest.vodafone-ip.de
 cdn1.evernote.com
 # evernote - end
 193.104.215.0/24 www-du1.adobe.com www.adobe.com
+gmads.net
 # unwetterwarnung / wetterspiegel - start
 www.wetterspiegel.de
 www2.wetterspiegel.de
@@ -1359,7 +1363,6 @@ cdn.adspirit.de
 a.twiago.com
 sub3.cosmosdirekt.de
 www.cosmosdirekt.de
-gmads.net
 tags.qservz.com
 s1.adform.net
 pixel.rubiconproject.com
@@ -1396,7 +1399,6 @@ fast.fonts.com
 eu-gmtdmp.gd1.mookie1.com
 dyn.emetriq.de
 cdn.krxd.net
-gmads.net
 ups.xplosion.de
 ib.adnxs.com
 s361.mxcdn.net
@@ -1478,6 +1480,7 @@ stackoverflow.com
 bioconductor.org
 www.r-project.org
 cran.r-project.org
+www.jacob-computer.de
 # GotoMeeeting.com - start
 app.gotomeeting.com
 global.gotomeeting.com
