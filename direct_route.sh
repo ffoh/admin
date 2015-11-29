@@ -131,7 +131,6 @@ pbs.twimg.com
 cdn.syndication.twimg.com
 syndication.twitter.com
 # AVIRA - end
->>>>>>> c10213e0e7d7441de0e01e559218a6320b7100b4
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
