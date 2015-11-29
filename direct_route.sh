@@ -77,7 +77,9 @@ www.freifunk.net
 gw1.ostholstein.freifunk.net
 gw2.ostholstein.freifunk.net
 gw3.ostholstein.freifunk.net
-109.75.188.36/32	gw3.ostholstein.freifunk.net
+gw4.ostholstein.freifunk.net
+gw5.ostholstein.freifunk.net
+109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
@@ -95,10 +97,13 @@ www.luebeck.de
 173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
+lobos.debian.org
+wieck.debian.org
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
 134.170.0.0/16	# microsoft - skype
+23.96.0.0/13	# microsoft - skype
 81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
 111.221.64.0/18	# Mirosoft, for skype
@@ -111,6 +116,18 @@ www.luebeck.de
 130.88.0.0/16	# University of Manchester, UK, skype
 91.186.179.128/26	ff-agent.com
 130.14.0.0/16	nlm.nih.gov
+134.76.0.0/16	gwdg.de # important mirror of scientific software
+# AVIRA - start
+62.146.210.0/24	avira.com # Antivirus
+89.105.192.0/19 avira.nl # Antivirus
+aviraoperations.d3.sc.omtrdc.net
+bat.bing.com
+bat.r.msn.com
+secure.quantserve.com
+pbs.twimg.com
+cdn.syndication.twimg.com
+syndication.twitter.com
+# AVIRA - end
 #s.youtube.com	redundant
 #www.youtube.com	redundant
 #www.youtube-nocookie.com	redundant
@@ -1475,6 +1492,8 @@ www.csl-computer.com
 om-ssl.consorsbank.de	# not redundant
 eu.ntrsupport.com
 # Consors - end
+www.bioconductor.org
+69.173.64.0/18	broadinstitute.org
 EOIPS
 )
 
