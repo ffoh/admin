@@ -79,6 +79,7 @@ gw2.ostholstein.freifunk.net
 gw3.ostholstein.freifunk.net
 109.75.188.36/32	gw3.ostholstein.freifunk.net
 gw-test.functional.domains
+hallo-holstein.de	# and all other BFO pages with it
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
