@@ -160,6 +160,7 @@ s-static.ak.facebook.com
 # spiegel - start
 ad2.adfarm1.adition.com
 adserv.quality-channel.de
+cas.criteo.com
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
@@ -169,10 +170,12 @@ count.spiegel.de
 c.spiegel.de
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
+dc57.s290.meetrics.net
 dc59.s290.meetrics.net
 dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
+dc73.s290.meetrics.net
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
@@ -204,6 +207,17 @@ get.adobe.com
 files.adform.net
 server.adform.net
 jwpltx.com
+static.xx.fbcdn.net
+scontent.xx.fbcdn.net
+spiegel.met.vgwort.de
+uobsoe.com
+vrt.outbrain.com
+vrp.outbrain.com
+images.nl.eu.criteo.net
+a.visualrevenue.com
+jdn.monster.com
+cat.nl.eu.criteo.com
+images.nl.eu.criteo.net
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -309,6 +323,7 @@ t.paypal.com
 paypal.de
 b.stats.paypal.com
 altfarm.mediaplex.com
+nexus.ensighten.com
 # paypal - end
 # RBB - start
 www.rbb-online.de
@@ -685,12 +700,12 @@ common-st.p7s1digital.de
 epg.sat1.de
 www.googletagservices.com
 static.chartbeat.com
+ping.chartbeat.net
 script.ioam.de
 service.maxymiser.net
 common-st.p7s1digital.de
 fbcdn-profile-a.akamaihd.net
 scontent-b.xx.fbcdn.net
-ping.chartbeat.net
 sat1.ivwbox.de
 sat101.webtrekk.net
 stats.g.doubleclick.net
@@ -1232,6 +1247,10 @@ s.ytimg.com
 support.cdn.mozilla.net
 mozorg.cdn.mozilla.net
 cdn.optimizely.com
+bam.nr-data.net
+js-agent.newrelic.com
+download.mozilla.org
+download-installer.cdn.mozilla.net
 # Mozilla.org - end
 # Deutschlandradio - start
 www.deutschlandradio.de
