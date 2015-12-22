@@ -151,10 +151,12 @@ connect.facebook.net
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
+66.220.144.0/20	facebook
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.93.0/24	facebook
 31.13.64.0/24	facebook
+31.13.91.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -188,7 +190,7 @@ script.ioam.de
 spiegel.de
 spiegel.ivwbox.de
 199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
-104.244.40.0/21 #twitter
+104.244.40.0/21	twitter
 platform.twitter.com	# not redundant
 video2.spiegel.de
 video.spiegel.de
@@ -234,6 +236,7 @@ reports.cedexis.com
 org-www.arte.tv
 probes.cedexis.com
 probe.cedexis.org
+eu-ems1.joyent.bench.cedexis.com
 eu-ems1.joyent.bench.cedexis.com
 www.googleapis.com
 client1.google.com
@@ -314,6 +317,7 @@ www.sainsmart.com
 i18.ebayimg.com
 api.ebaycommercenetwork.com
 forum.ebay-kleinanzeigen.de
+csr.ebay.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -1528,6 +1532,11 @@ homebrew.bintray.com
 brew.sh
 www.bioconductor.org
 69.173.64.0/18	broadinstitute.org
+# dlink - start
+dlink.com
+where-to-buy.co
+s7.addthis.com
+# dlink - end
 EOIPS
 )
 
