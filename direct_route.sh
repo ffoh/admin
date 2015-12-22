@@ -120,6 +120,7 @@ wieck.debian.org
 130.14.0.0/16	nlm.nih.gov
 128.176.0.0/16	uni-muenster.de # important mirror
 134.76.0.0/16	gwdg.de # important mirror of scientific software
+149.199.0.0/16	xilinx.com
 # threema - start
 threema.ch
 5.148.175.192/27	#5.148.175.192 - 5.148.175.223
