@@ -90,6 +90,8 @@ www.apple.com	# not redundant
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
+212.53.192.64/26	# WebCam firma in Haffkrug fuer Timmendorf
+content.jwplatform.com	# WebCam Timmendorf
 www.luebeck.de
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
@@ -121,6 +123,7 @@ wieck.debian.org
 128.176.0.0/16	uni-muenster.de # important mirror
 134.76.0.0/16	gwdg.de # important mirror of scientific software
 149.199.0.0/16	xilinx.com
+xilinx.entitlenow.com
 # threema - start
 threema.ch
 5.148.175.192/27	#5.148.175.192 - 5.148.175.223
