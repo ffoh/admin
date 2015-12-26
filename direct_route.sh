@@ -123,6 +123,7 @@ wieck.debian.org
 128.176.0.0/16	uni-muenster.de # important mirror
 134.76.0.0/16	gwdg.de # important mirror of scientific software
 149.199.0.0/16	xilinx.com
+license.xilinx.com
 xilinx.entitlenow.com
 # threema - start
 threema.ch
@@ -1540,6 +1541,9 @@ dlink.com
 where-to-buy.co
 s7.addthis.com
 # dlink - end
+www.codeweavers.com
+www1.codeweavers.com
+www2.codeweavers.com
 EOIPS
 )
 
