@@ -100,6 +100,9 @@ www.luebeck.de
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 lobos.debian.org
 wieck.debian.org
+ftp.upload.debian.org
+mailly.debian.org
+muffat.debian.org
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
@@ -1491,6 +1494,8 @@ api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
 # GotoMeeeting.com - end
+www.siegel-apartments.mobi
+www.siegel-apartments.de
 www.csl-computer.com
 # Consors - start
 194.150.80.0/22 www.consorsbank.de
