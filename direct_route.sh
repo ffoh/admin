@@ -86,10 +86,12 @@ hallo-holstein.de	# and all other BFO pages with it
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com
-216.58.192.0/19	maps.googleapis.com
+216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
+212.53.192.64/26	# WebCam firma in Haffkrug fuer Timmendorf
+content.jwplatform.com	# WebCam Timmendorf
 www.luebeck.de
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
@@ -123,6 +125,14 @@ muffat.debian.org
 130.14.0.0/16	nlm.nih.gov
 128.176.0.0/16	uni-muenster.de # important mirror
 134.76.0.0/16	gwdg.de # important mirror of scientific software
+149.199.0.0/16	xilinx.com
+xilinx.entitlenow.com
+# threema - start
+threema.ch
+5.148.175.192/27	#5.148.175.192 - 5.148.175.223
+s.ytimg.com
+fast.fonts.net
+# threema - end
 # AVIRA - start
 62.146.210.0/24	avira.com # Antivirus
 89.105.192.0/19 avira.nl # Antivirus
@@ -147,16 +157,19 @@ connect.facebook.net
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
+66.220.144.0/20	facebook
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.93.0/24	facebook
 31.13.64.0/24	facebook
+31.13.91.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
 # spiegel - start
 ad2.adfarm1.adition.com
 adserv.quality-channel.de
+cas.criteo.com
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
@@ -166,10 +179,12 @@ count.spiegel.de
 c.spiegel.de
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
+dc57.s290.meetrics.net
 dc59.s290.meetrics.net
 dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
+dc73.s290.meetrics.net
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
@@ -181,6 +196,7 @@ script.ioam.de
 spiegel.de
 spiegel.ivwbox.de
 199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
+104.244.40.0/21	twitter
 platform.twitter.com	# not redundant
 video2.spiegel.de
 video.spiegel.de
@@ -200,6 +216,17 @@ get.adobe.com
 files.adform.net
 server.adform.net
 jwpltx.com
+static.xx.fbcdn.net
+scontent.xx.fbcdn.net
+spiegel.met.vgwort.de
+uobsoe.com
+vrt.outbrain.com
+vrp.outbrain.com
+images.nl.eu.criteo.net
+a.visualrevenue.com
+jdn.monster.com
+cat.nl.eu.criteo.com
+images.nl.eu.criteo.net
 # spiegel - end
 spotify.com
 www.spotify.com
@@ -215,6 +242,7 @@ reports.cedexis.com
 org-www.arte.tv
 probes.cedexis.com
 probe.cedexis.org
+eu-ems1.joyent.bench.cedexis.com
 eu-ems1.joyent.bench.cedexis.com
 www.googleapis.com
 client1.google.com
@@ -295,6 +323,7 @@ www.sainsmart.com
 i18.ebayimg.com
 api.ebaycommercenetwork.com
 forum.ebay-kleinanzeigen.de
+csr.ebay.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -305,6 +334,7 @@ t.paypal.com
 paypal.de
 b.stats.paypal.com
 altfarm.mediaplex.com
+nexus.ensighten.com
 # paypal - end
 # RBB - start
 www.rbb-online.de
@@ -681,12 +711,12 @@ common-st.p7s1digital.de
 epg.sat1.de
 www.googletagservices.com
 static.chartbeat.com
+ping.chartbeat.net
 script.ioam.de
 service.maxymiser.net
 common-st.p7s1digital.de
 fbcdn-profile-a.akamaihd.net
 scontent-b.xx.fbcdn.net
-ping.chartbeat.net
 sat1.ivwbox.de
 sat101.webtrekk.net
 stats.g.doubleclick.net
@@ -1228,6 +1258,10 @@ s.ytimg.com
 support.cdn.mozilla.net
 mozorg.cdn.mozilla.net
 cdn.optimizely.com
+bam.nr-data.net
+js-agent.newrelic.com
+download.mozilla.org
+download-installer.cdn.mozilla.net
 # Mozilla.org - end
 # Deutschlandradio - start
 www.deutschlandradio.de
@@ -1506,6 +1540,11 @@ homebrew.bintray.com
 brew.sh
 www.bioconductor.org
 69.173.64.0/18	broadinstitute.org
+# dlink - start
+dlink.com
+where-to-buy.co
+s7.addthis.com
+# dlink - end
 EOIPS
 )
 
