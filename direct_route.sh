@@ -1387,6 +1387,7 @@ rcp.eu.blackberry.com
 imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
+85.205.0.0/16	#vodefone
 webmail.vodafone.com
 speedtest.vodafone-ip.de
 # evernote - start
@@ -1561,6 +1562,28 @@ bam.nr-data.net
 ice36.infomaniak.ch
 assets.zendesk.com
 # radio.de - end
+# twitch.tv
+reserved.justin.tv
+www.twitch.tv
+player.twitch.tv
+www-cdn.jtvnw.net
+edge.quantserve.com
+b.scorecardresearch.com
+cdn.mxpnl.com
+partner.googleadservices.com
+secureplayer.twitch.tv
+ttv-13.firebaseio.com
+s-softlayer.firebaseio.com
+web-cdn.ttvnw.net
+# twitch.tv - end
+# firebase.io - start
+use.typekit.net
+www.firebase.com
+widget.intercom.io
+js.intercomcdn.com
+# firebase.io - end
+www.filoo.de
+piwik.filoo.de
 EOIPS
 )
 
