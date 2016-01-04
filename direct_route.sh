@@ -96,19 +96,20 @@ www.luebeck.de
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
-74.125.0.0/16	ajax.googleapis.com fonts.googleapis.com # google
-173.194.0.0/16	ssl.gstatic.com # google
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 lobos.debian.org
 wieck.debian.org
+wiki.debian.org
+ftp.upload.debian.org
+mailly.debian.org
+muffat.debian.org
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
 #195.176.48.0/19	#University della Svizzera italiana - skype
 134.170.0.0/16	# microsoft - skype
 23.96.0.0/13	# microsoft - skype
-81.17.208.192/27	radio.de
 65.52.0.0/14	# Mirosoft, for skype
 111.221.64.0/18	# Mirosoft, for skype
 139.153.0.0/16	#university of sterling, skype
@@ -148,19 +149,21 @@ syndication.twitter.com
 # 
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
-74.125.0.0/16	id.google.de
+74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
+173.194.0.0/16	ssl.gstatic.com # google
 144.15.0.0/16	carelink.minimed.com medtronic.com
 # Facebook - start
-connect.facebook.net
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
 66.220.144.0/20	facebook
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
-31.13.93.0/24	facebook
 31.13.64.0/24	facebook
+31.13.71.0/24	connect.facebook.net
 31.13.91.0/24	facebook
+31.13.92.0/24	facebook
+31.13.93.0/24	facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -322,6 +325,12 @@ i18.ebayimg.com
 api.ebaycommercenetwork.com
 forum.ebay-kleinanzeigen.de
 csr.ebay.com
+signin.ebay.de
+secureir.ebaystatic.com
+secureinclude.ebaystatic.com
+src.ebay-us.com
+aa.online-metrix.net
+b.stats.ebay.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -333,6 +342,8 @@ paypal.de
 b.stats.paypal.com
 altfarm.mediaplex.com
 nexus.ensighten.com
+phx.stats.paypal.com	# found on ebay login page
+c.paypal.com
 # paypal - end
 # RBB - start
 www.rbb-online.de
@@ -1377,6 +1388,7 @@ rcp.eu.blackberry.com
 imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
+85.205.0.0/16	#vodefone
 webmail.vodafone.com
 speedtest.vodafone-ip.de
 # evernote - start
@@ -1526,6 +1538,8 @@ api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
 # GotoMeeeting.com - end
+www.siegel-apartments.mobi
+www.siegel-apartments.de
 www.csl-computer.com
 # Consors - start
 194.150.80.0/22 www.consorsbank.de
@@ -1544,6 +1558,36 @@ s7.addthis.com
 www.codeweavers.com
 www1.codeweavers.com
 www2.codeweavers.com
+# radio.de - start
+81.17.208.192/27	radio.de
+rum-collector.pingdom.net
+js-agent.newrelic.com
+bam.nr-data.net
+ice36.infomaniak.ch
+assets.zendesk.com
+# radio.de - end
+# twitch.tv
+reserved.justin.tv
+www.twitch.tv
+player.twitch.tv
+www-cdn.jtvnw.net
+edge.quantserve.com
+b.scorecardresearch.com
+cdn.mxpnl.com
+partner.googleadservices.com
+secureplayer.twitch.tv
+ttv-13.firebaseio.com
+s-softlayer.firebaseio.com
+web-cdn.ttvnw.net
+# twitch.tv - end
+# firebase.io - start
+use.typekit.net
+www.firebase.com
+widget.intercom.io
+js.intercomcdn.com
+# firebase.io - end
+www.filoo.de
+piwik.filoo.de
 EOIPS
 )
 
