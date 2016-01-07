@@ -1584,6 +1584,13 @@ js.intercomcdn.com
 # firebase.io - end
 www.filoo.de
 piwik.filoo.de
+igraph.org
+# www.tvn24.pl - start
+46.229.145.0/26	www.tvn24.pl s.tvn.pl pix2.services.tvn.pl s2.tvn24.cdntvn.pl s1.tvn24.cdntvn.pl player.cdntvn.pl
+config.sensic.net
+pro.hit.genius.pl
+rtax.criteo.com
+# www.tvn24.pl - end
 EOIPS
 )
 
