@@ -1257,9 +1257,15 @@ vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
+173.192.192.0/19	#whatsapp
+158.85.58.64/27	#whatsapp
+108.168.160.0/19	#whatsapp
 www.whatsapp.com
 whatsappcdn.appspot.com
 s.ytimg.com
+android-crashlog.whatsapp.net
+web.whatsapp.com
+
 # Whatsapp - end
 # Mozilla.org - start
 63.245.208.0/20	mozilla.org mozilla.net
