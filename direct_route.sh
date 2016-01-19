@@ -1258,9 +1258,15 @@ vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
+173.192.192.0/19	#whatsapp
+158.85.58.64/27	#whatsapp
+108.168.160.0/19	#whatsapp
 www.whatsapp.com
 whatsappcdn.appspot.com
 s.ytimg.com
+android-crashlog.whatsapp.net
+web.whatsapp.com
+
 # Whatsapp - end
 # Mozilla.org - start
 63.245.208.0/20	mozilla.org mozilla.net
@@ -1588,6 +1594,13 @@ js.intercomcdn.com
 # firebase.io - end
 www.filoo.de
 piwik.filoo.de
+igraph.org
+# www.tvn24.pl - start
+46.229.145.0/26	www.tvn24.pl s.tvn.pl pix2.services.tvn.pl s2.tvn24.cdntvn.pl s1.tvn24.cdntvn.pl player.cdntvn.pl
+config.sensic.net
+pro.hit.genius.pl
+rtax.criteo.com
+# www.tvn24.pl - end
 EOIPS
 )
 
