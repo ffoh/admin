@@ -111,7 +111,10 @@ muffat.debian.org
 134.170.0.0/16	# microsoft - skype
 23.96.0.0/13	# microsoft - skype
 65.52.0.0/14	# Mirosoft, for skype
-111.221.64.0/18	# Mirosoft, for skype
+111.221.64.0/18	# Microsoft, for skype
+40.127.0.0/16	# Microsoft, for skype
+40.126.128.0/17	# Microsoft, for skype
+91.190.218.0/23	# skype
 139.153.0.0/16	#university of sterling, skype
 132.180.0.0/16	#Uni Bayreuth, skype
 141.53.0.0/16	uni-greifswald.de
