@@ -88,6 +88,7 @@ www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com
+64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
@@ -99,13 +100,13 @@ www.luebeck.de
 134.246.0.0/15	uni-kiel.de 134.24[67]
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
 81.26.166.0/24	i.ligatus.com d.ligatus.com
-141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 lobos.debian.org
 wieck.debian.org
 wiki.debian.org
 ftp.upload.debian.org
 mailly.debian.org
 muffat.debian.org
+145.243.232.0/21	# Axel Springer Verlag
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
@@ -117,6 +118,7 @@ muffat.debian.org
 40.127.0.0/16	# Microsoft, for skype
 40.126.128.0/17	# Microsoft, for skype
 91.190.218.0/23	# skype
+91.190.219.0/24	# skype
 139.153.0.0/16	#university of sterling, skype
 132.180.0.0/16	#Uni Bayreuth, skype
 141.53.0.0/16	uni-greifswald.de
@@ -297,6 +299,7 @@ cloud.typography.com
 # ebay - start
 ebay.de
 www.ebay.de
+gha.ebay.de
 www.ebay.com
 cgi.ebay.com
 api.ebay.com
@@ -334,8 +337,11 @@ signin.ebay.de
 secureir.ebaystatic.com
 secureinclude.ebaystatic.com
 src.ebay-us.com
+srx.de.ebayrtm.com
 aa.online-metrix.net
 b.stats.ebay.com
+psoc.ebayc3.com
+pixel.mathtag.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -348,7 +354,7 @@ b.stats.paypal.com
 altfarm.mediaplex.com
 nexus.ensighten.com
 phx.stats.paypal.com	# found on ebay login page
-c.paypal.com
+c.paypal.com		# found on ebay product page
 # paypal - end
 # RBB - start
 www.rbb-online.de
@@ -409,7 +415,7 @@ anonscm.debian.org
 alioth.debian.org
 www.debian.org
 www.ubuntu.com
-canonical.com
+#91.189.88.0/20	canonical.com
 zatoo.com
 www.zatoo.com
 # amazon - start
@@ -689,6 +695,11 @@ nominatim.openstreetmap.org
 a.tile.openstreetmap.org
 b.tile.openstreetmap.org
 c.tile.openstreetmap.org
+www.openstreetmap.de
+a.tile.openstreetmap.de
+b.tile.openstreetmap.de
+c.tile.openstreetmap.de
+d.tile.openstreetmap.de
 www.gravatar.com
 i0.wp.com
 i1.wp.com
@@ -1293,6 +1304,7 @@ logc279.xiti.com
 www.deutschlandradiokultur.de
 ondemand-mp3.dradio.de
 193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europäisches Bioinformatik Institut und Sanger Center
+dradio-ogg-dlf-l.akacast.akamaistream.net
 # Deutschlandradio - end
 imap.arcor-online.net
 195.243.28.128/27	elektronikpraxis.vogel.de  # ...128 - 195.243.28.159
@@ -1336,6 +1348,7 @@ indiegogo.com
 bam.nr-data.net
 199.101.160.0/22	linkedin.com
 109.233.156.0/23	xing.com
+109.233.153.0/24	xing.com
 62.159.27.0/24	buhl.de
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
@@ -1608,6 +1621,15 @@ config.sensic.net
 pro.hit.genius.pl
 rtax.criteo.com
 # www.tvn24.pl - end
+# Science - start
+130.237.218.0/24	# Karolinska
+141.76.0.0/16	ftp.de.debian.org # Uni Dresden
+141.30.0.0/16	tu-dresden.de
+139.17.0.0/16	# Helmholtz, openstreetmap
+# Science - end
+109.233.153.0/24	#xing.de
+169.54.83.32/27	# TeamViewer.com
+www.pro-linux.de
 EOIPS
 )
 
