@@ -119,6 +119,8 @@ muffat.debian.org
 40.126.128.0/17	# Microsoft, for skype
 91.190.218.0/23	# skype
 91.190.219.0/24	# skype
+168.61.0.0/16	# Microsoft
+168.62.0.0/15	# Microsoft
 139.153.0.0/16	#university of sterling, skype
 132.180.0.0/16	#Uni Bayreuth, skype
 141.53.0.0/16	uni-greifswald.de
@@ -1626,10 +1628,12 @@ rtax.criteo.com
 141.76.0.0/16	ftp.de.debian.org # Uni Dresden
 141.30.0.0/16	tu-dresden.de
 139.17.0.0/16	# Helmholtz, openstreetmap
+149.132.0.0/16	# Uni Mailand
 # Science - end
 109.233.153.0/24	#xing.de
 169.54.83.32/27	# TeamViewer.com
 www.pro-linux.de
+83.169.128.0/18	kabeldeutschland.de
 EOIPS
 )
 
