@@ -305,6 +305,7 @@ gha.ebay.de
 www.ebay.com
 cgi.ebay.com
 api.ebay.com
+stat.dealtime.com
 open.api.ebay.com
 mobior.ebay.com
 mobidcs.ebay.com
@@ -329,6 +330,7 @@ thumbs1.ebaystatic.com
 thumbs2.ebaystatic.com
 thumbs3.ebaystatic.com
 thumbs4.ebaystatic.com
+sslthumbs.ebaystatic.com
 vi.vipr.ebaydesc.com
 www.sainsmart.com
 i18.ebayimg.com
@@ -344,6 +346,12 @@ aa.online-metrix.net
 b.stats.ebay.com
 psoc.ebayc3.com
 pixel.mathtag.com
+checkout.payments.ebay.de	# not within ebay.de
+checkoutweb.ebay.de	# not wihtin ebay.de
+srv.de.ebayrtm.com
+stags.bluekai.com
+srv.main.ebayrtm.com
+reco.ebay.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -645,7 +653,7 @@ smtp.web.de
 # web.de - end
 91.198.174.0/24	de.wikipedia.org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
 # T-online - start
-194.25.134.0/24	email01.t-online.de mail.t-online.de
+194.25.0.0/16	# Deutsche Telekom	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
 62.157.140.0/23	tipi.api.t-online.de # 62.157.140.0 - 62.157.141.255
@@ -1634,6 +1642,8 @@ rtax.criteo.com
 169.54.83.32/27	# TeamViewer.com
 www.pro-linux.de
 83.169.128.0/18	kabeldeutschland.de
+31.19.0.0/16	#kabeldeutschland
+193.99.144.0/24	heise.de
 EOIPS
 )
 
