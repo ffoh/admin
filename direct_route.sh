@@ -2,18 +2,35 @@
 
 set -e
 
-gateway=$(LANG=C ifconfig eth0 | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
+IFCONFIG=/sbin/ifconfig
+GREP=/bin/grep
+CUT=/usr/bin/cut
+IP=/sbin/ip
+AWK=/usr/bin/awk
+SORT=/usr/bin/sort
+
+export LANG=C
+
+if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
+
+gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
 if [ -z "$gateway" ]; then
-	gateway=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
 		exit 1
 	fi
 fi
+
+if [ -z "$gateway" ]; then
+	echo "E: Could not identify gateway"
+	exit 3
+fi
+
 echo -n "Identified gateway as '$gateway'"
 
-via=$(echo $gateway|cut -f 1,2,3 -d .).1
+via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 
 if [ -z "$via" -o ".1" = "$via" ]; then
 	echo
@@ -23,53 +40,57 @@ fi
 
 echo " routing via '$via'"
 
+
 IIF=bat0
-anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
+anomizer=$(LANG=C $IP addr show mullvad | $GREP "inet "| $CUT -f1 -d/| $AWK '{print $2}')
 echo "Anonmizer is $anomizer"
-if [ -z "$anomizer" ]; then
-	anomizer=$(LANG=C ifconfig mullvad|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
-	IIF=eth0.102
-	if [ -z "$anomizer" ]; then
-		echo "E: Could not determine IP of anonymizer."
-		exit 1
-	fi
-fi
+#if [ -z "$anomizer" ]; then
+#	anomizer=$(LANG=C $IFCONFIG mullvad|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
+#	IIF=eth0.102
+#	if [ -z "$anomizer" ]; then
+#		echo "E: Could not determine IP of anonymizer."
+#		exit 1
+#	fi
+#fi
 echo "Resetting anonymizer to route via '$anomizer'"
-ip route replace default via $anomizer table freifunk
-ip route replace 0.0.0.0/1 via $anomizer table freifunk
-ip route replace 128.0.0.0/1 via $anomizer table freifunk
+$IP route replace default via $anomizer table freifunk
+#$IP route replace 0.0.0.0/1 via $anomizer table freifunk
+#$IP route replace 128.0.0.0/1 via $anomizer table freifunk
 
 function ipdirect () {
-	ip=$1
+	ipaddress=$1
 	
-#if ! ip route list table freifunk | grep -q "$ip"; then
-	if ! ip route get $ip from 10.135.8.100 iif $IIF | grep -q eth0; then
-		echo "I: Adding route for $ip via $via for table freifunk"
-		ip route replace $ip via $via table freifunk
+	if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+		echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
+		$IP route replace $ipaddress via $via table freifunk
 	else 
-		echo "I: Route for $ip is existing - skipped"
+		echo "I: Route for $ipaddress is existing - skipped"
 	fi
 }
 
 function ipindirect () {
-	ip=$1
-	if ! ip route list table freifunk | grep -q "$ip"; then
-		echo "I: Route for $ip not existing in table freifunk - skipped"
+	ipaddress=$1
+	if ! $IP route list table freifunk | $GREP -q "$ipaddress"; then
+		echo "I: Route for $ipaddress not existing in table freifunk - skipped"
 	else
-		echo "I: Removing route for $ip via $gateway for table freifunk"
-		echo ip route del $ip via 141.101.36.67 table freifunk
-		ip route del $ip table freifunk || echo "Ignored"
+		echo "I: Removing route for $ipaddress via $gateway for table freifunk"
+		#echo "$IP route del $ipaddress via $gateway table freifunk"
+		echo "$IP route del $ipaddress table freifunk"
+		$IP route del $ipaddress table freifunk || echo "Ignored"
 	fi
-	if ! ip route list | grep -q "$ip"; then
-		echo "I: Route for $ip not existing - skipped"
+	if ! $IP route list | $GREP -q "$ipaddress"; then
+		echo "I: Route for $ipaddress not existing - skipped"
 	else
-		echo "I: Removing route for $ip via $gateway for table freifunk"
-		echo ip route del $ip via 141.101.36.67
-		ip route del $ip || echo "Ignored"
+		echo "I: Removing route for $ipaddress via $gateway for table freifunk"
+		echo "$IP route del $ipaddress #via $gateway"
+		$IP route del $ipaddress || echo "Ignored"
 	fi
 }
 
-IPs=$(cat <<EOIPS | grep -v ^# |cut -f1|sort -u
+
+echo "I: learning white-listed URLs/IPs"
+
+IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 #
 ostholstein.freifunk.net
 luebeck.freifunk.net
@@ -1468,6 +1489,43 @@ apiglobal.gotomeeting.com
 api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
+cs.genieesspv.jp
+sales.liveperson.net
+tags.w55c.net
+d.href.asia
+cs.gssprt.jp
+x.bidswitch.net
+ad.doubleclick.net
+r.turn.com
+secure.adnxs.com
+pixel.mathtag.com
+ad.yieldmanager.com
+insight.adsrvr.org
+pixel.rubiconproject.com
+ak1s.abmr.net
+l1.osdimg.com
+pixel.quantserve.com
+edge.quantserve.com
+bs.serving-sys.com
+citrixsaas.d1.sc.omtrdc.net
+lptag.liveperson.net
+www.gotomeeting.com
+www.gotomeeting.de
+tags.tiqcdn.com
+s3.amazonaws.com
+marketing.citrixonline.com
+sadmin.brightcove.com
+static.citrixonlinecdn.com
+www.citrixonlinecdn.com
+cdn3.optimizely.com
+api.demandbase.com
+tapestry.tapad.com
+p.adsymptotic.com
+p.univide.com
+cm.g.doubleclick.net
+global.gotomeeting.com
+download.citrixonline.com
+egwglobal.gotomeeting.com
 # GotoMeeeting.com - end
 www.csl-computer.com
 # Consors - start
@@ -1475,6 +1533,7 @@ www.csl-computer.com
 om-ssl.consorsbank.de	# not redundant
 eu.ntrsupport.com
 # Consors - end
+www.schwartauer-werke.de
 EOIPS
 )
 
@@ -1482,16 +1541,16 @@ for n in $IPs
 do
 	echo "$n"
 	if false; then
-		echo "I: Removing $IP direct link"
+		echo "I: Removing direct link"
 		if false; then
-			for IP in $(ip route list table freifunk | cut -f1 -d\ ) 
+			for ipaddress in $($IP route list table freifunk | $CUT -f1 -d' ' ) 
 			do
-				ipindirect $IP
+				ipindirect $ipaddress
 			done
 		else
-			for IP in $(ip route | grep -v default | grep eth0 | grep -v scope)
+			for ipaddress in $($IP route | $GREP -v default | $GREP eth0 | $GREP -v scope)
 			do
-				ipindirect $IP
+				ipindirect $ipaddress
 			done
 		fi
 	else
@@ -1499,9 +1558,9 @@ do
 			echo "I: Interpreting '$n' as IP Number"
 			ipdirect $n
 		else
-			for IP in $(host $n |grep "has address" | cut -f4 -d\ )
+			for ipaddress in $(host $n |$GREP "has address" | $CUT -f4 -d' ' )
 			do
-				ipdirect $IP
+				ipdirect $ipaddress
 			done
 		fi
 	fi
