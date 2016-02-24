@@ -262,14 +262,14 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	echo "I: NAT"
 	if ifconfig | grep -q eth0.102; then
 		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
-		FW4 "Directing 192.168.0.0/16 o the internet." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0.101 -j MASQUERADE'
+		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 -j MASQUERADE'
 	else
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
 	if ifconfig | grep -q mullvad; then
 		if ifconfig | grep -q eth0.102; then
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
-			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
+			#FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
 		else
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		fi

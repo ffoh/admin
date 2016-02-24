@@ -31,10 +31,19 @@ if [ 0 -eq $defaultrouteno ];  then
 	fi
 fi
 
+
+
+
 if [ "client" = $($BATCTL gw | cut -f1 -d\ ) ]; then
 	if $BATCTL gw server 100Mbit/100Mbit; then
-		echo "* I: success turning batctl gw server on" | $TEE -a $LOGFILE
+		echo "* I: success turning batctl gw server on (from client state)" | $TEE -a $LOGFILE
 	else
-		echo "* E: failed turning batctl gw server on" | $TEE -a $LOGFILE
+		echo "* E: failed turning batctl gw server on (from client state)" | $TEE -a $LOGFILE
+	fi
+elif [ "off" = $($BATCTL gw | cut -f1 -d\ ) ]; then
+	if $BATCTL gw server 100Mbit/100Mbit; then
+		echo "* I: success turning batctl gw server on (from off state)" | $TEE -a $LOGFILE
+	else
+		echo "* E: failed turning batctl gw server on (from off state)" | $TEE -a $LOGFILE
 	fi
 fi
