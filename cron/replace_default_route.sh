@@ -20,7 +20,7 @@ else
 fi
 #echo "I: defaultrouteno: $defaultrouteno"
 if [ 0 -eq $defaultrouteno ];  then
-	mullvadip=$(LANG=C /sbin/ifconfig mullvad | head -n 2 |$GREP inet|tr " " "\n" | $GREP addr | cut -f2 -d:)
+	mullvadip=$(LANG=C ip addr show mullvad |grep inet|cut -f1 -d/|awk '{print $2}')
 	$DATE | $TEE -a $LOGFILE
 	if [ "x$mullvadip" != "x" ]; then
 		$IP route replace default via $mullvadip table freifunk | $TEE -a $LOGFILE
