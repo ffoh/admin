@@ -108,7 +108,7 @@ hallo-holstein.de	# and all other BFO pages with it
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -259,6 +259,7 @@ jdn.monster.com
 cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
+194.132.196.0/22	#spotify
 spotify.com
 www.spotify.com
 # Arte - begin
@@ -450,6 +451,7 @@ www.ubuntu.com
 zatoo.com
 www.zatoo.com
 # amazon - start
+176.32.104.0/19	# Amazon Dublin
 amazon.de
 cloudfront-labs.amazonaws.com
 ecx.images-amazon.com
@@ -613,6 +615,9 @@ b.scorecardresearch.com
 194.94.0.0/15	embl.de # DFN
 141.22.0.0/16	haw-hamburg.de # DFN
 # OOKLA Speedtest - start
+zdstatic.speedtest.net
+www.alternateatmosphere.com
+tiles.cdnst.net
 www.speedtest.net
 c.speedtest.net
 www.base-mail.de
@@ -654,6 +659,16 @@ www.google-analytics.com
 tiles.cdnst.net
 37.202.1.0/24	# Stadtwerke Neum√nster
 37.202.2.0/24	# Stadtwerke Neum√nster
+speedtest.fra1.de.leaseweb.com
+speedtest.fra02.softlayer.com
+fra36-speedtest-1.tele2.net
+speedtest.base-mail.us
+speed.23media.de
+speedtest.vodafone-ip.de
+a.speedtest.frankfurt.x-ion.de
+speedtest21.hotspot.koeln
+speed1.ktk.de
+zdbb.net
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 www.amung.us
@@ -1334,7 +1349,8 @@ srv.deutschlandradio.de
 logc279.xiti.com
 www.deutschlandradiokultur.de
 ondemand-mp3.dradio.de
-193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europ√§isches Bioinformatik Institut und Sanger Center
+193.62.192.0/20	
+193.60.0.0/14	#JANET, sanger.ac.uk ebi.ac.uk ensembl.org
 dradio-ogg-dlf-l.akacast.akamaistream.net
 # Deutschlandradio - end
 imap.arcor-online.net
@@ -1703,6 +1719,9 @@ www.pro-linux.de
 83.169.128.0/18	kabeldeutschland.de
 31.19.0.0/16	#kabeldeutschland
 193.99.144.0/24	heise.de
+www.reichelt.de
+www.overleaf.com
+www.whatismyip.com
 EOIPS
 )
 
