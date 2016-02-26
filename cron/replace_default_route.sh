@@ -8,6 +8,9 @@ IP=/sbin/ip
 GREP=/bin/grep
 BATCTL=/usr/sbin/batctl
 
+DEBUG=F
+#DEBUG=T
+
 if /bin/ps aux|$GREP openvpn|$GREP -q mullvad && /sbin/ifconfig mullvad | $GREP -q inet; then
 	#echo ok
 	defaultrouteno=$(/sbin/ip route list table freifunk |$GREP default | wc -l)
@@ -18,7 +21,10 @@ else
 	sleep 10
 	defaultrouteno=0
 fi
-#echo "I: defaultrouteno: $defaultrouteno"
+if [ "T" = "$DEBUG" ]; then
+	echo "defaultrouteno: $defaultrouteno"
+fi
+
 if [ 0 -eq $defaultrouteno ];  then
 	mullvadip=$(LANG=C ip addr show mullvad |grep inet|cut -f1 -d/|awk '{print $2}')
 	$DATE | $TEE -a $LOGFILE
