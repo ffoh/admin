@@ -259,9 +259,19 @@ jdn.monster.com
 cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
+<<<<<<< Updated upstream
 194.132.196.0/22	#spotify
+=======
+# spotify - start
+>>>>>>> Stashed changes
 spotify.com
 www.spotify.com
+i.scdn.co
+t.scdn.co
+play.spotify.edgekey.net
+sb.scorecardresearch.com
+cdn.ravenjs.com
+# spotify - end
 # Arte - begin
 arte.tv
 info.arte.tv
@@ -451,7 +461,7 @@ www.ubuntu.com
 zatoo.com
 www.zatoo.com
 # amazon - start
-176.32.104.0/19	# Amazon Dublin
+#176.32.104.0/19	# Amazon Dublin #Fehler??!
 amazon.de
 cloudfront-labs.amazonaws.com
 ecx.images-amazon.com
@@ -614,6 +624,8 @@ b.scorecardresearch.com
 137.250.0.0/16	uni-augsburg.de # DFN
 194.94.0.0/15	embl.de # DFN
 141.22.0.0/16	haw-hamburg.de # DFN
+141.30.0.0/16	tu-dresden.de
+141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
 zdstatic.speedtest.net
 www.alternateatmosphere.com
@@ -1722,6 +1734,48 @@ www.pro-linux.de
 www.reichelt.de
 www.overleaf.com
 www.whatismyip.com
+159.122.189.32/27	teamviewer.com
+# nowtv.de - start
+217.118.168.0/22	RTL
+ais.nowtv.de
+secure-eu.imrworldwide.com
+cdn-fra1.rtl.de
+px1.vtrtl.de
+pmd.fra.ip-ads.de
+ivw.nowtv.de
+api.nowtv.de
+technical-service.net
+ip.nuggad.net
+cdn.static-fra.de
+www.rtl.de
+autoimg.static-fra.de
+autoimg.rtl.de
+de-ipd.cdn.videoplaza.tv
+bilder.static-fra.de
+bilder.rtl.de
+de-ipd.cdn.videoplaza.tv
+de-ipd.videoplaza.tv
+de-ipd.a.videoplaza.tv
+cdn.videoplaza.tv
+manifest.tvnow.de
+# nowtv.de - end
+www.kino.de
+www.beachclubkino.de
+nist.expertsmi.com
+fb.medianetworx.de
+nist.expertsmi.com
+# stern - start
+static.stern.de
+c.go-mpulse.net
+image.stern.de
+www.stern.de
+asset3.stern.de
+stern.de
+bilder2.n-tv.de
+blog.neon.de
+media.news.de
+www.hamburg.de
+# stern - end
 EOIPS
 )
 
