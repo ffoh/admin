@@ -92,6 +92,7 @@ echo "I: learning white-listed URLs/IPs"
 
 IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 #
+# ostholstein.freifunk.net - start
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
@@ -102,6 +103,11 @@ gw4.ostholstein.freifunk.net
 gw5.ostholstein.freifunk.net
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
+otile1-s.mqcdn.com
+otile2-s.mqcdn.com
+otile3-s.mqcdn.com
+otile4-s.mqcdn.com
+# ostholstein.freifunk.net - end
 hallo-holstein.de	# and all other BFO pages with it
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
