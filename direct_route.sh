@@ -160,6 +160,14 @@ syndication.twitter.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
+plusone.google.com
+plus.google.com
+hangouts.google.com
+clients6.google.com
+clients3.google.com
+lh5.googleusercontent.com
+lh3.googleusercontent.com
+0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 # Facebook - start
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
@@ -198,7 +206,6 @@ dc73.s290.meetrics.net
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
-plusone.google.com
 qs.ioam.de
 qs.ivwbox.de
 s290.mxcdn.net
@@ -299,19 +306,20 @@ go.disqus.com
 cloud.typography.com
 # Arte - end
 # ebay - start
+91.211.72.0/22	kleinanzeigen.ebay.de
+66.211.176.0/20
+66.211.172.0/22 cgi.ebay.com
+66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de
 ebay.de
 www.ebay.de
 gha.ebay.de
 www.ebay.com
-cgi.ebay.com
-api.ebay.com
 stat.dealtime.com
 open.api.ebay.com
 mobior.ebay.com
 mobidcs.ebay.com
 rpsx.ebay.com
 ebay.ivwbox.de
-kleinanzeigen.ebay.de
 api.ebay-kleinanzeigen.de
 m.ebay-kleinanzeigen.de
 static.criteo.net
@@ -319,7 +327,6 @@ widget.criteo.com
 ir.ebaystatic.com
 p.ebaystatic.com
 q.ebaystatic.com
-pages.ebay.de
 pics.ebaystatic.com
 rover.ebay.de
 rtm.ebaystatic.com
@@ -1352,7 +1359,35 @@ xboxlive.com
 # nerd community
 linuxinsider.com
 lwn.net
+# linuxtoday - start
 linuxtoday.net
+beacon.krxd.net
+cm.g.doubleclick.net
+tpc.googlesyndication.com
+pagead2.googlesyndication.com
+s1.2mdn.net
+js.dmtry.com
+partner.googleadservices.com
+ml314.com
+securepubads.g.doubleclick.net
+cdn.krxd.net
+cse.google.com
+in.ml314.com
+cm.g.doubleclick.net
+rtb0.doubleverify.com
+cdn3.doubleverify.com
+bs.serving-sys.com
+data.cmcore.com
+ds.serving-sys.com
+googleads.g.doubleclick.net
+b2badcenter.quinstreet.com
+js.dmtry.com
+s1.2mdn.net
+b2btechleadform.com
+log.dmtry.com
+hqx-qmp.quinstreet.com
+perpro17-ew1b.ml314.com
+# linuxtoday - end
 # indiegogo
 indiegogo.com
 bam.nr-data.net
