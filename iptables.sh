@@ -198,11 +198,11 @@ FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j AC
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
 # Always trust all gateways and Webservers, also for their external IPs
-for $gw in $GatwayIp4List
+for gw in $GatwayIp4List
 do
     FW4 "Freifunk Network - ping from GW external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
 done 
-for $gw in $WWWip
+for gw in $WWWip
 do
     FW4 "Freifunk Network - ping from www external IP" "-A INPUT -p icmp -s $gw/32 -j ACCEPT"
 done 
@@ -262,14 +262,14 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	echo "I: NAT"
 	if ifconfig | grep -q eth0.102; then
 		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
-		FW4 "Directing 192.168.0.0/16 o the internet." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0.101 -j MASQUERADE'
+		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 -j MASQUERADE'
 	else
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
 	if ifconfig | grep -q mullvad; then
 		if ifconfig | grep -q eth0.102; then
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
-			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
+			#FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
 		else
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		fi

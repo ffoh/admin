@@ -2,18 +2,35 @@
 
 set -e
 
-gateway=$(LANG=C ifconfig eth0 | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
+IFCONFIG=/sbin/ifconfig
+GREP=/bin/grep
+CUT=/usr/bin/cut
+IP=/sbin/ip
+AWK=/usr/bin/awk
+SORT=/usr/bin/sort
+
+export LANG=C
+
+if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
+
+gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
 if [ -z "$gateway" ]; then
-	gateway=$(LANG=C ifconfig eth0.101|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
+	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
 		exit 1
 	fi
 fi
+
+if [ -z "$gateway" ]; then
+	echo "E: Could not identify gateway"
+	exit 3
+fi
+
 echo -n "Identified gateway as '$gateway'"
 
-via=$(echo $gateway|cut -f 1,2,3 -d .).1
+via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 
 if [ -z "$via" -o ".1" = "$via" ]; then
 	echo
@@ -23,53 +40,57 @@ fi
 
 echo " routing via '$via'"
 
+
 IIF=bat0
-anomizer=$(LANG=C ifconfig mullvad | grep "inet addr" |cut -f2 -d:|cut -f1 -d\ )
+anomizer=$(LANG=C $IP addr show mullvad | $GREP "inet "| $CUT -f1 -d/| $AWK '{print $2}')
 echo "Anonmizer is $anomizer"
-if [ -z "$anomizer" ]; then
-	anomizer=$(LANG=C ifconfig mullvad|grep "inet "| sed -e 's/addr://'|awk '{print $2}')
-	IIF=eth0.102
-	if [ -z "$anomizer" ]; then
-		echo "E: Could not determine IP of anonymizer."
-		exit 1
-	fi
-fi
+#if [ -z "$anomizer" ]; then
+#	anomizer=$(LANG=C $IFCONFIG mullvad|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
+#	IIF=eth0.102
+#	if [ -z "$anomizer" ]; then
+#		echo "E: Could not determine IP of anonymizer."
+#		exit 1
+#	fi
+#fi
 echo "Resetting anonymizer to route via '$anomizer'"
-ip route replace default via $anomizer table freifunk
-ip route replace 0.0.0.0/1 via $anomizer table freifunk
-ip route replace 128.0.0.0/1 via $anomizer table freifunk
+$IP route replace default via $anomizer table freifunk
+#$IP route replace 0.0.0.0/1 via $anomizer table freifunk
+#$IP route replace 128.0.0.0/1 via $anomizer table freifunk
 
 function ipdirect () {
-	ip=$1
+	ipaddress=$1
 	
-#if ! ip route list table freifunk | grep -q "$ip"; then
-	if ! ip route get $ip from 10.135.8.100 iif $IIF | grep -q eth0; then
-		echo "I: Adding route for $ip via $via for table freifunk"
-		ip route replace $ip via $via table freifunk
+	if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+		echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
+		$IP route replace $ipaddress via $via table freifunk
 	else 
-		echo "I: Route for $ip is existing - skipped"
+		echo "I: Route for $ipaddress is existing - skipped"
 	fi
 }
 
 function ipindirect () {
-	ip=$1
-	if ! ip route list table freifunk | grep -q "$ip"; then
-		echo "I: Route for $ip not existing in table freifunk - skipped"
+	ipaddress=$1
+	if ! $IP route list table freifunk | $GREP -q "$ipaddress"; then
+		echo "I: Route for $ipaddress not existing in table freifunk - skipped"
 	else
-		echo "I: Removing route for $ip via $gateway for table freifunk"
-		echo ip route del $ip via 141.101.36.67 table freifunk
-		ip route del $ip table freifunk || echo "Ignored"
+		echo "I: Removing route for $ipaddress via $gateway for table freifunk"
+		#echo "$IP route del $ipaddress via $gateway table freifunk"
+		echo "$IP route del $ipaddress table freifunk"
+		$IP route del $ipaddress table freifunk || echo "Ignored"
 	fi
-	if ! ip route list | grep -q "$ip"; then
-		echo "I: Route for $ip not existing - skipped"
+	if ! $IP route list | $GREP -q "$ipaddress"; then
+		echo "I: Route for $ipaddress not existing - skipped"
 	else
-		echo "I: Removing route for $ip via $gateway for table freifunk"
-		echo ip route del $ip via 141.101.36.67
-		ip route del $ip || echo "Ignored"
+		echo "I: Removing route for $ipaddress via $gateway for table freifunk"
+		echo "$IP route del $ipaddress #via $gateway"
+		$IP route del $ipaddress || echo "Ignored"
 	fi
 }
 
-IPs=$(cat <<EOIPS | grep -v ^# |cut -f1|sort -u
+
+echo "I: learning white-listed URLs/IPs"
+
+IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 #
 ostholstein.freifunk.net
 luebeck.freifunk.net
@@ -87,7 +108,7 @@ hallo-holstein.de	# and all other BFO pages with it
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
-173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com
+173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -245,8 +266,19 @@ jdn.monster.com
 cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
+<<<<<<< Updated upstream
+194.132.196.0/22	#spotify
+=======
+# spotify - start
+>>>>>>> Stashed changes
 spotify.com
 www.spotify.com
+i.scdn.co
+t.scdn.co
+play.spotify.edgekey.net
+sb.scorecardresearch.com
+cdn.ravenjs.com
+# spotify - end
 # Arte - begin
 arte.tv
 info.arte.tv
@@ -436,6 +468,7 @@ www.ubuntu.com
 zatoo.com
 www.zatoo.com
 # amazon - start
+#176.32.104.0/19	# Amazon Dublin #Fehler??!
 amazon.de
 cloudfront-labs.amazonaws.com
 ecx.images-amazon.com
@@ -598,7 +631,12 @@ b.scorecardresearch.com
 137.250.0.0/16	uni-augsburg.de # DFN
 194.94.0.0/15	embl.de # DFN
 141.22.0.0/16	haw-hamburg.de # DFN
+141.30.0.0/16	tu-dresden.de
+141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
+zdstatic.speedtest.net
+www.alternateatmosphere.com
+tiles.cdnst.net
 www.speedtest.net
 c.speedtest.net
 www.base-mail.de
@@ -640,6 +678,16 @@ www.google-analytics.com
 tiles.cdnst.net
 37.202.1.0/24	# Stadtwerke Neum√nster
 37.202.2.0/24	# Stadtwerke Neum√nster
+speedtest.fra1.de.leaseweb.com
+speedtest.fra02.softlayer.com
+fra36-speedtest-1.tele2.net
+speedtest.base-mail.us
+speed.23media.de
+speedtest.vodafone-ip.de
+a.speedtest.frankfurt.x-ion.de
+speedtest21.hotspot.koeln
+speed1.ktk.de
+zdbb.net
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 www.amung.us
@@ -1320,7 +1368,8 @@ srv.deutschlandradio.de
 logc279.xiti.com
 www.deutschlandradiokultur.de
 ondemand-mp3.dradio.de
-193.62.192.0/20	sanger.ac.uk ebi.ac.uk ensembl.org # Europ√§isches Bioinformatik Institut und Sanger Center
+193.62.192.0/20	
+193.60.0.0/14	#JANET, sanger.ac.uk ebi.ac.uk ensembl.org
 dradio-ogg-dlf-l.akacast.akamaistream.net
 # Deutschlandradio - end
 imap.arcor-online.net
@@ -1608,6 +1657,43 @@ apiglobal.gotomeeting.com
 api.mixpanel.com
 api.demandbase.com
 citrixsaas.d1.sc.omtrdc.net
+cs.genieesspv.jp
+sales.liveperson.net
+tags.w55c.net
+d.href.asia
+cs.gssprt.jp
+x.bidswitch.net
+ad.doubleclick.net
+r.turn.com
+secure.adnxs.com
+pixel.mathtag.com
+ad.yieldmanager.com
+insight.adsrvr.org
+pixel.rubiconproject.com
+ak1s.abmr.net
+l1.osdimg.com
+pixel.quantserve.com
+edge.quantserve.com
+bs.serving-sys.com
+citrixsaas.d1.sc.omtrdc.net
+lptag.liveperson.net
+www.gotomeeting.com
+www.gotomeeting.de
+tags.tiqcdn.com
+s3.amazonaws.com
+marketing.citrixonline.com
+sadmin.brightcove.com
+static.citrixonlinecdn.com
+www.citrixonlinecdn.com
+cdn3.optimizely.com
+api.demandbase.com
+tapestry.tapad.com
+p.adsymptotic.com
+p.univide.com
+cm.g.doubleclick.net
+global.gotomeeting.com
+download.citrixonline.com
+egwglobal.gotomeeting.com
 # GotoMeeeting.com - end
 www.siegel-apartments.mobi
 www.siegel-apartments.de
@@ -1617,6 +1703,7 @@ www.csl-computer.com
 om-ssl.consorsbank.de	# not redundant
 eu.ntrsupport.com
 # Consors - end
+www.schwartauer-werke.de
 homebrew.bintray.com
 brew.sh
 www.bioconductor.org
@@ -1679,6 +1766,51 @@ www.pro-linux.de
 83.169.128.0/18	kabeldeutschland.de
 31.19.0.0/16	#kabeldeutschland
 193.99.144.0/24	heise.de
+www.reichelt.de
+www.overleaf.com
+www.whatismyip.com
+159.122.189.32/27	teamviewer.com
+# nowtv.de - start
+217.118.168.0/22	RTL
+ais.nowtv.de
+secure-eu.imrworldwide.com
+cdn-fra1.rtl.de
+px1.vtrtl.de
+pmd.fra.ip-ads.de
+ivw.nowtv.de
+api.nowtv.de
+technical-service.net
+ip.nuggad.net
+cdn.static-fra.de
+www.rtl.de
+autoimg.static-fra.de
+autoimg.rtl.de
+de-ipd.cdn.videoplaza.tv
+bilder.static-fra.de
+bilder.rtl.de
+de-ipd.cdn.videoplaza.tv
+de-ipd.videoplaza.tv
+de-ipd.a.videoplaza.tv
+cdn.videoplaza.tv
+manifest.tvnow.de
+# nowtv.de - end
+www.kino.de
+www.beachclubkino.de
+nist.expertsmi.com
+fb.medianetworx.de
+nist.expertsmi.com
+# stern - start
+static.stern.de
+c.go-mpulse.net
+image.stern.de
+www.stern.de
+asset3.stern.de
+stern.de
+bilder2.n-tv.de
+blog.neon.de
+media.news.de
+www.hamburg.de
+# stern - end
 EOIPS
 )
 
@@ -1686,16 +1818,16 @@ for n in $IPs
 do
 	echo "$n"
 	if false; then
-		echo "I: Removing $IP direct link"
+		echo "I: Removing direct link"
 		if false; then
-			for IP in $(ip route list table freifunk | cut -f1 -d\ ) 
+			for ipaddress in $($IP route list table freifunk | $CUT -f1 -d' ' ) 
 			do
-				ipindirect $IP
+				ipindirect $ipaddress
 			done
 		else
-			for IP in $(ip route | grep -v default | grep eth0 | grep -v scope)
+			for ipaddress in $($IP route | $GREP -v default | $GREP eth0 | $GREP -v scope)
 			do
-				ipindirect $IP
+				ipindirect $ipaddress
 			done
 		fi
 	else
@@ -1703,9 +1835,9 @@ do
 			echo "I: Interpreting '$n' as IP Number"
 			ipdirect $n
 		else
-			for IP in $(host $n |grep "has address" | cut -f4 -d\ )
+			for ipaddress in $(host $n |$GREP "has address" | $CUT -f4 -d' ' )
 			do
-				ipdirect $IP
+				ipdirect $ipaddress
 			done
 		fi
 	fi
