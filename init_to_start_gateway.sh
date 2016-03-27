@@ -38,7 +38,7 @@ case "$1" in
 	do_start
 	;;
   status)
-	for cmd in "batctl gw" "ifconfig mullvad" "ip route show table freifunk|grep default" "ip route show" "ip rule"
+	for cmd in "batctl gw" "ifconfig mullvad" "ip route show table freifunk | grep default" "ip route show" "ip rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I eth0"
 	do
 		echo
 		echo "I: $cmd"
