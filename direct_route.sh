@@ -135,6 +135,7 @@ mailly.debian.org
 muffat.debian.org
 145.243.232.0/21	# Axel Springer Verlag
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
+141.89.0.0/16	#uni-potsdam.de
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
 #195.176.48.0/19	#University della Svizzera italiana - skype
@@ -272,11 +273,8 @@ jdn.monster.com
 cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
-<<<<<<< Updated upstream
-194.132.196.0/22	#spotify
-=======
 # spotify - start
->>>>>>> Stashed changes
+194.132.196.0/22	#spotify
 spotify.com
 www.spotify.com
 i.scdn.co
