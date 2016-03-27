@@ -16,6 +16,10 @@ if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
 if [ -z "$gateway" ]; then
+	gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
+fi
+
+if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
@@ -197,6 +201,7 @@ lh5.googleusercontent.com
 lh3.googleusercontent.com
 0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
+wb-in-f188.1e100.net
 # Facebook - start
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
@@ -205,6 +210,7 @@ lh3.googleusercontent.com
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.64.0/24	facebook
+31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
@@ -928,6 +934,10 @@ wotan.tuxli.ch
 # NTP - end
 # Zatoo - start
 adtech-ads-shared-frr.evip.aol.com
+imap-a-mtc-b.mx.aol.com
+imap-b-mtc-c.mx.aol.com
+imap-b-mtc-b.mx.aol.com
+imap-a-mtc-c.mx.aol.com
 92.122.214.0/24	Akamai
 91.123.100.0/24 Zatoo
 # Zatoo - end
@@ -1391,7 +1401,6 @@ imap.strato.de
 46.252.31.0	www.blitzer.de
 137.131.0.0/16	scripps.edu
 208.65.72.0/21	blackberry.net
-imap-b-mtc-b.mx.aol.com
 imap.strato.de
 130.75.0.0/16	Uni Hannover
 66.135.192.0/19	EBay
@@ -1815,6 +1824,59 @@ blog.neon.de
 media.news.de
 www.hamburg.de
 # stern - end
+96.45.48.0/20	#Disney
+# vodaphone - start
+47.60.0.0/14
+47.58.0.0/15
+47.72.0.0/15
+47.64.0.0/13
+# vodaphone - end
+updates.installshield.com
+217.150.144.128/25	# T-Systems international
+ex.treugast.com
+www.treugast.com
+michael-schoenbeck.eu
+thoand.de
+wordpress.com
+145.253.207.128/25	# Deichmann
+# alibabe.com - start
+img.alicdn.com
+www.alibaba.com
+i.alicdn.com
+u.alicdn.com
+sc01.alicdn.com
+sc02.alicdn.com
+widget.criteo.com
+p4p-enmatch.alibaba.com
+cmap.alibaba.com
+pointman.alibaba.com
+gum.criteo.com
+dis.eu.criteo.com
+pubads.g.doubleclick.net
+ad-emea.doubleclick.net
+g01.s.alicdn.com
+g02.s.alicdn.com
+g03.s.alicdn.com
+g04.s.alicdn.com
+dmtracking2.alibaba.com
+style.aliunicorn.com
+is.alibaba.com
+profile.alibaba.com
+notification.alibaba.com
+utm.alibaba.com
+compass.alibaba.com
+pointman.alibaba.com
+connectkeyword.alibaba.com
+stat.alibaba.com
+perf.mmstat.com
+german.aliaba.com
+kfdown.s.aliimg.com
+is.alicdn.com
+gj.mmstat.com
+profile.alibaba.com
+pointman.alibaba.com
+us-click.alibaba.com
+# alibabe.com - end
 EOIPS
 )
 
