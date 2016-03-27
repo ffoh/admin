@@ -870,7 +870,20 @@ imap.1und1.de
 smtp.1und1.de
 pop.1und1.de
 # booking.com, villas.com - start
+www.booking.com
+q-ec.bstatic.com
+r-ec.bstatic.com
+tags.tiqcdn.com
+static.criteo.net
+tracking.smartstream.tv
 iphone-xml-l.booking.com
+secure.adnxs.com
+collector-756.tvsquared.com
+secure.adnxs.com
+imp2.ads.linkedin.com
+x.bidswitch.net
+q.bstatic.com
+r.bstatic.com
 5.57.16.0/24	www.booking.com admin.booking.com
 secure.booking.com
 q.bstatic.com
@@ -1877,6 +1890,11 @@ profile.alibaba.com
 pointman.alibaba.com
 us-click.alibaba.com
 # alibabe.com - end
+212.53.152.0/24	Innogames.de
+191.232.0.0/14	Microsoft
+i0.wp.com
+app.dailyme.tv
+imap.1und1.de
 EOIPS
 )
 
