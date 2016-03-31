@@ -1661,8 +1661,8 @@ js.revsci.net
 beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
-194.94.0.0/15 uni-erfurt.de
-89.238.68.128/25 libreoffice.org
+194.94.0.0/15	uni-erfurt.de
+89.238.68.128/25	libreoffice.org
 # pistoiaalliance.org - start
 www.pistoiaalliance.org
 www.slideshare.net
@@ -1672,6 +1672,7 @@ cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
 stackoverflow.com
 139.30.0.0/16	#uni-rostock.de
+imib100.med.uni-rostock.de
 bioconductor.org
 www.r-project.org
 cran.r-project.org
@@ -1895,6 +1896,13 @@ us-click.alibaba.com
 i0.wp.com
 app.dailyme.tv
 imap.1und1.de
+# Illumina - start
+52.64.0.0/12	basespace.illumina.com
+52.0.0.0/11	www.illumina.com
+widget.uservoice.com
+by2.uservoice.com
+maxcdn.bootstrapcdn.com
+# Illumina - end
 EOIPS
 )
 
