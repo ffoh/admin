@@ -517,6 +517,7 @@ mail.gmx.net
 imap.gmx.net
 suche.gmx.net
 navigator.gmx.net
+registrierung.gmx.net
 s3.amazonaws.com
 fbcdn-profile-a.akamaihd.net
 i0.gmx.net
