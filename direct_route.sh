@@ -507,6 +507,7 @@ www.lastfm.de
 google-analytics.com
 www.google-analytics.com
 # GMX - start
+82.165.0.0/16	Schlund GMX
 gmx.de
 gmx.net
 www.gmx.de
@@ -1904,6 +1905,15 @@ widget.uservoice.com
 by2.uservoice.com
 maxcdn.bootstrapcdn.com
 # Illumina - end
+# Cyanogenmod - start
+cyanogenmod.org
+www.cyanogenmod.org
+mail.cyanogenmod.org
+jira.cyanogenmod.org
+wiki.cyanogenmod.org
+download.cyanogenmod.org
+www.twilio.com
+# Cyanogenmod - end
 EOIPS
 )
 
