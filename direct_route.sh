@@ -1895,6 +1895,8 @@ us-click.alibaba.com
 i0.wp.com
 app.dailyme.tv
 imap.1und1.de
+137.226.0.0/16	# Uni Aachen
+130.235.0.0/16	# Lund University
 EOIPS
 )
 
