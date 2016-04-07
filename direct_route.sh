@@ -507,6 +507,7 @@ www.lastfm.de
 google-analytics.com
 www.google-analytics.com
 # GMX - start
+82.165.0.0/16	Schlund GMX
 gmx.de
 gmx.net
 www.gmx.de
@@ -517,6 +518,7 @@ mail.gmx.net
 imap.gmx.net
 suche.gmx.net
 navigator.gmx.net
+registrierung.gmx.net
 s3.amazonaws.com
 fbcdn-profile-a.akamaihd.net
 i0.gmx.net
@@ -1661,8 +1663,8 @@ js.revsci.net
 beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
-194.94.0.0/15 uni-erfurt.de
-89.238.68.128/25 libreoffice.org
+194.94.0.0/15	uni-erfurt.de
+89.238.68.128/25	libreoffice.org
 # pistoiaalliance.org - start
 www.pistoiaalliance.org
 www.slideshare.net
@@ -1672,6 +1674,7 @@ cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
 stackoverflow.com
 139.30.0.0/16	#uni-rostock.de
+imib100.med.uni-rostock.de
 bioconductor.org
 www.r-project.org
 cran.r-project.org
@@ -1897,6 +1900,22 @@ app.dailyme.tv
 imap.1und1.de
 137.226.0.0/16	# Uni Aachen
 130.235.0.0/16	# Lund University
+# Illumina - start
+52.64.0.0/12	basespace.illumina.com
+52.0.0.0/11	www.illumina.com
+widget.uservoice.com
+by2.uservoice.com
+maxcdn.bootstrapcdn.com
+# Illumina - end
+# Cyanogenmod - start
+cyanogenmod.org
+www.cyanogenmod.org
+mail.cyanogenmod.org
+jira.cyanogenmod.org
+wiki.cyanogenmod.org
+download.cyanogenmod.org
+www.twilio.com
+# Cyanogenmod - end
 EOIPS
 )
 
