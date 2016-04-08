@@ -646,11 +646,12 @@ b.scorecardresearch.com
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
+www.speedtest.net
+c.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
-www.speedtest.net
-c.speedtest.net
+www.fallingfalcon.com
 www.base-mail.de
 www.base-mail.us
 a.adroll.com
@@ -658,6 +659,7 @@ a.c.appier.net
 ads.ookla.com
 api.ookla.com
 c.betrad.com
+www.google-analytics.com
 cse.google.com
 fast.wistia.net
 zdbb.net
@@ -690,6 +692,7 @@ www.google-analytics.com
 tiles.cdnst.net
 37.202.1.0/24	# Stadtwerke Neum√nster
 37.202.2.0/24	# Stadtwerke Neum√nster
+speedtest.ip-projects.de
 speedtest.fra1.de.leaseweb.com
 speedtest.fra02.softlayer.com
 fra36-speedtest-1.tele2.net
@@ -700,6 +703,10 @@ a.speedtest.frankfurt.x-ion.de
 speedtest21.hotspot.koeln
 speed1.ktk.de
 zdbb.net
+server.debspace.org
+speed1.ktk.de
+sync.mathtag.com
+tags.bluekai.com
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 www.amung.us
@@ -1281,6 +1288,20 @@ slashdot.org
 mx.sourceforge.net
 sourceforge.net
 politics.slashdot.org
+a.fsdn.com
+cdn-social.janrain.com
+rpxnow.com
+www.googletagservices.com
+ssl.google-analytics.com
+partner.googleadservices.com
+cdn.taboola.com
+api.stacksocial.com
+login.slashdot.org
+sb.scorecardresearch.com
+trc.taboola.com
+image-assets.stackcommerce.com
+images.stackcommerce.com
+images.taboola.com
 # slashdot.org - end
 # FAZ - start
 ping.chartbeat.net
