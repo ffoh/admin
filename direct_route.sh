@@ -508,6 +508,7 @@ google-analytics.com
 www.google-analytics.com
 # GMX - start
 82.165.0.0/16	Schlund GMX
+217.160.127.0/24	Schlund webseite-start.de
 gmx.de
 gmx.net
 www.gmx.de
@@ -785,6 +786,7 @@ b.tile.openstreetmap.de
 c.tile.openstreetmap.de
 d.tile.openstreetmap.de
 www.gravatar.com
+otile4-s.mqcdn.com
 i0.wp.com
 i1.wp.com
 dev.virtualearth.net
@@ -1935,6 +1937,18 @@ wiki.cyanogenmod.org
 download.cyanogenmod.org
 www.twilio.com
 # Cyanogenmod - end
+# Seestern - start
+www.seestern-timmendorferstrand.com
+ogp.me
+cdn.website-start.de
+cms05.website-start.de
+mod05.website-start.de
+uim.tifbs.net
+www.wetteronline.de
+st.wetteronline.de
+wst.wetteronline.de
+# Seestern - end
+www.vogelpark-niendorf.de
 EOIPS
 )
 
