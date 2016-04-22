@@ -237,6 +237,9 @@ dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc73.s290.meetrics.net
+h364.meetrics.de
+h342.meetrics.de
+h343.meetrics.de
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
@@ -1687,7 +1690,10 @@ beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
 194.94.0.0/15	uni-erfurt.de
+# libreoffice - start
 89.238.68.128/25	libreoffice.org
+piwik.documentfoundation.org
+# libreoffice - end
 # pistoiaalliance.org - start
 www.pistoiaalliance.org
 www.slideshare.net
