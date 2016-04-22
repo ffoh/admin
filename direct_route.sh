@@ -229,6 +229,7 @@ cdn4.spiegel.de
 cdn.api.twitter.com
 count.spiegel.de
 c.spiegel.de
+pp.lp4.io
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
 dc57.s290.meetrics.net
@@ -237,6 +238,8 @@ dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc73.s290.meetrics.net
+dc80.s290.meetrics.net
+dc83.s290.meetrics.net
 h364.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
@@ -713,6 +716,7 @@ sync.mathtag.com
 tags.bluekai.com
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
+162.125.0.0/16	dropbox.com
 www.amung.us
 amung.us
 # web.de - start
