@@ -1290,6 +1290,15 @@ qc.stepstone.de
 qc-de.stepstone.com
 # stepstone - end
 # slashdot.org - start
+deals.slashdot.org
+maxcdn.bootstrapcdn.com
+stores-assets.stackcommerce.com
+cdn.optimizely.com
+images.stackcommerce.com
+seal-sanjose.bbb.org
+tags.bkrtx.com
+api.stacksocial.com
+script.crazyegg.com
 stats.dice.com
 slashdot.org
 widget-cdn.rpxnow.com
@@ -1959,6 +1968,9 @@ st.wetteronline.de
 wst.wetteronline.de
 # Seestern - end
 www.vogelpark-niendorf.de
+www.bz.de
+www.bz-berlin.de
+static.bz-berlin.de
 EOIPS
 )
 
