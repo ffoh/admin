@@ -119,6 +119,7 @@ www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
+172.217.0.0/16	www.google.de
 64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -149,6 +150,14 @@ muffat.debian.org
 111.221.64.0/18	# Microsoft, for skype
 40.127.0.0/16	# Microsoft, for skype
 40.126.128.0/17	# Microsoft, for skype
+40.96.0.0/12	# Microsoft, for skype
+40.125.0.0/17	# Microsoft, for skype
+40.74.0.0/15	# Microsoft, for skype
+40.120.0.0/14	# Microsoft, for skype
+40.112.0.0/13	# Microsoft, for skype
+40.80.0.0/12	# Microsoft, for skype
+40.124.0.0/16	# Microsoft, for skype
+40.76.0.0/14	# Microsoft, for skype
 91.190.218.0/23	# skype
 91.190.219.0/24	# skype
 168.61.0.0/16	# Microsoft
@@ -230,6 +239,7 @@ cdn.api.twitter.com
 count.spiegel.de
 c.spiegel.de
 pp.lp4.io
+dmp.theadex.com
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
 dc57.s290.meetrics.net
@@ -286,7 +296,10 @@ cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
 # spotify - start
+194.14.177.0/24	spotify.com
 194.132.196.0/22	#spotify
+194.132.162.0/24	spotify.com
+194.132.168.0/22
 spotify.com
 www.spotify.com
 i.scdn.co
@@ -355,6 +368,7 @@ cloud.typography.com
 # Arte - end
 # ebay - start
 91.211.72.0/22	kleinanzeigen.ebay.de
+66.211.160.0/19	EBay
 66.211.176.0/20
 66.211.172.0/22 cgi.ebay.com
 66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de
@@ -1448,8 +1462,6 @@ imap.strato.de
 208.65.72.0/21	blackberry.net
 imap.strato.de
 130.75.0.0/16	Uni Hannover
-66.135.192.0/19	EBay
-66.211.160.0/19	EBay
 5.57.17.0/24	booking.com
 euw.leagueoflegends.com
 185.40.64.0/22	RIOT Games
@@ -1959,6 +1971,13 @@ st.wetteronline.de
 wst.wetteronline.de
 # Seestern - end
 www.vogelpark-niendorf.de
+130.235.0.0/16	Lund University
+# OpenWRT - start
+78.24.191.176/28	www.openwrt.org
+forum.openwrt.org
+openwrt.org
+wiki.openwrt.org
+# OpenWRT - end
 EOIPS
 )
 
