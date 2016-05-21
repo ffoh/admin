@@ -1776,6 +1776,7 @@ blog.neon.de
 media.news.de
 www.hamburg.de
 # stern - end
+www.devolo.com
 EOIPS
 )
 
