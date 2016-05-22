@@ -100,11 +100,12 @@ IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
-gw1.ostholstein.freifunk.net
-gw2.ostholstein.freifunk.net
-gw3.ostholstein.freifunk.net
-gw4.ostholstein.freifunk.net
-gw5.ostholstein.freifunk.net
+gw1.ffoh.de
+gw2.ffoh.de
+gw3.ffoh.de
+gw4.ffoh.de
+gw5.ffoh.de
+gw6.ffoh.de
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
 otile1-s.mqcdn.com
@@ -520,6 +521,9 @@ www.volksbank-luebeck.de
 volksbank-eutin.de
 www.volksbank-eutin.de
 192.30.252.0/22	github.com
+collector.githubapp.com
+github.com
+www.github.com
 last.fm
 www.last.fm
 lastfm.de
@@ -564,8 +568,6 @@ adclient.uimserv.net
 pixelbox.uimserv.net
 uidbox.uimserv.net
 # GMX - end
-github.com
-www.github.com
 # BR - start
 bronline.de
 bralpha.de
