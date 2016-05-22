@@ -16,6 +16,10 @@ if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
 if [ -z "$gateway" ]; then
+	gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
+fi
+
+if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
@@ -92,6 +96,7 @@ echo "I: learning white-listed URLs/IPs"
 
 IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 #
+# ostholstein.freifunk.net - start
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
@@ -102,6 +107,11 @@ gw4.ostholstein.freifunk.net
 gw5.ostholstein.freifunk.net
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
+otile1-s.mqcdn.com
+otile2-s.mqcdn.com
+otile3-s.mqcdn.com
+otile4-s.mqcdn.com
+# ostholstein.freifunk.net - end
 hallo-holstein.de	# and all other BFO pages with it
 #de.sitestat.com
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
@@ -109,6 +119,7 @@ www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
+172.217.0.0/16	www.google.de
 64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -129,6 +140,7 @@ mailly.debian.org
 muffat.debian.org
 145.243.232.0/21	# Axel Springer Verlag
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
+141.89.0.0/16	#uni-potsdam.de
 130.225.0.0/16	#Danish research network (nbi.dk, lyngby, etc)
 193.206.64.0/21	#University of Pavia, Italy - skype
 #195.176.48.0/19	#University della Svizzera italiana - skype
@@ -138,6 +150,14 @@ muffat.debian.org
 111.221.64.0/18	# Microsoft, for skype
 40.127.0.0/16	# Microsoft, for skype
 40.126.128.0/17	# Microsoft, for skype
+40.96.0.0/12	# Microsoft, for skype
+40.125.0.0/17	# Microsoft, for skype
+40.74.0.0/15	# Microsoft, for skype
+40.120.0.0/14	# Microsoft, for skype
+40.112.0.0/13	# Microsoft, for skype
+40.80.0.0/12	# Microsoft, for skype
+40.124.0.0/16	# Microsoft, for skype
+40.76.0.0/14	# Microsoft, for skype
 91.190.218.0/23	# skype
 91.190.219.0/24	# skype
 168.61.0.0/16	# Microsoft
@@ -181,7 +201,16 @@ syndication.twitter.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
+plusone.google.com
+plus.google.com
+hangouts.google.com
+clients6.google.com
+clients3.google.com
+lh5.googleusercontent.com
+lh3.googleusercontent.com
+0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
+wb-in-f188.1e100.net
 # Facebook - start
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
@@ -190,6 +219,7 @@ syndication.twitter.com
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.64.0/24	facebook
+31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
@@ -208,6 +238,8 @@ cdn4.spiegel.de
 cdn.api.twitter.com
 count.spiegel.de
 c.spiegel.de
+pp.lp4.io
+dmp.theadex.com
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
 dc57.s290.meetrics.net
@@ -216,10 +248,14 @@ dc60.s290.meetrics.net
 dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc73.s290.meetrics.net
+dc80.s290.meetrics.net
+dc83.s290.meetrics.net
+h364.meetrics.de
+h342.meetrics.de
+h343.meetrics.de
 geschichte.spiegel.de
 magazin.spiegel.de
 m.spiegel.de
-plusone.google.com
 qs.ioam.de
 qs.ivwbox.de
 s290.mxcdn.net
@@ -259,11 +295,11 @@ jdn.monster.com
 cat.nl.eu.criteo.com
 images.nl.eu.criteo.net
 # spiegel - end
-<<<<<<< Updated upstream
-194.132.196.0/22	#spotify
-=======
 # spotify - start
->>>>>>> Stashed changes
+194.14.177.0/24	spotify.com
+194.132.196.0/22	#spotify
+194.132.162.0/24	spotify.com
+194.132.168.0/22
 spotify.com
 www.spotify.com
 i.scdn.co
@@ -331,19 +367,21 @@ go.disqus.com
 cloud.typography.com
 # Arte - end
 # ebay - start
+91.211.72.0/22	kleinanzeigen.ebay.de
+66.211.160.0/19	EBay
+66.211.176.0/20
+66.211.172.0/22 cgi.ebay.com
+66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de
 ebay.de
 www.ebay.de
 gha.ebay.de
 www.ebay.com
-cgi.ebay.com
-api.ebay.com
 stat.dealtime.com
 open.api.ebay.com
 mobior.ebay.com
 mobidcs.ebay.com
 rpsx.ebay.com
 ebay.ivwbox.de
-kleinanzeigen.ebay.de
 api.ebay-kleinanzeigen.de
 m.ebay-kleinanzeigen.de
 static.criteo.net
@@ -351,7 +389,6 @@ widget.criteo.com
 ir.ebaystatic.com
 p.ebaystatic.com
 q.ebaystatic.com
-pages.ebay.de
 pics.ebaystatic.com
 rover.ebay.de
 rtm.ebaystatic.com
@@ -490,6 +527,8 @@ www.lastfm.de
 google-analytics.com
 www.google-analytics.com
 # GMX - start
+82.165.0.0/16	Schlund GMX
+217.160.127.0/24	Schlund webseite-start.de
 gmx.de
 gmx.net
 www.gmx.de
@@ -500,6 +539,7 @@ mail.gmx.net
 imap.gmx.net
 suche.gmx.net
 navigator.gmx.net
+registrierung.gmx.net
 s3.amazonaws.com
 fbcdn-profile-a.akamaihd.net
 i0.gmx.net
@@ -627,11 +667,12 @@ b.scorecardresearch.com
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
+www.speedtest.net
+c.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
-www.speedtest.net
-c.speedtest.net
+www.fallingfalcon.com
 www.base-mail.de
 www.base-mail.us
 a.adroll.com
@@ -639,6 +680,7 @@ a.c.appier.net
 ads.ookla.com
 api.ookla.com
 c.betrad.com
+www.google-analytics.com
 cse.google.com
 fast.wistia.net
 zdbb.net
@@ -671,6 +713,7 @@ www.google-analytics.com
 tiles.cdnst.net
 37.202.1.0/24	# Stadtwerke Neum√nster
 37.202.2.0/24	# Stadtwerke Neum√nster
+speedtest.ip-projects.de
 speedtest.fra1.de.leaseweb.com
 speedtest.fra02.softlayer.com
 fra36-speedtest-1.tele2.net
@@ -681,8 +724,13 @@ a.speedtest.frankfurt.x-ion.de
 speedtest21.hotspot.koeln
 speed1.ktk.de
 zdbb.net
+server.debspace.org
+speed1.ktk.de
+sync.mathtag.com
+tags.bluekai.com
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
+162.125.0.0/16	dropbox.com
 www.amung.us
 amung.us
 # web.de - start
@@ -759,6 +807,7 @@ b.tile.openstreetmap.de
 c.tile.openstreetmap.de
 d.tile.openstreetmap.de
 www.gravatar.com
+otile4-s.mqcdn.com
 i0.wp.com
 i1.wp.com
 dev.virtualearth.net
@@ -853,7 +902,20 @@ imap.1und1.de
 smtp.1und1.de
 pop.1und1.de
 # booking.com, villas.com - start
+www.booking.com
+q-ec.bstatic.com
+r-ec.bstatic.com
+tags.tiqcdn.com
+static.criteo.net
+tracking.smartstream.tv
 iphone-xml-l.booking.com
+secure.adnxs.com
+collector-756.tvsquared.com
+secure.adnxs.com
+imp2.ads.linkedin.com
+x.bidswitch.net
+q.bstatic.com
+r.bstatic.com
 5.57.16.0/24	www.booking.com admin.booking.com
 secure.booking.com
 q.bstatic.com
@@ -917,6 +979,10 @@ wotan.tuxli.ch
 # NTP - end
 # Zatoo - start
 adtech-ads-shared-frr.evip.aol.com
+imap-a-mtc-b.mx.aol.com
+imap-b-mtc-c.mx.aol.com
+imap-b-mtc-b.mx.aol.com
+imap-a-mtc-c.mx.aol.com
 92.122.214.0/24	Akamai
 91.123.100.0/24 Zatoo
 # Zatoo - end
@@ -1238,6 +1304,15 @@ qc.stepstone.de
 qc-de.stepstone.com
 # stepstone - end
 # slashdot.org - start
+deals.slashdot.org
+maxcdn.bootstrapcdn.com
+stores-assets.stackcommerce.com
+cdn.optimizely.com
+images.stackcommerce.com
+seal-sanjose.bbb.org
+tags.bkrtx.com
+api.stacksocial.com
+script.crazyegg.com
 stats.dice.com
 slashdot.org
 widget-cdn.rpxnow.com
@@ -1245,6 +1320,20 @@ slashdot.org
 mx.sourceforge.net
 sourceforge.net
 politics.slashdot.org
+a.fsdn.com
+cdn-social.janrain.com
+rpxnow.com
+www.googletagservices.com
+ssl.google-analytics.com
+partner.googleadservices.com
+cdn.taboola.com
+api.stacksocial.com
+login.slashdot.org
+sb.scorecardresearch.com
+trc.taboola.com
+image-assets.stackcommerce.com
+images.stackcommerce.com
+images.taboola.com
 # slashdot.org - end
 # FAZ - start
 ping.chartbeat.net
@@ -1380,11 +1469,8 @@ imap.strato.de
 46.252.31.0	www.blitzer.de
 137.131.0.0/16	scripps.edu
 208.65.72.0/21	blackberry.net
-imap-b-mtc-b.mx.aol.com
 imap.strato.de
 130.75.0.0/16	Uni Hannover
-66.135.192.0/19	EBay
-66.211.160.0/19	EBay
 5.57.17.0/24	booking.com
 euw.leagueoflegends.com
 185.40.64.0/22	RIOT Games
@@ -1401,7 +1487,35 @@ xboxlive.com
 # nerd community
 linuxinsider.com
 lwn.net
+# linuxtoday - start
 linuxtoday.net
+beacon.krxd.net
+cm.g.doubleclick.net
+tpc.googlesyndication.com
+pagead2.googlesyndication.com
+s1.2mdn.net
+js.dmtry.com
+partner.googleadservices.com
+ml314.com
+securepubads.g.doubleclick.net
+cdn.krxd.net
+cse.google.com
+in.ml314.com
+cm.g.doubleclick.net
+rtb0.doubleverify.com
+cdn3.doubleverify.com
+bs.serving-sys.com
+data.cmcore.com
+ds.serving-sys.com
+googleads.g.doubleclick.net
+b2badcenter.quinstreet.com
+js.dmtry.com
+s1.2mdn.net
+b2btechleadform.com
+log.dmtry.com
+hqx-qmp.quinstreet.com
+perpro17-ew1b.ml314.com
+# linuxtoday - end
 # indiegogo
 indiegogo.com
 bam.nr-data.net
@@ -1600,8 +1714,11 @@ js.revsci.net
 beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
-194.94.0.0/15 uni-erfurt.de
-89.238.68.128/25 libreoffice.org
+194.94.0.0/15	uni-erfurt.de
+# libreoffice - start
+89.238.68.128/25	libreoffice.org
+piwik.documentfoundation.org
+# libreoffice - end
 # pistoiaalliance.org - start
 www.pistoiaalliance.org
 www.slideshare.net
@@ -1611,6 +1728,7 @@ cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
 stackoverflow.com
 139.30.0.0/16	#uni-rostock.de
+imib100.med.uni-rostock.de
 bioconductor.org
 www.r-project.org
 cran.r-project.org
@@ -1777,6 +1895,102 @@ media.news.de
 www.hamburg.de
 # stern - end
 www.devolo.com
+96.45.48.0/20	#Disney
+# vodaphone - start
+47.60.0.0/14
+47.58.0.0/15
+47.72.0.0/15
+47.64.0.0/13
+# vodaphone - end
+updates.installshield.com
+217.150.144.128/25	# T-Systems international
+ex.treugast.com
+www.treugast.com
+michael-schoenbeck.eu
+thoand.de
+wordpress.com
+145.253.207.128/25	# Deichmann
+# alibabe.com - start
+img.alicdn.com
+www.alibaba.com
+i.alicdn.com
+u.alicdn.com
+sc01.alicdn.com
+sc02.alicdn.com
+widget.criteo.com
+p4p-enmatch.alibaba.com
+cmap.alibaba.com
+pointman.alibaba.com
+gum.criteo.com
+dis.eu.criteo.com
+pubads.g.doubleclick.net
+ad-emea.doubleclick.net
+g01.s.alicdn.com
+g02.s.alicdn.com
+g03.s.alicdn.com
+g04.s.alicdn.com
+dmtracking2.alibaba.com
+style.aliunicorn.com
+is.alibaba.com
+profile.alibaba.com
+notification.alibaba.com
+utm.alibaba.com
+compass.alibaba.com
+pointman.alibaba.com
+connectkeyword.alibaba.com
+stat.alibaba.com
+perf.mmstat.com
+german.aliaba.com
+kfdown.s.aliimg.com
+is.alicdn.com
+gj.mmstat.com
+profile.alibaba.com
+pointman.alibaba.com
+us-click.alibaba.com
+# alibabe.com - end
+212.53.152.0/24	Innogames.de
+191.232.0.0/14	Microsoft
+i0.wp.com
+app.dailyme.tv
+imap.1und1.de
+# Illumina - start
+52.64.0.0/12	basespace.illumina.com
+52.0.0.0/11	www.illumina.com
+widget.uservoice.com
+by2.uservoice.com
+maxcdn.bootstrapcdn.com
+# Illumina - end
+# Cyanogenmod - start
+cyanogenmod.org
+www.cyanogenmod.org
+mail.cyanogenmod.org
+jira.cyanogenmod.org
+wiki.cyanogenmod.org
+download.cyanogenmod.org
+www.twilio.com
+# Cyanogenmod - end
+# Seestern - start
+www.seestern-timmendorferstrand.com
+ogp.me
+cdn.website-start.de
+cms05.website-start.de
+mod05.website-start.de
+uim.tifbs.net
+www.wetteronline.de
+st.wetteronline.de
+wst.wetteronline.de
+# Seestern - end
+www.vogelpark-niendorf.de
+130.235.0.0/16	Lund University
+# OpenWRT - start
+78.24.191.176/28	www.openwrt.org
+forum.openwrt.org
+openwrt.org
+wiki.openwrt.org
+# OpenWRT - end
+www.bz.de
+www.bz-berlin.de
+static.bz-berlin.de
 EOIPS
 )
 

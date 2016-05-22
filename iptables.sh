@@ -10,6 +10,29 @@ ThisIsWebserver="no"
 ThisIsMailserver="no"
 FreifunkDevice="bat0"
 
+GREP=/bin/grep
+EGREP=/bin/egrep
+SED=/bin/sed
+IP=/sbin/ip
+CUT=/usr/bin/cut
+AWK=/usr/bin/awk
+SORT=/usr/bin/sort
+XARGS=/usr/bin/xargs
+IFCONFIG=/sbin/ifconfig
+IPTABLES=/sbin/iptables
+WGET=/usr/bin/wget
+ECHO=/bin/echo
+
+for i in $GREP $SED $IP $CUT $AWK $SORT $XARGS $IFCONFIG $IPTABLES $WGET $ECHO
+do
+	if ! test -x "$i"
+	then
+		$ECHO "E: Cannot execute '$i'."
+		exit 1
+	fi
+done
+
+
 GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 109.75.188.10"
 #                     gw1          gw2          gw3            gw4          gw5           gw-test
 
@@ -20,41 +43,41 @@ LocalGatewayHostnames="gattywatty01.my-gateway.de"
 LocalGatewayIpv4List="192.168.178.113"
 
 DEVICE=eth0
-if ifconfig|grep -q eth0.101; then
+if $IFCONFIG|$GREP -q eth0.101; then
     DEVICE=eth0.101
     ThisIsGateway="yes"
 fi
 
-IP=$(LANG=C ip addr show $DEVICE|grep "inet "| sed -e 's/addr://'|awk '{print $2}'|cut -f1 -d/)
+myIP=$(LANG=C $IP addr show $DEVICE|$GREP "inet "| $SED -e 's/addr://'|$AWK '{print $2}'|$CUT -f1 -d/)
 
-if [ -z "$IP" ]; then
-    echo "E: Could not determine IP"
+if [ -z "$myIP" ]; then
+    $ECHO "E: Could not determine this machine's IP address"
     exit
 fi
 
-echo "I: IP=$IP"
+$ECHO "I: myIP=my$IP"
 
 for gw in $GatewayIp4List
 do
-    if [ "x$gw" = "x$IP" ]; then
+    if [ "x$gw" = "x$myIP" ]; then
        # this is a gateway machine
        ThisIsGateway="yes"
     fi
 done
 
-if [ -x /usr/sbin/apache2 -o "x$IP"="x$WWWIP" ]; then
+if [ -x /usr/sbin/apache2 -o "x$myIP"="x$WWWIP" ]; then
     ThisIsWebserver="yes"
 else
     for www in $WWWip
     do
-        if [ "x$www" = "x$IP" ]; then
+        if [ "x$www" = "x$myIP" ]; then
             # this is a Webserver
             ThisIsWebserver="yes"
         fi
     done
 fi
 
-if [ "x$IP" = "x$Mailip" ]; then
+if [ "x$myIP" = "x$Mailip" ]; then
     ThisIsMailserver="yes"
 fi
 
@@ -64,12 +87,12 @@ function FWboth {
    comment=$1
    if [ -n "$comment" ];then
        shift 1
-       echo $FW4 -m comment --comment "$comment" $*
+       $ECHO $FW4 -m comment --comment "$comment" $*
        $FW4 -m comment --comment "$comment" $*
-       echo $FW6 -m comment --comment "$comment" $*
+       $ECHO $FW6 -m comment --comment "$comment" $*
        $FW6 -m comment --comment "$comment" $*
    else
-       echo $FW4 $*
+       $ECHO $FW4 $*
        $FW4 $*
        $FW6 $*
    fi
@@ -77,44 +100,44 @@ function FWboth {
 
 function FW4 {
    FW4="/sbin/iptables"
-   #echo $FW4 $*
+   #$ECHO $FW4 $*
    comment=$1
    if [ -n "$comment" ]; then
        shift 1
-       echo $FW4 -m comment --comment "$comment" $*
+       $ECHO $FW4 -m comment --comment "$comment" $*
        $FW4 -m comment --comment "$comment" $*
    else
-       echo $FW4 $*
+       $ECHO $FW4 $*
        $FW4 $*
    fi
 }
 
 function FW6 {
    FW6="/sbin/ip6tables"
-   #echo $FW6 $*
+   #$ECHO $FW6 $*
    comment=$1
    if [ -n "$comment" ];then
        shift 1
-       echo $FW6 -m comment --comment "$comment" $*
+       $ECHO $FW6 -m comment --comment "$comment" $*
        $FW6 -m comment --comment "$comment" $*
    else
-       echo $FW6 $*
+       $ECHO $FW6 $*
        $FW6 $*
    fi
 }
 
-echo "I: reset all prior rules"
+$ECHO "I: reset all prior rules"
 
 FWboth "" -F
 FWboth "" -X
 FW4 "" -t nat -F
 
-echo "I: Starting with a permissive default, restricted later in case script fails"
+$ECHO "I: Starting with a permissive default, restricted later in case script fails"
 FWboth "" -P INPUT   ACCEPT
 FWboth "" -P FORWARD ACCEPT
 FWboth "" -P OUTPUT  ACCEPT
 
-echo "I: Creating chain named 'log-drop'"
+$ECHO "I: Creating chain named 'log-drop'"
 FWboth "" -N log-drop
 
 # may not be a good idea to drop ICMP, in particular not for IPv6
@@ -132,27 +155,27 @@ FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELA
 FW4 "dropping weird chinese attacker" -s 222.0.0.0/8 -I INPUT -j DROP
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
-echo "I: JA: trust myself on lo"
+$ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
 
-echo "I: JA: trusting all gateway IP4 gateway addresses on eth0"
+$ECHO "I: JA: trusting all gateway IP4 gateway addresses on eth0"
 for gw in $GatewayIp4List
 do
-	echo -n "       gateway $gw "
+	$ECHO -n "       gateway $gw "
 	FW4 "Fully_trusting_gateway" -A INPUT -s $gw/32 -j ACCEPT
-	echo "- trusted"
+	$ECHO "- trusted"
 done
 
 if [ "yes" = "$ThisIsMailserver" ]; then
     FWboth "Mailservers accept on port 25" -A INPUT -p tcp -m multiport --dports smtp,ssmtp -j ACCEPT 
 fi
 
-#echo "I: JA: trusting all gateway IP6 gateway addresses on eth0"
+#$ECHO "I: JA: trusting all gateway IP6 gateway addresses on eth0"
 FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
 
-echo "I: JA fuer Freifunk: PING, FASTD, DNS"
+$ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
-   echo "I: Machine recognised as gateway"
+   $ECHO "I: Machine recognised as gateway"
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
@@ -172,7 +195,7 @@ if [ "yes"="$ThisIsGateway" ]; then
 fi
 
 if [ "yes"="$ThisIsWebserver" ]; then
-   echo "I: Machine is a webserver"
+   $ECHO "I: Machine is a webserver"
    # Accept port 10000 when it comes from the network's IP Address
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
    # Accept port 11426 when it comes from the network's IP Address - for that MTU
@@ -220,16 +243,16 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
 fi
 
-echo "I: NEIN: FTP"
+$ECHO "I: NEIN: FTP"
 FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
 
-echo "I: JA: SSH, WWW, PING"
+$ECHO "I: JA: SSH, WWW, PING"
 FWboth "SSH login possible from everywhere" '-A INPUT -p tcp --dport ssh -j ACCEPT'
 FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j ACCEPT'
 FWboth "Do accept Pings from outside Freifunk" '-A INPUT -p icmp -j ACCEPT'
 
-echo "I: drop anything else"
+$ECHO "I: drop anything else"
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport microsoft-ds -j DROP'
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
 FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
@@ -243,52 +266,52 @@ if [ -x /usr/sbin/dpkg-reconfigure ]; then
    fi
 fi
 
-echo "I: update INPUT policy to DROP"
+$ECHO "I: update INPUT policy to DROP"
 #FWboth "" -P INPUT DROP
 FW4 "" -P INPUT DROP
 
-#echo "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
-#iptables -t blacklist_ip_projects_de -F || echo "[ignored]"
-#iptables -t blacklist_ip_projects_de -X || echo "[ignored]"
-#iptables -N blacklist_ip_projects_de 
-#wget -O - http://mirror.ip-projects.de/ip-blacklist |sort|xargs -n1 iptables -A blacklist_ip_projects_de -j DROP -s
-#iptables -I INPUT -j blacklist_ip_projects_de
+#$ECHO "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
+#$IPTABLES -t blacklist_ip_projects_de -F || $ECHO "[ignored]"
+#$IPTABLES -t blacklist_ip_projects_de -X || $ECHO "[ignored]"
+#$IPTABLES -N blacklist_ip_projects_de 
+#$WGET -O - http://mirror.ip-projects.de/ip-blacklist |$SORT|$XARGS -n1 $IPTABLES -A blacklist_ip_projects_de -j DROP -s
+#$IPTABLES -I INPUT -j blacklist_ip_projects_de
 #
-#echo "I: adding blacklist from openbl.org - takes some minutes"
-#iptables -t blacklist_openbl_org -F || echo "[ignored]"
-#iptables -t blacklist_openbl_org -X || echo "[ignored]"
-#iptables -N blacklist_openbl_org
-#wget -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | egrep '^[0-9]' |sort|xargs -n1 iptables -A blacklist_openbl_org -j DROP -s
-#iptables -I INPUT -j blacklist_openbl_org
+#$ECHO "I: adding blacklist from openbl.org - takes some minutes"
+#$IPTABLES -t blacklist_openbl_org -F || $ECHO "[ignored]"
+#$IPTABLES -t blacklist_openbl_org -X || $ECHO "[ignored]"
+#$IPTABLES -N blacklist_openbl_org
+#$WGET -O - http://www.openbl.org/lists/base.txt.gz|gunzip -dc | $EGREP '^[0-9]' |$SORT|$XARGS -n1 $IPTABLES -A blacklist_openbl_org -j DROP -s
+#$IPTABLES -I INPUT -j blacklist_openbl_org
 
 if [ "yes" = "$ThisIsGateway" ]; then
-	echo "I: NAT"
-	if ifconfig | grep -q eth0.102; then
+	$ECHO "I: NAT"
+	if $IFCONFIG | $GREP -q eth0.102; then
 		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
 		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 ! -d 192.168.178.0/24 -j MASQUERADE'
 	else
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
-	if ifconfig | grep -q mullvad; then
-		if ifconfig | grep -q eth0.102; then
+	if $IFCONFIG | $GREP -q mullvad; then
+		if $IFCONFIG | $GREP -q eth0.102; then
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 			#FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
 		else
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		fi
-		anonymizer=$(ip route  |grep mullvad | awk '{print $9}')
+		anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 		if [ "" = "$anonymizer" ]; then
-			echo "E: Could not determine IP to Mullvad OpenVPN - restart that"
+			$ECHO "E: Could not determine IP to Mullvad OpenVPN - restart that"
 			exit 1
 		fi
-		ip route replace default via $anonymizer table freifunk
+		$IP route replace default via $anonymizer table freifunk
 	fi
-	echo "[OK]"
+	$ECHO "[OK]"
 else
-	echo "I: Skipping NAT since not a gateway"
+	$ECHO "I: Skipping NAT since not a gateway"
 fi
 
-#iptables -L -n
+#$IPTABLES -L -n
 #ip6tables -L -n
 
 
