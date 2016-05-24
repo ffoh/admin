@@ -34,7 +34,10 @@ fi
 
 echo -n "Identified gateway as '$gateway'"
 
-via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
+via=$(LANG=C $IP neighbor | $GREP eth0 | $GREP REACHABLE | $CUT -f1 -d\  )
+if [ -z "$via" ]; then
+	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
+fi
 
 if [ -z "$via" -o ".1" = "$via" ]; then
 	echo
