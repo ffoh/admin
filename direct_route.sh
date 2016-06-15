@@ -103,11 +103,12 @@ IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
-gw1.ostholstein.freifunk.net
-gw2.ostholstein.freifunk.net
-gw3.ostholstein.freifunk.net
-gw4.ostholstein.freifunk.net
-gw5.ostholstein.freifunk.net
+gw1.ffoh.de
+gw2.ffoh.de
+gw3.ffoh.de
+gw4.ffoh.de
+gw5.ffoh.de
+gw6.ffoh.de
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
 otile1-s.mqcdn.com
@@ -123,6 +124,9 @@ www.apple.com	# not redundant
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 172.217.0.0/16	www.google.de
+108.177.0.0/17	# google
+www.google.com	# sicher ist sicher
+www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
@@ -523,6 +527,9 @@ www.volksbank-luebeck.de
 volksbank-eutin.de
 www.volksbank-eutin.de
 192.30.252.0/22	github.com
+collector.githubapp.com
+github.com
+www.github.com
 last.fm
 www.last.fm
 lastfm.de
@@ -567,8 +574,6 @@ adclient.uimserv.net
 pixelbox.uimserv.net
 uidbox.uimserv.net
 # GMX - end
-github.com
-www.github.com
 # BR - start
 bronline.de
 bralpha.de
@@ -1898,6 +1903,7 @@ blog.neon.de
 media.news.de
 www.hamburg.de
 # stern - end
+www.devolo.com
 96.45.48.0/20	#Disney
 # vodaphone - start
 47.60.0.0/14

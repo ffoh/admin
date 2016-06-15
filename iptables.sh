@@ -226,6 +226,9 @@ FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
+#FWboth "Receive NTP packages" '-A INPUT -p udp -i eth0 --dport ntp -j ACCEPT'
+#FWboth "Receive NTP packages" '-A INPUT -p tcp -i eth0 --dport ntp -j ACCEPT'
+
 # Always trust all gateways and Webservers, also for their external IPs
 for gw in $GatwayIp4List
 do
@@ -293,7 +296,7 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
 	if $IFCONFIG | $GREP -q eth0.102; then
 		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
-		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 -j MASQUERADE'
+		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 ! -d 192.168.178.0/24 -j MASQUERADE'
 	else
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
