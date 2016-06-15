@@ -34,7 +34,7 @@ fi
 
 echo -n "Identified gateway as '$gateway'"
 
-via=$(LANG=C $IP neighbor | $GREP eth0 | $GREP REACHABLE | $CUT -f1 -d\  )
+via=$(LANG=C $IP neighbor | $GREP eth0 | $GREP -v :: | $GREP REACHABLE | $AWK '{print $1}')
 if [ -z "$via" ]; then
 	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 fi
@@ -675,6 +675,7 @@ c.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
+speedtest.hillcom.de
 www.fallingfalcon.com
 www.base-mail.de
 www.base-mail.us
