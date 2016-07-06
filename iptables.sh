@@ -152,7 +152,10 @@ FWboth "" -A log-drop-out -j DROP
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-FW4 "dropping weird chinese attacker" -s 222.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
+FW4 "dropping weird chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
 $ECHO "I: JA: trust myself on lo"
@@ -288,14 +291,15 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
 	if $IFCONFIG | $GREP -q eth0.102; then
 		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
-		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 ! -d 192.168.178.0/24 -j MASQUERADE'
+		#FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 ! -d 192.168.178.0/24 -j MASQUERADE'
+		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 -j MASQUERADE'
 	else
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
 	if $IFCONFIG | $GREP -q mullvad; then
 		if $IFCONFIG | $GREP -q eth0.102; then
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
-			#FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
+			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
 		else
 			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		fi
