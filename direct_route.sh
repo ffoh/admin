@@ -499,8 +499,21 @@ alioth.debian.org
 www.debian.org
 www.ubuntu.com
 #91.189.88.0/20	canonical.com
-zatoo.com
-www.zatoo.com
+# zatoo - start
+zattoo.com
+www.zattoo.com
+91.123.97.0/24
+fr5-0-hds-live.zahs.tv
+fr5-1-hds-live.zahs.tv
+fr5-3-hds-live.zahs.tv
+fr5-4-hds-live.zahs.tv
+images.zattic.com
+thumb.zattic.com
+dev.appboy.com
+maxcdn.bootstrapcdn.com
+js.appboycdn.com
+cdn.optimizely.com
+# zatoo - end
 # amazon - start
 #176.32.104.0/19	# Amazon Dublin #Fehler??!
 amazon.de
