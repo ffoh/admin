@@ -839,7 +839,6 @@ px1.vtrtl.de
 qs.ivwbox.de
 #count.rtl.de		# redundant
 rtl.ivwbox.de
-static.plista.com
 #tracking.rtl.de	# redundant
 # RLT - end
 # SAT1 - start
@@ -1996,6 +1995,17 @@ wiki.openwrt.org
 www.bz.de
 www.bz-berlin.de
 static.bz-berlin.de
+# DHL - start
+nolp.dhl.de
+www.dhl.de
+bei.nuggad.net
+deutschepostag.112.2o7.net
+# DHL - end
+# inwx.de - start
+inwx.de
+static.inwx.com
+images.inwx.com
+# inwx.de - end
 EOIPS
 )
 
