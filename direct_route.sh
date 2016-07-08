@@ -103,6 +103,7 @@ IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
+www.ffoh.de
 gw1.ffoh.de
 gw2.ffoh.de
 gw3.ffoh.de
@@ -128,6 +129,7 @@ www.apple.com	# not redundant
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
+0.client-channel.google.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
@@ -135,6 +137,7 @@ www.google.de	# sicher ist sicher
 212.53.192.64/26	# WebCam firma in Haffkrug fuer Timmendorf
 content.jwplatform.com	# WebCam Timmendorf
 www.luebeck.de
+162.25.0.0/16	# unicreditbanking
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
@@ -145,6 +148,7 @@ wiki.debian.org
 ftp.upload.debian.org
 mailly.debian.org
 muffat.debian.org
+anonscm.debian.org
 145.243.232.0/21	# Axel Springer Verlag
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 141.89.0.0/16	#uni-potsdam.de
@@ -173,6 +177,7 @@ muffat.debian.org
 132.180.0.0/16	#Uni Bayreuth, skype
 141.53.0.0/16	uni-greifswald.de
 193.156.0.0/15	uio.no #University of Oslo, skype
+129.240.0.0/15	uio.no #University of Oslo, webmail
 85.239.108.0/26	hlkomm.de # Radio streamer
 138.48.0.0/16	# University of Notre Dame, Belgium, skype
 130.88.0.0/16	# University of Manchester, UK, skype
@@ -257,6 +262,7 @@ dc72.s290.meetrics.net
 dc73.s290.meetrics.net
 dc80.s290.meetrics.net
 dc83.s290.meetrics.net
+dc84.s290.meetrics.net
 h364.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
@@ -526,10 +532,16 @@ volksbank-luebeck.de
 www.volksbank-luebeck.de
 volksbank-eutin.de
 www.volksbank-eutin.de
+# github - start
 192.30.252.0/22	github.com
-collector.githubapp.com
 github.com
 www.github.com
+assets-cdn.github.com
+avatars3.githubusercontent.com
+avatars1.githubusercontent.com
+collector.githubapp.com
+live.github.com
+# github - end
 last.fm
 www.last.fm
 lastfm.de
@@ -843,7 +855,6 @@ px1.vtrtl.de
 qs.ivwbox.de
 #count.rtl.de		# redundant
 rtl.ivwbox.de
-static.plista.com
 #tracking.rtl.de	# redundant
 # RLT - end
 # SAT1 - start
@@ -1962,6 +1973,8 @@ us-click.alibaba.com
 i0.wp.com
 app.dailyme.tv
 imap.1und1.de
+137.226.0.0/16	# Uni Aachen
+130.235.0.0/16	# Lund University
 # Illumina - start
 52.64.0.0/12	basespace.illumina.com
 52.0.0.0/11	www.illumina.com
@@ -2000,6 +2013,18 @@ wiki.openwrt.org
 www.bz.de
 www.bz-berlin.de
 static.bz-berlin.de
+seqanswers.com
+# DHL - start
+nolp.dhl.de
+www.dhl.de
+bei.nuggad.net
+deutschepostag.112.2o7.net
+# DHL - end
+# inwx.de - start
+inwx.de
+static.inwx.com
+images.inwx.com
+# inwx.de - end
 EOIPS
 )
 
