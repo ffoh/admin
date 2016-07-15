@@ -220,6 +220,10 @@ lh3.googleusercontent.com
 0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 wb-in-f188.1e100.net
+# picotech - start
+labs.picotech.com
+picotech.com
+# picotech - end
 # Facebook - start
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
