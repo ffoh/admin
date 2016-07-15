@@ -2026,6 +2026,17 @@ inwx.de
 static.inwx.com
 images.inwx.com
 # inwx.de - end
+# Amazon TV - start
+ec2-46-137-74-18.eu-west-1.compute-1.amazon.com
+ec2-46-137-158-216.eu-west-1.compute-1.amazon.com
+ec2-54-235-219-101.compute-1.amazon.com
+fls-eu.amazon.de
+images-na.ssl-images-amazon.com
+images-eu.ssl-images-amazon.com
+atv-ps-eu.amazon.com
+avodassets-a.akamaihd.net
+www.amazonpreview.com
+# Amazon TV - end
 EOIPS
 )
 
