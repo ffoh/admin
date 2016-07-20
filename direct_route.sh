@@ -1254,6 +1254,7 @@ www.windfinder.com
 # ADAC - end
 www.timmendorfer-strand.org
 www.niendorf-ostsee.de
+xmail.timmendorfer-strand.de
 niendorf2014.avisto.eu
 www.buchen.travel
 z1.im-web.de
@@ -1740,6 +1741,7 @@ beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
 194.94.0.0/15	uni-erfurt.de
+132.176.0.0/16	fernuni-hagen.de
 # libreoffice - start
 89.238.68.128/25	libreoffice.org
 piwik.documentfoundation.org
@@ -2041,6 +2043,37 @@ atv-ps-eu.amazon.com
 avodassets-a.akamaihd.net
 www.amazonpreview.com
 # Amazon TV - end
+# pokemongo - start
+www.pokemongo.com
+assets.pokemon.com
+www.google-analytics.com
+tpcipokemongoprod.112.2o7.net
+s.delvenetworks.com
+assets.adobedtm.com
+fonts.googleapis.com
+video.limelight.com
+pokemongo.nianticlabs.com
+r5---sn-qu5b-q0ne.googlevideo.com
+r11---sn-i5h7ln7z.googlevideo.com
+r5---sn-i5h7ln7z.googlevideo.com
+r11---sn-5hnedne7.googlevideo.com
+s.youtube.com
+support.pokemongo.nianticlabs.com
+zendesk.tv
+p5.zdassets.com
+d26a57ydsghvgx.cloudfront.net
+play.google.com
+lh3.ggpht.com
+lh3.googleusercontent.com
+lh6.googleusercontent.com
+lh6.ggpht.com
+fonts.gstatic.com
+lh5.googleusercontent.com
+lh5.ggpht.com
+lh4.googleusercontent.com
+lh4.ggpht.com
+# pokemongo - end
+ostholstein.fox112.de
 EOIPS
 )
 
