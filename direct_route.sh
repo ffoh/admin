@@ -2072,6 +2072,10 @@ lh5.googleusercontent.com
 lh5.ggpht.com
 lh4.googleusercontent.com
 lh4.ggpht.com
+80.14.211.130.bc.googleusercontent.com
+server-52-85-185-217.fra2.r.cloudfront.net
+ec2-52-51-154-14.eu-west-1.compute.amazonaws.com
+ec2-54-76-176-34.eu-west-1.compute.amazonaws.com
 # pokemongo - end
 ostholstein.fox112.de
 EOIPS
