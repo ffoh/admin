@@ -34,7 +34,8 @@ fi
 
 echo -n "Identified gateway as '$gateway'"
 
-via=$(LANG=C $IP neighbor | $GREP eth0 | $GREP -v :: | $GREP REACHABLE | $AWK '{print $1}')
+via=$(LANG=C $IP route|$GREP default|cut -f3 -d\ )
+echo "via: $via"
 if [ -z "$via" ]; then
 	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 fi
@@ -46,7 +47,6 @@ if [ -z "$via" -o ".1" = "$via" ]; then
 fi
 
 echo " routing via '$via'"
-
 
 IIF=bat0
 anomizer=$(LANG=C $IP addr show mullvad | $GREP "inet "| $CUT -f1 -d/| $AWK '{print $2}')
@@ -66,12 +66,17 @@ $IP route replace default via $anomizer table freifunk
 
 function ipdirect () {
 	ipaddress=$1
+
+	if [ "$ipaddress" = "$gateway" ]; then
+		echo "W: Skipping direct assignment to *myself*"
+        else
 	
-	if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
-		echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
-		$IP route replace $ipaddress via $via table freifunk
-	else 
-		echo "I: Route for $ipaddress is existing - skipped"
+		if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+			echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
+			$IP route replace $ipaddress via $via table freifunk
+		else 
+			echo "I: Route for $ipaddress is existing - skipped"
+		fi
 	fi
 }
 
