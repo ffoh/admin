@@ -43,8 +43,12 @@ fi
 
 echo -n "Identified gateway as '$gateway'"
 
-via=$(echo $gateway  |$CUT -f 1,2,3 -d .).1
+via=$(LANG=C $IP route|$GREP default|cut -f3 -d\ )
 via6=$(echo $gateway6|$SED -e 's/0$/1/' -e 's/::$/::1/')
+echo "via: $via"
+if [ -z "$via" ]; then
+	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
+fi
 
 if [ -z "$via" -o ".1" = "$via" ]; then
 	echo
@@ -77,6 +81,8 @@ function ipdirect () {
 
 	if echo $ipaddress | grep -q ":"; then
 
+		# IPv6
+
 		if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q eth0; then
 			echo "I: Adding direct route for IPv6 $ipaddress ($IP route replace $ipaddress via $via6 table freifunk)"
 			$IP route replace $ipaddress via $via6 table freifunk
@@ -85,12 +91,18 @@ function ipdirect () {
 		fi
 
 	else
+
+		# IPv4
 	
-		if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
-			echo "I: Adding direct route for IPv4 $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
-			$IP route replace $ipaddress via $via table freifunk
-		else 
-			echo "I: Route for $ipaddress is existing - skipped"
+		if [ "$ipaddress" = "$gateway" ]; then
+			echo "W: Skipping direct assignment to *myself*"
+        	else
+			if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+				echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
+				$IP route replace $ipaddress via $via table freifunk
+			else 
+				echo "I: Route for $ipaddress is existing - skipped"
+			fi
 		fi
 	fi
 }
@@ -123,6 +135,7 @@ IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
 ostholstein.freifunk.net
 luebeck.freifunk.net
 www.freifunk.net
+www.ffoh.de
 gw1.ffoh.de
 gw2.ffoh.de
 gw3.ffoh.de
@@ -148,6 +161,7 @@ www.apple.com	# not redundant
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
+0.client-channel.google.com
 98.136.0.0/14	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
@@ -155,6 +169,7 @@ www.google.de	# sicher ist sicher
 212.53.192.64/26	# WebCam firma in Haffkrug fuer Timmendorf
 content.jwplatform.com	# WebCam Timmendorf
 www.luebeck.de
+162.25.0.0/16	# unicreditbanking
 134.245.0.0/16	uni-kiel.de 134.245
 134.246.0.0/15	uni-kiel.de 134.24[67]
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
@@ -165,6 +180,7 @@ wiki.debian.org
 ftp.upload.debian.org
 mailly.debian.org
 muffat.debian.org
+anonscm.debian.org
 145.243.232.0/21	# Axel Springer Verlag
 132.2.0.0/16	mailserv01.uni-tuebingen.de # Uni Tuebingen
 141.89.0.0/16	#uni-potsdam.de
@@ -172,6 +188,7 @@ muffat.debian.org
 193.206.64.0/21	#University of Pavia, Italy - skype
 #195.176.48.0/19	#University della Svizzera italiana - skype
 134.170.0.0/16	# microsoft - skype
+137.116.253.186 # microsoft - skype
 23.96.0.0/13	# microsoft - skype
 65.52.0.0/14	# Mirosoft, for skype
 111.221.64.0/18	# Microsoft, for skype
@@ -193,6 +210,7 @@ muffat.debian.org
 132.180.0.0/16	#Uni Bayreuth, skype
 141.53.0.0/16	uni-greifswald.de
 193.156.0.0/15	uio.no #University of Oslo, skype
+129.240.0.0/15	uio.no #University of Oslo, webmail
 85.239.108.0/26	hlkomm.de # Radio streamer
 138.48.0.0/16	# University of Notre Dame, Belgium, skype
 130.88.0.0/16	# University of Manchester, UK, skype
@@ -238,6 +256,10 @@ lh3.googleusercontent.com
 0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 wb-in-f188.1e100.net
+# picotech - start
+labs.picotech.com
+picotech.com
+# picotech - end
 # Facebook - start
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
@@ -277,6 +299,7 @@ dc72.s290.meetrics.net
 dc73.s290.meetrics.net
 dc80.s290.meetrics.net
 dc83.s290.meetrics.net
+dc84.s290.meetrics.net
 h364.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
@@ -559,10 +582,16 @@ volksbank-luebeck.de
 www.volksbank-luebeck.de
 volksbank-eutin.de
 www.volksbank-eutin.de
+# github - start
 192.30.252.0/22	github.com
-collector.githubapp.com
 github.com
 www.github.com
+assets-cdn.github.com
+avatars3.githubusercontent.com
+avatars1.githubusercontent.com
+collector.githubapp.com
+live.github.com
+# github - end
 last.fm
 www.last.fm
 lastfm.de
@@ -713,6 +742,7 @@ c.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
+speedtest.hillcom.de
 www.fallingfalcon.com
 www.base-mail.de
 www.base-mail.us
@@ -875,7 +905,6 @@ px1.vtrtl.de
 qs.ivwbox.de
 #count.rtl.de		# redundant
 rtl.ivwbox.de
-static.plista.com
 #tracking.rtl.de	# redundant
 # RLT - end
 # SAT1 - start
@@ -1270,6 +1299,7 @@ www.windfinder.com
 # ADAC - end
 www.timmendorfer-strand.org
 www.niendorf-ostsee.de
+xmail.timmendorfer-strand.de
 niendorf2014.avisto.eu
 www.buchen.travel
 z1.im-web.de
@@ -1756,6 +1786,7 @@ beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
 194.94.0.0/15	uni-erfurt.de
+132.176.0.0/16	fernuni-hagen.de
 # libreoffice - start
 89.238.68.128/25	libreoffice.org
 piwik.documentfoundation.org
@@ -1994,6 +2025,8 @@ us-click.alibaba.com
 i0.wp.com
 app.dailyme.tv
 imap.1und1.de
+137.226.0.0/16	# Uni Aachen
+130.235.0.0/16	# Lund University
 # Illumina - start
 52.64.0.0/12	basespace.illumina.com
 52.0.0.0/11	www.illumina.com
@@ -2032,6 +2065,64 @@ wiki.openwrt.org
 www.bz.de
 www.bz-berlin.de
 static.bz-berlin.de
+seqanswers.com
+# DHL - start
+nolp.dhl.de
+www.dhl.de
+bei.nuggad.net
+deutschepostag.112.2o7.net
+# DHL - end
+# inwx.de - start
+inwx.de
+static.inwx.com
+images.inwx.com
+# inwx.de - end
+# Amazon TV - start
+ec2-46-137-74-18.eu-west-1.compute-1.amazon.com
+ec2-46-137-158-216.eu-west-1.compute-1.amazon.com
+ec2-54-235-219-101.compute-1.amazon.com
+fls-eu.amazon.de
+images-na.ssl-images-amazon.com
+images-eu.ssl-images-amazon.com
+atv-ps-eu.amazon.com
+avodassets-a.akamaihd.net
+www.amazonpreview.com
+# Amazon TV - end
+# pokemongo - start
+www.pokemongo.com
+assets.pokemon.com
+www.google-analytics.com
+tpcipokemongoprod.112.2o7.net
+s.delvenetworks.com
+assets.adobedtm.com
+fonts.googleapis.com
+video.limelight.com
+pokemongo.nianticlabs.com
+r5---sn-qu5b-q0ne.googlevideo.com
+r11---sn-i5h7ln7z.googlevideo.com
+r5---sn-i5h7ln7z.googlevideo.com
+r11---sn-5hnedne7.googlevideo.com
+s.youtube.com
+support.pokemongo.nianticlabs.com
+zendesk.tv
+p5.zdassets.com
+d26a57ydsghvgx.cloudfront.net
+play.google.com
+lh3.ggpht.com
+lh3.googleusercontent.com
+lh6.googleusercontent.com
+lh6.ggpht.com
+fonts.gstatic.com
+lh5.googleusercontent.com
+lh5.ggpht.com
+lh4.googleusercontent.com
+lh4.ggpht.com
+80.14.211.130.bc.googleusercontent.com
+server-52-85-185-217.fra2.r.cloudfront.net
+ec2-52-51-154-14.eu-west-1.compute.amazonaws.com
+ec2-54-76-176-34.eu-west-1.compute.amazonaws.com
+# pokemongo - end
+ostholstein.fox112.de
 EOIPS
 )
 

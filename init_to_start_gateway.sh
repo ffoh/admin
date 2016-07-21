@@ -30,9 +30,11 @@ do_start () {
 
 	$ADMINDIR/iptables.sh
 
-	(sleep 5; nice $ADMINDIR/direct_route.sh > /dev/null)&
+	(sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
 
 	alfred -m -i bat0 > /dev/null &
+
+	(sleep 10 && cd /root/git && nice ./direct_route.sh > /dev/null)&
 
 }
 

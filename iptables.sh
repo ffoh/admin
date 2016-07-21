@@ -33,11 +33,11 @@ do
 done
 
 
-GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 109.75.188.10"
-#                     gw1          gw2          gw3            gw4          gw5           gw-test
+GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
+#                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
-#                     gw1                       gw2                       gw3                   gw4                       gw5                 gw-test
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+#                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de"
 LocalGatewayIpv4List="192.168.178.113"
@@ -144,7 +144,7 @@ FWboth "" -N log-drop
 #FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
 
 # uncomment once important bits are no longer logged
-FWboth "" -A log-drop -j DROP
+#FWboth "" -A log-drop -j DROP
 
 FWboth "" -N log-drop-out
 FWboth "log and drop TCP" '-A log-drop-out -m limit --limit 5/min -j LOG --log-prefix Denied_OUT: --log-level 7'
@@ -156,6 +156,7 @@ FW4 "dropping weird chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
 FW4 "dropping weird chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
 FW4 "dropping weird chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
 FW4 "dropping weird chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
+
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
 $ECHO "I: JA: trust myself on lo"
@@ -183,8 +184,10 @@ if [ "yes"="$ThisIsGateway" ]; then
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
-   # Gateways are gateways for fastd and always listen to port 10000
+   # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11426
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 10000 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11280 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11426 -j ACCEPT'
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
@@ -202,15 +205,19 @@ if [ "yes"="$ThisIsWebserver" ]; then
    # Accept port 10000 when it comes from the network's IP Address
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
    # Accept port 11426 when it comes from the network's IP Address - for that MTU
+   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11280 -j ACCEPT"
+   # Accept port 11426 when it comes from the network's IP Address - for that MTU
    FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11426 -j ACCEPT"
    for gw in $GatewayIp4List
    do
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11280 -j ACCEPT"
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    for gw in $GatewayIp6List
    do
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
+	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11280 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
@@ -246,6 +253,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
 fi
 
+FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
+FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
+
 $ECHO "I: NEIN: FTP"
 FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
@@ -260,8 +270,6 @@ FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport micros
 FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
 FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
 
-FWboth "netperf" -I INPUT -p tcp --dport 12865 -j ACCEPT
-FWboth "netperf" -I INPUT -p udp --dport 12865 -j ACCEPT
 
 if [ -x /usr/sbin/dpkg-reconfigure ]; then
    if [ -x /usr/bin/fail2ban-server ]; then
@@ -271,7 +279,8 @@ fi
 
 $ECHO "I: update INPUT policy to DROP"
 #FWboth "" -P INPUT DROP
-FW4 "" -P INPUT DROP
+#FW4 "" -P INPUT DROP
+FW4 "" -P INPUT ACCEPT
 
 #$ECHO "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
 #$IPTABLES -t blacklist_ip_projects_de -F || $ECHO "[ignored]"
