@@ -25,6 +25,9 @@ do_start () {
 	cd $ADMINDIR
 	git pull
 
+	ip -6 rule add from all iif bat0 lookup freifunk
+	ip -4 rule add from all iif bat0 lookup freifunk
+
 	$ADMINDIR/iptables.sh
 
 	(sleep 5; nice $ADMINDIR/direct_route.sh > /dev/null)&

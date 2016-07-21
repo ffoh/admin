@@ -297,18 +297,26 @@ if [ "yes" = "$ThisIsGateway" ]; then
 		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
 	fi
 	if $IFCONFIG | $GREP -q mullvad; then
+		FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		if $IFCONFIG | $GREP -q eth0.102; then
-			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
 		else
-			FW4 "Routing 10.135.0.0/16 anonymously through mullvad" '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		fi
+
+
 		anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 		if [ "" = "$anonymizer" ]; then
 			$ECHO "E: Could not determine IP to Mullvad OpenVPN - restart that"
 			exit 1
 		fi
 		$IP route replace default via $anonymizer table freifunk
+
+		if ifconfig mullvad | grep -q inet6; then 
+			echo "I: Found IPv6 address for mullvad - also anynymizing that"
+			FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::2:1/64 ! -d fd73:111:e824::2:1/64 -o mullvad -j MASQUERADE
+		else
+			echo "I: No IPv6 address for mullvad"
+		fi
 	fi
 	$ECHO "[OK]"
 else

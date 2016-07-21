@@ -4,6 +4,7 @@ set -e
 
 IFCONFIG=/sbin/ifconfig
 GREP=/bin/grep
+SED=/bin/sed
 CUT=/usr/bin/cut
 IP=/sbin/ip
 AWK=/usr/bin/awk
@@ -14,13 +15,16 @@ export LANG=C
 if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 
 gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
+gateway6=$(LANG=C $IFCONFIG eth0 | $GREP "inet6 addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
 if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
+	gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ )
 fi
 
 if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
+	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}')
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
 		exit 1
@@ -32,9 +36,15 @@ if [ -z "$gateway" ]; then
 	exit 3
 fi
 
+if [ -z "$gateway6" ]; then
+	echo "E: Could not identify gateway for IPv6"
+	exit 3
+fi
+
 echo -n "Identified gateway as '$gateway'"
 
-via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
+via=$(echo $gateway  |$CUT -f 1,2,3 -d .).1
+via6=$(echo $gateway6|$SED -e 's/0$/1/' -e 's/::$/::1/')
 
 if [ -z "$via" -o ".1" = "$via" ]; then
 	echo
@@ -42,12 +52,14 @@ if [ -z "$via" -o ".1" = "$via" ]; then
 	exit 1
 fi
 
-echo " routing via '$via'"
-
+echo " routing via '$via' and '$via6'"
 
 IIF=bat0
 anomizer=$(LANG=C $IP addr show mullvad | $GREP "inet "| $CUT -f1 -d/| $AWK '{print $2}')
+anomizer6=$(LANG=C $IP addr show mullvad | $GREP "inet6 "| $CUT -f1 -d/| $AWK '{print $2}')
 echo "Anonmizer is $anomizer"
+anonmizer_via6=$(echo $anomizer|$SED -e 's/0$/1/' -e 's/::$/::1/')
+
 #if [ -z "$anomizer" ]; then
 #	anomizer=$(LANG=C $IFCONFIG mullvad|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
 #	IIF=eth0.102
@@ -57,18 +69,29 @@ echo "Anonmizer is $anomizer"
 #	fi
 #fi
 echo "Resetting anonymizer to route via '$anomizer'"
-$IP route replace default via $anomizer table freifunk
-#$IP route replace 0.0.0.0/1 via $anomizer table freifunk
-#$IP route replace 128.0.0.0/1 via $anomizer table freifunk
+echo -n " * IPv4 " && $IP -4 route replace default via $anomizer table freifunk && echo "[ok]"
+echo -n " * IPv6 " && $IP -6 route replace default via $anomizer_via6 table freifunk  && echo "[ok]"
 
 function ipdirect () {
 	ipaddress=$1
+
+	if echo $ipaddress | grep -q ":"; then
+
+		if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q eth0; then
+			echo "I: Adding direct route for IPv6 $ipaddress ($IP route replace $ipaddress via $via6 table freifunk)"
+			$IP route replace $ipaddress via $via6 table freifunk
+		else 
+			echo "I: Route for $ipaddress is existing - skipped"
+		fi
+
+	else
 	
-	if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
-		echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
-		$IP route replace $ipaddress via $via table freifunk
-	else 
-		echo "I: Route for $ipaddress is existing - skipped"
+		if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+			echo "I: Adding direct route for IPv4 $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
+			$IP route replace $ipaddress via $via table freifunk
+		else 
+			echo "I: Route for $ipaddress is existing - skipped"
+		fi
 	fi
 }
 
@@ -2033,7 +2056,12 @@ do
 			echo "I: Interpreting '$n' as IP Number"
 			ipdirect $n
 		else
-			for ipaddress in $(host $n |$GREP "has address" | $CUT -f4 -d' ' )
+			hostoutput=$(host $n)
+			for ipaddress in $(echo "$hostoutput" |$GREP "has address" | $CUT -f4 -d' ' )
+			do
+				ipdirect $ipaddress
+			done
+			for ipaddress in $(echo "$hostoutput" |$GREP "has IPv6 address" | $CUT -f5 -d' ' )
 			do
 				ipdirect $ipaddress
 			done

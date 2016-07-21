@@ -16,7 +16,7 @@ CUT=/usr/bin/cut
 DEBUG=F
 #DEBUG=T
 
-if $PS aux|$GREP openvpn|$GREP -q mullvad && $IFCONFIG mullvad | $GREP -q inet; then
+if $PS aux|$GREP openvpn|$GREP -q mullvad && LANG=C $IFCONFIG mullvad | $GREP -q "inet "; then
 	#echo ok
 	defaultrouteno=$($IP route list table freifunk |$GREP default | $WC -l)
 else
@@ -31,7 +31,7 @@ if [ "T" = "$DEBUG" ]; then
 fi
 
 if [ 0 -eq $defaultrouteno ];  then
-	mullvadip=$(LANG=C $IP addr show mullvad |$GREP inet|cut -f1 -d/|$AWK '{print $2}')
+	mullvadip=$(LANG=C $IP addr show mullvad |$GREP "inet "|cut -f1 -d/|$AWK '{print $2}')
 	$DATE | $TEE -a $LOGFILE
 	if [ "x$mullvadip" != "x" ]; then
 		$IP route replace default via $mullvadip table freifunk | $TEE -a $LOGFILE
