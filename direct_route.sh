@@ -9,8 +9,14 @@ CUT=/usr/bin/cut
 IP=/sbin/ip
 AWK=/usr/bin/awk
 SORT=/usr/bin/sort
+TEE=/usr/bin/tee
+HOST=/usr/bin/host
 
 export LANG=C
+
+IPv6block=#
+
+DEBUG=
 
 if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 
@@ -19,12 +25,12 @@ gateway6=$(LANG=C $IFCONFIG eth0 | $GREP "inet6 addr" |$CUT -f2 -d:|$CUT -f1 -d\
 
 if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
-	gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ )
+	gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | grep -v "^fe80:")
 fi
 
 if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
-	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}')
+	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | grep -v "^fe80:")
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
 		exit 1
@@ -45,7 +51,7 @@ echo -n "Identified gateway as '$gateway'"
 
 via=$(LANG=C $IP route|$GREP default|cut -f3 -d\ )
 via6=$(echo $gateway6|$SED -e 's/0$/1/' -e 's/::$/::1/')
-echo "via: $via"
+#echo "via: $via"
 if [ -z "$via" ]; then
 	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 fi
@@ -61,8 +67,8 @@ echo " routing via '$via' and '$via6'"
 IIF=bat0
 anomizer=$(LANG=C $IP addr show mullvad | $GREP "inet "| $CUT -f1 -d/| $AWK '{print $2}')
 anomizer6=$(LANG=C $IP addr show mullvad | $GREP "inet6 "| $CUT -f1 -d/| $AWK '{print $2}')
-echo "Anonmizer is $anomizer"
-anonmizer_via6=$(echo $anomizer|$SED -e 's/0$/1/' -e 's/::$/::1/')
+anomizer_via6=$(echo $anomizer|$SED -e 's/0$/1/' -e 's/::$/::1/')
+echo "Anonmizer is IPv4 $anomizer and IPv6 '$anomizer6'"
 
 #if [ -z "$anomizer" ]; then
 #	anomizer=$(LANG=C $IFCONFIG mullvad|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
@@ -74,20 +80,32 @@ anonmizer_via6=$(echo $anomizer|$SED -e 's/0$/1/' -e 's/::$/::1/')
 #fi
 echo "Resetting anonymizer to route via '$anomizer'"
 echo -n " * IPv4 " && $IP -4 route replace default via $anomizer table freifunk && echo "[ok]"
-echo -n " * IPv6 " && $IP -6 route replace default via $anomizer_via6 table freifunk  && echo "[ok]"
+if [ -z  "$IPv6block" ]; then
+	echo -n " * IPv6 " && $IP -6 route replace default via $anomizer_via6 table freifunk  && echo "[ok]"
+else
+	echo "W: Ignoring all IPv6 redirections"
+fi
 
 function ipdirect () {
 	ipaddress=$1
+
+	if [ -z "$ipaddress" ]; then
+		echo "E: empty IP address passed internally"
+	fi
 
 	if echo $ipaddress | grep -q ":"; then
 
 		# IPv6
 
-		if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q eth0; then
-			echo "I: Adding direct route for IPv6 $ipaddress ($IP route replace $ipaddress via $via6 table freifunk)"
-			$IP route replace $ipaddress via $via6 table freifunk
-		else 
-			echo "I: Route for $ipaddress is existing - skipped"
+		if [ -z "$IPv6block" ]; then
+			if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q eth0; then
+				echo "I: Adding direct route for IPv6 $ipaddress ($IP route replace $ipaddress via $via6 table freifunk)"
+				$IP route replace $ipaddress via $via6 table freifunk
+			else 
+				echo "I: Route for '$ipaddress' is existing - skipped"
+			fi
+		else
+			echo "I: Ignoring all IPv6 addresses: '$ipaddress'"
 		fi
 
 	else
@@ -129,7 +147,7 @@ function ipindirect () {
 
 echo "I: learning white-listed URLs/IPs"
 
-IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $SORT -u
+IPs=$(cat <<EOIPS | $GREP -v ^# | $AWK '{print $1}' | $TEE bla.txt | $SORT -u
 #
 # ostholstein.freifunk.net - start
 ostholstein.freifunk.net
@@ -221,6 +239,7 @@ anonscm.debian.org
 149.199.0.0/16	xilinx.com
 license.xilinx.com
 xilinx.entitlenow.com
+104.244.40.0/21	api.twitter.com www.twitter.com
 # threema - start
 threema.ch
 5.148.175.192/27	#5.148.175.192 - 5.148.175.223
@@ -237,6 +256,7 @@ secure.quantserve.com
 pbs.twimg.com
 cdn.syndication.twimg.com
 syndication.twitter.com
+
 # AVIRA - end
 #s.youtube.com	redundant
 #www.youtube.com	redundant
@@ -284,7 +304,6 @@ cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
 cdn4.spiegel.de
-cdn.api.twitter.com
 count.spiegel.de
 c.spiegel.de
 pp.lp4.io
@@ -387,7 +406,6 @@ fonts.googleapis.com
 www.googletagmanager.com
 www-secure.arte.tv
 limelight.cedexis.com
-wac.799d.i1.cdndelivery.com
 artestras.vo.llnwd.net
 p.jwpcdn.com
 level3.cedexis.com
@@ -597,7 +615,6 @@ www.last.fm
 lastfm.de
 www.lastfm.de
 google-analytics.com
-www.google-analytics.com
 # GMX - start
 82.165.0.0/16	Schlund GMX
 217.160.127.0/24	Schlund webseite-start.de
@@ -742,7 +759,7 @@ c.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
-speedtest.hillcom.de
+#speedtest.hillcom.de
 www.fallingfalcon.com
 www.base-mail.de
 www.base-mail.us
@@ -780,8 +797,6 @@ speedtest.swnnms.net
 speedtest.wtnet.de
 us-u.openx.net
 view.atdmt.com
-www.google-analytics.com
-tiles.cdnst.net
 37.202.1.0/24	# Stadtwerke NeumÃnster
 37.202.2.0/24	# Stadtwerke NeumÃnster
 speedtest.ip-projects.de
@@ -2091,7 +2106,6 @@ www.amazonpreview.com
 # pokemongo - start
 www.pokemongo.com
 assets.pokemon.com
-www.google-analytics.com
 tpcipokemongoprod.112.2o7.net
 s.delvenetworks.com
 assets.adobedtm.com
@@ -2129,34 +2143,50 @@ EOIPS
 for n in $IPs
 do
 	echo "$n"
-	if false; then
-		echo "I: Removing direct link"
-		if false; then
-			for ipaddress in $($IP route list table freifunk | $CUT -f1 -d' ' ) 
-			do
-				ipindirect $ipaddress
-			done
-		else
-			for ipaddress in $($IP route | $GREP -v default | $GREP eth0 | $GREP -v scope)
-			do
-				ipindirect $ipaddress
-			done
-		fi
+
+	if [ "Binary" = "$n" ]; then
+		echo "E: Stumbled into 'Binary' host - no idea how, yet - skipping"
+
 	else
-		if [ -z "$(echo $n | tr -d '.0-9/')" ]; then
-			echo "I: Interpreting '$n' as IP Number"
-			ipdirect $n
+
+		if false; then
+			echo "I: Removing direct link"
+			if false; then
+				for ipaddress in $($IP route list table freifunk | $CUT -f1 -d' ' ) 
+				do
+					ipindirect $ipaddress
+				done
+			else
+				for ipaddress in $($IP route | $GREP -v default | $GREP eth0 | $GREP -v scope)
+				do
+					ipindirect $ipaddress
+				done
+			fi
 		else
-			hostoutput=$(host $n)
-			for ipaddress in $(echo "$hostoutput" |$GREP "has address" | $CUT -f4 -d' ' )
-			do
-				ipdirect $ipaddress
-			done
-			for ipaddress in $(echo "$hostoutput" |$GREP "has IPv6 address" | $CUT -f5 -d' ' )
-			do
-				ipdirect $ipaddress
-			done
+			if [ -z "$(echo $n | tr -d '.0-9/')" ]; then
+				echo "I: Interpreting '$n' as IP Number"
+				ipdirect $n
+			else
+				echo "I: Interpreting '$n' as host"
+			if ! hostoutput=$($HOST $n); then
+					echo "E: could not resolve address for '$n', check for typo"
+				else
+					if [ -n "$DEBUG" ]; then
+						echo "I: hostoutput: $hostoutput"
+					fi
+					for ipaddress in $(echo "$hostoutput" |$GREP "has address" | $CUT -f4 -d' ' )
+					do
+						ipdirect $ipaddress
+					done
+					for ipaddress in $(echo "$hostoutput" |$GREP "has IPv6 address" | $CUT -f5 -d' ' )
+					do
+						ipdirect $ipaddress
+					done
+				fi
+			fi
 		fi
-	fi
+	fi  # if binary
 done
+
+echo "[ok]"
 
