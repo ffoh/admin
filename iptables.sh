@@ -2,14 +2,6 @@
 
 set -e
 
-WWWip="109.75.177.24"
-Mailip="109.75.177.24"
-
-ThisIsGateway="no"
-ThisIsWebserver="no"
-ThisIsMailserver="no"
-FreifunkDevice="bat0"
-
 GREP=/bin/grep
 EGREP=/bin/egrep
 SED=/bin/sed
@@ -22,6 +14,7 @@ IFCONFIG=/sbin/ifconfig
 IPTABLES=/sbin/iptables
 WGET=/usr/bin/wget
 ECHO=/bin/echo
+HOST=/usr/bin/host
 
 for i in $GREP $SED $IP $CUT $AWK $SORT $XARGS $IFCONFIG $IPTABLES $WGET $ECHO
 do
@@ -32,6 +25,15 @@ do
 	fi
 done
 
+WWWip="109.75.177.24"
+Mailip="109.75.177.24"
+
+ThisIsGateway="no"
+ThisIsWebserver="no"
+ThisIsMailserver="no"
+FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
+echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
+
 
 GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
 #                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
@@ -40,7 +42,7 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:1
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de"
-LocalGatewayIpv4List="192.168.178.113"
+LocalGatewayIpv4List="192.168.178.42"
 
 DEVICE=eth0
 if $IFCONFIG|$GREP -q eth0.101; then
@@ -55,7 +57,7 @@ if [ -z "$myIP" ]; then
     exit
 fi
 
-$ECHO "I: myIP=my$IP"
+$ECHO "I: myIP=$myIP"
 
 for gw in $GatewayIp4List
 do
@@ -81,9 +83,17 @@ if [ "x$myIP" = "x$Mailip" ]; then
     ThisIsMailserver="yes"
 fi
 
+
+cat <<EOCAT
+ThisIsMailserver: $ThisIsMailserver
+ThisIsWebserver: $ThisIsWebserver
+ThisIsGateway: $ThisIsGateway
+myIP: $myIP
+EOCAT
+
 function FWboth {
-   FW4="/sbin/iptables"
-   FW6="/sbin/ip6tables"
+   FW4="/sbin/iptables -w 5 "
+   FW6="/sbin/ip6tables -w 5 "
    comment=$1
    if [ -n "$comment" ];then
        shift 1
@@ -99,7 +109,7 @@ function FWboth {
 }
 
 function FW4 {
-   FW4="/sbin/iptables"
+   FW4="/sbin/iptables -w 5 "
    #$ECHO $FW4 $*
    comment=$1
    if [ -n "$comment" ]; then
@@ -113,7 +123,7 @@ function FW4 {
 }
 
 function FW6 {
-   FW6="/sbin/ip6tables"
+   FW6="/sbin/ip6tables -w 5 "
    #$ECHO $FW6 $*
    comment=$1
    if [ -n "$comment" ];then
@@ -132,7 +142,8 @@ FWboth "" -F
 FWboth "" -X
 FW4 "" -t nat -F
 
-$ECHO "I: Starting with a permissive default, restricted later in case script fails"
+$ECHO "I: Starting with a permissive default, restricted later to have guaranteed access in case script fails"
+
 FWboth "" -P INPUT   ACCEPT
 FWboth "" -P FORWARD ACCEPT
 FWboth "" -P OUTPUT  ACCEPT
@@ -175,11 +186,13 @@ if [ "yes" = "$ThisIsMailserver" ]; then
 fi
 
 #$ECHO "I: JA: trusting all gateway IP6 gateway addresses on eth0"
-FW6 "Fully trusting all our other gateways" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
+FW6 "Fully trusting all our other gateways - filoo.de" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
+FW6 "Fully trusting all our other gateways - hetzner" -A INPUT -s $($HOST -t AAAA gw6.ffoh.de | cut -f5 -d\  ) -j ACCEPT
 
 $ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    $ECHO "I: Machine recognised as gateway"
+   FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
@@ -191,23 +204,30 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
-   #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
-   FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
-   FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
 
-   FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
-
-   FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
+   for FreifunkDevice in $FreifunkDevices
+   do
+      #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
+      FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+      FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
+      FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
+   done
 fi
 
 if [ "yes"="$ThisIsWebserver" ]; then
    $ECHO "I: Machine is a webserver"
-   # Accept port 10000 when it comes from the network's IP Address
-   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
-   # Accept port 11426 when it comes from the network's IP Address - for that MTU
-   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11280 -j ACCEPT"
-   # Accept port 11426 when it comes from the network's IP Address - for that MTU
-   FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11426 -j ACCEPT"
+
+   for FreifunkDevice in $FreifunkDevices
+   do
+      # Accept port 10000 when it comes from the network's IP Address
+      FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
+      # Accept port 11426 when it comes from the network's IP Address - for that MTU
+      FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11280 -j ACCEPT"
+      FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11281 -j ACCEPT"
+      # Accept port 11426 when it comes from the network's IP Address - for that MTU
+      FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11426 -j ACCEPT"
+   done
+
    for gw in $GatewayIp4List
    do
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
@@ -225,8 +245,12 @@ if [ "yes"="$ThisIsWebserver" ]; then
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
 
-FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
-FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
+for FreifunkDevice in $FreifunkDevices
+do
+   FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
+   FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
+done
+
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
@@ -245,9 +269,12 @@ done
 
 
 if [ "yes"="$ThisIsGateway" ]; then
-   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
-   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
-   FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+   for FreifunkDevice in $FreifunkDevices
+   do
+      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+   done
 
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --sport 179 -j ACCEPT"
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
@@ -261,7 +288,7 @@ FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
 
 $ECHO "I: JA: SSH, WWW, PING"
-FWboth "SSH login possible from everywhere" '-A INPUT -p tcp --dport ssh -j ACCEPT'
+FWboth "SSH login possible from everywhere except above Chinese sites" '-A INPUT -p tcp --dport ssh -j ACCEPT'
 FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j ACCEPT'
 FWboth "Do accept Pings from outside Freifunk" '-A INPUT -p icmp -j ACCEPT'
 
@@ -309,9 +336,8 @@ if [ "yes" = "$ThisIsGateway" ]; then
 		FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		if $IFCONFIG | $GREP -q eth0.102; then
 			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
-		else
+		#else
 		fi
-
 
 		anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 		if [ "" = "$anonymizer" ]; then
@@ -320,12 +346,13 @@ if [ "yes" = "$ThisIsGateway" ]; then
 		fi
 		$IP route replace default via $anonymizer table freifunk
 
-		if ifconfig mullvad | grep -q inet6; then 
-			echo "I: Found IPv6 address for mullvad - also anynymizing that"
-			FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::2:1/64 ! -d fd73:111:e824::2:1/64 -o mullvad -j MASQUERADE
-		else
-			echo "I: No IPv6 address for mullvad"
-		fi
+		# IPv6 NAT
+		#if ifconfig mullvad | grep -q inet6; then 
+		#	echo "I: Found IPv6 address for mullvad - also anynymizing that"
+		#	FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::2:1/64 ! -d fd73:111:e824::2:1/64 -o mullvad -j MASQUERADE
+		#else
+		#	echo "I: No IPv6 address for mullvad"
+		#fi
 	fi
 	$ECHO "[OK]"
 else
