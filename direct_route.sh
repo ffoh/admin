@@ -181,6 +181,7 @@ www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
 0.client-channel.google.com
 98.136.0.0/14	yahoo.com
+106.10.192.0/19	yahoo.com
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
 80.190.148.64/26	# avira
