@@ -2,7 +2,6 @@
 
 set -e
 
-IFCONFIG=/sbin/ifconfig
 GREP=/bin/grep
 SED=/bin/sed
 CUT=/usr/bin/cut
@@ -20,17 +19,13 @@ DEBUG=
 
 if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 
-gateway=$(LANG=C $IFCONFIG eth0 | $GREP "inet addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
-gateway6=$(LANG=C $IFCONFIG eth0 | $GREP "inet6 addr" |$CUT -f2 -d:|$CUT -f1 -d\ )
 
-if [ -z "$gateway" ]; then
-	gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
-	gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | grep -v "^fe80:")
-fi
+gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
+gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | $GREP -v "^fe80:")
 
 if [ -z "$gateway" ]; then
 	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
-	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | grep -v "^fe80:")
+	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | $GREP -v "^fe80:")
 	if [ -z "$gateway" ]; then
 		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
 		exit 1
@@ -563,6 +558,8 @@ anonscm.debian.org
 alioth.debian.org
 www.debian.org
 www.ubuntu.com
+security.ubuntu.com
+de.archive.ubuntu.com
 #91.189.88.0/20	canonical.com
 # zatoo - start
 zattoo.com
