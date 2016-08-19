@@ -438,8 +438,8 @@ cloud.typography.com
 91.211.72.0/22	kleinanzeigen.ebay.de
 66.211.160.0/19	EBay
 66.211.176.0/20
-66.211.172.0/22 cgi.ebay.com
-66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de
+66.211.172.0/22 cgi.ebay.com cgi5.ebay.com
+66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de cgi5.ebay.de
 ebay.de
 www.ebay.de
 gha.ebay.de
@@ -2045,6 +2045,7 @@ imap.1und1.de
 # Illumina - start
 52.64.0.0/12	basespace.illumina.com
 52.0.0.0/11	www.illumina.com
+login.illumina.com	# not redundant
 widget.uservoice.com
 by2.uservoice.com
 maxcdn.bootstrapcdn.com
@@ -2137,6 +2138,14 @@ ec2-52-51-154-14.eu-west-1.compute.amazonaws.com
 ec2-54-76-176-34.eu-west-1.compute.amazonaws.com
 # pokemongo - end
 ostholstein.fox112.de
+ssl-id1.de
+www.dict.cc
+www1.dict.cc
+www2.dict.cc
+www3.dict.cc
+www4.dict.cc
+www5.dict.cc
+www6.dict.cc
 EOIPS
 )
 
