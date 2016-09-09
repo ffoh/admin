@@ -174,6 +174,7 @@ www.apple.com	# not redundant
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
+66.102.0.0/20	#google
 0.client-channel.google.com
 98.136.0.0/14	yahoo.com
 106.10.192.0/19	yahoo.com
@@ -304,6 +305,9 @@ count.spiegel.de
 c.spiegel.de
 pp.lp4.io
 dmp.theadex.com
+ma140-r.analytics.edgekey.net
+79423.analytics.edgekey.net
+dc43.s290.meetrics.net
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
 dc57.s290.meetrics.net
@@ -2130,10 +2134,31 @@ lh5.googleusercontent.com
 lh5.ggpht.com
 lh4.googleusercontent.com
 lh4.ggpht.com
+2c.f8.5177.ip4.static.sl-reverse.com
+4f.0c.2ea9.ip4.static.sl-reverse.com
+6d.3a.559e.ip4.static.sl-reverse.com
 80.14.211.130.bc.googleusercontent.com
+132.188.211.130.bc.googleusercontent.com
+b.3a.559e.ip4.static.sl-reverse.com
 server-52-85-185-217.fra2.r.cloudfront.net
+ec2-23-23-110-16.compute-1.amazonaws.com
+ec2-52-50-68-116.eu-west-1.compute.amazonaws.com
 ec2-52-51-154-14.eu-west-1.compute.amazonaws.com
 ec2-54-76-176-34.eu-west-1.compute.amazonaws.com
+ec2-54-241-32-9.us-west-1.compute.amazonaws.com
+ec2-54-241-32-14.us-west-1.compute.amazonaws.com
+ec2-54-241-32-23.us-west-1.compute.amazonaws.com
+sso.pokemon.com
+api.geo.kontagent.net
+ap13.south.kontagent.net
+ap14.east.kontagent.net
+ap14.europe.kontagent.net
+bootstrap.upsight-api.com
+pgorelease.nianticlabs.com
+appload.ingest.crittercism.com
+single.upsight-api.com
+174.35.46.81	# PTC auth node1, gefunden auf https://phineas.io/projects/goStatus/getCurrentNianticMitigationIPS.php
+174.35.81.175	# PTC auth node2, gefunden auf https://phineas.io/projects/goStatus/getCurrentNianticMitigationIPS.php
 # pokemongo - end
 ostholstein.fox112.de
 ssl-id1.de
