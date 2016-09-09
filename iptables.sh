@@ -167,6 +167,10 @@ FW4 "dropping weird chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
 FW4 "dropping weird chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
 FW4 "dropping weird chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
 FW4 "dropping weird chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
+FW4 "dropping weird American attacker 1" -s 104.148.0.0/17 -I INPUT -j DROP
+FW4 "dropping weird American attacker 1" -d 104.148.0.0/17 -I OUTPUT -j DROP
+FW4 "dropping weird American attacker 2" -s 189.100.0.0/14 -I INPUT -j DROP
+FW4 "dropping weird American attacker 2" -d 189.100.0.0/14 -I OUTPUT -j DROP
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
@@ -197,9 +201,10 @@ if [ "yes"="$ThisIsGateway" ]; then
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
-   # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11426
+   # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11281 or 11426
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 10000 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11280 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11281 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11426 -j ACCEPT'
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
@@ -221,8 +226,9 @@ if [ "yes"="$ThisIsWebserver" ]; then
    do
       # Accept port 10000 when it comes from the network's IP Address
       FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 10000 -j ACCEPT"
-      # Accept port 11426 when it comes from the network's IP Address - for that MTU
+      # Accept port 11280 when it comes from the network's IP Address - for that MTU
       FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11280 -j ACCEPT"
+      # Accept port 11281 when it comes from a 1280 MTU for our friends at the BFO
       FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11281 -j ACCEPT"
       # Accept port 11426 when it comes from the network's IP Address - for that MTU
       FWboth "Freifunk Network - fastd from $FreifunkDevice" "-A INPUT -p udp -i $FreifunkDevice --dport 11426 -j ACCEPT"
@@ -232,12 +238,14 @@ if [ "yes"="$ThisIsWebserver" ]; then
    do
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11280 -j ACCEPT"
+	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11281 -j ACCEPT"
 	   FW4 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    for gw in $GatewayIp6List
    do
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 10000 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11280 -j ACCEPT"
+	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11281 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
    FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
