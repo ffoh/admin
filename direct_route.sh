@@ -10,6 +10,7 @@ AWK=/usr/bin/awk
 SORT=/usr/bin/sort
 TEE=/usr/bin/tee
 HOST=/usr/bin/host
+IFCONFIG=/sbin/ifconfig
 
 export LANG=C
 
@@ -19,18 +20,25 @@ DEBUG=
 
 if [ -f /etc/default/direct_route ]; then . /etc/default/direct_route; fi
 
-
-gateway=$(LANG=C $IP address show dev eth0 | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
-gateway6=$(LANG=C $IP address show dev eth0 | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | $GREP -v "^fe80:")
-
-if [ -z "$gateway" ]; then
-	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
-	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | $GREP -v "^fe80:")
-	if [ -z "$gateway" ]; then
-		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
-		exit 1
-	fi
+DEVICE=eth0
+if $IFCONFIG|$GREP -q eth0.101; then
+    DEVICE=eth0.101
+elif $IFCONFIG|$GREP -q enp4s0; then
+    DEVICE=enp4s0
 fi
+#echo "Device='$DEVICE'"
+
+gateway=$(LANG=C $IP address show dev $DEVICE | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
+gateway6=$(LANG=C $IP address show dev $DEVICE | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | $GREP -v "^fe80:")
+
+#if [ -z "$gateway" ]; then
+#	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
+#	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | $GREP -v "^fe80:")
+#	if [ -z "$gateway" ]; then
+#		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
+#		exit 1
+#	fi
+#fi
 
 if [ -z "$gateway" ]; then
 	echo "E: Could not identify gateway"
@@ -93,7 +101,7 @@ function ipdirect () {
 		# IPv6
 
 		if [ -z "$IPv6block" ]; then
-			if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q eth0; then
+			if ! $IP -6 route get $ipaddress from fd73:111:e824::2:1 iif $IIF | $GREP -q $DEVICE; then
 				echo "I: Adding direct route for IPv6 $ipaddress ($IP route replace $ipaddress via $via6 table freifunk)"
 				$IP route replace $ipaddress via $via6 table freifunk
 			else 
@@ -110,7 +118,7 @@ function ipdirect () {
 		if [ "$ipaddress" = "$gateway" ]; then
 			echo "W: Skipping direct assignment to *myself*"
         	else
-			if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q eth0; then
+			if ! $IP route get $ipaddress from 10.135.8.100 iif $IIF | $GREP -q $DEVICE; then
 				echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
 				$IP route replace $ipaddress via $via table freifunk
 			else 
@@ -163,7 +171,7 @@ do
 					ipindirect $ipaddress
 				done
 			else
-				for ipaddress in $($IP route | $GREP -v default | $GREP eth0 | $GREP -v scope)
+				for ipaddress in $($IP route | $GREP -v default | $GREP $DEVICE | $GREP -v scope)
 				do
 					ipindirect $ipaddress
 				done

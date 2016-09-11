@@ -41,12 +41,15 @@ GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.1
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
-LocalGatewayHostnames="gattywatty01.my-gateway.de"
-LocalGatewayIpv4List="192.168.178.42"
+LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
+LocalGatewayIpv4List="192.168.178.42 192.168.178.44"
 
 DEVICE=eth0
 if $IFCONFIG|$GREP -q eth0.101; then
     DEVICE=eth0.101
+    ThisIsGateway="yes"
+elif $IFCONFIG|$GREP -q enp4s0; then
+    DEVICE=enp4s0
     ThisIsGateway="yes"
 fi
 
