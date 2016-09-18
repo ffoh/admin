@@ -73,14 +73,6 @@ anomizer6=$(LANG=C $IP addr show mullvad | $GREP "inet6 "| $CUT -f1 -d/| $AWK '{
 anomizer_via6=$(echo $anomizer|$SED -e 's/0$/1/' -e 's/::$/::1/')
 echo "Anonmizer is IPv4 $anomizer and IPv6 '$anomizer6'"
 
-#if [ -z "$anomizer" ]; then
-#	anomizer=$(LANG=C $IFCONFIG mullvad|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
-#	IIF=eth0.102
-#	if [ -z "$anomizer" ]; then
-#		echo "E: Could not determine IP of anonymizer."
-#		exit 1
-#	fi
-#fi
 echo "Resetting anonymizer to route via '$anomizer'"
 echo -n " * IPv4 " && $IP -4 route replace default via $anomizer table freifunk && echo "[ok]"
 if [ -z  "$IPv6block" ]; then
