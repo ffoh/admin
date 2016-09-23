@@ -42,7 +42,32 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:1
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
-LocalGatewayIpv4List="192.168.178.42 192.168.178.44"
+LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32"
+RemoteGatewayIPv4List=""
+RemoteGatewayIPv6List=""
+for i in $LocalGatewayHostnames
+do
+	remoteIPv4=$(host -4 $i | grep -v IPv6 | cut -f4 -d\ )
+	if [ -n "$remoteIPv4" ]; then
+		if [ -z "$RemoteGatewayIPv4List" ]; then
+			#echo "I: Added 4"
+			RemoteGatewayIPv4List=$remoteIPv4
+		else
+			RemoteGatewayIPv4List="$RemoteGatewayIPv4List $remoteIPv4"
+		fi
+	fi
+
+	remoteIPv6=$(host -4 $i | grep IPv6 | cut -f5 -d\ )
+        if [ -n "$remoteIPv6" ]; then
+		#echo "remoteIPv6: $remoteIPv6"
+		if [ -z "$RemoteGatewayIPv6List" ]; then
+			#echo "I: Added 6"
+			RemoteGatewayIPv6List=$remoteIPv6
+		else
+			RemoteGatewayIPv6List="$RemoteGatewayIPv6List $remoteIPv6"
+		fi
+	fi
+done
 
 DEVICE=eth0
 if $IFCONFIG|$GREP -q eth0.101; then
@@ -62,11 +87,12 @@ fi
 
 $ECHO "I: myIP=$myIP"
 
-for gw in $GatewayIp4List
+for gw in $GatewayIp4List $RemoteGatewayIpv4List $LocalGatewayIpv4List
 do
     if [ "x$gw" = "x$myIP" ]; then
        # this is a gateway machine
        ThisIsGateway="yes"
+       break
     fi
 done
 
@@ -92,7 +118,10 @@ ThisIsMailserver: $ThisIsMailserver
 ThisIsWebserver: $ThisIsWebserver
 ThisIsGateway: $ThisIsGateway
 myIP: $myIP
+RemoteGatewayIPv4List: $RemoteGatewayIPv4List
+RemoteGatewayIPv6List: $RemoteGatewayIPv6List
 EOCAT
+#exit
 
 function FWboth {
    FW4="/sbin/iptables -w 5 "
@@ -180,8 +209,8 @@ FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
 
-$ECHO "I: JA: trusting all gateway IP4 gateway addresses on eth0"
-for gw in $GatewayIp4List
+$ECHO "I: JA: trusting all gateway IP4 gateway addresses, also the local ones - debateable"
+for gw in $GatewayIp4List $RemoteGatewayIPv4List
 do
 	$ECHO -n "       gateway $gw "
 	FW4 "Fully_trusting_gateway" -A INPUT -s $gw/32 -j ACCEPT
@@ -192,9 +221,15 @@ if [ "yes" = "$ThisIsMailserver" ]; then
     FWboth "Mailservers accept on port 25" -A INPUT -p tcp -m multiport --dports smtp,ssmtp -j ACCEPT 
 fi
 
-#$ECHO "I: JA: trusting all gateway IP6 gateway addresses on eth0"
+#$ECHO "I: JA: trusting all gateway IP6 gateway addresses on $DEVICE"
 FW6 "Fully trusting all our other gateways - filoo.de" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
 FW6 "Fully trusting all our other gateways - hetzner" -A INPUT -s $($HOST -t AAAA gw6.ffoh.de | cut -f5 -d\  ) -j ACCEPT
+
+for gw in $RemoteGatewayIPv6List
+do
+	$ECHO -n "       gateway $gw "
+	FW6 "Fully_trusting_gateway" -A INPUT -s $gw -j ACCEPT
+done
 
 $ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
@@ -262,11 +297,11 @@ do
    FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
 done
 
-FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i eth0 -p icmpv6 -j ACCEPT
+FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i $DEVICE -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
-#FWboth "Receive NTP packages" '-A INPUT -p udp -i eth0 --dport ntp -j ACCEPT'
-#FWboth "Receive NTP packages" '-A INPUT -p tcp -i eth0 --dport ntp -j ACCEPT'
+#FWboth "Receive NTP packages" '-A INPUT -p udp -i $DEVICE --dport ntp -j ACCEPT'
+#FWboth "Receive NTP packages" '-A INPUT -p tcp -i $DEVICE --dport ntp -j ACCEPT'
 
 # Always trust all gateways and Webservers, also for their external IPs
 for gw in $GatwayIp4List
@@ -336,18 +371,17 @@ FW4 "" -P INPUT ACCEPT
 
 if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
+	FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o $DEVICE -j MASQUERADE'
 	if $IFCONFIG | $GREP -q eth0.102; then
-		FW4 "Directing 10.135.0.0/16 to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0.101 -j MASQUERADE'
-		#FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 ! -d 192.168.178.0/24 -j MASQUERADE'
-		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o eth0.101 -j MASQUERADE'
-	else
-		FW4 "Directing 10.135.0.0/16 leaving to the internet." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o eth0 -j MASQUERADE'
+		#FIXME - abstract this is a device-independent way
+		#FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE'
+		FW4 "Directing 192.168.186.0/24 o the internet." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE'
 	fi
 	if $IFCONFIG | $GREP -q mullvad; then
 		FW4 "Routing 10.135.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE'
 		if $IFCONFIG | $GREP -q eth0.102; then
-			FW4 "Routing 192.168.0.0/16 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.0.0/16 -o mullvad -j MASQUERADE'
-		#else
+			#FIXME - abstract this is a device-independent way
+			FW4 "Routing 192.168.186.0/24 anonymously through mullvad." '-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE'
 		fi
 
 		anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')

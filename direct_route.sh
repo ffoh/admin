@@ -13,6 +13,7 @@ HOST=/usr/bin/host
 IFCONFIG=/sbin/ifconfig
 
 export LANG=C
+export LC_ALL=C
 
 IPv6block=#
 
@@ -26,35 +27,30 @@ if $IFCONFIG|$GREP -q eth0.101; then
 elif $IFCONFIG|$GREP -q enp4s0; then
     DEVICE=enp4s0
 fi
-#echo "Device='$DEVICE'"
+echo "I: Device='$DEVICE'"
 
 gateway=$(LANG=C $IP address show dev $DEVICE | $GREP "inet " | $AWK '{print $2}' | $CUT -f1 -d/ )
-gateway6=$(LANG=C $IP address show dev $DEVICE | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | $GREP -v "^fe80:")
-
-#if [ -z "$gateway" ]; then
-#	gateway=$(LANG=C $IFCONFIG eth0.101|$GREP "inet "| sed -e 's/addr://'|$AWK '{print $2}')
-#	gateway6=$(LANG=C $IFCONFIG eth0.101|$GREP "inet6 "| sed -e 's/addr://'|$AWK '{print $2}' | $GREP -v "^fe80:")
-#	if [ -z "$gateway" ]; then
-#		echo "E: Could not identify gateway via ifconfig eth0 or ifconfig eth0.101"
-#		exit 1
-#	fi
-#fi
-
+echo "I: gateway: $gateway"
 if [ -z "$gateway" ]; then
 	echo "E: Could not identify gateway"
 	exit 3
 fi
 
-if [ -z "$gateway6" ]; then
-	echo "E: Could not identify gateway for IPv6"
-	exit 3
+if [ -z "$IPv6block" ]; then
+	gateway6=$(LANG=C $IP address show dev $DEVICE | $GREP "inet6 " | $AWK '{print $2}' | $CUT -f1 -d/ | $GREP -v "^fe80:")
+	echo "I: gateway6: $gateway6"
+
+	if [ -z "$gateway6" ]; then
+		echo "E: Could not identify gateway for IPv6"
+		exit 3
+	fi
+	via6=$(echo $gateway6|$SED -e 's/0$/1/' -e 's/::$/::1/')
+	#echo "via: $via"
 fi
 
 echo -n "Identified gateway as '$gateway'"
 
 via=$(LANG=C $IP route|$GREP default|cut -f3 -d\ )
-via6=$(echo $gateway6|$SED -e 's/0$/1/' -e 's/::$/::1/')
-#echo "via: $via"
 if [ -z "$via" ]; then
 	via=$(echo $gateway|$CUT -f 1,2,3 -d .).1
 fi
@@ -143,9 +139,7 @@ function ipindirect () {
 echo "I: learning white-listed URLs/IPs"
 
 i=0
-IPs=$(cat $(dirname $0)/deanonymise.txt | $GREP -v ^# | $AWK '{print $1}' | $TEE bla.txt | $SORT -u )
-
-for n in $IPs
+cat $(dirname $0)/deanonymise.txt | $GREP -v ^# | $AWK '{print $1}' | $TEE bla.txt | $SORT -u | while read n
 do
 	i=$(($i+1))
 	echo "$i: $n"
