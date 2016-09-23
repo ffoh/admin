@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 ### BEGIN INIT INFO
 # Provides:          freifunk
 # Required-Start:    $local_fs $time $network openvpn $named
@@ -17,24 +19,34 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 . /lib/lsb/init-functions
 
+IFCONFIG=/sbin/ifconfig
+GREP=/bin/grep
+IP=/sbin/ip
+
+DEVICE=eth0
+if $IFCONFIG|$GREP -q eth0.101; then
+    DEVICE=eth0.101
+elif $IFCONFIG|$GREP -q enp4s0; then
+    DEVICE=enp4s0
+fi      
+
+
 do_start () {
-	echo "I: freifunk setting up iptables"
+	echo "I: freifunk setting up iptables - sleeping 60 seconds"
 
 	sleep 60
 
 	cd $ADMINDIR
 	git pull
 
-	ip -6 rule add from all iif bat0 lookup freifunk
-	ip -4 rule add from all iif bat0 lookup freifunk
+	$IP -6 rule add from all iif bat0 lookup freifunk
+	$IP -4 rule add from all iif bat0 lookup freifunk
 
 	$ADMINDIR/iptables.sh
 
 	(sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
 
 	alfred -m -i bat0 > /dev/null &
-
-	(sleep 10 && cd /root/git && nice ./direct_route.sh > /dev/null)&
 
 }
 
@@ -43,11 +55,11 @@ case "$1" in
 	do_start
 	;;
   status)
-	for cmd in "batctl gw" "ifconfig mullvad" "ip route show table freifunk | grep default" "ip route show" "ip rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I eth0"
+	for cmd in "batctl gw" "ifconfig mullvad" "$IP route show table freifunk | grep default" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
 	do
 		echo
 		echo "I: $cmd"
-		echo $($cmd)
+		echo $( $cmd )
 	done
 	;;
   restart|reload|force-reload)
@@ -66,4 +78,4 @@ case "$1" in
 	;;
 esac
 
-
+echo "[ ok ]“
