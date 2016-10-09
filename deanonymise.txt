@@ -611,6 +611,8 @@ b.scorecardresearch.com
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
+speedtest01.addix.net
+ookla1.speedtest.tng.de
 www.speedtest.net
 c.speedtest.net
 zdstatic.speedtest.net
@@ -643,6 +645,7 @@ ib.adnxs.com
 ih.adscale.de
 sadmin.brightcove.com
 match.adsrvr.org
+mus.cisco.com
 pagead2.googlesyndication.com
 pixel.quantserve.com
 pubads.g.doubleclick.net
@@ -651,9 +654,14 @@ sl-02.wemacom.de
 speedtest.csb-net.de
 speedtest.studiofunk.de
 speedtest.swnnms.net
+speedtest.tng.de
+speedtest.vodafone-ip.de
 speedtest.wtnet.de
 us-u.openx.net
 view.atdmt.com
+ip5886b6d3.dynamic.kabel-deutschland.de
+speedtest.tng.de
+x1-6-00-26-b9-f3-01-88.cpe.webspeed.de
 37.202.1.0/24	# Stadtwerke Neum√nster
 37.202.2.0/24	# Stadtwerke Neum√nster
 speedtest.ip-projects.de
@@ -1486,6 +1494,9 @@ osmand.net
 157.60.0.0/16	Microsoft
 157.56.0.0/14	Microsoft
 157.54.0.0/15	Microsoft
+13.104.0.0/14	Microsoft
+13.64.0.0/11	Microsoft
+13.96.0.0/13	Microsoft
 # Germanwings - start
 80.149.246.0/24	Germanwings/Eurowings
 fast.fonts.net
@@ -1534,7 +1545,6 @@ pop3.netcologne.de
 www.zeit.de
 85.205.0.0/16	#vodefone
 webmail.vodafone.com
-speedtest.vodafone-ip.de
 # evernote - start
 204.154.94.0/23 evernote.com www.evernote.com
 cdn1.evernote.com
@@ -2030,3 +2040,4 @@ www.msftncsi.com
 vpn.mercedes-amg.com
 s3-3-w.amazonaws.com
 downloads.ubnt.com
+72.163.0.0/16	Cisco
