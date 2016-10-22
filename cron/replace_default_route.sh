@@ -7,10 +7,18 @@ DATE=/bin/date
 IP=/sbin/ip
 GREP=/bin/grep
 BATCTL=/usr/sbin/batctl
+PS=/bin/ps
+IFCONFIG=/sbin/ifconfig
+WC=/usr/bin/wc
+AWK=/usr/bin/awk
+CUT=/usr/bin/cut
 
-if /bin/ps aux|$GREP openvpn|$GREP -q mullvad && /sbin/ifconfig mullvad | $GREP -q inet; then
+DEBUG=F
+#DEBUG=T
+
+if $PS aux|$GREP openvpn|$GREP -q mullvad && LANG=C $IFCONFIG mullvad | $GREP -q "inet "; then
 	#echo ok
-	defaultrouteno=$(/sbin/ip route list table freifunk |$GREP default | wc -l)
+	defaultrouteno=$($IP route list table freifunk |$GREP default | $WC -l)
 else
 	$DATE | $TEE -a $LOGFILE
 	echo "* Restart" | $TEE -a $LOGFILE
@@ -18,9 +26,12 @@ else
 	sleep 10
 	defaultrouteno=0
 fi
-#echo "I: defaultrouteno: $defaultrouteno"
+if [ "T" = "$DEBUG" ]; then
+	echo "defaultrouteno: $defaultrouteno"
+fi
+
 if [ 0 -eq $defaultrouteno ];  then
-	mullvadip=$(LANG=C /sbin/ifconfig mullvad | head -n 2 |$GREP inet|tr " " "\n" | $GREP addr | cut -f2 -d:)
+	mullvadip=$(LANG=C $IP addr show mullvad |$GREP "inet "|cut -f1 -d/|$AWK '{print $2}')
 	$DATE | $TEE -a $LOGFILE
 	if [ "x$mullvadip" != "x" ]; then
 		$IP route replace default via $mullvadip table freifunk | $TEE -a $LOGFILE
