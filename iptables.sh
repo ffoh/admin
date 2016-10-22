@@ -130,6 +130,8 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 FW4 "dropping weird chinese attacker" -s 222.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker" -s 115.231.0.0/16 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker" -s 183.0.0.0/8 -I INPUT -j DROP
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
 echo "I: JA: trust myself on lo"
