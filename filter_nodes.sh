@@ -21,13 +21,19 @@ direct vs indirect contact with the webserver may vary if the webserver
 serves as an uplink itself.
 
 EOHELP
-	exit
+	exit 1
 fi
 
 set -e
 
 PREFIX=/tmp/macfilter_
-IPv6prefix=fd73:0111:e824:0000
+IPv6prefix=fd73:0111:e824:0000::
+
+ipv6calc=/usr/bin/ipv6calc
+if [ ! -x "$ipv6calc" ]; then
+	echo "E: Please install ipv6calc from the cognate package."
+	exit 1
+fi
 
 if [ ! -r ${PREFIX}01_tracelist ]; then
 	echo "I: Determining tracelist"
@@ -62,8 +68,7 @@ echo "ip6tables -F determines-autoupdates && ip6tables -X determines-autoupdates
 echo "ip6tables -N determines-autoupdates" >> ${PREFIX}commands
 cat ${PREFIX}04_permitted | while read macaddress
 do
-	#echo /sbin/ip6tables -A determines-autoupdates -i bat0 -m mac --mac-source $macaddress -j ACCEPT
-	ipv6address="$IPv6prefix:$(echo $macaddress | cut -f1,2 -d: | tr --delete ':'):$(echo $macaddress | cut -f3 -d:)ff:fe$(echo $macaddress | cut -f4 -d:):$(echo $macaddress | cut -f5,6 -d: | tr --delete ':' )"
+	ipv6address=$(ipv6calc --action prefixmac2ipv6 --in prefix+mac --out ipv6addr $IPv6prefix $macaddress)
 	echo /sbin/ip6tables -A determines-autoupdates -i bat0 -s $ipv6address -j ACCEPT
 done >> ${PREFIX}commands
 echo "/sbin/ip6tables -m comment --comment 'rejected router for update' -A determines-autoupdates -m limit --limit 5/min -j LOG --log-prefix Denied_Update: --log-level 7" >> ${PREFIX}commands
