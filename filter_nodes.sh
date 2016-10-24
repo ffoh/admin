@@ -64,12 +64,24 @@ echo "I: Creating .sh script to direct the firewall"
 
 echo "#!/bin/bash -e" > ${PREFIX}commands
 echo "/sbin/ip6tables -D INPUT -p tcp -i bat0 --destination-port 80 -j determines-autoupdates || echo 'Fail delete of reference ignored'" >> ${PREFIX}commands 
+batmantranslation="/sys/kernel/debug/batman_adv/bat0/transtable_global"
 echo "ip6tables -F determines-autoupdates && ip6tables -X determines-autoupdates || echo 'Fail delete of prior chain ignored.'" >> ${PREFIX}commands
 echo "ip6tables -N determines-autoupdates" >> ${PREFIX}commands
-cat ${PREFIX}04_permitted | while read macaddress
+cat ${PREFIX}04_permitted | while read originmac
 do
-	ipv6address=$(ipv6calc --action prefixmac2ipv6 --in prefix+mac --out ipv6addr $IPv6prefix $macaddress)
-	echo /sbin/ip6tables -A determines-autoupdates -i bat0 -s $ipv6address -j ACCEPT
+	originipv6address=$(ipv6calc --action prefixmac2ipv6 --in prefix+mac --out ipv6addr $IPv6prefix $originmac)
+	clientmacs=$(grep "$originmac" $batmantranslation | cut -f3 -d\  )
+
+	echo "/sbin/ip6tables -A determines-autoupdates -i bat0 -s $originipv6address -m comment --comment 'origin of $(echo $clientmacs | tr "\n" " ")' -j ACCEPT"
+
+	if [ -n "$clientmacs" ]; then
+		for clientmac in $clientmacs; do
+			clientipv6address=$(ipv6calc --action prefixmac2ipv6 --in prefix+mac --out ipv6addr $IPv6prefix $clientmac)
+			echo "/sbin/ip6tables -A determines-autoupdates -i bat0 -s $clientipv6address -m comment --comment 'client of $originmac' -j ACCEPT"
+		done
+	else
+		echo "# E: Could not find client for origin '$originmac'"
+	fi
 done >> ${PREFIX}commands
 echo "/sbin/ip6tables -m comment --comment 'rejected router for update' -A determines-autoupdates -m limit --limit 5/min -j LOG --log-prefix Denied_Update: --log-level 7" >> ${PREFIX}commands
 echo "/sbin/ip6tables -A determines-autoupdates -p tcp -i bat0 --destination-port 80 -j REJECT" >> ${PREFIX}commands
