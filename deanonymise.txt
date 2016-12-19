@@ -21,10 +21,10 @@ hallo-holstein.de	# and all other BFO pages with it
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com
+216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 ipv4.google.com	# _should be_ redundant
-172.217.0.0/16	www.google.de
+172.217.0.0/16	www.google.de ...metric.gstatic.com
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
 www.google.com	# sicher ist sicher
@@ -139,9 +139,9 @@ picotech.com
 66.220.144.0/20	facebook
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
-31.13.64.0/24	facebook
 31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
+31.13.64.0/24	connect.facebook.net facebook
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
@@ -234,6 +234,43 @@ cdn.ravenjs.com
 # spotify - end
 # Arte - begin
 arte.tv
+static-cdn.arte.tv
+gscounters.eu1.gigya.com
+cdn1.gigya.com
+cdn2.gigya.com
+cdn3.gigya.com
+club.arte.tv
+a.disquscdn.com
+disqus.com
+programmes-de.disqus.com
+static-bp.kameleoon.com
+logc136.xiti.com
+staticxx.facebook.com
+www.facebook.com
+glitter.services.disqus.com
+referrer.disqus.com
+tags.bluekai.com
+loadus.exelator.com
+bcp.crwdcntrl.net
+pippio.com
+sp.adbrn.com
+cm.dsp.linksynergy.com
+pixel.sojern.com
+bcp.crwdcntrl.net
+p.adsymptotic.com
+idsync.rlcdn.com
+logs1136.xiti.com
+mesure.streaming.estat.com
+sso.arte.tv
+rc.rlcdn.com
+lore.circulate.com
+cm.dsp.linksynergy.com
+creatives.dsp.linksynergy.com
+gscounters.eu1.gigya.com
+ssl.p.jwpcdn.com
+artehls-vh.akamaihd.net
+auth.estat.com
+log-player.arte.tv
 info.arte.tv
 future.arte.tv
 creative.arte.tv
@@ -294,7 +331,7 @@ cloud.typography.com
 66.211.160.0/19	EBay
 66.211.176.0/20
 66.211.172.0/22 cgi.ebay.com cgi5.ebay.com
-66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de cgi5.ebay.de
+66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de cgi5.ebay.de checkoutweb.ebay.com
 ebay.de
 www.ebay.de
 gha.ebay.de
@@ -395,7 +432,15 @@ media.ndr.de
 download.media.tagesschau.de
 www.mdr.de
 # ARD mit Tagesschau - end
+# ARD Mediathek - start
 www.ardmediathek.de
+seccdn-gl.imrworldwide.com
+cdn-storage.br.de
+logs1242.xiti.com
+cdn-storage.br.de
+secure-eu.imrworldwide.com
+ma140-r.analytics.edgesuite.net
+# ARD Mediathek - end
 cp229098.edgefcs.net
 script.ioam.de
 # NRD - start
@@ -530,6 +575,14 @@ www.phoenix.de
 # ZDF - start
 webcam.zdf.de
 wwwdyn.zdf.de
+module.zdf.de
+cisnet.iqsn.de
+logs1407.xiti.com
+tracksrv.zdf.de
+seccdn-gl.imrworldwide.com
+epg-image.zdf.de
+secure-eu.imrworldwide.com
+zdfvodnone-vh.akamaihd.net
 phoenix.ivwbox.de
 fstreaming.zdf.de
 secure-eu.imrworldwide.com
@@ -1806,7 +1859,10 @@ www.pro-linux.de
 31.19.0.0/16	#kabeldeutschland
 193.99.144.0/24	heise.de
 www.reichelt.de
+# overleaf - start
 www.overleaf.com
+cdn.mathjax.org
+# overleaf - end
 www.whatismyip.com
 159.122.189.32/27	teamviewer.com
 # nowtv.de - start
@@ -2041,3 +2097,20 @@ vpn.mercedes-amg.com
 s3-3-w.amazonaws.com
 downloads.ubnt.com
 72.163.0.0/16	Cisco
+# radio.de - start
+api.radio.de
+static.radio.de
+jazz-wr06.ice.infomaniak.ch
+js-agent.newrelic.com
+staticxx.facebook.com
+dmp.theadex.com
+jazzradiojazzfunk.radio.de
+imasdk.googleapis.com
+de.ioam.de
+www.video.oms.eu
+# radio.de - end
+# ALDI IP Cam - start
+supra-space.com
+s8tze0pf8djn.rdr.megracloud.net
+supracam.net
+# ALDI IP Cam - end
