@@ -195,6 +195,10 @@ FWboth "" -A log-drop-out -j DROP
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
+FW4 "dropping weird chinese attacker" -s 115.231.0.0/16 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker" -s 115.231.0.0/16 -I OUTPUT -j DROP
+FW4 "dropping weird chinese attacker" -s 183.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird chinese attacker" -s 183.0.0.0/8 -I OUTPUT -j DROP
 FW4 "dropping weird chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
 FW4 "dropping weird chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
 FW4 "dropping weird chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
