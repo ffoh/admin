@@ -615,6 +615,7 @@ speedtest01.addix.net
 ookla1.speedtest.tng.de
 www.speedtest.net
 c.speedtest.net
+beta.speedtest.net
 zdstatic.speedtest.net
 www.alternateatmosphere.com
 tiles.cdnst.net
