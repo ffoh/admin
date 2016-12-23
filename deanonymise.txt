@@ -27,6 +27,7 @@ ipv4.google.com	# _should be_ redundant
 172.217.0.0/16	www.google.de ...metric.gstatic.com
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
+80.149.20.64/26	# googlevideo Düsseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com
@@ -34,6 +35,8 @@ www.google.de	# sicher ist sicher
 0.client-channel.google.com
 98.136.0.0/14	yahoo.com
 106.10.192.0/19	yahoo.com
+217.12.0.0/20	yahoo.eu.net
+217.146.184.0/21	yahoo.eu.net
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
 80.190.148.64/26	# avira
@@ -333,54 +336,87 @@ cloud.typography.com
 66.211.172.0/22 cgi.ebay.com cgi5.ebay.com
 66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de cgi5.ebay.de checkoutweb.ebay.com
 ebay.de
-www.ebay.de
-gha.ebay.de
-www.ebay.com
-stat.dealtime.com
-open.api.ebay.com
-mobior.ebay.com
-mobidcs.ebay.com
-rpsx.ebay.com
-ebay.ivwbox.de
+aa.online-metrix.net
+akamai.mathtag.com	# when paying with paypal
 api.ebay-kleinanzeigen.de
-m.ebay-kleinanzeigen.de
-static.criteo.net
-widget.criteo.com
-ir.ebaystatic.com
-p.ebaystatic.com
-q.ebaystatic.com
-pics.ebaystatic.com
-rover.ebay.de
-rtm.ebaystatic.com
+api.ebaycommercenetwork.com
+api.treepodia.com
+assets.adobedtm.com
+autosug.ebaystatic.com
+b.stats.ebay.com
+c.paypal.com
+cdn.cnetcontent.com
+cdn.roma.ebay.com
+checkout.payments.ebay.de	# not within ebay.de
+checkoutweb.ebay.de	# not wihtin ebay.de
+csr.ebay.com
+de.ioam.de
+ebay.ivwbox.de
+encrypted-tbn0.gstatic.com
+encrypted-tbn1.gstatic.com
+encrypted-tbn2.gstatic.com
+encrypted-tbn3.gstatic.com
+forum.ebay-kleinanzeigen.de
+gha.ebay.de
 i.ebayimg.com
+i1.ebayimg.com
+i2.ebayimg.com
+i3.ebayimg.com
+i18.ebayimg.com
+ib.adnxs.com
+images.harlander.com
+ir.ebaystatic.com
+load.s3.amazonaws.com
+m.ebay-kleinanzeigen.de
+mobidcs.ebay.com
+mobior.ebay.com
+open.api.ebay.com
+p.ebaystatic.com
+payments.ebay.de
+pics.ebaystatic.com
+psoc-pixel.ebay.com
+pixel.mathtag.com
+psoc.ebayc3.com
+q.ebaystatic.com
+reco.ebay.com
+rewards.ebay.de
+rover.ebay.de
+rover.ebay.com
+rpsx.ebay.com
+rtm.ebaystatic.com
+secureinclude.ebaystatic.com
+secureir.ebaystatic.com
+securepubads.g.doubleclick.net
+securertm.ebaystatic.com
+signin.ebay.de
+sofe.ebay.de	# when paying via paypal
+src.ebay-us.com
+srv.de.ebayrtm.com
+srv.main.ebayrtm.com
+srx.de.ebayrtm.com
+ssli.ebayimg.com	# after paying with ebay
+sslthumbs.ebaystatic.com
+stags.bluekai.com
+stat.dealtime.com
+static.criteo.net
+sync.mathtag.com
 svcs.ebay.com
 thumbs.ebaystatic.com
 thumbs1.ebaystatic.com
 thumbs2.ebaystatic.com
 thumbs3.ebaystatic.com
 thumbs4.ebaystatic.com
-sslthumbs.ebaystatic.com
 vi.vipr.ebaydesc.com
+vod.ebay.de	# after payment with paypal
+widget.criteo.com
+ws.cnetcontent.com
+www.ebay.com
+www.ebay.de
+www.googletagservices.com
+www.harlander.com
 www.sainsmart.com
-i18.ebayimg.com
-api.ebaycommercenetwork.com
-forum.ebay-kleinanzeigen.de
-csr.ebay.com
-signin.ebay.de
-secureir.ebaystatic.com
-secureinclude.ebaystatic.com
-src.ebay-us.com
-srx.de.ebayrtm.com
-aa.online-metrix.net
-b.stats.ebay.com
-psoc.ebayc3.com
-pixel.mathtag.com
-checkout.payments.ebay.de	# not within ebay.de
-checkoutweb.ebay.de	# not wihtin ebay.de
-srv.de.ebayrtm.com
-stags.bluekai.com
-srv.main.ebayrtm.com
-reco.ebay.com
+x.bidswitch.net
+x.velocity.ebay.com
 # ebay - end
 # paypal - start
 www.paypal.de
@@ -431,6 +467,9 @@ cdn-storage.br.de
 media.ndr.de
 download.media.tagesschau.de
 www.mdr.de
+wetter.tagesschau.de
+de.sitestat.com
+secure-eu.imrworldwide.com
 # ARD mit Tagesschau - end
 # ARD Mediathek - start
 www.ardmediathek.de
@@ -483,20 +522,23 @@ cdn.optimizely.com
 # amazon - start
 #176.32.104.0/19	# Amazon Dublin #Fehler??!
 amazon.de
+afs.googleusercontent.com
+atv-ps-eu.amazon.com
+cloudfront-labs.amazonaws.com
 cloudfront-labs.amazonaws.com
 ecx.images-amazon.com
 fls-devo.vipinteg.amazon.com
 fls-eu.amazon.de
-g-ecx.images-amazon.com
 g-ec2.images-amazon.com
+g-ecx.images-amazon.com
 images-na.ssl-images-amazon.com
+images-na.ssl-images-amazon.com
+images-eu.ssl-images-amazon.com
+smooth.l3.cdn.lovefilm.com
 static.amazon.de
 www.amazon.de
+www.adsensecustomsearchads.com
 z-ecx.images-amazon.com
-images-na.ssl-images-amazon.com
-cloudfront-labs.amazonaws.com
-atv-ps-eu.amazon.com
-smooth.l3.cdn.lovefilm.com
 # amazon - end
 volksbank-luebeck.de
 www.volksbank-luebeck.de
@@ -2115,3 +2157,24 @@ supra-space.com
 s8tze0pf8djn.rdr.megracloud.net
 supracam.net
 # ALDI IP Cam - end
+# yahoo.com - start
+edge.simplereach.com
+yt3.ggpht.com
+cdn.bustle.com
+s.ytimg.com
+ping.chartbeat.net
+s.yimg.com
+de.yahoo.com
+s1.yimg.com
+sb.scorecardresearch.com
+beap-bc.yahoo.com
+csync.flickr.com
+udc.yahoo.com
+geo.query.yahoo.com
+geo.yahoo.com
+bats.video.yahoo.com
+# yahoo.com - end
+# virtualbox - start
+download.virtualbox.org
+www.virtualbox.org
+# virtualbox - end
