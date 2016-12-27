@@ -2178,3 +2178,7 @@ bats.video.yahoo.com
 download.virtualbox.org
 www.virtualbox.org
 # virtualbox - end
+# ING-DiBa - start
+banking.ing-diba.de
+www.ing-diba.de
+# ING-DiBa - end
