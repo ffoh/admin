@@ -23,6 +23,7 @@ www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
+iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
 172.217.0.0/16	www.google.de ...metric.gstatic.com
 194.122.80.0/24	# google cache
@@ -152,19 +153,22 @@ static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
 # spiegel - start
+104.244.40.0/21	twitter
+199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
+79423.analytics.edgekey.net
+a.visualrevenue.com
 ad2.adfarm1.adition.com
+ad8.adfarm1.adition.com
+ads.stickyadstv.com
 adserv.quality-channel.de
+c.spiegel.de
 cas.criteo.com
+cat.nl.eu.criteo.com
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
 cdn4.spiegel.de
 count.spiegel.de
-c.spiegel.de
-pp.lp4.io
-dmp.theadex.com
-ma140-r.analytics.edgekey.net
-79423.analytics.edgekey.net
 dc43.s290.meetrics.net
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
@@ -177,50 +181,47 @@ dc73.s290.meetrics.net
 dc80.s290.meetrics.net
 dc83.s290.meetrics.net
 dc84.s290.meetrics.net
-h364.meetrics.de
+de-ipd.videoplaza.tv
+dmp.theadex.com
+dt.adsafeprotected.com
+files.adform.net
+geschichte.spiegel.de
+get.adobe.com
 h342.meetrics.de
 h343.meetrics.de
-geschichte.spiegel.de
-magazin.spiegel.de
+h364.meetrics.de
+images.nl.eu.criteo.net
+images.nl.eu.criteo.net
+imagesrv.adition.com
+jdn.monster.com
+jwpltx.com
 m.spiegel.de
+ma140-r.analytics.edgekey.net
+magazin.spiegel.de
+platform.twitter.com	# not redundant
+pp.lp4.io
+prod-static.spiegel.tv
+purl.org
 qs.ioam.de
 qs.ivwbox.de
 s290.mxcdn.net
+scontent.xx.fbcdn.net
 script.ioam.de
+server.adform.net
 spiegel.de
 spiegel.ivwbox.de
-199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
-104.244.40.0/21	twitter
-platform.twitter.com	# not redundant
-video2.spiegel.de
+spiegel.met.vgwort.de
+stat.flashtalking.com
+static.xx.fbcdn.net
+uobsoe.com
 video.spiegel.de
+video2.spiegel.de
+vrp.outbrain.com
+vrt.outbrain.com
 vt.adition.com
 www.google-analytics.com
 www.spiegel.de
-imagesrv.adition.com
-de-ipd.videoplaza.tv
-ads.stickyadstv.com
-ad8.adfarm1.adition.com
-dt.adsafeprotected.com
-stat.flashtalking.com
 www.spiegel.tv
-prod-static.spiegel.tv
-purl.org
-get.adobe.com
-files.adform.net
-server.adform.net
-jwpltx.com
-static.xx.fbcdn.net
-scontent.xx.fbcdn.net
-spiegel.met.vgwort.de
-uobsoe.com
-vrt.outbrain.com
-vrp.outbrain.com
-images.nl.eu.criteo.net
-a.visualrevenue.com
-jdn.monster.com
-cat.nl.eu.criteo.com
-images.nl.eu.criteo.net
 # spiegel - end
 # spotify - start
 194.14.177.0/24	spotify.com
@@ -349,6 +350,7 @@ cdn.cnetcontent.com
 cdn.roma.ebay.com
 checkout.payments.ebay.de	# not within ebay.de
 checkoutweb.ebay.de	# not wihtin ebay.de
+contact.ebay.de
 csr.ebay.com
 de.ioam.de
 ebay.ivwbox.de
@@ -370,6 +372,7 @@ load.s3.amazonaws.com
 m.ebay-kleinanzeigen.de
 mobidcs.ebay.com
 mobior.ebay.com
+ocsrest.ebay.de
 open.api.ebay.com
 p.ebaystatic.com
 payments.ebay.de
@@ -379,6 +382,7 @@ pixel.mathtag.com
 psoc.ebayc3.com
 q.ebaystatic.com
 reco.ebay.com
+res.ebay.de
 rewards.ebay.de
 rover.ebay.de
 rover.ebay.com
@@ -1178,6 +1182,7 @@ skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
 b.medtronic.com	# not redundant, pointing to adobe
 # Java - start
 java.com
+consent.truste.com	# when testing browser for functionality
 oracle.112.2o7.net
 javadl.sun.com
 sdlc-esd.sun.com
@@ -2177,4 +2182,9 @@ bats.video.yahoo.com
 # virtualbox - start
 download.virtualbox.org
 www.virtualbox.org
+www.oracleimg.com
+s7.addthis.com
+oracle.taleo.net
+m.addthisedge.com
+s7.addthis.com
 # virtualbox - end
