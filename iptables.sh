@@ -195,14 +195,18 @@ FWboth "" -A log-drop-out -j DROP
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-FW4 "dropping weird chinese attacker" -s 115.231.0.0/16 -I INPUT -j DROP
-FW4 "dropping weird chinese attacker" -s 115.231.0.0/16 -I OUTPUT -j DROP
-FW4 "dropping weird chinese attacker" -s 183.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird chinese attacker" -s 183.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
-FW4 "dropping weird chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker" -s 115.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker" -s 115.0.0.0/8 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker" -s 183.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker" -s 183.0.0.0/8 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker 3" -s 58.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker 3" -s 58.0.0.0/8 -I INPUT -j DROP
+FW4 "dropping weird Chinese attacker 4" -d 123.0.0.0/8 -I OUTPUT -j DROP
+FW4 "dropping weird Chinese attacker 4" -d 12358.0.0.0/8 -I OUTPUT -j DROP
 FW4 "dropping weird American attacker 1" -s 104.148.0.0/17 -I INPUT -j DROP
 FW4 "dropping weird American attacker 1" -d 104.148.0.0/17 -I OUTPUT -j DROP
 FW4 "dropping weird American attacker 2" -s 189.100.0.0/14 -I INPUT -j DROP
@@ -375,33 +379,38 @@ FW4 "" -P INPUT ACCEPT
 
 if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
-	FW4 "Directing 10.135.0.0/16 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o $DEVICE -j MASQUERADE"
-	if $IFCONFIG | $GREP -q eth0.102; then
-		#FIXME - abstract this is a device-independent way
-		#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
-		FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
-	fi
-	if $IFCONFIG | $GREP -q mullvad; then
-		FW4 "Routing 10.135.0.0/16 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE"
-		if $IFCONFIG | $GREP -q eth0.102; then
-			#FIXME - abstract this is a device-independent way
-			FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
-		fi
+	
+	anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
+	if [ "" = "$anonymizer" ]; then
+		$ECHO "E: Could not determine IPv4 to Mullvad OpenVPN - restart that"
+	else
+		if $IFCONFIG | $GREP -q mullvad; then
 
-		anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
-		if [ "" = "$anonymizer" ]; then
-			$ECHO "E: Could not determine IP to Mullvad OpenVPN - restart that"
-			exit 1
-		fi
-		$IP route replace default via $anonymizer table freifunk
+			FW4 "Directing 10.135.0.0/16 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o $DEVICE -j MASQUERADE"
+			if $IFCONFIG | $GREP -q eth0.102; then
+				#FIXME - abstract this is a device-independent way
+				#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
+				FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
+			fi
 
-		# IPv6 NAT
-		#if ifconfig mullvad | grep -q inet6; then 
-		#	echo "I: Found IPv6 address for mullvad - also anynymizing that"
-		#	FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::2:1/64 ! -d fd73:111:e824::2:1/64 -o mullvad -j MASQUERADE
-		#else
-		#	echo "I: No IPv6 address for mullvad"
-		#fi
+			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE"
+			if $IFCONFIG | $GREP -q eth0.102; then
+				#FIXME - abstract this is a device-independent way
+				FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
+			fi
+
+			$IP route replace default via $anonymizer table freifunk
+
+			# IPv6 NAT
+			if ifconfig mullvad | grep -q inet6; then 
+				echo "I: Found IPv6 address for mullvad - also anynymizing that"
+				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
+				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
+				$IP -6 route replace default via $anonymizer table freifunk
+			else
+				echo "I: No IPv6 address for mullvad"
+			fi
+		fi
 	fi
 	$ECHO "[OK]"
 else
