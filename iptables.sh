@@ -195,24 +195,13 @@ FWboth "" -A log-drop-out -j DROP
 
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-FW4 "dropping weird Chinese attacker" -s 115.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker" -s 115.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker" -s 183.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker" -s 183.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker 1" -s 222.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker 1" -d 222.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker 2" -s 116.0.0.0/10 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker 2" -d 116.0.0.0/10 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker 3" -s 58.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker 3" -d 58.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker 4" -s 123.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker 4" -d 123.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird Chinese attacker 5" -s 116.0.0.0/8 -I INPUT -j DROP
-FW4 "dropping weird Chinese attacker 5" -d 116.0.0.0/8 -I OUTPUT -j DROP
-FW4 "dropping weird American attacker 1" -s 104.148.0.0/17 -I INPUT -j DROP
-FW4 "dropping weird American attacker 1" -d 104.148.0.0/17 -I OUTPUT -j DROP
-FW4 "dropping weird American attacker 2" -s 189.100.0.0/14 -I INPUT -j DROP
-FW4 "dropping weird American attacker 2" -d 189.100.0.0/14 -I OUTPUT -j DROP
+set n=0
+for i in 115.0.0.0/8 183.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 123.0.0.0/8 116.0.0.0/8 104.0.0.0/8 189.0.0.0/8 
+do
+	set n=$(($n+1))
+	FW4 "Dropping Chinese/American attacker $n" -s $i -I INPUT -j DROP
+	FW4 "Dropping Chinese/American attacker $n" -d $i -I OUTPUT -j DROP
+done
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
 
