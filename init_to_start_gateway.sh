@@ -46,6 +46,7 @@ do_start () {
 
 	(sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
 
+	killall -q alfred
 	alfred -m -i bat0 > /dev/null &
 
 }
@@ -55,12 +56,15 @@ case "$1" in
 	do_start
 	;;
   status)
-	for cmd in "batctl gw" "ifconfig mullvad" "$IP route show table freifunk | grep default" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
+	for cmd in "batctl gw" "ifconfig mullvad" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
 	do
 		echo
 		echo "I: $cmd"
 		echo $( $cmd )
 	done
+	echo
+	echo "I: $IP route show table freifunk | grep default"
+	$IP route show table freifunk | grep default
 	;;
   restart|reload|force-reload)
 	echo "Error: argument '$1' not supported" >&2
@@ -78,4 +82,4 @@ case "$1" in
 	;;
 esac
 
-echo "[ ok ]“
+echo "[ ok ]"

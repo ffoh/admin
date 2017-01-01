@@ -2188,3 +2188,7 @@ oracle.taleo.net
 m.addthisedge.com
 s7.addthis.com
 # virtualbox - end
+# ING-DiBa - start
+banking.ing-diba.de
+www.ing-diba.de
+# ING-DiBa - end
