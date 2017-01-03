@@ -112,6 +112,13 @@ if [ "x$myIP" = "x$Mailip" ]; then
     ThisIsMailserver="yes"
 fi
 
+iptablesoptions=""
+iptablesversion="$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)"
+if [ "v1.4" = "$iptablesversion" ]; then
+   iptablesoptions=""
+else
+   iptablesoptions="-w 5"
+fi
 
 cat <<EOCAT
 ThisIsMailserver: $ThisIsMailserver
@@ -120,12 +127,13 @@ ThisIsGateway: $ThisIsGateway
 myIP: $myIP
 RemoteGatewayIPv4List: $RemoteGatewayIPv4List
 RemoteGatewayIPv6List: $RemoteGatewayIPv6List
+iptablesversion: '$iptablesversion'
+iptablesoptions: '$iptablesoptions'
 EOCAT
-#exit
 
 function FWboth {
-   FW4="/sbin/iptables -w 5 "
-   FW6="/sbin/ip6tables -w 5 "
+   FW4="/sbin/iptables $iptablesoptions "
+   FW6="/sbin/ip6tables $iptablesoptions "
    comment=$1
    if [ -n "$comment" ];then
        shift 1
@@ -141,7 +149,7 @@ function FWboth {
 }
 
 function FW4 {
-   FW4="/sbin/iptables -w 5 "
+   FW4="/sbin/iptables $iptablesoptions "
    #$ECHO $FW4 $*
    comment=$1
    if [ -n "$comment" ]; then
@@ -155,7 +163,7 @@ function FW4 {
 }
 
 function FW6 {
-   FW6="/sbin/ip6tables -w 5 "
+   FW6="/sbin/ip6tables $iptablesoptions "
    #$ECHO $FW6 $*
    comment=$1
    if [ -n "$comment" ];then
@@ -394,10 +402,11 @@ if [ "yes" = "$ThisIsGateway" ]; then
 
 			# IPv6 NAT
 			if ifconfig mullvad | grep -q inet6; then 
+				anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
 				echo "I: Found IPv6 address for mullvad - also anynymizing that"
-				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
+				FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
-				$IP -6 route replace default via $anonymizer table freifunk
+				$IP -6 route replace default dev mullvad table freifunk
 			else
 				echo "I: No IPv6 address for mullvad"
 			fi
