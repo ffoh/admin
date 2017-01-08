@@ -1405,7 +1405,6 @@ faz.met.vgwort.de
 static-www.ecs.popcap.com	# not redundant
 fbexternal-a.akamaihd.net
 pvza-production.popcapsf.com
-0-channel-proxy-06-frc1.facebook.com
 # POPCAP - end
 imap.mail.de
 api.flattr.com

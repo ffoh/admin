@@ -377,14 +377,15 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	else
 		if $IFCONFIG | $GREP -q mullvad; then
 
-			FW4 "Directing 10.135.0.0/16 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o $DEVICE -j MASQUERADE"
+			FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
+
 			if $IFCONFIG | $GREP -q eth0.102; then
 				#FIXME - abstract this is a device-independent way
 				#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
 				FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
 			fi
 
-			FW4 "Routing 10.135.0.0/16 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/16 -o mullvad -j MASQUERADE"
+			FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
 			if $IFCONFIG | $GREP -q eth0.102; then
 				#FIXME - abstract this is a device-independent way
 				FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
@@ -397,7 +398,7 @@ if [ "yes" = "$ThisIsGateway" ]; then
 				echo "I: Found IPv6 address for mullvad - also anynymizing that"
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
-				$IP -6 route replace default via $anonymizer table freifunk
+				$IP -6 route replace default dev mullvad table freifunk
 			else
 				echo "I: No IPv6 address for mullvad"
 			fi
@@ -421,3 +422,5 @@ FW6 "Time exceeded" "-A AllowICMPs -p icmpv6 --icmpv6-type 3 -j ACCEPT"
 FW6 "Parameter problem" "-A AllowICMPs -p icmpv6 --icmpv6-type 4 -j ACCEPT"
 FW6 "Echo Request (protect against flood)" "-A AllowICMPs -p icmpv6 --icmpv6-type 128 -m limit --limit 5/sec --limit-burst 10 -j ACCEPT"
 FW6 "Echo Reply" "-A AllowICMPs -p icmpv6 --icmpv6-type 129 -j ACCEPT"
+
+echo "[OK]"
