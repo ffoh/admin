@@ -1612,6 +1612,17 @@ immobilienscout24.de
 alice-dsl.net
 91.190.218.0/24	skype
 91.190.216.0/23	skype
+# skype - start
+skype.com
+cdnssl.clicktale.net
+secure.skypeassets.com
+c1.microsoft.com
+c.microsoft.com
+fpt.skype.com
+fpt.microsoft.com
+bn2.fpt.microsoft.com
+login.live.com
+# skype - end
 omegle.com
 partner.googleadservices.com
 translate.googleapis.com
@@ -2191,3 +2202,22 @@ s7.addthis.com
 banking.ing-diba.de
 www.ing-diba.de
 # ING-DiBa - end
+# postbank - start
+maps.googleapis.com
+160.83.0.0/16	#deutsche bank
+www.postbank.de	# redundant
+62.153.105.0/24	# postbank banking
+banking.postbank.de
+# postbank - end
+# deutsche bank - start
+deutschebank.de
+www.deutsche-bank.de
+www.xmarkets.db.com
+cdn.mateti.net
+cdn.wbtrk.net
+tp.deutsche-bank.de
+cxt.deutsche-bank.de
+geid.wbtrk.net
+r.mateti.net
+push.xmarkets.db.com
+# deutsche bank - end
