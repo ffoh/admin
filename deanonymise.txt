@@ -114,9 +114,9 @@ pbs.twimg.com
 cdn.syndication.twimg.com
 syndication.twitter.com
 # AVIRA - end
-#s.youtube.com	redundant
-#www.youtube.com	redundant
-#www.youtube-nocookie.com	redundant
+s.youtube.com	redundant
+www.youtube.com	redundant
+www.youtube-nocookie.com	redundant
 # 
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
@@ -132,6 +132,8 @@ lh3.googleusercontent.com
 0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 wb-in-f188.1e100.net
+clients1.google.com	#redundant
+clients6.google.com
 # picotech - start
 labs.picotech.com
 picotech.com
@@ -2221,3 +2223,19 @@ geid.wbtrk.net
 r.mateti.net
 push.xmarkets.db.com
 # deutsche bank - end
+# reddit - start
+www.reddit.com
+www.redditstatic.com
+s.zkcdn.net
+engine.a.redditmedia.com
+static.adzerk.net
+pixel.quantserve.com
+sb.scorecardresearch.com
+pixel.redditmedia.com
+i.imgur.com
+idsync.rlcdn.com
+sb.scorecardresearch.com
+p.imgur.com
+imgur.com
+out.reddit.com
+# reddit - end
