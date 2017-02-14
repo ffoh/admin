@@ -1,0 +1,22 @@
+#!/bin/bash
+
+(cat <<EOMAC
+Carpe-Haus3-7OG-nord-aussen	80:2a:a8:58:cf:b0
+Carpe-Haus3-6OG-nord-innen	80:2a:a8:58:cf:75
+Carpe-Haus3-5OG-nord-aussen	80:2a:a8:1b:d2:6e
+Carpe-Haus3-4OG-nord-innen	80:2a:a8:58:d0:d4
+Carpe-Haus3-3OG-nord-aussen	80:2a:a8:58:cf:76
+Carpe-Haus3-2OG-nord-innen	80:2a:a8:58:cf:d6
+Carpe-Haus3-EG-nord-innen	80:2a:a8:58:cf:af
+Carpe-Haus3-1OG-sued-innen	80:2a:a8:95:40:69
+Carpe-Haus3-2OG-sued-aussen	80:2a:a8:95:40:1f
+Carpe-Haus3-5OG-sued-innen	80:2a:a8:58:cf:e2
+Carpe-Haus3-6OG-sued-aussen	80:2a:a8:1b:d1:b2
+Carpe-Haus3-7OG-sued-innen	80:2a:a8:95:40:1a
+Carpe-Haus2-5OG-NanoM2	24:a4:3c:f0:b5:0a
+Carpe-Haus2-3OG-west-aussen	80:2a:a8:d2:21:4a
+Carpe-Haus2-Keller-am-Gateway	10:fe:ed:e5:e9:54
+Carpe-Haus2-2OG-west-aussen	80:2a:a8:d3:21:92
+EOMAC
+) | while read line
+do i=$(echo "$line"|cut -f1 ); j=$(echo "$line"|cut -f2 );echo $i:; batctl tr -n $j; done
