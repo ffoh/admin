@@ -450,6 +450,7 @@ www.tagesschau.de
 ard.de
 www.ard.de
 www.sportschau.de
+boerse.ard.de
 ardsport.ivwbox.de
 gsea.ivwbox.de
 swr.ivwbox.de
@@ -713,6 +714,8 @@ b.scorecardresearch.com
 141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
 speedtest01.addix.net
+pix.fr.eu.criteo.net
+static.eu.criteo.net
 ookla1.speedtest.tng.de
 www.speedtest.net
 c.speedtest.net
@@ -805,7 +808,7 @@ smtp.web.de
 194.25.0.0/16	# Deutsche Telekom	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
-62.157.140.0/23	tipi.api.t-online.de # 62.157.140.0 - 62.157.141.255
+62.157.140.0/23	tipi.api.t-online.de accounts.login.idm.telekom.com # 62.157.140.0 - 62.157.141.255
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
 homad-global-configs.schneevonmorgen.com
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
@@ -824,7 +827,25 @@ logc206.xiti.com
 accounts.login.idm.telekom.com
 www.wetter.info
 gfk-de.sensic.net
+stats.t-online.de
+email.t-online.de
+p.t-online.de
+u.heatmap.it
+logc206.xiti.com
+bcd.esprit.de
+accounts.login.idm.telekom.com
 # T-online - end
+# telekom - start
+tags-eu.tiqcdn.com
+www.telekom.de
+ssl.xplosion.de
+script.ioam.de
+pix.telekom.de
+lptag.liveperson.net
+xups.xplosion.de
+server.lon.liveperson.net
+widgets.trustedshops.com
+# telekom - end
 # ORF - start
 orf.at
 www.orf.at
@@ -1089,66 +1110,84 @@ welt.ivwbox.de
 198.63.0.0/16	liveperson.net
 198.64.0.0/15	liveperson.net
 198.66.0.0/16	liveperson.net
-ad.doubleclick.net
-ad-emea.doubleclick.net
-ad.yieldlab.net
-admin.brightcove.com
-amv3-tslogging.touchcommerce.com
-api.adrtx.net
-api.bizographics.com
-www.skygo.sky.de
+1.s10i.com
+79423.analytics.edgesuite.net
 80.238.27.0/24	# Sky Broadcasting
 90.192.0.0/11	# BSkyB
-assets.adobedtm.com
-sky.de.d3.sc.omtrdc.net
-skygo.sky.de
-dpm.demdex.net
-www.microsoft.com
-go.sky.com
-livepassdl.conviva.com
-gwb.lphbs.com
-79423.analytics.edgesuite.net
-sky.de.d3.sc.omtrdc.net
-ma100-r.analytics.edgekey.net
+ad.doubleclick.net
+ad-emea.doubleclick.net
+admin.brightcove.com
+ad.yieldlab.net
+ak-ns.sascdn.com
+amv3-tslogging.touchcommerce.com
+analytics.faw.sky.com
+api.adrtx.net
+api.bizographics.com
+api.brightcove.com
 apiservices.krxd.net
+assets.adobedtm.com
 assets.sky.com
 asv.nuggad.net
+availability.advisor.sky.com
+audienceinsights.net
+bam.nr-data.net
 beacon.krxd.net
+brightcove.vo.llnwd.net
 britishskybroadcasti.tt.omtrdc.net
-www.skygo.sky.de
-skygo.sky.de
 b.scorecardresearch.com
+bskyb.demdex.net
+c.brightcove.com
+c.go-mpulse.net
+cdn1.smartadserver.com
 cdn1.smartadserver.com
 cdn.adrtx.net
+cdn.exactag.com
+cdn.tt.omtrdc.net
 cdn.krxd.net
+cdn.appdynamics.com
+cdn3.optimizely.com
+ced.sascdn.com
+col.eum-appdynamics.com
 cm.g.doubleclick.net
 d2oh4tlt9mrke9.cloudfront.net
 dis.criteo.com
+dpm.demdex.net
+ds-aksb-a.akamaihd.net
 eas.apm.emediate.eu
 ecustomeropinions.com
-epgstatic.sky.com
-skymovies.sky.com
+edigitalsurvey.com
 epgservices.sky.com
-m.webtrends.com
-skyid.sky.com
+epgstatic.sky.com
 fbstatic-a.akamaihd.net
 go.affec.tv
+goku.brightcove.com
 googleads.g.doubleclick.net
-ib.adnxs.com
+go.sky.com
+gwb.lphbs.com
 i.ctnsnet.com
+ib.adnxs.com
 id.impressiondesk.com
+images.contentstack.io
 js.revsci.net
+js-agent.newrelic.com
+livepassdl.conviva.com
 loadm.exelator.com
+logx.optimizely.com
+ma100-r.analytics.edgekey.net
+metrics.brightcove.com
 metrics.sky.com
+m.exactag.com
+m.webtrends.com
+media-eu1.inq.com
 my.sky.com
 omni.sky.de
-ds-aksb-a.akamaihd.net
-1.s10i.com
 p2.s10i.com
 pix04.revsci.net
 pixel.mathtag.com
 pixel.quantserve.com
 pix.impdesk.com
+premiede.ivwbox.de
+qs.ivwbox.de
 rtax.criteo.com
 rtt.adrolays.de
 sales.liveperson.net
@@ -1156,7 +1195,16 @@ sd.nakamitech.de
 secure.adnxs.com
 server.lon.liveperson.net
 service.maxymiser.net
+sky.de.d3.sc.omtrdc.net
 skyde.inq.com
+skydeutschland.edgesuite.net
+skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
+skydeutschlandag.tt.omtrdc.net
+skydesecure-a.akamaihd.net
+skygo.sky.de
+skygo.sky.de
+skyid.sky.com
+skymovies.sky.com
 skystorage-a.akamaihd.net
 smetrics.sky.com
 sr2.liveperson.net
@@ -1164,22 +1212,17 @@ storage.sky.com
 t13.intelliad.de
 t23.intelliad.de
 t.mookie1.com
+web-toolkit.global.sky.com
+webengage.sky.com
 ws.sessioncam.com
+wt1.rqtrk.eu
+ws2.rqtrk.eu
 ww251.smartadserver.com
+www.microsoft.com
 www.sky.com
-premiede.ivwbox.de
-api.brightcove.com
-qs.ivwbox.de
-skydeutschland.edgesuite.net
-brightcove.vo.llnwd.net
-ced.sascdn.com
-cdn1.smartadserver.com
-ak-ns.sascdn.com
-audienceinsights.net
-c.brightcove.com
-metrics.brightcove.com
-goku.brightcove.com
-skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
+www.sky.de
+www.skygo.sky.de
+www.skygo.sky.de
 # Sky.com - end
 b.medtronic.com	# not redundant, pointing to adobe
 # Java - start
