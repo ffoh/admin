@@ -1326,11 +1326,21 @@ themes.googleusercontent.com
 fonts.googleapis.com
 www.windfinder.com
 # ADAC - end
-www.timmendorfer-strand.org
-xmail.timmendorfer-strand.de
-www.niendorf-ostsee.de
-xmail.timmendorfer-strand.de
+# Timmendorf - start
+cdn.timmendorfer-strand.de
 niendorf2014.avisto.eu
+www.niendorf-ostsee.de
+www.timmendorfer-strand.org
+www.timmenlove.de
+xmail.timmendorfer-strand.de
+pbs.twimg.com
+staticxx.facebook.com
+connect.facebook.net
+cdn.syndication.twimg.com
+fonts.googleapis.com
+timmendorfer-strand.de
+www.facebook.com
+# Timmendorf - end
 www.buchen.travel
 z1.im-web.de
 images.im-web.de
@@ -2285,3 +2295,5 @@ p.imgur.com
 imgur.com
 out.reddit.com
 # reddit - end
+e-services.cost.eu
+www.eu
