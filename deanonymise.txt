@@ -9,6 +9,9 @@ gw3.ffoh.de
 gw4.ffoh.de
 gw5.ffoh.de
 gw6.ffoh.de
+gattywatty01.ffoh.de
+gattywatty02.ffoh.de
+gattywatty03.ffoh.de
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
 otile1-s.mqcdn.com
