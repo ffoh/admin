@@ -402,7 +402,7 @@ if [ "yes" = "$ThisIsGateway" ]; then
 
 			# IPv6 NAT
 			if ifconfig mullvad | grep -q inet6; then 
-				echo "I: Found IPv6 address for mullvad - also anynymizing that"
+				echo "I: Found IPv6 address for mullvad - also anonymizing that"
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
 				$IP -6 route replace default dev mullvad table freifunk
