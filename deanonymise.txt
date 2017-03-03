@@ -2297,3 +2297,4 @@ out.reddit.com
 # reddit - end
 e-services.cost.eu
 www.eu
+brewie.org
