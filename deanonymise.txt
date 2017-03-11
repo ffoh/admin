@@ -154,6 +154,7 @@ picotech.com
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
+31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -813,6 +814,8 @@ smtp.web.de
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
 62.157.140.0/23	tipi.api.t-online.de accounts.login.idm.telekom.com # 62.157.140.0 - 62.157.141.255
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
+80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
+62.157.140.0/23	accounts.login.idm.telekom.com
 homad-global-configs.schneevonmorgen.com
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
 s0.2mdn.net
