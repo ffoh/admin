@@ -1637,6 +1637,11 @@ bam.nr-data.net
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
+api.netflix.com
+assets.nflxext.com
+bcp.crwdcntrl.net
+ad.crwdcntrl.net
+codex.nflxext.com
 www.netflix.de
 www.netflix.com
 www2-ext-s.nflximg.net
@@ -2164,6 +2169,7 @@ zendesk.tv
 p5.zdassets.com
 d26a57ydsghvgx.cloudfront.net
 play.google.com
+docs.google.com
 lh3.ggpht.com
 lh3.googleusercontent.com
 lh6.googleusercontent.com
@@ -2297,3 +2303,4 @@ out.reddit.com
 # reddit - end
 e-services.cost.eu
 www.eu
+duckduckgo.com
