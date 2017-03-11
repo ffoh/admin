@@ -2304,3 +2304,4 @@ out.reddit.com
 e-services.cost.eu
 www.eu
 duckduckgo.com
+brewie.org
