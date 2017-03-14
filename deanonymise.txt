@@ -817,6 +817,7 @@ smtp.web.de
 80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
 62.157.140.0/23	accounts.login.idm.telekom.com
 homad-global-configs.schneevonmorgen.com
+securesmtp.t-online.de
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
 s0.2mdn.net
 cj.madeleine.de
