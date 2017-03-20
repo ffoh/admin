@@ -128,6 +128,14 @@ www.youtube-nocookie.com	redundant
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
+clientmetrics-pa.googleapis.com
+lh4.google.com
+docs.google.com
+0.docs.google.com
+7.docs.google.com
+ssl.gstatic.com
+drive.google.com
+clients4.google.com
 plusone.google.com
 plus.google.com
 hangouts.google.com
@@ -2333,3 +2341,29 @@ brewie.org
 # Kabel Deutschland Vodafone - start
 31.19.128.0/17	# Kabel Deutschland Kunden
 # Kabel Deutschland Vodafone - end
+# Swoodoo - start
+www.swoodoo.com
+bat.bing.com
+ib.adnxs.com
+trck.spoteffects.net
+tags.bkrtx.com
+loadus.exelator.com
+cdn.krxd.net
+travel.mediaalpha.com
+bat.r.msn.com
+pixel.sojern.com
+cdn.siftscience.com
+services.xg4ken.com
+hexagon-analytics.com
+loadeu.exelator.com
+e.visualdna.com
+sync.outbrain.com
+trc.taboola.com
+pubads.g.doubleclick.net
+sec.levexis.com
+secure.rentalcars.com
+a1.odistatic.net
+pfna.levexis.com
+cdn.rcstatic.com
+api.boxever.com
+# Swoodoo - end
