@@ -2367,3 +2367,7 @@ pfna.levexis.com
 cdn.rcstatic.com
 api.boxever.com
 # Swoodoo - end
+www.lbv.de
+www.nabu.de
+www.drv-web.de
+www.ddnss.de
