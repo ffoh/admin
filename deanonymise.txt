@@ -239,6 +239,10 @@ vt.adition.com
 www.google-analytics.com
 www.spiegel.de
 www.spiegel.tv
+spiegeltv-prod-static.s3.amazonaws.com
+spiegeltv-ivms2-restapi.s3.amazonaws.com
+homad-global-configs-eu-fra.schneevonmorgen.com.s3.amazonaws.com
+d22mepmetc46uf.cloudfront.net
 # spiegel - end
 # spotify - start
 194.14.177.0/24	spotify.com
@@ -2371,3 +2375,4 @@ www.lbv.de
 www.nabu.de
 www.drv-web.de
 www.ddnss.de
+preis-zone.com
