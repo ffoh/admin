@@ -1525,6 +1525,8 @@ stream.livespotting.tv
 player.livespotting.tv
 piwik.windit.de
 cdnjs.cloudflare.com
+cs2.wettercomassets.com
+ping.chartbeat.net
 # livespotting.tv - end
 # reichelt - start
 www.reichelt.de
