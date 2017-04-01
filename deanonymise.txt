@@ -24,7 +24,7 @@ hallo-holstein.de	# and all other BFO pages with it
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-216.58.192.0/18	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
+216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com notifications.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
@@ -122,13 +122,16 @@ syndication.twitter.com
 # AVIRA - end
 s.youtube.com	redundant
 www.youtube.com	redundant
-www.youtube-nocookie.com	redundant
-# 
+www.youtube-nocookie.com	#redundant
+# google - start
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
 clientmetrics-pa.googleapis.com
+notifications.google.com	#redundant
+www.google.de	#redundant
+play.google.com
 lh4.google.com
 docs.google.com
 0.docs.google.com
@@ -148,11 +151,13 @@ lh3.googleusercontent.com
 wb-in-f188.1e100.net
 clients1.google.com	#redundant
 clients6.google.com
+# google - end
 # picotech - start
 labs.picotech.com
 picotech.com
 # picotech - end
 # Facebook - start
+157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
@@ -160,12 +165,17 @@ picotech.com
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.70.0/24	facebook
+31.13.65.0/24	connect.facebook.com
 31.13.71.0/24	connect.facebook.net
 31.13.64.0/24	connect.facebook.net facebook
+31.13.66.0/24	# facebook
+31.13.69.0/24	# facebook
+31.13.73.0/24	# facebook
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
 31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
+31.13.77.0/24	# facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -1733,6 +1743,15 @@ translate.googleapis.com
 mail.dlrg.de
 imap3a.mail.vip.ir2.yahoo.com
 imap3.mail.vip.ir2.yahoo.com
+# Presseportal - start
+www.presseportal.de
+js-agent.newrelic.com
+# Presseportal - end
+mail2.hamburg.de
+s3-1.amazonaws.com
+irqs.ioam.de
+imap12.mail.vip.ir2.yahoo.com
+77.238.185.0/24	#yahoo europe
 games.bigfishgames.com
 www.bigfishgames.com
 www.karls.de
@@ -2062,6 +2081,7 @@ www.stern.de
 asset3.stern.de
 stern.de
 bilder2.n-tv.de
+view.stern.de
 blog.neon.de
 media.news.de
 www.hamburg.de
@@ -2268,6 +2288,7 @@ dmp.theadex.com
 jazzradiojazzfunk.radio.de
 imasdk.googleapis.com
 de.ioam.de
+irqs.ioam.de
 www.video.oms.eu
 # radio.de - end
 # ALDI IP Cam - start
@@ -2378,3 +2399,11 @@ www.nabu.de
 www.drv-web.de
 www.ddnss.de
 preis-zone.com
+mail.idess.net
+# Presseportal - start
+www.presseportal.de
+js-agent.newrelic.com
+# Presseportal - end
+mail2.hamburg.de
+s3-1.amazonaws.com
+irqs.ioam.de
