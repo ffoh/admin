@@ -162,20 +162,21 @@ picotech.com
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
 66.220.144.0/20	facebook
-31.13.109.0/24	facebook
 31.13.100.0/24	facebook
-31.13.70.0/24	facebook
-31.13.65.0/24	connect.facebook.com
-31.13.71.0/24	connect.facebook.net
+31.13.109.0/24	facebook
 31.13.64.0/24	connect.facebook.net facebook
+31.13.65.0/24	connect.facebook.com
 31.13.66.0/24	# facebook
 31.13.69.0/24	# facebook
+31.13.70.0/24	facebook
+31.13.71.0/24	connect.facebook.net
 31.13.73.0/24	# facebook
+31.13.74.0/24	# facebook
+31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
+31.13.77.0/24	# facebook
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
-31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
-31.13.77.0/24	# facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
