@@ -166,11 +166,12 @@ picotech.com
 31.13.100.0/24	facebook
 31.13.70.0/24	facebook
 31.13.65.0/24	connect.facebook.com
-31.13.71.0/24	connect.facebook.net
 31.13.64.0/24	connect.facebook.net facebook
 31.13.66.0/24	# facebook
 31.13.69.0/24	# facebook
+31.13.71.0/24	connect.facebook.net
 31.13.73.0/24	# facebook
+31.13.80.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
@@ -738,6 +739,7 @@ b.scorecardresearch.com
 141.22.0.0/16	haw-hamburg.de # DFN
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
+131.234.0.0/16	uni-paderborn.de
 # OOKLA Speedtest - start
 speedtest01.addix.net
 pix.fr.eu.criteo.net
@@ -2398,3 +2400,4 @@ js-agent.newrelic.com
 mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
+api.groundspeak.com	# some geocaching
