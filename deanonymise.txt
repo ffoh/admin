@@ -1098,6 +1098,7 @@ triton916.startdedicated.de
 wotan.tuxli.ch
 # NTP - end
 # Zatoo - start
+152.163.0.0/16	#AOL
 adtech-ads-shared-frr.evip.aol.com
 imap-a-mtc-b.mx.aol.com
 imap-b-mtc-c.mx.aol.com
