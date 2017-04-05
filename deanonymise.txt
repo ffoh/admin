@@ -2401,3 +2401,4 @@ mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
 api.groundspeak.com	# some geocaching
+ostsee.de
