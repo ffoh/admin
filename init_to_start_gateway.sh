@@ -4,7 +4,7 @@ set -e
 
 ### BEGIN INIT INFO
 # Provides:          freifunk
-# Required-Start:    $local_fs $time $network openvpn $named
+# Required-Start:    $local_fs $time $network openvpn $named fastd
 # Required-Stop:     $local_fs $time $network openvpn $named
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
@@ -32,6 +32,7 @@ fi
 
 
 do_start () {
+
 	echo "I: freifunk setting up iptables - sleeping 60 seconds"
 
 	sleep 60
@@ -53,10 +54,15 @@ do_start () {
 
 case "$1" in
   start)
+	if ! ip addr show ffoh-mesh-vpn > /dev/null ; then
+		echo "E: fastd not set up properly"
+		exit 3
+	fi
+
 	do_start
 	;;
   status)
-	for cmd in "batctl gw" "ifconfig mullvad" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
+	for cmd in "batctl gw" "ifconfig bat0" "ifconfig mullvad" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
 	do
 		echo
 		echo "I: $cmd"
