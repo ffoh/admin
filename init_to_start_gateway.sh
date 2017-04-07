@@ -42,11 +42,16 @@ do_start () {
 	$IP -6 rule add from all iif bat0 lookup freifunk
 	$IP -4 rule add from all iif bat0 lookup freifunk
 
-	$ADMINDIR/iptables.sh
+	$ADMINDIR/iptables.sh && echo "iptables OK" || echo "iptables failed"
 
-	(sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
+	(echo "Sleeping 5 seconds" && sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
 
-	killall -q alfred
+	echo "I: Stopping alfred if running"
+	for i in $(pidof alfred); do
+		echo "W: Killing alfred with pid $i"
+		kill $i
+	done
+	echo "I: Starting alfred to listen on bat0"
 	alfred -m -i bat0 > /dev/null &
 
 }
