@@ -416,7 +416,7 @@ if [ "yes" = "$ThisIsGateway" ]; then
 		echo "W: ip rule iif bat0 already set, not adding additional rule"
 	else
 		echo "I: Adding ip rule for bat0 to look up in table freifunk"
-		ip rule from all iif bat0 lookup freifunk
+		ip rule add from all iif bat0 lookup freifunk
 	fi
 
 	$ECHO "[OK]"
