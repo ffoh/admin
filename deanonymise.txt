@@ -502,8 +502,8 @@ www1.wdr.de
 liveupdate1.scribblelive.com
 counter.scribblelive.com
 love.scribblelive.com
-cdn-storage.br.de
 media.ndr.de
+cdn-vod-ios.br.de
 download.media.tagesschau.de
 www.mdr.de
 wetter.tagesschau.de
@@ -512,10 +512,10 @@ secure-eu.imrworldwide.com
 # ARD mit Tagesschau - end
 # ARD Mediathek - start
 www.ardmediathek.de
+tracker.br.de
 seccdn-gl.imrworldwide.com
 cdn-storage.br.de
 logs1242.xiti.com
-cdn-storage.br.de
 secure-eu.imrworldwide.com
 ma140-r.analytics.edgesuite.net
 live-lh.daserste.de
@@ -2416,6 +2416,7 @@ js-agent.newrelic.com
 mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
+82.145.208.0/21	# opera
 cdn.sstatic.net
 api.groundspeak.com	# some geocaching
 ostsee.de
