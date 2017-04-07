@@ -22,6 +22,8 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 IFCONFIG=/sbin/ifconfig
 GREP=/bin/grep
 IP=/sbin/ip
+BATCTL=/usr/sbin/batctl
+PING=/bin/ping
 
 DEVICE=eth0
 if $IFCONFIG|$GREP -q eth0.101; then
@@ -52,8 +54,7 @@ do_start () {
 		kill $i
 	done
 	echo "I: Starting alfred to listen on bat0"
-	alfred -m -i bat0 > /dev/null &
-
+	/usr/sbin/alfred -i bat0 > /dev/null &
 }
 
 case "$1" in
@@ -61,7 +62,7 @@ case "$1" in
 	do_start
 	;;
   status)
-	for cmd in "batctl gw" "ifconfig mullvad" "$IP route show" "$IP rule" "ping -c 1 8.8.8.8 -I mullvad" "ping -c 1 8.8.8.8 -I $DEVICE"
+	for cmd in "$BATCTL gw" "$IFCONFIG mullvad" "$IP route show" "$IP rule" "$PING -c 1 8.8.8.8 -I mullvad" "$PING -c 1 8.8.8.8 -I $DEVICE"
 	do
 		echo
 		echo "I: $cmd"
@@ -78,7 +79,7 @@ case "$1" in
   stop)
 	# No-op
 	echo "W: freifunk stop not yet implemented"
-	batctl gw client
+	$BATCTL gw client
 	
 	;;
   *)
