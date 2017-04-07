@@ -2398,3 +2398,4 @@ js-agent.newrelic.com
 mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
+82.145.208.0/21	# opera
