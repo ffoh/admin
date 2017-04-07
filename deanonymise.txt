@@ -24,17 +24,19 @@ hallo-holstein.de	# and all other BFO pages with it
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
+216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com notifications.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
-172.217.0.0/16	www.google.de ...metric.gstatic.com
+172.217.0.0/16	www.google.de ...metric.gstatic.com youtubei.youtube.com
+youtubei.youtube.com	# redundant
+i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
 80.149.20.64/26	# googlevideo Düsseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
-64.233.160.0/19	waspproxy.googlemail.com
+64.233.160.0/19	waspproxy.googlemail.com 0.docs.google.com 4.docs.google.com
 66.102.0.0/20	#google
 0.client-channel.google.com
 98.136.0.0/14	yahoo.com
@@ -53,6 +55,9 @@ www.luebeck.de
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 lobos.debian.org
+httpredir.debian.org
+cdn-fastly.deb.debian.org
+ftp.de.debian.org
 wieck.debian.org
 wiki.debian.org
 ftp.upload.debian.org
@@ -119,12 +124,23 @@ syndication.twitter.com
 # AVIRA - end
 s.youtube.com	redundant
 www.youtube.com	redundant
-www.youtube-nocookie.com	redundant
-# 
+www.youtube-nocookie.com	#redundant
+# google - start
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
 173.194.0.0/16	ssl.gstatic.com # google
+clientmetrics-pa.googleapis.com
+notifications.google.com	#redundant
+www.google.de	#redundant
+play.google.com
+lh4.google.com
+docs.google.com
+0.docs.google.com
+7.docs.google.com
+ssl.gstatic.com
+drive.google.com
+clients4.google.com
 plusone.google.com
 plus.google.com
 hangouts.google.com
@@ -137,11 +153,13 @@ lh3.googleusercontent.com
 wb-in-f188.1e100.net
 clients1.google.com	#redundant
 clients6.google.com
+# google - end
 # picotech - start
 labs.picotech.com
 picotech.com
 # picotech - end
 # Facebook - start
+157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 173.252.64.0/18	facebook
 69.171.224.0/19	facebook
@@ -149,11 +167,18 @@ picotech.com
 31.13.109.0/24	facebook
 31.13.100.0/24	facebook
 31.13.70.0/24	facebook
-31.13.71.0/24	connect.facebook.net
+31.13.65.0/24	connect.facebook.com
 31.13.64.0/24	connect.facebook.net facebook
+31.13.66.0/24	# facebook
+31.13.69.0/24	# facebook
+31.13.71.0/24	connect.facebook.net
+31.13.73.0/24	# facebook
+31.13.80.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
+31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
+31.13.77.0/24	# facebook
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -227,6 +252,10 @@ vt.adition.com
 www.google-analytics.com
 www.spiegel.de
 www.spiegel.tv
+spiegeltv-prod-static.s3.amazonaws.com
+spiegeltv-ivms2-restapi.s3.amazonaws.com
+homad-global-configs-eu-fra.schneevonmorgen.com.s3.amazonaws.com
+d22mepmetc46uf.cloudfront.net
 # spiegel - end
 # spotify - start
 194.14.177.0/24	spotify.com
@@ -489,6 +518,7 @@ cdn-storage.br.de
 logs1242.xiti.com
 secure-eu.imrworldwide.com
 ma140-r.analytics.edgesuite.net
+live-lh.daserste.de
 # ARD Mediathek - end
 cp229098.edgefcs.net
 script.ioam.de
@@ -715,6 +745,7 @@ b.scorecardresearch.com
 141.22.0.0/16	haw-hamburg.de # DFN
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
+131.234.0.0/16	uni-paderborn.de
 # OOKLA Speedtest - start
 speedtest01.addix.net
 pix.fr.eu.criteo.net
@@ -813,7 +844,10 @@ smtp.web.de
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
 62.157.140.0/23	tipi.api.t-online.de accounts.login.idm.telekom.com # 62.157.140.0 - 62.157.141.255
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
+80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
+62.157.140.0/23	accounts.login.idm.telekom.com
 homad-global-configs.schneevonmorgen.com
+securesmtp.t-online.de
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
 s0.2mdn.net
 cj.madeleine.de
@@ -897,21 +931,30 @@ b.tiles.mapbox.com
 c.tiles.mapbox.com
 # RTL - start
 217.118.168.0/22	RTL interactive Frankfurt
-#hds.webclips.fra.rtl.de	# redundant
-bilder.static-fra.de
-cdn.static-fra.de
-#www.rtl.de		# redundant
-static.plista.com
 #autoimg.rtl.de		# redundant
+m.addthisedge.com
+securepubads.g.doubleclick.net
+ais.rtl.de
+de-ipd.a.videoplaza.tv
+cdn.videoplaza.tv
+de7-homad-lb.schneevonmorgen.com
+s7.addthis.com
+hds.webclips.akamai.rtl.de
+cdn.static-fra.de
 autoimg.static-fra.de
 bilder.akamai.rtl.de
-fbcdn-profile-a.akamaihd.net
-px1.vtrtl.de
 #bilder.rtl.de		# redundant
-qs.ivwbox.de
+bilder.static-fra.de
+cdn.static-fra.de
 #count.rtl.de		# redundant
+fbcdn-profile-a.akamaihd.net
+#hds.webclips.fra.rtl.de	# redundant
+px1.vtrtl.de
+qs.ivwbox.de
 rtl.ivwbox.de
+static.plista.com
 #tracking.rtl.de	# redundant
+#www.rtl.de		# redundant
 # RLT - end
 # SAT1 - start
 www.sat1.de
@@ -942,22 +985,30 @@ ivwextern.sat1.de
 vas.sim-technik.de
 # SAT1 - end
 # PRO7 - start
-www.prosieben.de
-ds.serving-sys.com
 ad.71i.de
-thumbnails.sevenoneintermedia.de
-service.maxymiser.net
 ad.de.doubleclick.net
-pubads.g.doubleclick.net
 adserver.71i.de
-s1.adform.net
 cdn.krxd.net
-thumbnails.sevenoneintermedia.de
-pro7.ivwbox.de
 ds.serving-sys.com
+ds.serving-sys.com
+pro7.ivwbox.de
+pubads.g.doubleclick.net
 rec3.prosieben.de
-t.prosieben.de
 rec.prosieben.de
+s1.adform.net
+s1.p7s1.com
+epgservice.7tv.de
+rum.7tv.de
+195.30.110.0/23	# Pro7 (7tv.de)
+fb-s-b-a.akamaihd.net
+pbs.twimg.com
+abs.twimg.com
+cdn.syndication.twimg.com
+service.maxymiser.net
+thumbnails.sevenoneintermedia.de
+thumbnails.sevenoneintermedia.de
+t.prosieben.de
+www.prosieben.de
 # PRO7 - end
 # Kabel1 - start
 kabel1.ivwbox.de
@@ -1488,6 +1539,8 @@ stream.livespotting.tv
 player.livespotting.tv
 piwik.windit.de
 cdnjs.cloudflare.com
+cs2.wettercomassets.com
+ping.chartbeat.net
 # livespotting.tv - end
 # reichelt - start
 www.reichelt.de
@@ -1637,6 +1690,11 @@ bam.nr-data.net
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
+api.netflix.com
+assets.nflxext.com
+bcp.crwdcntrl.net
+ad.crwdcntrl.net
+codex.nflxext.com
 www.netflix.de
 www.netflix.com
 www2-ext-s.nflximg.net
@@ -1689,6 +1747,15 @@ translate.googleapis.com
 mail.dlrg.de
 imap3a.mail.vip.ir2.yahoo.com
 imap3.mail.vip.ir2.yahoo.com
+# Presseportal - start
+www.presseportal.de
+js-agent.newrelic.com
+# Presseportal - end
+mail2.hamburg.de
+s3-1.amazonaws.com
+irqs.ioam.de
+imap12.mail.vip.ir2.yahoo.com
+77.238.185.0/24	#yahoo europe
 games.bigfishgames.com
 www.bigfishgames.com
 www.karls.de
@@ -2018,6 +2085,7 @@ www.stern.de
 asset3.stern.de
 stern.de
 bilder2.n-tv.de
+view.stern.de
 blog.neon.de
 media.news.de
 www.hamburg.de
@@ -2164,6 +2232,7 @@ zendesk.tv
 p5.zdassets.com
 d26a57ydsghvgx.cloudfront.net
 play.google.com
+docs.google.com
 lh3.ggpht.com
 lh3.googleusercontent.com
 lh6.googleusercontent.com
@@ -2223,6 +2292,7 @@ dmp.theadex.com
 jazzradiojazzfunk.radio.de
 imasdk.googleapis.com
 de.ioam.de
+irqs.ioam.de
 www.video.oms.eu
 # radio.de - end
 # ALDI IP Cam - start
@@ -2297,4 +2367,50 @@ out.reddit.com
 # reddit - end
 e-services.cost.eu
 www.eu
+duckduckgo.com
 brewie.org
+# Kabel Deutschland Vodafone - start
+31.19.128.0/17	# Kabel Deutschland Kunden
+# Kabel Deutschland Vodafone - end
+# Swoodoo - start
+www.swoodoo.com
+bat.bing.com
+ib.adnxs.com
+trck.spoteffects.net
+tags.bkrtx.com
+loadus.exelator.com
+cdn.krxd.net
+travel.mediaalpha.com
+bat.r.msn.com
+pixel.sojern.com
+cdn.siftscience.com
+services.xg4ken.com
+hexagon-analytics.com
+loadeu.exelator.com
+e.visualdna.com
+sync.outbrain.com
+trc.taboola.com
+pubads.g.doubleclick.net
+sec.levexis.com
+secure.rentalcars.com
+a1.odistatic.net
+pfna.levexis.com
+cdn.rcstatic.com
+api.boxever.com
+# Swoodoo - end
+www.lbv.de
+www.nabu.de
+www.drv-web.de
+www.ddnss.de
+preis-zone.com
+mail.idess.net
+# Presseportal - start
+www.presseportal.de
+js-agent.newrelic.com
+# Presseportal - end
+mail2.hamburg.de
+s3-1.amazonaws.com
+irqs.ioam.de
+cdn.sstatic.net
+api.groundspeak.com	# some geocaching
+ostsee.de
