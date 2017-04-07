@@ -1165,6 +1165,7 @@ welt.ivwbox.de
 198.64.0.0/15	liveperson.net
 198.66.0.0/16	liveperson.net
 1.s10i.com
+1.shard.next.sky.de.edgesuite.net
 79423.analytics.edgesuite.net
 80.238.27.0/24	# Sky Broadcasting
 90.192.0.0/11	# BSkyB
@@ -1189,6 +1190,7 @@ beacon.krxd.net
 brightcove.vo.llnwd.net
 britishskybroadcasti.tt.omtrdc.net
 b.scorecardresearch.com
+bb.sky.com
 bskyb.demdex.net
 c.brightcove.com
 c.go-mpulse.net
@@ -1222,12 +1224,14 @@ i.ctnsnet.com
 ib.adnxs.com
 id.impressiondesk.com
 images.contentstack.io
+images.metadata.sky.com
 js.revsci.net
 js-agent.newrelic.com
 livepassdl.conviva.com
 loadm.exelator.com
 logx.optimizely.com
 ma100-r.analytics.edgekey.net
+media-eu1.inq.com
 metrics.brightcove.com
 metrics.sky.com
 m.exactag.com
@@ -1262,6 +1266,7 @@ skymovies.sky.com
 skystorage-a.akamaihd.net
 smetrics.sky.com
 sr2.liveperson.net
+static.inq.com
 storage.sky.com
 t13.intelliad.de
 t23.intelliad.de
