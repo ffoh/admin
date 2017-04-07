@@ -2415,3 +2415,10 @@ irqs.ioam.de
 cdn.sstatic.net
 api.groundspeak.com	# some geocaching
 ostsee.de
+# microsoft - start
+204.79.195.0/24	# microsoft ECN
+204.79.196.0/23	# microsoft ECN
+c.microsoft.com
+c.s-microsoft.com
+assets.one-store.ms
+# microsoft-end
