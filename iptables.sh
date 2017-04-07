@@ -35,10 +35,10 @@ FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
 echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
 
 
-GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
+GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
 #                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
@@ -411,6 +411,14 @@ if [ "yes" = "$ThisIsGateway" ]; then
 			fi
 		fi
 	fi
+
+	if [ "$(ip rule show iif bat0)" = "" ]; then
+		echo "W: ip rule iif bat0 already set, not adding additional rule"
+	else
+		echo "I: Adding ip rule for bat0 to look up in table freifunk"
+		ip rule from all iif bat0 lookup freifunk
+	fi
+
 	$ECHO "[OK]"
 else
 	$ECHO "I: Skipping NAT since not a gateway"
