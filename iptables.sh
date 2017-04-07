@@ -257,9 +257,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
       #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
-      FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
-      FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
-      FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
+      FWboth "Freifunk Network - Web access secure from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+      FWboth "Freifunk Network - nodogsplash web from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
+      FWboth "Freifunk Network - iperf tests from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
    done
 fi
 
@@ -292,7 +292,7 @@ if [ "yes"="$ThisIsWebserver" ]; then
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11281 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
-   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
+   #FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
@@ -323,9 +323,9 @@ done
 if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
    done
 
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --sport 179 -j ACCEPT"
