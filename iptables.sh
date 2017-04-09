@@ -204,7 +204,7 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 set n=0
-for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 140.0.0.0/8
+for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
@@ -213,6 +213,12 @@ do
 done
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
+FW4 "Portmap from localhost is ok" -p tcp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
+FW4 "Portmap from localhost is ok" -p udp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
+FW4 "Portmap from local IP" -p tcp -s $myIP --dport 111 -A INPUT -j ACCEPT
+FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
+FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
+FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
@@ -404,8 +410,8 @@ if [ "yes" = "$ThisIsGateway" ]; then
 
 			# IPv6 NAT
 			if ifconfig mullvad | grep -q inet6; then 
-				anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
-				echo "I: Found IPv6 address for mullvad - also anynymizing that"
+				#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
+				echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
 				FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
 				$IP -6 route replace default dev mullvad table freifunk

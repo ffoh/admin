@@ -3,6 +3,7 @@
 set -e
 
 GREP=/bin/grep
+EGREP=/bin/egrep
 SED=/bin/sed
 CUT=/usr/bin/cut
 IP=/sbin/ip
@@ -153,14 +154,13 @@ function ipindirect () {
 echo "I: iterating over white-listed URLs/IPs"
 
 i=0
-cat $(dirname $0)/deanonymise.txt | $GREP -v ^# | $AWK '{print $1}' | $TEE bla.txt | $SORT -u | while read n
+cat $(dirname $0)/deanonymise.txt | $GREP -v ^# | $EGREP -v '^[ \t]*$' | $AWK '{print $1}' | $TEE bla.txt | $SORT -u | while read n
 do
 	i=$(($i+1))
 	echo "$i: $n"
 
 	if [ "Binary" = "$n" ]; then
 		echo "E: Stumbled into 'Binary' host - no idea how, yet - skipping"
-
 	else
 
 		if false; then

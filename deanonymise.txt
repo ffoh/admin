@@ -9,6 +9,9 @@ gw3.ffoh.de
 gw4.ffoh.de
 gw5.ffoh.de
 gw6.ffoh.de
+gattywatty01.ffoh.de
+gattywatty02.ffoh.de
+gattywatty03.ffoh.de
 109.75.188.31/32 bfo.online bfo wlan.marketing
 gw-test.functional.domains
 otile1-s.mqcdn.com
@@ -21,7 +24,7 @@ hallo-holstein.de	# and all other BFO pages with it
 #wildcard.sitestat.com	# intentionally anonymised, bahn.de
 www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
-216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
+216.58.192.0/18	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
@@ -50,6 +53,9 @@ www.luebeck.de
 193.155.127.0/25	samsung 193.155.127.0 - 193.155.127.127
 81.26.166.0/24	i.ligatus.com d.ligatus.com
 lobos.debian.org
+httpredir.debian.org
+cdn-fastly.deb.debian.org
+ftp.de.debian.org
 wieck.debian.org
 wiki.debian.org
 ftp.upload.debian.org
@@ -114,9 +120,9 @@ pbs.twimg.com
 cdn.syndication.twimg.com
 syndication.twitter.com
 # AVIRA - end
-#s.youtube.com	redundant
-#www.youtube.com	redundant
-#www.youtube-nocookie.com	redundant
+s.youtube.com	redundant
+www.youtube.com	redundant
+www.youtube-nocookie.com	redundant
 # 
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
@@ -132,6 +138,8 @@ lh3.googleusercontent.com
 0.client-channel.google.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 wb-in-f188.1e100.net
+clients1.google.com	#redundant
+clients6.google.com
 # picotech - start
 labs.picotech.com
 picotech.com
@@ -149,6 +157,7 @@ picotech.com
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
+31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
 static.ak.facebook.com
 s-static.ak.facebook.com
 # Facebook - end
@@ -448,6 +457,7 @@ www.tagesschau.de
 ard.de
 www.ard.de
 www.sportschau.de
+boerse.ard.de
 ardsport.ivwbox.de
 gsea.ivwbox.de
 swr.ivwbox.de
@@ -483,6 +493,7 @@ logs1242.xiti.com
 cdn-storage.br.de
 secure-eu.imrworldwide.com
 ma140-r.analytics.edgesuite.net
+live-lh.daserste.de
 # ARD Mediathek - end
 cp229098.edgefcs.net
 script.ioam.de
@@ -711,6 +722,8 @@ b.scorecardresearch.com
 141.54.0.0/15	uni-weimar.de # DFN
 # OOKLA Speedtest - start
 speedtest01.addix.net
+pix.fr.eu.criteo.net
+static.eu.criteo.net
 ookla1.speedtest.tng.de
 www.speedtest.net
 c.speedtest.net
@@ -803,9 +816,12 @@ smtp.web.de
 194.25.0.0/16	# Deutsche Telekom	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
-62.157.140.0/23	tipi.api.t-online.de # 62.157.140.0 - 62.157.141.255
+62.157.140.0/23	tipi.api.t-online.de accounts.login.idm.telekom.com # 62.157.140.0 - 62.157.141.255
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
+80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
+62.157.140.0/23	accounts.login.idm.telekom.com
 homad-global-configs.schneevonmorgen.com
+securesmtp.t-online.de
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
 s0.2mdn.net
 cj.madeleine.de
@@ -822,7 +838,25 @@ logc206.xiti.com
 accounts.login.idm.telekom.com
 www.wetter.info
 gfk-de.sensic.net
+stats.t-online.de
+email.t-online.de
+p.t-online.de
+u.heatmap.it
+logc206.xiti.com
+bcd.esprit.de
+accounts.login.idm.telekom.com
 # T-online - end
+# telekom - start
+tags-eu.tiqcdn.com
+www.telekom.de
+ssl.xplosion.de
+script.ioam.de
+pix.telekom.de
+lptag.liveperson.net
+xups.xplosion.de
+server.lon.liveperson.net
+widgets.trustedshops.com
+# telekom - end
 # ORF - start
 orf.at
 www.orf.at
@@ -871,21 +905,30 @@ b.tiles.mapbox.com
 c.tiles.mapbox.com
 # RTL - start
 217.118.168.0/22	RTL interactive Frankfurt
-#hds.webclips.fra.rtl.de	# redundant
-bilder.static-fra.de
-cdn.static-fra.de
-#www.rtl.de		# redundant
-static.plista.com
 #autoimg.rtl.de		# redundant
+m.addthisedge.com
+securepubads.g.doubleclick.net
+ais.rtl.de
+de-ipd.a.videoplaza.tv
+cdn.videoplaza.tv
+de7-homad-lb.schneevonmorgen.com
+s7.addthis.com
+hds.webclips.akamai.rtl.de
+cdn.static-fra.de
 autoimg.static-fra.de
 bilder.akamai.rtl.de
-fbcdn-profile-a.akamaihd.net
-px1.vtrtl.de
 #bilder.rtl.de		# redundant
-qs.ivwbox.de
+bilder.static-fra.de
+cdn.static-fra.de
 #count.rtl.de		# redundant
+fbcdn-profile-a.akamaihd.net
+#hds.webclips.fra.rtl.de	# redundant
+px1.vtrtl.de
+qs.ivwbox.de
 rtl.ivwbox.de
+static.plista.com
 #tracking.rtl.de	# redundant
+#www.rtl.de		# redundant
 # RLT - end
 # SAT1 - start
 www.sat1.de
@@ -916,22 +959,30 @@ ivwextern.sat1.de
 vas.sim-technik.de
 # SAT1 - end
 # PRO7 - start
-www.prosieben.de
-ds.serving-sys.com
 ad.71i.de
-thumbnails.sevenoneintermedia.de
-service.maxymiser.net
 ad.de.doubleclick.net
-pubads.g.doubleclick.net
 adserver.71i.de
-s1.adform.net
 cdn.krxd.net
-thumbnails.sevenoneintermedia.de
-pro7.ivwbox.de
 ds.serving-sys.com
+ds.serving-sys.com
+pro7.ivwbox.de
+pubads.g.doubleclick.net
 rec3.prosieben.de
-t.prosieben.de
 rec.prosieben.de
+s1.adform.net
+s1.p7s1.com
+epgservice.7tv.de
+rum.7tv.de
+195.30.110.0/23	# Pro7 (7tv.de)
+fb-s-b-a.akamaihd.net
+pbs.twimg.com
+abs.twimg.com
+cdn.syndication.twimg.com
+service.maxymiser.net
+thumbnails.sevenoneintermedia.de
+thumbnails.sevenoneintermedia.de
+t.prosieben.de
+www.prosieben.de
 # PRO7 - end
 # Kabel1 - start
 kabel1.ivwbox.de
@@ -1087,66 +1138,84 @@ welt.ivwbox.de
 198.63.0.0/16	liveperson.net
 198.64.0.0/15	liveperson.net
 198.66.0.0/16	liveperson.net
-ad.doubleclick.net
-ad-emea.doubleclick.net
-ad.yieldlab.net
-admin.brightcove.com
-amv3-tslogging.touchcommerce.com
-api.adrtx.net
-api.bizographics.com
-www.skygo.sky.de
+1.s10i.com
+79423.analytics.edgesuite.net
 80.238.27.0/24	# Sky Broadcasting
 90.192.0.0/11	# BSkyB
-assets.adobedtm.com
-sky.de.d3.sc.omtrdc.net
-skygo.sky.de
-dpm.demdex.net
-www.microsoft.com
-go.sky.com
-livepassdl.conviva.com
-gwb.lphbs.com
-79423.analytics.edgesuite.net
-sky.de.d3.sc.omtrdc.net
-ma100-r.analytics.edgekey.net
+ad.doubleclick.net
+ad-emea.doubleclick.net
+admin.brightcove.com
+ad.yieldlab.net
+ak-ns.sascdn.com
+amv3-tslogging.touchcommerce.com
+analytics.faw.sky.com
+api.adrtx.net
+api.bizographics.com
+api.brightcove.com
 apiservices.krxd.net
+assets.adobedtm.com
 assets.sky.com
 asv.nuggad.net
+availability.advisor.sky.com
+audienceinsights.net
+bam.nr-data.net
 beacon.krxd.net
+brightcove.vo.llnwd.net
 britishskybroadcasti.tt.omtrdc.net
-www.skygo.sky.de
-skygo.sky.de
 b.scorecardresearch.com
+bskyb.demdex.net
+c.brightcove.com
+c.go-mpulse.net
+cdn1.smartadserver.com
 cdn1.smartadserver.com
 cdn.adrtx.net
+cdn.exactag.com
+cdn.tt.omtrdc.net
 cdn.krxd.net
+cdn.appdynamics.com
+cdn3.optimizely.com
+ced.sascdn.com
+col.eum-appdynamics.com
 cm.g.doubleclick.net
 d2oh4tlt9mrke9.cloudfront.net
 dis.criteo.com
+dpm.demdex.net
+ds-aksb-a.akamaihd.net
 eas.apm.emediate.eu
 ecustomeropinions.com
-epgstatic.sky.com
-skymovies.sky.com
+edigitalsurvey.com
 epgservices.sky.com
-m.webtrends.com
-skyid.sky.com
+epgstatic.sky.com
 fbstatic-a.akamaihd.net
 go.affec.tv
+goku.brightcove.com
 googleads.g.doubleclick.net
-ib.adnxs.com
+go.sky.com
+gwb.lphbs.com
 i.ctnsnet.com
+ib.adnxs.com
 id.impressiondesk.com
+images.contentstack.io
 js.revsci.net
+js-agent.newrelic.com
+livepassdl.conviva.com
 loadm.exelator.com
+logx.optimizely.com
+ma100-r.analytics.edgekey.net
+metrics.brightcove.com
 metrics.sky.com
+m.exactag.com
+m.webtrends.com
+media-eu1.inq.com
 my.sky.com
 omni.sky.de
-ds-aksb-a.akamaihd.net
-1.s10i.com
 p2.s10i.com
 pix04.revsci.net
 pixel.mathtag.com
 pixel.quantserve.com
 pix.impdesk.com
+premiede.ivwbox.de
+qs.ivwbox.de
 rtax.criteo.com
 rtt.adrolays.de
 sales.liveperson.net
@@ -1154,7 +1223,16 @@ sd.nakamitech.de
 secure.adnxs.com
 server.lon.liveperson.net
 service.maxymiser.net
+sky.de.d3.sc.omtrdc.net
 skyde.inq.com
+skydeutschland.edgesuite.net
+skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
+skydeutschlandag.tt.omtrdc.net
+skydesecure-a.akamaihd.net
+skygo.sky.de
+skygo.sky.de
+skyid.sky.com
+skymovies.sky.com
 skystorage-a.akamaihd.net
 smetrics.sky.com
 sr2.liveperson.net
@@ -1162,22 +1240,17 @@ storage.sky.com
 t13.intelliad.de
 t23.intelliad.de
 t.mookie1.com
+web-toolkit.global.sky.com
+webengage.sky.com
 ws.sessioncam.com
+wt1.rqtrk.eu
+ws2.rqtrk.eu
 ww251.smartadserver.com
+www.microsoft.com
 www.sky.com
-premiede.ivwbox.de
-api.brightcove.com
-qs.ivwbox.de
-skydeutschland.edgesuite.net
-brightcove.vo.llnwd.net
-ced.sascdn.com
-cdn1.smartadserver.com
-ak-ns.sascdn.com
-audienceinsights.net
-c.brightcove.com
-metrics.brightcove.com
-goku.brightcove.com
-skydeutschland.pd.ak.o.brightcove.com.edgesuite.net
+www.sky.de
+www.skygo.sky.de
+www.skygo.sky.de
 # Sky.com - end
 b.medtronic.com	# not redundant, pointing to adobe
 # Java - start
@@ -1278,11 +1351,21 @@ themes.googleusercontent.com
 fonts.googleapis.com
 www.windfinder.com
 # ADAC - end
-www.timmendorfer-strand.org
-xmail.timmendorfer-strand.de
-www.niendorf-ostsee.de
-xmail.timmendorfer-strand.de
+# Timmendorf - start
+cdn.timmendorfer-strand.de
 niendorf2014.avisto.eu
+www.niendorf-ostsee.de
+www.timmendorfer-strand.org
+www.timmenlove.de
+xmail.timmendorfer-strand.de
+pbs.twimg.com
+staticxx.facebook.com
+connect.facebook.net
+cdn.syndication.twimg.com
+fonts.googleapis.com
+timmendorfer-strand.de
+www.facebook.com
+# Timmendorf - end
 www.buchen.travel
 z1.im-web.de
 images.im-web.de
@@ -1579,6 +1662,11 @@ bam.nr-data.net
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
+api.netflix.com
+assets.nflxext.com
+bcp.crwdcntrl.net
+ad.crwdcntrl.net
+codex.nflxext.com
 www.netflix.de
 www.netflix.com
 www2-ext-s.nflximg.net
@@ -2106,6 +2194,7 @@ zendesk.tv
 p5.zdassets.com
 d26a57ydsghvgx.cloudfront.net
 play.google.com
+docs.google.com
 lh3.ggpht.com
 lh3.googleusercontent.com
 lh6.googleusercontent.com
@@ -2221,3 +2310,23 @@ geid.wbtrk.net
 r.mateti.net
 push.xmarkets.db.com
 # deutsche bank - end
+# reddit - start
+www.reddit.com
+www.redditstatic.com
+s.zkcdn.net
+engine.a.redditmedia.com
+static.adzerk.net
+pixel.quantserve.com
+sb.scorecardresearch.com
+pixel.redditmedia.com
+i.imgur.com
+idsync.rlcdn.com
+sb.scorecardresearch.com
+p.imgur.com
+imgur.com
+out.reddit.com
+# reddit - end
+e-services.cost.eu
+www.eu
+duckduckgo.com
+brewie.org
