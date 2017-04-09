@@ -35,10 +35,10 @@ FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
 echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
 
 
-GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
+GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
 #                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
@@ -265,9 +265,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
       #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
-      FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
-      FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
-      FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
+      FWboth "Freifunk Network - Web access secure from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+      FWboth "Freifunk Network - nodogsplash web from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
+      FWboth "Freifunk Network - iperf tests from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
    done
 fi
 
@@ -300,7 +300,7 @@ if [ "yes"="$ThisIsWebserver" ]; then
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11281 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
-   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
+   #FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
@@ -331,9 +331,9 @@ done
 if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
    done
 
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --sport 179 -j ACCEPT"
@@ -420,6 +420,14 @@ if [ "yes" = "$ThisIsGateway" ]; then
 			fi
 		fi
 	fi
+
+	if [ "$(ip rule show iif bat0)" = "" ]; then
+		echo "W: ip rule iif bat0 already set, not adding additional rule"
+	else
+		echo "I: Adding ip rule for bat0 to look up in table freifunk"
+		ip rule add from all iif bat0 lookup freifunk
+	fi
+
 	$ECHO "[OK]"
 else
 	$ECHO "I: Skipping NAT since not a gateway"
