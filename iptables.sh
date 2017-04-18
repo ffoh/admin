@@ -346,6 +346,7 @@ FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 $ECHO "I: NEIN: FTP"
 FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
+FWboth "No DNS from outside Freifunk" -A INPUT -p udp --dport domain -j log-drop
 
 $ECHO "I: JA: SSH, WWW, PING"
 FWboth "SSH login possible from everywhere except above Chinese sites" '-A INPUT -p tcp --dport ssh -j ACCEPT'
