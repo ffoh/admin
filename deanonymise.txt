@@ -28,10 +28,12 @@ www.apple.com	# not redundant
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
 iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
-172.217.0.0/16	www.google.de ...metric.gstatic.com
+172.217.0.0/16	www.google.de ...metric.gstatic.com youtubei.youtube.com
+youtubei.youtube.com	# redundant
+i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
-80.149.20.64/26	# googlevideo Düsseldorf
+80.149.20.64/26	# googlevideo DÃ¼sseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com 0.docs.google.com 4.docs.google.com
@@ -159,26 +161,30 @@ picotech.com
 # Facebook - start
 157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
-173.252.64.0/18	facebook
-69.171.224.0/19	facebook
-66.220.144.0/20	facebook
 31.13.100.0/24	facebook
 31.13.109.0/24	facebook
 31.13.64.0/24	connect.facebook.net facebook
 31.13.65.0/24	connect.facebook.com
+31.13.65.0/24	connect.facebook.com
 31.13.66.0/24	# facebook
 31.13.69.0/24	# facebook
 31.13.70.0/24	facebook
+31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
+31.13.71.0/24	connect.facebook.net
+31.13.73.0/24	# facebook
 31.13.73.0/24	# facebook
 31.13.74.0/24	# facebook
 31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
 31.13.77.0/24	# facebook
+31.13.80.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
-static.ak.facebook.com
+66.220.144.0/20	facebook
+69.171.224.0/19	facebook
 s-static.ak.facebook.com
+static.ak.facebook.com
 # Facebook - end
 # spiegel - start
 104.244.40.0/21	twitter
@@ -250,6 +256,10 @@ vt.adition.com
 www.google-analytics.com
 www.spiegel.de
 www.spiegel.tv
+spiegeltv-prod-static.s3.amazonaws.com
+spiegeltv-ivms2-restapi.s3.amazonaws.com
+homad-global-configs-eu-fra.schneevonmorgen.com.s3.amazonaws.com
+d22mepmetc46uf.cloudfront.net
 # spiegel - end
 # spotify - start
 194.14.177.0/24	spotify.com
@@ -496,8 +506,8 @@ www1.wdr.de
 liveupdate1.scribblelive.com
 counter.scribblelive.com
 love.scribblelive.com
-cdn-storage.br.de
 media.ndr.de
+cdn-vod-ios.br.de
 download.media.tagesschau.de
 www.mdr.de
 wetter.tagesschau.de
@@ -506,10 +516,10 @@ secure-eu.imrworldwide.com
 # ARD mit Tagesschau - end
 # ARD Mediathek - start
 www.ardmediathek.de
+tracker.br.de
 seccdn-gl.imrworldwide.com
 cdn-storage.br.de
 logs1242.xiti.com
-cdn-storage.br.de
 secure-eu.imrworldwide.com
 ma140-r.analytics.edgesuite.net
 live-lh.daserste.de
@@ -739,16 +749,16 @@ b.scorecardresearch.com
 141.22.0.0/16	haw-hamburg.de # DFN
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
+131.234.0.0/16	uni-paderborn.de
 # OOKLA Speedtest - start
-37.202.1.0/24	# Stadtwerke NeumÃnster
-37.202.2.0/24	# Stadtwerke NeumÃnster
+37.202.1.0/24	# Stadtwerke Neumuenster
+37.202.2.0/24	# Stadtwerke Neumuenster
 a.adroll.com
 a.c.appier.net
 ad.afy11.net
 ads.ookla.com
 adx.g.doubleclick.net
 apex.go.sonobi.com
-ib.adnxs.com
 api.ookla.com
 a.speedtest.frankfurt.x-ion.de
 b.cdnst.net
@@ -766,14 +776,14 @@ c.speedtest.net
 d.adroll.com
 distillery.wistia.com
 dt.adsafeprotected.com
-fast.wistia.net
 fastlane.rubiconproject.com
+fast.wistia.net
 fra36-speedtest-1.tele2.net
 googleads.g.doubleclick.net
-l.betrad.com
 ib.adnxs.com
 ih.adscale.de
 ip5886b6d3.dynamic.kabel-deutschland.de
+l.betrad.com
 match.adsrvr.org
 mus.cisco.com
 ookla1.speedtest.tng.de
@@ -798,7 +808,6 @@ sc.iasds01.com
 server.debspace.org
 sl-02.wemacom.de
 speed1.ktk.de
-speed1.ktk.de
 speed.23media.de
 speedtest01.addix.net
 speedtest21.hotspot.koeln
@@ -812,13 +821,11 @@ speedtest.it-ohlendorf.de
 speedtest.studiofunk.de
 speedtest.swnnms.net
 speedtest.tng.de
-speedtest.tng.de
-speedtest.vodafone-ip.de
 speedtest.vodafone-ip.de
 speedtest.wtnet.de
 static.eu.criteo.net
-sync.mathtag.com
 sync.go.sonobi.com
+sync.mathtag.com
 sync.rhythmxchange.com
 tags.bluekai.com
 tiles.cdnst.net
@@ -1184,6 +1191,7 @@ welt.ivwbox.de
 198.64.0.0/15	liveperson.net
 198.66.0.0/16	liveperson.net
 1.s10i.com
+1.shard.next.sky.de.edgesuite.net
 79423.analytics.edgesuite.net
 80.238.27.0/24	# Sky Broadcasting
 90.192.0.0/11	# BSkyB
@@ -1208,6 +1216,7 @@ beacon.krxd.net
 brightcove.vo.llnwd.net
 britishskybroadcasti.tt.omtrdc.net
 b.scorecardresearch.com
+bb.sky.com
 bskyb.demdex.net
 c.brightcove.com
 c.go-mpulse.net
@@ -1241,12 +1250,14 @@ i.ctnsnet.com
 ib.adnxs.com
 id.impressiondesk.com
 images.contentstack.io
+images.metadata.sky.com
 js.revsci.net
 js-agent.newrelic.com
 livepassdl.conviva.com
 loadm.exelator.com
 logx.optimizely.com
 ma100-r.analytics.edgekey.net
+media-eu1.inq.com
 metrics.brightcove.com
 metrics.sky.com
 m.exactag.com
@@ -1281,6 +1292,7 @@ skymovies.sky.com
 skystorage-a.akamaihd.net
 smetrics.sky.com
 sr2.liveperson.net
+static.inq.com
 storage.sky.com
 t13.intelliad.de
 t23.intelliad.de
@@ -1709,15 +1721,32 @@ bam.nr-data.net
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
+aa.online-metrix.net
 api.netflix.com
 assets.nflxext.com
 bcp.crwdcntrl.net
+info.evidon.com # Cookie-Interpretation
 ad.crwdcntrl.net
+c.betrad.com  # Cookie-Interpretation
 codex.nflxext.com
+help.netflix.com
+help.nflximg.com
 www.netflix.de
 www.netflix.com
 www2-ext-s.nflximg.net
 secure.netflix.com
+secured.netflix.com
+threatmetrix.com
+c6.paypal.com
+c.paypal.com
+t.paypal.com
+www.paypal.com
+www.paypalobjects.com
+dub.stats.paypal.com
+b.stats.paypal.com
+ak1s.abmr.net
+nexus.ensighten.com
+ncds.netflix.com
 # netflix end
 app.dailyme.tv
 212.58.240.0/20	bbc.co.uk
@@ -2417,6 +2446,11 @@ pfna.levexis.com
 cdn.rcstatic.com
 api.boxever.com
 # Swoodoo - end
+www.lbv.de
+www.nabu.de
+www.drv-web.de
+www.ddnss.de
+preis-zone.com
 mail.idess.net
 # Presseportal - start
 www.presseportal.de
@@ -2425,3 +2459,7 @@ js-agent.newrelic.com
 mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
+82.145.208.0/21	# opera
+cdn.sstatic.net
+api.groundspeak.com	# some geocaching
+ostsee.de

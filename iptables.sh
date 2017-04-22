@@ -35,10 +35,10 @@ FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
 echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
 
 
-GatewayIp4List="141.101.36.19 141.101.36.67 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
+GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
 #                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
 
 LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
@@ -112,6 +112,13 @@ if [ "x$myIP" = "x$Mailip" ]; then
     ThisIsMailserver="yes"
 fi
 
+iptablesoptions=""
+iptablesversion="$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)"
+if [ "v1.4" = "$iptablesversion" ]; then
+   iptablesoptions=""
+else
+   iptablesoptions="-w 5"
+fi
 
 cat <<EOCAT
 ThisIsMailserver: $ThisIsMailserver
@@ -120,12 +127,13 @@ ThisIsGateway: $ThisIsGateway
 myIP: $myIP
 RemoteGatewayIPv4List: $RemoteGatewayIPv4List
 RemoteGatewayIPv6List: $RemoteGatewayIPv6List
+iptablesversion: '$iptablesversion'
+iptablesoptions: '$iptablesoptions'
 EOCAT
-#exit
 
 function FWboth {
-   FW4="/sbin/iptables -w 5 "
-   FW6="/sbin/ip6tables -w 5 "
+   FW4="/sbin/iptables $iptablesoptions "
+   FW6="/sbin/ip6tables $iptablesoptions "
    comment=$1
    if [ -n "$comment" ];then
        shift 1
@@ -141,7 +149,7 @@ function FWboth {
 }
 
 function FW4 {
-   FW4="/sbin/iptables -w 5 "
+   FW4="/sbin/iptables $iptablesoptions "
    #$ECHO $FW4 $*
    comment=$1
    if [ -n "$comment" ]; then
@@ -155,7 +163,7 @@ function FW4 {
 }
 
 function FW6 {
-   FW6="/sbin/ip6tables -w 5 "
+   FW6="/sbin/ip6tables $iptablesoptions "
    #$ECHO $FW6 $*
    comment=$1
    if [ -n "$comment" ];then
@@ -257,9 +265,9 @@ if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
       #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
-      FWboth "Freifunk Network - Web access secure" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
-      FWboth "Freifunk Network - nodogsplash web" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
-      FWboth "Freifunk Network - iperf tests" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
+      FWboth "Freifunk Network - Web access secure from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport https -j ACCEPT
+      FWboth "Freifunk Network - nodogsplash web from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 2050 -j ACCEPT
+      FWboth "Freifunk Network - iperf tests from $FreifunkDevice" -A INPUT -p tcp -i $FreifunkDevice --dport 5001 -j ACCEPT
    done
 fi
 
@@ -292,7 +300,7 @@ if [ "yes"="$ThisIsWebserver" ]; then
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11281 -j ACCEPT"
 	   FW6 "fastd from gateway $gw" "-A INPUT -p udp -s $gw --dport 11426 -j ACCEPT"
    done
-   FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
+   #FWboth "" '-A INPUT -p udp --dport 16962  -j ACCEPT' ## FIXME: WHAT IS THIS?!? Steffen
    FWboth "From everywhere - Web access" -A INPUT -p tcp --dport http -j ACCEPT
    FWboth "From everywhere - Web access secure" '-A INPUT -p tcp --dport https -j ACCEPT'
 fi
@@ -323,9 +331,9 @@ done
 if [ "yes"="$ThisIsGateway" ]; then
    for FreifunkDevice in $FreifunkDevices
    do
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
-      FWboth "Freifunk Network - dhcpd" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport bootps -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 11431 -j ACCEPT'
+      FWboth "Freifunk Network - dhcpd on $FreifunkDevice" '-A INPUT -p udp -i $FreifunkDevice --dport 61703 -j ACCEPT'
    done
 
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --sport 179 -j ACCEPT"
@@ -338,6 +346,7 @@ FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 $ECHO "I: NEIN: FTP"
 FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
+FWboth "No DNS from outside Freifunk" -A INPUT -p udp --dport domain -j log-drop
 
 $ECHO "I: JA: SSH, WWW, PING"
 FWboth "SSH login possible from everywhere except above Chinese sites" '-A INPUT -p tcp --dport ssh -j ACCEPT'
@@ -402,8 +411,9 @@ if [ "yes" = "$ThisIsGateway" ]; then
 
 			# IPv6 NAT
 			if ifconfig mullvad | grep -q inet6; then 
-				echo "I: Found IPv6 address for mullvad - also anonymizing that"
-				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
+				#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
+				echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
+				FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
 				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
 				$IP -6 route replace default dev mullvad table freifunk
 			else
@@ -411,6 +421,14 @@ if [ "yes" = "$ThisIsGateway" ]; then
 			fi
 		fi
 	fi
+
+	if [ "$(ip rule show iif bat0)" = "" ]; then
+		echo "W: ip rule iif bat0 already set, not adding additional rule"
+	else
+		echo "I: Adding ip rule for bat0 to look up in table freifunk"
+		ip rule add from all iif bat0 lookup freifunk
+	fi
+
 	$ECHO "[OK]"
 else
 	$ECHO "I: Skipping NAT since not a gateway"
