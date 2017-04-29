@@ -33,7 +33,7 @@ youtubei.youtube.com	# redundant
 i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
-80.149.20.64/26	# googlevideo Düsseldorf
+80.149.20.64/26	# googlevideo DÃ¼sseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
 64.233.160.0/19	waspproxy.googlemail.com 0.docs.google.com 4.docs.google.com
@@ -161,26 +161,30 @@ picotech.com
 # Facebook - start
 157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
-173.252.64.0/18	facebook
-69.171.224.0/19	facebook
-66.220.144.0/20	facebook
-31.13.109.0/24	facebook
 31.13.100.0/24	facebook
-31.13.70.0/24	facebook
-31.13.65.0/24	connect.facebook.com
+31.13.109.0/24	facebook
 31.13.64.0/24	connect.facebook.net facebook
+31.13.65.0/24	connect.facebook.com
+31.13.65.0/24	connect.facebook.com
 31.13.66.0/24	# facebook
 31.13.69.0/24	# facebook
+31.13.70.0/24	facebook
+31.13.70.0/24	facebook
+31.13.71.0/24	connect.facebook.net
 31.13.71.0/24	connect.facebook.net
 31.13.73.0/24	# facebook
+31.13.73.0/24	# facebook
+31.13.74.0/24	# facebook
+31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
+31.13.77.0/24	# facebook
 31.13.80.0/24	connect.facebook.net
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
-31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
-31.13.77.0/24	# facebook
-static.ak.facebook.com
+66.220.144.0/20	facebook
+69.171.224.0/19	facebook
 s-static.ak.facebook.com
+static.ak.facebook.com
 # Facebook - end
 # spiegel - start
 104.244.40.0/21	twitter
@@ -747,77 +751,98 @@ b.scorecardresearch.com
 141.54.0.0/15	uni-weimar.de # DFN
 131.234.0.0/16	uni-paderborn.de
 # OOKLA Speedtest - start
-speedtest01.addix.net
-pix.fr.eu.criteo.net
-static.eu.criteo.net
-ookla1.speedtest.tng.de
-www.speedtest.net
-c.speedtest.net
-beta.speedtest.net
-zdstatic.speedtest.net
-www.alternateatmosphere.com
-tiles.cdnst.net
-#speedtest.hillcom.de
-www.fallingfalcon.com
-www.base-mail.de
-www.base-mail.us
+37.202.1.0/24	# Stadtwerke Neumuenster
+37.202.2.0/24	# Stadtwerke Neumuenster
 a.adroll.com
 a.c.appier.net
+ad.afy11.net
 ads.ookla.com
+adx.g.doubleclick.net
+apex.go.sonobi.com
 api.ookla.com
-c.betrad.com
-www.google-analytics.com
-cse.google.com
-fast.wistia.net
-zdbb.net
-cdn.static.zdbb.net
-walker.zdbb.net
-pipedream.wistia.com
-distillery.wistia.com
+a.speedtest.frankfurt.x-ion.de
+b.cdnst.net
+beta.speedtest.net
+bid.contextweb.com
 by.uservoice.com
+c.betrad.com
 cdn.ads.ookla.com
 cdn.optimizely.com
+cdn.static.zdbb.net
 cm.g.doubleclick.net
+contextual.media.net
+cse.google.com
+c.speedtest.net
 d.adroll.com
+distillery.wistia.com
+dt.adsafeprotected.com
+fastlane.rubiconproject.com
+fast.wistia.net
+fra36-speedtest-1.tele2.net
 googleads.g.doubleclick.net
 ib.adnxs.com
 ih.adscale.de
-sadmin.brightcove.com
+ip5886b6d3.dynamic.kabel-deutschland.de
+l.betrad.com
 match.adsrvr.org
 mus.cisco.com
+ookla1.speedtest.tng.de
+ookla-d.openx.net
+openx2-match.dotomi.com
 pagead2.googlesyndication.com
+pipedream.wistia.com
+pixel.adsafeprotected.com
+pixel.everesttech.net
 pixel.quantserve.com
+pix.fr.eu.criteo.net
 pubads.g.doubleclick.net
 px.adhigh.net
+px.moatads.com
+px.owneriq.net
+r.openx.net
+rp.gwallet.com
+rtb.districtm.io
+rtb.openx.net
+sadmin.brightcove.com
+sc.iasds01.com
+server.debspace.org
 sl-02.wemacom.de
+speed1.ktk.de
+speed.23media.de
+speedtest01.addix.net
+speedtest21.hotspot.koeln
+speedtest.base-mail.us
 speedtest.csb-net.de
+speedtest.fra02.softlayer.com
+speedtest.fra1.de.leaseweb.com
+#speedtest.hillcom.de
+speedtest.ip-projects.de
+speedtest.it-ohlendorf.de
 speedtest.studiofunk.de
 speedtest.swnnms.net
 speedtest.tng.de
 speedtest.vodafone-ip.de
 speedtest.wtnet.de
+static.eu.criteo.net
+sync.go.sonobi.com
+sync.mathtag.com
+sync.rhythmxchange.com
+tags.bluekai.com
+tiles.cdnst.net
+tpc.googlesyndication.com
 us-u.openx.net
 view.atdmt.com
-ip5886b6d3.dynamic.kabel-deutschland.de
-speedtest.tng.de
+walker.zdbb.net
+www.alternateatmosphere.com
+www.base-mail.de
+www.base-mail.us
+www.fallingfalcon.com
+www.google-analytics.com
+www.speedtest.net
 x1-6-00-26-b9-f3-01-88.cpe.webspeed.de
-37.202.1.0/24	# Stadtwerke NeumÃnster
-37.202.2.0/24	# Stadtwerke NeumÃnster
-speedtest.ip-projects.de
-speedtest.fra1.de.leaseweb.com
-speedtest.fra02.softlayer.com
-fra36-speedtest-1.tele2.net
-speedtest.base-mail.us
-speed.23media.de
-speedtest.vodafone-ip.de
-a.speedtest.frankfurt.x-ion.de
-speedtest21.hotspot.koeln
-speed1.ktk.de
 zdbb.net
-server.debspace.org
-speed1.ktk.de
-sync.mathtag.com
-tags.bluekai.com
+zdstatic.speedtest.net
+z.moatads.com
 # OOKLA Speedtest - end
 108.160.160.0/20	dropbox.com
 162.125.0.0/16	dropbox.com
@@ -1105,6 +1130,7 @@ triton916.startdedicated.de
 wotan.tuxli.ch
 # NTP - end
 # Zatoo - start
+152.163.0.0/16	#AOL
 adtech-ads-shared-frr.evip.aol.com
 imap-a-mtc-b.mx.aol.com
 imap-b-mtc-c.mx.aol.com
@@ -1695,15 +1721,32 @@ bam.nr-data.net
 198.136.44.0/22	gameloft.com
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
+aa.online-metrix.net
 api.netflix.com
 assets.nflxext.com
 bcp.crwdcntrl.net
+info.evidon.com # Cookie-Interpretation
 ad.crwdcntrl.net
+c.betrad.com  # Cookie-Interpretation
 codex.nflxext.com
+help.netflix.com
+help.nflximg.com
 www.netflix.de
 www.netflix.com
 www2-ext-s.nflximg.net
 secure.netflix.com
+secured.netflix.com
+threatmetrix.com
+c6.paypal.com
+c.paypal.com
+t.paypal.com
+www.paypal.com
+www.paypalobjects.com
+dub.stats.paypal.com
+b.stats.paypal.com
+ak1s.abmr.net
+nexus.ensighten.com
+ncds.netflix.com
 # netflix end
 app.dailyme.tv
 212.58.240.0/20	bbc.co.uk
@@ -2420,3 +2463,10 @@ irqs.ioam.de
 cdn.sstatic.net
 api.groundspeak.com	# some geocaching
 ostsee.de
+# microsoft - start
+204.79.195.0/24	# microsoft ECN
+204.79.196.0/23	# microsoft ECN
+c.microsoft.com
+c.s-microsoft.com
+assets.one-store.ms
+# microsoft-end

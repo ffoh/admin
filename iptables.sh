@@ -425,7 +425,7 @@ if [ "yes" = "$ThisIsGateway" ]; then
 		fi
 	fi
 
-	if [ "$(ip rule show iif bat0)" = "" ]; then
+	if $IP rule show | $GREP -q freifunk; then
 		echo "W: ip rule iif bat0 already set, not adding additional rule"
 	else
 		echo "I: Adding ip rule for bat0 to look up in table freifunk"
