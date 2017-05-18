@@ -140,7 +140,8 @@ docs.google.com
 7.docs.google.com
 ssl.gstatic.com
 drive.google.com
-clients4.google.com
+clients4.google.com	# redundant
+manifest.googlevideo.com	# redudant
 plusone.google.com
 plus.google.com
 hangouts.google.com
