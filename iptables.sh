@@ -113,7 +113,7 @@ if [ "x$myIP" = "x$Mailip" ]; then
 fi
 
 iptablesoptions=""
-iptablesversion="$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)"
+iptablesversion=$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)
 if [ "v1.4" = "$iptablesversion" ]; then
    iptablesoptions=""
 else
