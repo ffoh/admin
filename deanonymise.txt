@@ -213,6 +213,7 @@ dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc73.s290.meetrics.net
 dc80.s290.meetrics.net
+dc82.s290.meetrics.net
 dc83.s290.meetrics.net
 dc84.s290.meetrics.net
 de-ipd.videoplaza.tv
@@ -2416,7 +2417,17 @@ out.reddit.com
 e-services.cost.eu
 www.eu
 duckduckgo.com
+# brewie.org - start
 brewie.org
+oss.maxcdn.com
+maxcdn.bootstrapcdn.com
+front.optimonk.com
+s2.smartlook.com
+rec.smartlook.com
+cdnjs.cloudflare.com
+code.jquery.com
+cdn-dynamic.optimonk.com
+# brewie.org - end
 # Kabel Deutschland Vodafone - start
 31.19.128.0/17	# Kabel Deutschland Kunden
 # Kabel Deutschland Vodafone - end
