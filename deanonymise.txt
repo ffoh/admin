@@ -2482,3 +2482,10 @@ c.microsoft.com
 c.s-microsoft.com
 assets.one-store.ms
 # microsoft-end
+# mullvad.net - start
+185.65.132.0/24	# de.mullvad.net Knoten
+193.138.219.0/24	# de.mullvad.net Knoten
+185.65.134.0/24	# de.mullvad.net Knoten
+185.65.135.0/24	# de.mullvad.net Knoten
+www.mullvad.net
+# mullvad.net - end
