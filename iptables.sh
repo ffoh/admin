@@ -113,7 +113,7 @@ if [ "x$myIP" = "x$Mailip" ]; then
 fi
 
 iptablesoptions=""
-iptablesversion="$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)"
+iptablesversion=$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)
 if [ "v1.4" = "$iptablesversion" ]; then
    iptablesoptions=""
 else
@@ -308,8 +308,11 @@ fi
 for FreifunkDevice in $FreifunkDevices
 do
    FWboth "Freifunk Network - ping from $FreifunkDevice" "-A INPUT -p icmp -i $FreifunkDevice -j ACCEPT"
+   FWboth "Freifunk Network - named from $FreifunkDevice" "-A INPUT -p tcp --dport domain -i $FreifunkDevice -j ACCEPT"
+   FWboth "Freifunk Network - named from $FreifunkDevice" "-A INPUT -p udp --dport domain -i $FreifunkDevice -j ACCEPT"
    FW6 "Freifunk Network IPv6 - allowed to do anything" -A INPUT -i $FreifunkDevice -j ACCEPT
 done
+
 
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i $DEVICE -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
