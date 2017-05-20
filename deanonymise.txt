@@ -102,6 +102,7 @@ anonscm.debian.org
 128.176.0.0/16	uni-muenster.de # important mirror
 134.76.0.0/16	gwdg.de # important mirror of scientific software
 149.199.0.0/16	xilinx.com
+204.77.162.0/23	garmin
 license.xilinx.com
 xilinx.entitlenow.com
 104.244.40.0/21	api.twitter.com www.twitter.com
@@ -129,7 +130,7 @@ www.youtube-nocookie.com	#redundant
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
 74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
-173.194.0.0/16	ssl.gstatic.com # google
+ssl.gstatic.com # redundant
 clientmetrics-pa.googleapis.com
 notifications.google.com	#redundant
 www.google.de	#redundant
@@ -172,11 +173,11 @@ picotech.com
 31.13.70.0/24	facebook
 31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
-31.13.71.0/24	connect.facebook.net
-31.13.73.0/24	# facebook
+31.13.72.0/24	facebook
 31.13.73.0/24	# facebook
 31.13.74.0/24	# facebook
 31.13.76.0/24	edge-star-shv-01-sea1.facebook.com
+185.60.216.0/21	# facebook-ie
 31.13.77.0/24	# facebook
 31.13.80.0/24	connect.facebook.net
 31.13.91.0/24	facebook
@@ -226,6 +227,13 @@ get.adobe.com
 h342.meetrics.de
 h343.meetrics.de
 h364.meetrics.de
+h429.meetrics.de
+h430.meetrics.de
+h376.meetrics.de
+h377.meetrics.de
+h378.meetrics.de
+h380.meetrics.de
+h398.meetrics.de
 images.nl.eu.criteo.net
 images.nl.eu.criteo.net
 imagesrv.adition.com
@@ -244,6 +252,7 @@ s290.mxcdn.net
 scontent.xx.fbcdn.net
 script.ioam.de
 server.adform.net
+srv-2017-04-25-15.pixel.parsely.com
 spiegel.de
 spiegel.ivwbox.de
 spiegel.met.vgwort.de
@@ -409,6 +418,7 @@ ib.adnxs.com
 images.harlander.com
 ir.ebaystatic.com
 load.s3.amazonaws.com
+s3-1.amazonaws.com
 m.ebay-kleinanzeigen.de
 mobidcs.ebay.com
 mobior.ebay.com
@@ -594,9 +604,10 @@ www.volksbank-eutin.de
 192.30.252.0/22	github.com
 github.com
 www.github.com
+api.github.com
 assets-cdn.github.com
-avatars3.githubusercontent.com
 avatars1.githubusercontent.com
+avatars3.githubusercontent.com
 collector.githubapp.com
 live.github.com
 # github - end
@@ -1619,13 +1630,20 @@ vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
-173.192.192.0/19	#whatsapp
-158.85.58.64/27	#whatsapp
 108.168.160.0/19	#whatsapp
+158.85.58.64/27	#whatsapp
+169.45.248.160/27	# whatsapp
+169.47.42.224/27	# whatsapp
+169.45.248.96/27	# whatsapp
+169.47.42.96/27	# whatsapp
+169.47.5.192/27	# whatsapp
+169.55.75.96/27	# whatsapp
+173.192.192.0/19	#whatsapp
+174.36.210.32/27	# whatsapp
 31.13.92.0/24	#web.whatsapp.com
-www.whatsapp.com
-whatsappcdn.appspot.com
 s.ytimg.com
+whatsappcdn.appspot.com
+www.whatsapp.com
 android-crashlog.whatsapp.net
 web.whatsapp.com
 1a.3a.559e.ip4.static.sl-reverse.com	# guess
@@ -1968,7 +1986,27 @@ player.vimeo.com
 cdn4.pistoiaalliance.org
 cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
+# stackoverflow.com - start
 stackoverflow.com
+cdn.sstatic.net
+rules.quantcount.com
+pixel.quantserve.com
+b.scorecardresearch.com
+edge.quantserve.com
+www.gravatar.com
+ajax.googleapis.com
+maps.googleapis.com
+csi.gstatic.com
+www.gravatar.com
+clc.stackoverflow.com
+scontent.xx.fbcdn.net
+engine.adzerk.net
+lh4.googleusercontent.com
+graph.facebook.com
+lh6.googleusercontent.com
+i.stack.imgur.com
+i.ytimg.com
+# stackoverflow.com - end
 139.30.0.0/16	#uni-rostock.de
 imib100.med.uni-rostock.de
 bioconductor.org
@@ -2276,6 +2314,7 @@ r5---sn-qu5b-q0ne.googlevideo.com
 r11---sn-i5h7ln7z.googlevideo.com
 r5---sn-i5h7ln7z.googlevideo.com
 r11---sn-5hnedne7.googlevideo.com
+r2---sn-4g5ednek.googlevideo.com	#redundant
 s.youtube.com
 support.pokemongo.nianticlabs.com
 zendesk.tv
@@ -2473,6 +2512,14 @@ s3-1.amazonaws.com
 irqs.ioam.de
 82.145.208.0/21	# opera
 cdn.sstatic.net
+cdn.timmendorfer-strand.de
+# itelescope.net - start
+www.itelescope.net
+static1.1sqspcdn.com
+ra.recolvermaps.com
+support.itelescope.net
+badge.facebook.com
+# itelescope.net - end
 api.groundspeak.com	# some geocaching
 ostsee.de
 # microsoft - start
@@ -2489,3 +2536,6 @@ assets.one-store.ms
 185.65.135.0/24	# de.mullvad.net Knoten
 www.mullvad.net
 # mullvad.net - end
+imap.one.com
+ostseecamp-seeblick.de
+www.ostseecamp.de
