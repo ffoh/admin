@@ -602,6 +602,7 @@ volksbank-eutin.de
 www.volksbank-eutin.de
 # github - start
 192.30.252.0/22	github.com
+151.101.0.0/16	github.io
 github.com
 www.github.com
 api.github.com
@@ -610,6 +611,7 @@ avatars1.githubusercontent.com
 avatars3.githubusercontent.com
 collector.githubapp.com
 live.github.com
+github.io
 # github - end
 last.fm
 www.last.fm
@@ -2135,6 +2137,14 @@ www.reichelt.de
 # overleaf - start
 www.overleaf.com
 cdn.mathjax.org
+js.pusher.com
+cdnjs.cloudflare.com
+api.filepicker.io
+preview.overleaf.com
+stats.pusher.com
+ws.pusherapp.com
+cdn.ravenjs.com
+fonts.googleapis.com
 # overleaf - end
 www.whatismyip.com
 159.122.189.32/27	teamviewer.com
@@ -2541,4 +2551,23 @@ www.mullvad.net
 imap.one.com
 ostseecamp-seeblick.de
 www.ostseecamp.de
+# OUP - start
 academic.oup.com	# Oxford University Press
+oup.silverchair-cdn.com
+m.addthis.com
+m.addthisedge.com
+global.oup.com
+cdn.mathjax.org
+d1bxh8uas1mnw7.cloudfront.net
+s7.addthis.com
+ouptag.scholarlyiq.com
+d1uo4w7k31k5mn.cloudfront.net
+api.altmetric.com
+cdn.jsdelivr.net
+# OUP - start
+# plos - start
+journals.plos.org
+# plos - end
+www.knime.org
+www.zotero.org
+singularity.lbl.gov
