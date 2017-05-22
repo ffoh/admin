@@ -1836,6 +1836,8 @@ service.supercell.net
 ec2-54-195-240-74.eu-west-1.compute.amazonaws.com
 # clashofclans - end
 # boinc - start
+129.89.0.0/16	University of Wisconsin
+194.95.232.0/21	MPI@DFN
 einstein.phys.uwm.edu
 # boinc - end
 o2mail.de
@@ -2539,3 +2541,4 @@ www.mullvad.net
 imap.one.com
 ostseecamp-seeblick.de
 www.ostseecamp.de
+academic.oup.com	# Oxford University Press
