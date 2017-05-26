@@ -33,6 +33,7 @@ youtubei.youtube.com	# redundant
 i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
+216.239.32.0/19	# google
 80.149.20.64/26	# googlevideo Düsseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
@@ -227,13 +228,14 @@ get.adobe.com
 h342.meetrics.de
 h343.meetrics.de
 h364.meetrics.de
-h429.meetrics.de
-h430.meetrics.de
 h376.meetrics.de
 h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h429.meetrics.de
+h430.meetrics.de
+h546.meetrics.de
 images.nl.eu.criteo.net
 images.nl.eu.criteo.net
 imagesrv.adition.com
@@ -278,6 +280,7 @@ d22mepmetc46uf.cloudfront.net
 194.132.162.0/24	spotify.com
 194.132.168.0/22
 spotify.com
+cache.spotify.com
 www.spotify.com
 i.scdn.co
 t.scdn.co
@@ -1633,14 +1636,17 @@ i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
 108.168.160.0/19	#whatsapp
-158.85.58.64/27	#whatsapp
-169.45.248.160/27	# whatsapp
-169.47.42.224/27	# whatsapp
+158.85.58.64/27	# whatsapp
+169.45.214.224/27	# whatsapp
+169.45.219.224/27	# whatsapp
 169.45.248.96/27	# whatsapp
-169.47.42.96/27	# whatsapp
+169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
+169.47.42.96/27	# whatsapp
+169.47.42.224/27	# whatsapp
 169.55.75.96/27	# whatsapp
-173.192.192.0/19	#whatsapp
+169.55.67.224/27	# whatsapp
+173.192.192.0/19	# whatsapp
 174.36.210.32/27	# whatsapp
 31.13.92.0/24	#web.whatsapp.com
 s.ytimg.com
@@ -1744,6 +1750,7 @@ bam.nr-data.net
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
 aa.online-metrix.net
+anycast.ftl.netflix.com
 api.netflix.com
 assets.nflxext.com
 bcp.crwdcntrl.net
@@ -2571,3 +2578,9 @@ journals.plos.org
 www.knime.org
 www.zotero.org
 singularity.lbl.gov
+# giz - start
+www.giz.de
+owa.giz.de
+# giz - end
+81.19.104.0/24	# Kaspersky
+smtp-1.ewetel.de
