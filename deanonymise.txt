@@ -2584,3 +2584,12 @@ owa.giz.de
 # giz - end
 81.19.104.0/24	# Kaspersky
 smtp-1.ewetel.de
+# mapillary - start
+www.mapillary.com
+a.mapillary.com
+b.tiles.mapbox.com
+api.mixpanel.com
+cdn.mxpnl.com
+freegeoip.io
+# mapillary - end
+
