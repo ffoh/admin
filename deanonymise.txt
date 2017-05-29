@@ -116,6 +116,7 @@ fast.fonts.net
 # AVIRA - start
 62.146.210.0/24	avira.com # Antivirus
 89.105.192.0/19 avira.nl # Antivirus
+professional.de.avira-update.com
 aviraoperations.d3.sc.omtrdc.net
 bat.bing.com
 bat.r.msn.com
@@ -130,7 +131,7 @@ www.youtube-nocookie.com	#redundant
 # google - start
 8.8.8.8	google-public-dns-a.google.com
 8.8.4.4	google-public-dns-b.google.com
-74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com # google
+74.125.0.0/16	imasdk.googleapis.com id.google.de ajax.googleapis.com fonts.googleapis.com smtp.gmail.com # google
 ssl.gstatic.com # redundant
 clientmetrics-pa.googleapis.com
 notifications.google.com	#redundant
@@ -142,7 +143,6 @@ docs.google.com
 7.docs.google.com
 ssl.gstatic.com
 drive.google.com
-clients4.google.com	# redundant
 manifest.googlevideo.com	# redudant
 plusone.google.com
 plus.google.com
@@ -155,7 +155,14 @@ lh3.googleusercontent.com
 144.15.0.0/16	carelink.minimed.com medtronic.com
 wb-in-f188.1e100.net
 clients1.google.com	#redundant
+clients4.google.com	# redundant
 clients6.google.com
+0.client-channel.google.com
+mail.gmail.com
+mail.google.com	# redundant
+smtp.gmail.com
+hangouts.google.com
+ssl.gstatic.com
 # google - end
 # picotech - start
 labs.picotech.com
@@ -739,7 +746,7 @@ rum-static.pingdom.net
 s.ytimg.com
 i1.ytimg.com
 deltaradio.de
-www.deltaradio.de
+www.deltaaadio.de
 content.deltaradio.de
 deltarad.ivwbox.de
 ecx.images-amazon.com
@@ -2096,6 +2103,10 @@ www1.codeweavers.com
 www2.codeweavers.com
 # radio.de - start
 81.17.208.192/27	radio.de
+www.radio.de
+api.radio.de
+static.radio.de
+www.jazzradio.fr
 rum-collector.pingdom.net
 js-agent.newrelic.com
 bam.nr-data.net
@@ -2596,4 +2607,17 @@ api.mixpanel.com
 cdn.mxpnl.com
 freegeoip.io
 # mapillary - end
-
+# linkedin - start
+static.licdn.com
+www.linkedin.com
+platform.linkedin.com
+c.bing.com
+radar.cedexis.com
+rpt.cedexis.com
+rum2.perf.linkedin.com
+rum6.perf.linkedin.com
+media-ecst.licdn.com
+sb.scorecardresearch.com
+media.licdn.com
+pop-tln1.perf.linkedin.com
+# linkedin - end
