@@ -2009,25 +2009,28 @@ cdn4.pistoiaalliance.org
 cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
 # stackoverflow.com - start
-stackoverflow.com
-cdn.sstatic.net
-rules.quantcount.com
-pixel.quantserve.com
-b.scorecardresearch.com
-edge.quantserve.com
-www.gravatar.com
 ajax.googleapis.com
-maps.googleapis.com
-csi.gstatic.com
-www.gravatar.com
+b.scorecardresearch.com
+cdn.sstatic.net
 clc.stackoverflow.com
-scontent.xx.fbcdn.net
+csi.gstatic.com
+edge.quantserve.com
 engine.adzerk.net
-lh4.googleusercontent.com
 graph.facebook.com
-lh6.googleusercontent.com
 i.stack.imgur.com
 i.ytimg.com
+lh4.googleusercontent.com
+lh6.googleusercontent.com
+maps.googleapis.com
+pixel.quantserve.com
+qa.sockets.stackexchange.com
+rules.quantcount.com
+s.zkcdn.net
+sb.scorecardresearch.com
+scontent.xx.fbcdn.net
+secure.quantserve.com
+stackoverflow.com
+www.gravatar.com
 # stackoverflow.com - end
 139.30.0.0/16	#uni-rostock.de
 imib100.med.uni-rostock.de
