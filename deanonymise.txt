@@ -1761,32 +1761,42 @@ bam.nr-data.net
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
 aa.online-metrix.net
+ad.crwdcntrl.net
+akamai.mathtag.com
+ak1s.abmr.net
 anycast.ftl.netflix.com
 api.netflix.com
+art-s.nflximg.net
 assets.nflxext.com
 bcp.crwdcntrl.net
-info.evidon.com # Cookie-Interpretation
-ad.crwdcntrl.net
+b.stats.paypal.com
+c6.paypal.com
 c.betrad.com  # Cookie-Interpretation
 codex.nflxext.com
+c.paypal.com
+dub.stats.paypal.com
+ftl.netflix.com
 help.netflix.com
 help.nflximg.com
-www.netflix.de
-www.netflix.com
-www2-ext-s.nflximg.net
-secure.netflix.com
+info.evidon.com # Cookie-Interpretation
+ncds.netflix.com
+nexus.ensighten.com
+push.prod.netflix.com
+oca-api.netflix.com
+aaynbaph5r6ylpkiqzzwq.r.nflxso.net	# investigate
+aba6vx7bnaiavfhyhhntk.r.nflxso.net	# investigate
+ipv4_1-mce0-c074.1.fra001.ix.nflxvideo.net	# investigate
+seal.verisign.com
+seal.websecurity.norton.com
 secured.netflix.com
+secure.netflix.com
 threatmetrix.com
-c6.paypal.com
-c.paypal.com
 t.paypal.com
+www2-ext-s.nflximg.net
+www.netflix.com
+www.netflix.de
 www.paypal.com
 www.paypalobjects.com
-dub.stats.paypal.com
-b.stats.paypal.com
-ak1s.abmr.net
-nexus.ensighten.com
-ncds.netflix.com
 # netflix end
 app.dailyme.tv
 212.58.240.0/20	bbc.co.uk
