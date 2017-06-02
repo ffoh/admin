@@ -2170,16 +2170,21 @@ www.pro-linux.de
 193.99.144.0/24	heise.de
 www.reichelt.de
 # overleaf - start
-www.overleaf.com
-cdn.mathjax.org
-js.pusher.com
-cdnjs.cloudflare.com
 api.filepicker.io
+cdn.mathjax.org
+cdn.ravenjs.com
+cdnjs.cloudflare.com
+cse.google.com
+dialog.filepicker.io
+fonts.googleapis.com
+js.pusher.com
 preview.overleaf.com
+sockjs.pusher.com
 stats.pusher.com
 ws.pusherapp.com
-cdn.ravenjs.com
-fonts.googleapis.com
+www.filepicker.io
+www.overleaf.com
+sock62-mt1.pusher.com	# investigate
 # overleaf - end
 www.whatismyip.com
 159.122.189.32/27	teamviewer.com
@@ -2465,6 +2470,11 @@ s7.addthis.com
 # ING-DiBa - start
 banking.ing-diba.de
 www.ing-diba.de
+count.ing-diba.de
+as.ing-diba.de
+is.ing-diba.de
+vs.webtrekk.net
+ing-diba.de
 # ING-DiBa - end
 # postbank - start
 maps.googleapis.com
