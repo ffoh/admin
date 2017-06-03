@@ -923,15 +923,24 @@ bcd.esprit.de
 accounts.login.idm.telekom.com
 # T-online - end
 # telekom - start
-tags-eu.tiqcdn.com
-www.telekom.de
-ssl.xplosion.de
-script.ioam.de
-pix.telekom.de
+de.ioam.de
+header.cdb.t-online.de
 lptag.liveperson.net
-xups.xplosion.de
+pix.telekom.de
+script.ioam.de
 server.lon.liveperson.net
+ssl.xplosion.de
+tags-eu.tiqcdn.com
+tealium.hs.llnwd.net
+pix.telekom.de
 widgets.trustedshops.com
+www.telekom.de
+xups.xplosion.de
+uss.xplosion.de
+lptag.liveperson.net
+lo.v.liveperson.net
+accdn.lpsnmedia.net
+retoure.telekom-dienste.de
 # telekom - end
 # ORF - start
 orf.at
@@ -2644,3 +2653,13 @@ sb.scorecardresearch.com
 media.licdn.com
 pop-tln1.perf.linkedin.com
 # linkedin - end
+# hornbach - start
+hm.webtrends.com
+www.hornbach.de
+static.hotjar.com
+vars.hotjar.com
+insights.hotjar.com
+statse.webtrendslive.com
+s.webtrends.com
+t2.hornbach.de
+# hornbach - end
