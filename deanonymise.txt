@@ -286,6 +286,7 @@ d22mepmetc46uf.cloudfront.net
 194.132.196.0/22	#spotify
 194.132.162.0/24	spotify.com
 194.132.168.0/22
+193.235.232.0/22
 spotify.com
 cache.spotify.com
 www.spotify.com
@@ -886,6 +887,7 @@ webdessl.ivwbox.de
 freemail.web.de
 img.web.de
 smtp.web.de
+uas-bs.web.de
 # web.de - end
 91.198.174.0/24	de.wikipedia.org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
 # T-online - start
@@ -1464,6 +1466,7 @@ visitenkarten.im-web.de
 ajax.googleapis.com
 # facebook spiel - start
 173.244.184.34
+179.60.192/22
 plarium.hs.llnwd.net
 173.244.184.114
 6-channel-proxy-07-ash2.facebook.com
@@ -1663,6 +1666,7 @@ i.n.jwpltx.com
 169.47.42.96/27	# whatsapp
 169.47.42.192/27	# whatsapp
 169.47.42.224/27	# whatsapp
+169.53.71.224/27	# whatsapp
 169.55.75.96/27	# whatsapp
 169.55.67.224/27	# whatsapp
 173.192.192.0/19	# whatsapp
@@ -1888,8 +1892,11 @@ rcp.eu.blackberry.com
 imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
-85.205.0.0/16	#vodefone
+# vodafone - start
+85.205.0.0/16	#vodafone
+139.7.0.0/16	# vodafone
 webmail.vodafone.com
+# vodafone - end
 # evernote - start
 204.154.94.0/23 evernote.com www.evernote.com
 cdn1.evernote.com
@@ -2663,3 +2670,33 @@ statse.webtrendslive.com
 s.webtrends.com
 t2.hornbach.de
 # hornbach - end
+# adition - start
+ad11.adfarm1.adition.com
+ad3.adfarm1.adition.com
+# adition - end
+# Avira VPN - start
+node-0011.srv.de.phantom.avira-vpn.net
+# Avira VPN - end
+mail.wacken.de
+mail.your-server.de
+# badoo - start
+badoo.com
+badoocdn.com
+# badoo - end
+imap-a-mtc-a.mx.aol.com	# email as it seems
+77.234.45.0/24	# avast.com - anonymizer
+mail-lp.helimail.de
+# schoen-kliniken - start
+www.schoen-kliniken.de
+t23.intelliad.de
+cdnjs.cloudflare.com
+cm.g.doubleclick.net
+www.honcode.ch
+# schoen-kliniken - end
+# otto.de - start
+otto.de
+www.otto.de
+i.otto.de
+cdn.m-pathy.com
+ib.adnxs.com
+# otto.de - end
