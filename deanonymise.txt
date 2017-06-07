@@ -137,6 +137,7 @@ clientmetrics-pa.googleapis.com
 notifications.google.com	#redundant
 www.google.de	#redundant
 play.google.com
+apis.google.com
 lh4.google.com
 docs.google.com
 0.docs.google.com
@@ -160,9 +161,15 @@ clients6.google.com
 0.client-channel.google.com
 mail.gmail.com
 mail.google.com	# redundant
+ogs.google.com
 smtp.gmail.com
 hangouts.google.com
+accounts.google.com
+notifications.google.com
+productforums.google.com
+realtimesupport.clients6.google.com
 ssl.gstatic.com
+support.google.com
 # google - end
 # picotech - start
 labs.picotech.com
@@ -2791,3 +2798,13 @@ ngi-net.de
 www.ngi.de
 h3-netservice.de
 www.h3-netservice.de
+# sonnenbatterie - start
+sonnenbatterie.de
+spree.sonnenbatterie.de
+wm2.wiredminds.de
+t2.leadlab.click
+pi.pardot.com
+r16---sn-4g57knkd.googlevideo.com
+proxy-srv24.sonnenbatterie.de
+haproxy1.sonnenbatterie.de
+# sonnenbatterie - end
