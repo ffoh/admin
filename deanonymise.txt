@@ -201,6 +201,7 @@ static.ak.facebook.com
 199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
 79423.analytics.edgekey.net
 a.visualrevenue.com
+ad.yieldlab.net
 ad2.adfarm1.adition.com
 ad8.adfarm1.adition.com
 ads.stickyadstv.com
@@ -208,6 +209,8 @@ adserv.quality-channel.de
 c.spiegel.de
 cas.criteo.com
 cat.nl.eu.criteo.com
+cdn.conative.de
+cdn.emetriq.de
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
@@ -223,15 +226,19 @@ dc61.s290.meetrics.net
 dc72.s290.meetrics.net
 dc73.s290.meetrics.net
 dc80.s290.meetrics.net
+dc81.s290.meetrics.net
 dc82.s290.meetrics.net
 dc83.s290.meetrics.net
 dc84.s290.meetrics.net
 de-ipd.videoplaza.tv
+define.nuggad.net
 dmp.theadex.com
 dt.adsafeprotected.com
+dyn.emetriq.de
 files.adform.net
 geschichte.spiegel.de
 get.adobe.com
+h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
 h364.meetrics.de
@@ -243,29 +250,42 @@ h398.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
 h546.meetrics.de
+i1.sndcdn.com
 images.nl.eu.criteo.net
 images.nl.eu.criteo.net
+images.outbrain.com
 imagesrv.adition.com
 jdn.monster.com
 jwpltx.com
+l9bjkkhaycw6f8f4.soundcloud.com	# discuss
 m.spiegel.de
 ma140-r.analytics.edgekey.net
 magazin.spiegel.de
+nexxtv-we-events.servicebus.windows.net
+nx-i.akamaized.net
+nx-o.akamaized.net
+odb.outbrain.com
 platform.twitter.com	# not redundant
 pp.lp4.io
 prod-static.spiegel.tv
 purl.org
 qs.ioam.de
 qs.ivwbox.de
+require.nexx.cloud
 s290.mxcdn.net
+sb.scorecardresearch.com
 scontent.xx.fbcdn.net
 script.ioam.de
 server.adform.net
-srv-2017-04-25-15.pixel.parsely.com
+srv-2017-04-25-15.pixel.parsely.com	# discuss
+srv-2017-06-06-09.pixel.parsely.com	# discuss
+srv-2017-06-06-09.config.parsely.com	# discuss
 spiegel.de
 spiegel.ivwbox.de
 spiegel.met.vgwort.de
 stat.flashtalking.com
+static.criteo.net
+static.parsely.com
 static.xx.fbcdn.net
 uobsoe.com
 video.spiegel.de
@@ -273,6 +293,9 @@ video2.spiegel.de
 vrp.outbrain.com
 vrt.outbrain.com
 vt.adition.com
+w.soundcloud.com
+widgets.outbrain.com
+wis.sndcdn.com
 www.google-analytics.com
 www.spiegel.de
 www.spiegel.tv
@@ -286,6 +309,7 @@ d22mepmetc46uf.cloudfront.net
 194.132.196.0/22	#spotify
 194.132.162.0/24	spotify.com
 194.132.168.0/22
+193.235.232.0/22
 spotify.com
 cache.spotify.com
 www.spotify.com
@@ -590,9 +614,12 @@ cdn.optimizely.com
 amazon.de
 afs.googleusercontent.com
 atv-ps-eu.amazon.com
+console.aws.amazon.com
 cloudfront-labs.amazonaws.com
 cloudfront-labs.amazonaws.com
+d1.awsstatic.com
 ecx.images-amazon.com
+fls-na.amazon.com
 fls-devo.vipinteg.amazon.com
 fls-eu.amazon.de
 g-ec2.images-amazon.com
@@ -600,6 +627,7 @@ g-ecx.images-amazon.com
 images-na.ssl-images-amazon.com
 images-na.ssl-images-amazon.com
 images-eu.ssl-images-amazon.com
+l0.awsstatic.com
 smooth.l3.cdn.lovefilm.com
 static.amazon.de
 www.amazon.de
@@ -775,6 +803,7 @@ b.scorecardresearch.com
 141.30.0.0/16	tu-dresden.de
 141.54.0.0/15	uni-weimar.de # DFN
 131.234.0.0/16	uni-paderborn.de
+141.48.0.0/14	uni-kassel.de
 # OOKLA Speedtest - start
 37.202.1.0/24	# Stadtwerke Neumuenster
 37.202.2.0/24	# Stadtwerke Neumuenster
@@ -886,6 +915,7 @@ webdessl.ivwbox.de
 freemail.web.de
 img.web.de
 smtp.web.de
+uas-bs.web.de
 # web.de - end
 91.198.174.0/24	de.wikipedia.org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
 # T-online - start
@@ -923,15 +953,24 @@ bcd.esprit.de
 accounts.login.idm.telekom.com
 # T-online - end
 # telekom - start
-tags-eu.tiqcdn.com
-www.telekom.de
-ssl.xplosion.de
-script.ioam.de
-pix.telekom.de
+de.ioam.de
+header.cdb.t-online.de
 lptag.liveperson.net
-xups.xplosion.de
+pix.telekom.de
+script.ioam.de
 server.lon.liveperson.net
+ssl.xplosion.de
+tags-eu.tiqcdn.com
+tealium.hs.llnwd.net
+pix.telekom.de
 widgets.trustedshops.com
+www.telekom.de
+xups.xplosion.de
+uss.xplosion.de
+lptag.liveperson.net
+lo.v.liveperson.net
+accdn.lpsnmedia.net
+retoure.telekom-dienste.de
 # telekom - end
 # ORF - start
 orf.at
@@ -1455,6 +1494,7 @@ visitenkarten.im-web.de
 ajax.googleapis.com
 # facebook spiel - start
 173.244.184.34
+179.60.192/22
 plarium.hs.llnwd.net
 173.244.184.114
 6-channel-proxy-07-ash2.facebook.com
@@ -1654,6 +1694,7 @@ i.n.jwpltx.com
 169.47.42.96/27	# whatsapp
 169.47.42.192/27	# whatsapp
 169.47.42.224/27	# whatsapp
+169.53.71.224/27	# whatsapp
 169.55.75.96/27	# whatsapp
 169.55.67.224/27	# whatsapp
 173.192.192.0/19	# whatsapp
@@ -1767,6 +1808,7 @@ s.thebrighttag.com
 adtech.nflximg.net
 aa.online-metrix.net
 ad.crwdcntrl.net
+akamai.mathtag.com
 ak1s.abmr.net
 anycast.ftl.netflix.com
 api-global.netflix.com
@@ -1781,6 +1823,7 @@ codex.nflxext.com
 c.paypal.com
 customerevents.netflix.com
 dub.stats.paypal.com
+ftl.netflix.com
 help.netflix.com
 help.nflximg.com
 info.evidon.com # Cookie-Interpretation
@@ -1791,6 +1834,17 @@ secure.netflix.com
 t.paypal.com
 threatmetrix.com
 tp-s.nflximg.net
+push.prod.netflix.com
+oca-api.netflix.com
+aaynbaph5r6ylpkiqzzwq.r.nflxso.net	# investigate
+aba6vx7bnaiavfhyhhntk.r.nflxso.net	# investigate
+ipv4_1-mce0-c074.1.fra001.ix.nflxvideo.net	# investigate
+seal.verisign.com
+seal.websecurity.norton.com
+secured.netflix.com
+secure.netflix.com
+threatmetrix.com
+t.paypal.com
 www2-ext-s.nflximg.net
 www.netflix.com
 www.netflix.de
@@ -1821,7 +1875,10 @@ www.meetup.com
 212.8.197.168/29 maritim-hotels.de
 mail.posteo.de
 immonet.de
+# immobilienscoun24.de - start
 immobilienscout24.de
+195.178.100.0/24	immobilienscout24.de
+# immobilienscoun24.de - end
 alice-dsl.net
 91.190.218.0/24	skype
 91.190.216.0/23	skype
@@ -1849,7 +1906,6 @@ www.presseportal.de
 js-agent.newrelic.com
 # Presseportal - end
 mail2.hamburg.de
-s3-1.amazonaws.com
 irqs.ioam.de
 imap12.mail.vip.ir2.yahoo.com
 77.238.185.0/24	#yahoo europe
@@ -1878,8 +1934,11 @@ rcp.eu.blackberry.com
 imap.netcologne.de
 pop3.netcologne.de
 www.zeit.de
-85.205.0.0/16	#vodefone
+# vodafone - start
+85.205.0.0/16	#vodafone
+139.7.0.0/16	# vodafone
 webmail.vodafone.com
+# vodafone - end
 # evernote - start
 204.154.94.0/23 evernote.com www.evernote.com
 cdn1.evernote.com
@@ -2169,16 +2228,21 @@ www.pro-linux.de
 193.99.144.0/24	heise.de
 www.reichelt.de
 # overleaf - start
-www.overleaf.com
-cdn.mathjax.org
-js.pusher.com
-cdnjs.cloudflare.com
 api.filepicker.io
+cdn.mathjax.org
+cdn.ravenjs.com
+cdnjs.cloudflare.com
+cse.google.com
+dialog.filepicker.io
+fonts.googleapis.com
+js.pusher.com
 preview.overleaf.com
+sockjs.pusher.com
 stats.pusher.com
 ws.pusherapp.com
-cdn.ravenjs.com
-fonts.googleapis.com
+www.filepicker.io
+www.overleaf.com
+sock62-mt1.pusher.com	# investigate
 # overleaf - end
 www.whatismyip.com
 159.122.189.32/27	teamviewer.com
@@ -2464,6 +2528,11 @@ s7.addthis.com
 # ING-DiBa - start
 banking.ing-diba.de
 www.ing-diba.de
+count.ing-diba.de
+as.ing-diba.de
+is.ing-diba.de
+vs.webtrekk.net
+ing-diba.de
 # ING-DiBa - end
 # postbank - start
 maps.googleapis.com
@@ -2633,3 +2702,92 @@ sb.scorecardresearch.com
 media.licdn.com
 pop-tln1.perf.linkedin.com
 # linkedin - end
+# hornbach - start
+hm.webtrends.com
+www.hornbach.de
+static.hotjar.com
+vars.hotjar.com
+insights.hotjar.com
+statse.webtrendslive.com
+s.webtrends.com
+t2.hornbach.de
+# hornbach - end
+# adition - start
+ad11.adfarm1.adition.com
+ad3.adfarm1.adition.com
+# adition - end
+# Avira VPN - start
+node-0011.srv.de.phantom.avira-vpn.net
+# Avira VPN - end
+mail.wacken.de
+mail.your-server.de
+# badoo - start
+badoo.com
+badoocdn.com
+u32.badoo.com
+# badoo - end
+imap-a-mtc-a.mx.aol.com	# email as it seems
+77.234.45.0/24	# avast.com - anonymizer
+mail-lp.helimail.de
+# schoen-kliniken - start
+www.schoen-kliniken.de
+t23.intelliad.de
+cdnjs.cloudflare.com
+cm.g.doubleclick.net
+www.honcode.ch
+# schoen-kliniken - end
+# otto.de - start
+otto.de
+www.otto.de
+i.otto.de
+cdn.m-pathy.com
+ib.adnxs.com
+# otto.de - end
+# Amazon AWS - start
+s3-1.amazonaws.com
+s1-1.amazonaws.com
+s3-3-w.amazonaws.com
+s3-eu-west-1.amazonaws.com
+fls-na.amazon.com
+images-na.ssl-images-amazon.com
+d1.awsstatic.com
+a0.awsstatic.com
+pixel.mathtag.com
+ak1s.abmr.net
+amazonwebservices.d2.sc.omtrdc.net
+u3s.mathtag.com
+console.aws.amazon.com
+us-east-1.signin.aws.amazon.com
+l0.awsstatic.com
+eu-central-1.console.aws.amazon.com
+d1idiovbex4hy4.cloudfront.net	# discuss
+media.amazonwebservices.com
+phd.aws.amazon.com
+us-east-1.signin.aws.amazon.com
+# Amazon AWS - end
+# mail.ru - start
+mail.ru
+limg.imgsmail.ru
+portal.mail.ru
+top-fwz1.mail.ru
+stat.radar.imgsmail.ru
+r.mradx.net
+rs.mail.ru
+ok.ru
+bar.love.mail.ru
+counter.yadro.ru
+mail.radar.imgsmail.ru
+# mail.ru - end
+# yandex.ru - start
+mc.yandex.ru
+yabs.yandex.ru
+yastatic.net
+kiks.yandex.ru
+vk.com
+avatars.mds.yandex.net
+# yandex.ru - end
+api.mail.freenet.de
+ngi-net.de
+www.ngi.de
+h3-netservice.de
+www.h3-netservice.de
