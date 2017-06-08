@@ -924,7 +924,9 @@ img.web.de
 smtp.web.de
 uas-bs.web.de
 # web.de - end
-91.198.174.0/24	de.wikipedia.org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
+# wikipedia - start
+91.198.174.0/24	de.wikipediakipedia.org .org commons.wikimedia.org wikimedia.org bits.wikimedia.org login.wikimedia.org upload.wikimedia.org meta.wikimedia.org www.wikimedia.org	Wikimedia Europe
+# wikipedia - end
 # T-online - start
 194.25.0.0/16	# Deutsche Telekom	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
@@ -2432,6 +2434,7 @@ r11---sn-i5h7ln7z.googlevideo.com
 r5---sn-i5h7ln7z.googlevideo.com
 r11---sn-5hnedne7.googlevideo.com
 r2---sn-4g5ednek.googlevideo.com	#redundant
+r2---sn-4g5e6nld.googlevideo.com
 s.youtube.com
 support.pokemongo.nianticlabs.com
 zendesk.tv
@@ -2808,3 +2811,14 @@ r16---sn-4g57knkd.googlevideo.com
 proxy-srv24.sonnenbatterie.de
 haproxy1.sonnenbatterie.de
 # sonnenbatterie - end
+# scicrunch - start
+scicrunch.org
+ie24.zopim.com
+maps.google.com
+maps.googleapis.com
+m.addthis.com
+stats.g.doubleclick.net
+v2.zopim.com
+s7.addthis.com
+m.addthisedge.com
+# scicrunch - end
