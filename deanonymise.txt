@@ -26,6 +26,9 @@ www.apple.com	# not redundant
 17.0.0.0/8	appstore.com www.appstore.com swdlp.apple.com # apple service addresses 
 216.58.192.0/19	google.de maps.googleapis.com metric.gstatic.com plus.google.com s.youtube.com ogs.google.com notifications.google.com
 173.194.0.0/16	accounts.google.com accounts.google.com ad.doubleclick.net apis.google.de apis.google.de csi.gstatic.com gmail.com gmail.com googleads.g.doubleclick.net google.com google.com gstatic.com id.google.de mail.google.com mail.google.com maps.gstatic.com oauth.googleusercontent.com plus.google.com plus.google.com plusone.google.com plusone.google.com ssl.gstatic.com talkgadget.google.com talkgadget.google.com www.googleadservices.com www.google-analytics.com www.googletagmanager.com www.gstatic.com youtube.com ssl.google-analytics.com mt0.googleapis.com mt1.googleapis.com maps.google.com maps.google.de mt0.google.com lh3.googleusercontent.com fonts.gstatic.com maps.gstatic.com googlevideo.com cse.google.com
+209.85.128.0/17	lr-in-f188.1e100.net # google
+74.125.0.0/16	lr-in-f188.1e100.net # google
+216.239.32.0/19	any-in-267e.1e100.net # google
 iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
 172.217.0.0/16	www.google.de ...metric.gstatic.com youtubei.youtube.com
@@ -1684,7 +1687,7 @@ imap.strato.de
 46.252.31.0	www.blitzer.de
 137.131.0.0/16	scripps.edu
 208.65.72.0/21	blackberry.net
-imap.strato.de
+93.186.16.0/20	blackberry.net
 130.75.0.0/16	Uni Hannover
 5.57.17.0/24	booking.com
 euw.leagueoflegends.com
@@ -1987,25 +1990,28 @@ cdn4.pistoiaalliance.org
 cdn6.pistoiaalliance.org
 # pistoiaalliance.org - end
 # stackoverflow.com - start
-stackoverflow.com
-cdn.sstatic.net
-rules.quantcount.com
-pixel.quantserve.com
-b.scorecardresearch.com
-edge.quantserve.com
-www.gravatar.com
 ajax.googleapis.com
-maps.googleapis.com
-csi.gstatic.com
-www.gravatar.com
+b.scorecardresearch.com
+cdn.sstatic.net
 clc.stackoverflow.com
-scontent.xx.fbcdn.net
+csi.gstatic.com
+edge.quantserve.com
 engine.adzerk.net
-lh4.googleusercontent.com
 graph.facebook.com
-lh6.googleusercontent.com
 i.stack.imgur.com
 i.ytimg.com
+lh4.googleusercontent.com
+lh6.googleusercontent.com
+maps.googleapis.com
+pixel.quantserve.com
+qa.sockets.stackexchange.com
+rules.quantcount.com
+s.zkcdn.net
+sb.scorecardresearch.com
+scontent.xx.fbcdn.net
+secure.quantserve.com
+stackoverflow.com
+www.gravatar.com
 # stackoverflow.com - end
 139.30.0.0/16	#uni-rostock.de
 imib100.med.uni-rostock.de
@@ -2081,11 +2087,17 @@ www1.codeweavers.com
 www2.codeweavers.com
 # radio.de - start
 81.17.208.192/27	radio.de
-rum-collector.pingdom.net
-js-agent.newrelic.com
+api.radio.de
+assets.zendesk.com
 bam.nr-data.net
 ice36.infomaniak.ch
-assets.zendesk.com
+jazzradiojazzfunk.radio.de
+jazz-wr06.ice.infomaniak.ch
+js-agent.newrelic.com
+js-agent.newrelic.com
+rmsi.nuggad.net
+rum-collector.pingdom.net
+srv-2017-06-09-07.pixel.parsely.com
 # radio.de - end
 # twitch.tv
 reserved.justin.tv
@@ -2539,3 +2551,17 @@ www.mullvad.net
 imap.one.com
 ostseecamp-seeblick.de
 www.ostseecamp.de
+# usgs - start (US Geological Studies)
+usgs.gov
+www.usgs.gov
+natwebsdww55.cr.usgs.gov
+# usgs - end
+# watersensors.org - start
+www.watersensors.org
+www.listbox.com
+# watersensors.org - end
+# researchgate.net - start
+c5.rgstatic.net
+glassmoni.researchgate.net
+i1.rgstatic.net
+# researchgate.net - end
