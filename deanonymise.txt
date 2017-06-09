@@ -2819,7 +2819,10 @@ kiks.yandex.ru
 vk.com
 avatars.mds.yandex.net
 # yandex.ru - end
+# freenet.et - start
 api.mail.freenet.de
+virtual2.mx.freenet.de
+# freenet.et - end
 ngi-net.de
 www.ngi.de
 h3-netservice.de
@@ -2845,4 +2848,4 @@ v2.zopim.com
 s7.addthis.com
 m.addthisedge.com
 # scicrunch - end
->>>>>>> 74ec560e5fa1fbcac5248aba9ab0cbfb36f160ad
+91.192.12.0/22	# Vattenfall
