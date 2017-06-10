@@ -2671,7 +2671,6 @@ www.mullvad.net
 imap.one.com
 ostseecamp-seeblick.de
 www.ostseecamp.de
-<<<<<<< HEAD
 # usgs - start (US Geological Studies)
 usgs.gov
 www.usgs.gov
@@ -2686,7 +2685,6 @@ c5.rgstatic.net
 glassmoni.researchgate.net
 i1.rgstatic.net
 # researchgate.net - end
-=======
 # OUP - start
 academic.oup.com	# Oxford University Press
 oup.silverchair-cdn.com
