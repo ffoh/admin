@@ -431,6 +431,7 @@ cloud.typography.com
 66.135.192.0/19	api.ebay.com contact.ebay.de pages.ebay.de rewards.ebay.de cgi5.ebay.de checkoutweb.ebay.com
 ebay.de
 aa.online-metrix.net
+adb2waycm-atl.netmng.com
 akamai.mathtag.com	# when paying with paypal
 api.ebay-kleinanzeigen.de
 api.ebaycommercenetwork.com
@@ -443,38 +444,49 @@ cdn.cnetcontent.com
 cdn.roma.ebay.com
 checkout.payments.ebay.de	# not within ebay.de
 checkoutweb.ebay.de	# not wihtin ebay.de
+cms.analytics.yahoo.com
 contact.ebay.de
 csr.ebay.com
 de.ioam.de
+dpm.demdex.net
 ebay.ivwbox.de
+ebayinc.demdex.net
 encrypted-tbn0.gstatic.com
 encrypted-tbn1.gstatic.com
 encrypted-tbn2.gstatic.com
 encrypted-tbn3.gstatic.com
+fast.ebayinc.demdex.net
 forum.ebay-kleinanzeigen.de
 gha.ebay.de
 i.ebayimg.com
+i.liadm.com
 i1.ebayimg.com
 i2.ebayimg.com
 i3.ebayimg.com
 i18.ebayimg.com
 ib.adnxs.com
+idsync.rlcdn.com
 images.harlander.com
+include.ebaystatic.com
 ir.ebaystatic.com
 load.s3.amazonaws.com
-s3-1.amazonaws.com
 m.ebay-kleinanzeigen.de
 mobidcs.ebay.com
 mobior.ebay.com
 ocsrest.ebay.de
 open.api.ebay.com
+p.adsymptotic.com
 p.ebaystatic.com
+pages.ebay.com
 payments.ebay.de
 pics.ebaystatic.com
+ps.eyeota.net
 psoc-pixel.ebay.com
 pixel.mathtag.com
 psoc.ebayc3.com
+pulsar.ebay.de
 q.ebaystatic.com
+qs.ioam.de
 reco.ebay.com
 res.ebay.de
 rewards.ebay.de
@@ -482,6 +494,7 @@ rover.ebay.de
 rover.ebay.com
 rpsx.ebay.com
 rtm.ebaystatic.com
+s3-1.amazonaws.com
 secureinclude.ebaystatic.com
 secureir.ebaystatic.com
 securepubads.g.doubleclick.net
@@ -504,6 +517,8 @@ thumbs1.ebaystatic.com
 thumbs2.ebaystatic.com
 thumbs3.ebaystatic.com
 thumbs4.ebaystatic.com
+tracking.m6r.eu
+u3s.mathtag.com
 vi.vipr.ebaydesc.com
 vod.ebay.de	# after payment with paypal
 widget.criteo.com
@@ -2849,3 +2864,32 @@ s7.addthis.com
 m.addthisedge.com
 # scicrunch - end
 91.192.12.0/22	# Vattenfall
+# akamai.com - start
+4448044.fls.doubleclick.net
+akamai.com
+api.swiftype.com
+app-abm.marketo.com
+b.company-target.com
+cdn.dashjs.org
+cdnssl.clicktale.net
+c.go-mpulse.net
+d.company-target.com
+ds-aksb-a.akamaihd.net
+e02.optimix.asia
+ib.adnxs.com
+j02.optimix.asia
+m.addthisedge.com
+match.prod.bidr.io
+munchkin.marketo.net
+pixel.quantserve.com
+pubads.g.doubleclick.net
+s7.addthis.com
+scripts.demandbase.com
+secure.quantserve.com
+s.swiftypecdn.com
+www14.clicktale.net
+www.akamai.com
+www.googleadservices.com
+www.googletagmanager.com
+# akamai.com - end
+
