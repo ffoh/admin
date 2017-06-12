@@ -121,7 +121,7 @@ function ipdirect () {
 		if [ "$ipaddress" = "$gateway" ]; then
 			echo "W: Skipping direct assignment to *myself*"
         	else
-			if ! $IP -4 route get $ipaddress from $ffgateway4 iif $IIF | $GREP -q $DEVICE; then
+			if ! $IP -4 route get $ipaddress from 10.135.0.1 iif $IIF | $GREP -q $DEVICE; then
 				echo "I: Adding direct route for $ipaddress ($IP route replace $ipaddress via $via table freifunk)"
 				$IP -4 route replace $ipaddress via $via table freifunk
 			else 
