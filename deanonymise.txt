@@ -2891,4 +2891,10 @@ www.akamai.com
 www.googleadservices.com
 www.googletagmanager.com
 # akamai.com - end
-
+# hetzner - start
+www.hetzner.de
+hetzner.piwikpro.com
+livesupport.hetzner.de
+hetzner.de
+robot.your-server.de
+# hetzner - end
