@@ -249,6 +249,7 @@ dyn.emetriq.de
 files.adform.net
 geschichte.spiegel.de
 get.adobe.com
+h237.meetrics.de
 h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
@@ -1712,13 +1713,14 @@ i.n.jwpltx.com
 # Whatsapp - start
 108.168.160.0/19	#whatsapp
 158.85.58.64/27	# whatsapp
-169.47.35.32/27	# whatsapp
 169.45.71.96/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
 169.45.248.96/27	# whatsapp
 169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
+169.47.35.32/27	# whatsapp
+169.47.40.128/27	# whatsapp
 169.47.42.96/27	# whatsapp
 169.47.42.192/27	# whatsapp
 169.47.42.224/27	# whatsapp
@@ -2658,7 +2660,16 @@ js-agent.newrelic.com
 mail2.hamburg.de
 s3-1.amazonaws.com
 irqs.ioam.de
+# opera - start
 82.145.208.0/21	# opera
+185.26.180.0/22	# opera mini, VPN
+www-static.operacdn.com
+comcluster.cxense.com
+mc.yandex.ru
+rum-collector.pingdom.net
+connect.facebook.net
+www.opera.com
+# opera - end
 cdn.sstatic.net
 cdn.timmendorfer-strand.de
 # itelescope.net - start
@@ -2859,6 +2870,7 @@ maps.googleapis.com
 m.addthis.com
 stats.g.doubleclick.net
 v2.zopim.com
+jp04.zopim.com
 s7.addthis.com
 m.addthisedge.com
 # scicrunch - end
@@ -2898,3 +2910,12 @@ livesupport.hetzner.de
 hetzner.de
 robot.your-server.de
 # hetzner - end
+www.editorialmanager.com
+# ipredator.se - start
+ipredator.se
+46.246.0.0/17
+ipv6.openvpn.ipredator.se 
+ipv6.openvpn.ipredator.me
+ipv6.openvpn.ipredator.es
+# ipredator.se - end
+edamontology.org
