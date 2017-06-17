@@ -1005,8 +1005,16 @@ retoure.telekom-dienste.de
 orf.at
 www.orf.at
 # ORF - end
+# webtrends.de - start
 webtrends.de
 scs.webtrends.de
+www.webtrends.com
+p.typekit.net
+use.typekit.net
+js-agent.newrelic.com
+bam.nr-data.net
+cdn.webtrends.com
+# webtrends.de - end
 mittelstein.de
 mail.mittelstein.de
 mapandroute.de
@@ -2708,9 +2716,11 @@ www.watersensors.org
 www.listbox.com
 # watersensors.org - end
 # researchgate.net - start
+i1.rgstatic.net
 c5.rgstatic.net
 glassmoni.researchgate.net
 i1.rgstatic.net
+www.researchgate.net
 # researchgate.net - end
 # OUP - start
 academic.oup.com	# Oxford University Press
@@ -2919,3 +2929,44 @@ ipv6.openvpn.ipredator.me
 ipv6.openvpn.ipredator.es
 # ipredator.se - end
 edamontology.org
+# truckscout24.de - start
+truckscout24.de
+www.truckscout24.de
+lkw.truckscout24.de
+ajax.googleapis.com
+s.autoscout24.net
+cdn.optimizely.com
+logx.optimizely.com
+www.googletagmanager.com
+www.googletagservices.com
+securepubads.g.doubleclick.net
+www.nerfherdersolo.com
+trucksblog.autoscout24.de
+static.criteo.net
+script.ioam.de
+cdn.krxd.net
+widget.criteo.com
+pic.truckscout24.net
+beacon.krxd.net
+stats.g.doubleclick.net
+irqs.ioam.de
+dis.eu.criteo.com
+loadm.exelator.com
+s.ixiaa.com
+idsync.rlcdn.com
+ib.adnxs.com
+i.w55c.net
+ps.eyeota.net
+usermatch.krxd.net
+load.s3.amazonaws.com
+x.bidswitch.net
+farm.plista.com
+im.banner.t-online.de
+sp.analytics.yahoo.com
+sync.outbrain.com
+trc.taboola.com
+cw.addthis.com
+ib.adnxs.com
+e.visualdna.com
+dis.criteo.com
+# truckscout24.de - end
