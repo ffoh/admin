@@ -41,6 +41,7 @@ i9.ytimg.com	# redundant
 80.149.20.64/26	# googlevideo Düsseldorf
 www.google.com	# sicher ist sicher
 www.google.de	# sicher ist sicher
+id.google.de
 64.233.160.0/19	waspproxy.googlemail.com 0.docs.google.com 4.docs.google.com
 66.102.0.0/20	#google
 0.client-channel.google.com
@@ -190,7 +191,6 @@ picotech.com
 31.13.66.0/24	# facebook
 31.13.69.0/24	# facebook
 31.13.70.0/24	facebook
-31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
 31.13.72.0/24	facebook
 31.13.73.0/24	# facebook
@@ -259,6 +259,7 @@ h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h428.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
 h546.meetrics.de
@@ -613,10 +614,19 @@ de.ioam.de
 # NDR - end
 spotify.com
 www.spotify.com
+# debian - start
+128.31.0.0/16	# MIT hosting Debian
+209.87.16.0/24	# Debian US
+5.153.231.0/24	# debian infrastructure
 ftp.de.debian.org
 anonscm.debian.org
+tracker.debian.org
+mailly.debian.org
+muffat.debian.org
+packages.debian.org
 alioth.debian.org
 www.debian.org
+# debian - end
 www.ubuntu.com
 security.ubuntu.com
 de.archive.ubuntu.com
@@ -1719,9 +1729,10 @@ vivod.download.kpnstreaming.nl
 i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
-108.168.160.0/19	#whatsapp
+108.168.160.0/19	# whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
+169.45.210.64/26	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
 169.45.248.96/27	# whatsapp
@@ -1966,7 +1977,11 @@ einstein.phys.uwm.edu
 o2mail.de
 www.dict.cc
 www2.dict.cc
+# king.com - start
+185.48.80.0/23	# mobilegames
 king.com
+candycrushsodamobile.king.com
+# king.com - end
 xmail.timmendorfer-strand.de
 rcp.eu.blackberry.com
 imap.netcologne.de
