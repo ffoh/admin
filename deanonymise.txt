@@ -2970,3 +2970,4 @@ ib.adnxs.com
 e.visualdna.com
 dis.criteo.com
 # truckscout24.de - end
+195.50.128.0/18	Arcor, now Vodafone
