@@ -34,6 +34,7 @@ iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
 172.217.0.0/16	www.google.de ...metric.gstatic.com youtubei.youtube.com
 youtubei.youtube.com	# redundant
+www.youtube-nocookie.com	# redundant
 i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
@@ -2971,3 +2972,4 @@ e.visualdna.com
 dis.criteo.com
 # truckscout24.de - end
 195.50.128.0/18	Arcor, now Vodafone
+192.44.68.0/23	#  crashlytics.com
