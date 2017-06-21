@@ -181,6 +181,7 @@ labs.picotech.com
 picotech.com
 # picotech - end
 # Facebook - start
+217.243.141.0/24	# facebook
 157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 31.13.100.0/24	facebook
@@ -656,6 +657,7 @@ images-na.ssl-images-amazon.com
 images-na.ssl-images-amazon.com
 images-eu.ssl-images-amazon.com
 l0.awsstatic.com
+s3-eu-west-1.amazonaws.com
 smooth.l3.cdn.lovefilm.com
 static.amazon.de
 www.amazon.de
@@ -2973,3 +2975,4 @@ dis.criteo.com
 # truckscout24.de - end
 195.50.128.0/18	Arcor, now Vodafone
 192.44.68.0/23	#  crashlytics.com
+stratum2-2.NTP.TechFak.NET
