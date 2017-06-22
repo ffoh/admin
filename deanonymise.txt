@@ -1725,6 +1725,7 @@ i.n.jwpltx.com
 108.168.160.0/19	#whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
+169.45.210.64/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
 169.45.248.96/27	# whatsapp
