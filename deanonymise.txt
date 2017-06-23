@@ -1845,7 +1845,7 @@ bam.nr-data.net
 # netflix start
 198.38.96.0/19	# nflxvideo.net
 45.57.0.0/17	# nflxvideo.net
-
+37.77.188.0/23	# nflxvideo.net
 ipv4_1-mce0-c051.1.fra001.ix.nflxvideo.net
 ipv4_1-lagg0-c293.1.nyc001.ix.nflxvideo.net
 s.thebrighttag.com
