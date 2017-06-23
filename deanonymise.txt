@@ -1841,6 +1841,8 @@ bam.nr-data.net
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
 198.38.96.0/19	# nflxvideo.net
+45.57.0.0/17	# nflxvideo.net
+
 ipv4_1-mce0-c051.1.fra001.ix.nflxvideo.net
 ipv4_1-lagg0-c293.1.nyc001.ix.nflxvideo.net
 s.thebrighttag.com
