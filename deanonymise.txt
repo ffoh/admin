@@ -256,11 +256,13 @@ h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
 h364.meetrics.de
+h375.meetrics.de
 h376.meetrics.de
 h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h427.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
 h546.meetrics.de
@@ -958,6 +960,7 @@ uas-bs.web.de
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
 80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
 62.157.140.0/23	accounts.login.idm.telekom.com
+iss.t-online.de	# not redundant
 homad-global-configs.schneevonmorgen.com
 securesmtp.t-online.de
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
@@ -2979,3 +2982,9 @@ dis.criteo.com
 195.50.128.0/18	Arcor, now Vodafone
 192.44.68.0/23	#  crashlytics.com
 stratum2-2.NTP.TechFak.NET
+# comdirect - start
+193.41.132.0/22	# comdirect
+# comdirect - end
+# salesforce - start
+85.222.128.0/19	# salesforce
+# salesforce - end
