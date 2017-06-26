@@ -931,6 +931,7 @@ z.moatads.com
 www.amung.us
 amung.us
 # web.de - start
+217.72.192.0/20
 pop3.web.de
 imap.web.de
 navigator.web.de
@@ -2973,3 +2974,19 @@ dis.criteo.com
 # truckscout24.de - end
 195.50.128.0/18	Arcor, now Vodafone
 192.44.68.0/23	#  crashlytics.com
+# king.com - start
+king.com
+k1.midasplayer.com
+contenido1.midasplayer.com
+royal1.midasplayer.com
+eden1.midasplayer.com
+platform.twitter.com
+badges.instagram.com
+edencanvas.king.com
+eden1.midasplayer.com
+scontent.xx.fbcdn.net
+p.midasplayer.com
+graph.facebook.com
+p.midasplayer.com
+mobilecrush.king.com
+# king.com - end
