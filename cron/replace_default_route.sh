@@ -49,13 +49,13 @@ if ! ping -q -c 1 -I mullvad 8.8.8.8; then
 fi
 
 if [ "client" = $($BATCTL gw | $CUT -f1 -d\ ) ]; then
-	if $BATCTL gw server 100Mbit/100Mbit; then
+	if $BATCTL gw server 30Mbit/30Mbit; then
 		echo "* I: success turning batctl gw server on (from client state)" | $TEE -a $LOGFILE
 	else
 		echo "* E: failed turning batctl gw server on (from client state)" | $TEE -a $LOGFILE
 	fi
 elif [ "off" = $($BATCTL gw | $CUT -f1 -d\ ) ]; then
-	if $BATCTL gw server 100Mbit/100Mbit; then
+	if $BATCTL gw server 30Mbit/30Mbit; then
 		echo "* I: success turning batctl gw server on (from off state)" | $TEE -a $LOGFILE
 	else
 		echo "* E: failed turning batctl gw server on (from off state)" | $TEE -a $LOGFILE
