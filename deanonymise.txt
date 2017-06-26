@@ -3025,3 +3025,64 @@ stratum2-2.NTP.TechFak.NET
 # salesforce - end
 #178.250.0.0/22	# criteo
 178.250.0.0/22	# criteo sslwidget.criteo.com
+# geocaching.com - start
+www.geocaching.com
+secure.quantserve.com
+static.hotjar.com
+rules.quantcount.com
+script.hotjar.com
+vars.hotjar.com
+pixel.quantserve.com
+# geocaching.com - end
+# 1drive.com - start (microsoft drive service)
+131.253.12.0/22	# microsoft.com
+131.253.16.0/23	# microsoft.com
+131.253.18.0/24	# microsoft.com
+ondrive.live.com
+spoprod-a.akamaihd.net
+nexus.ensighten.com
+c.microsoft.com
+cs.microsoft.com
+c1.microsoft.com
+connect.facebook.net
+sjs.bizographics.com
+ad.atdmt.com
+snap.licdn.com
+c.bing.com
+www.facebook.com
+cdn.optimizely.com
+browser.pipe.aria.microsoft.com
+dc.ads.linkedin.com
+# 1drive.com - end (microsoft drive service)
+# aol - start
+aol.com
+www.aol.com
+s.aolcdn.com
+www.blogsmithmedia.com
+o.aolcdn.com
+s3.amazonaws.com
+rs.aol.de
+gdk.gravity.com
+api.ukmedia.aol.com
+dpm.demdex.net
+fast.aol.demdex.net
+cm.everesttech.net
+o.sa.aol.com
+b.scorecardresearch.com
+fast.aol.demdex.net
+irqs.ioam.de
+videos.huffingtonpost.de
+dpm.demdex.net
+s.huffpost.com
+b.huffingtonpost.de
+passets-cdn.pinterest.com
+i.huffpost.com
+images.huffingtonpost.com
+s1.huffpost.com
+eu-services.babator.com
+s0.huffpost.com
+www.huffingtonpost.de
+b.aol.com
+www.decenthat.com
+rma-api.gravity.com
+# aol - end
