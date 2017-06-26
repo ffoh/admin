@@ -839,25 +839,30 @@ b.scorecardresearch.com
 # OOKLA Speedtest - start
 37.202.1.0/24	# Stadtwerke Neumuenster
 37.202.2.0/24	# Stadtwerke Neumuenster
+0914.global.ssl.fastly.net
 a.adroll.com
 a.c.appier.net
+a.speedtest.frankfurt.x-ion.de
+a.zdbb.net
 ad.afy11.net
 ads.ookla.com
 adx.g.doubleclick.net
 apex.go.sonobi.com
 api.ookla.com
-a.speedtest.frankfurt.x-ion.de
 b.cdnst.net
 beta.speedtest.net
 bid.contextweb.com
 by.uservoice.com
 c.betrad.com
+c.speedtest.net
 cdn.ads.ookla.com
 cdn.optimizely.com
 cdn.static.zdbb.net
 cm.g.doubleclick.net
 contextual.media.net
+cat.nl.eu.criteo.com
 cse.google.com
+csm.nl.eu.criteo.net
 c.speedtest.net
 d.adroll.com
 distillery.wistia.com
@@ -866,6 +871,7 @@ fastlane.rubiconproject.com
 fast.wistia.net
 fra36-speedtest-1.tele2.net
 googleads.g.doubleclick.net
+gurgle.zdbb.net
 ib.adnxs.com
 ih.adscale.de
 ip5886b6d3.dynamic.kabel-deutschland.de
@@ -877,10 +883,11 @@ ookla-d.openx.net
 openx2-match.dotomi.com
 pagead2.googlesyndication.com
 pipedream.wistia.com
+pix.eu.criteo.net
+pix.fr.eu.criteo.net
 pixel.adsafeprotected.com
 pixel.everesttech.net
 pixel.quantserve.com
-pix.fr.eu.criteo.net
 pubads.g.doubleclick.net
 px.adhigh.net
 px.moatads.com
@@ -891,8 +898,11 @@ rtb.districtm.io
 rtb.openx.net
 sadmin.brightcove.com
 sc.iasds01.com
+secure-us.imrworldwide.com
 server.debspace.org
 sl-02.wemacom.de
+sp1.hanne-fomenko.de
+sp1.netkom-line.de
 speed1.ktk.de
 speed.23media.de
 speedtest01.addix.net
@@ -904,11 +914,14 @@ speedtest.fra1.de.leaseweb.com
 #speedtest.hillcom.de
 speedtest.ip-projects.de
 speedtest.it-ohlendorf.de
+speedtest.newone.de
 speedtest.studiofunk.de
 speedtest.swnnms.net
 speedtest.tng.de
 speedtest.vodafone-ip.de
 speedtest.wtnet.de
+speedtest1.it-ohlendorf.de
+speedtest1.onlime.com
 static.eu.criteo.net
 sync.go.sonobi.com
 sync.mathtag.com
@@ -922,6 +935,7 @@ walker.zdbb.net
 www.alternateatmosphere.com
 www.base-mail.de
 www.base-mail.us
+www.decenthat.com
 www.fallingfalcon.com
 www.google-analytics.com
 www.speedtest.net
@@ -2988,3 +3002,5 @@ stratum2-2.NTP.TechFak.NET
 # salesforce - start
 85.222.128.0/19	# salesforce
 # salesforce - end
+#178.250.0.0/22	# criteo
+178.250.0.0/22	# criteo sslwidget.criteo.com
