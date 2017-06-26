@@ -34,6 +34,7 @@ iforgot.apple.com	# redundancy not tested
 ipv4.google.com	# _should be_ redundant
 172.217.0.0/16	www.google.de ...metric.gstatic.com youtubei.youtube.com
 youtubei.youtube.com	# redundant
+www.youtube-nocookie.com	# redundant
 i9.ytimg.com	# redundant
 194.122.80.0/24	# google cache
 108.177.0.0/17	# google
@@ -51,6 +52,7 @@ id.google.de
 217.146.184.0/21	yahoo.eu.net
 141.83.0.0/16	uni-luebeck.de
 84.128.0.0/10	# Deutsche Telekom - auch alle Kunden - aber die wissen ja, wer das ist
+109.237.187.0/24	# T Mobile, gesehen bei IPsec Verbindungen
 80.190.148.64/26	# avira
 212.53.192.64/26	# WebCam firma in Haffkrug fuer Timmendorf
 content.jwplatform.com	# WebCam Timmendorf
@@ -181,6 +183,7 @@ labs.picotech.com
 picotech.com
 # picotech - end
 # Facebook - start
+217.243.141.0/24	# facebook
 157.240.0.0/16	# facebook
 173.252.64.0/18	apps.facebook.com graph.facebook.com # facebook
 31.13.100.0/24	facebook
@@ -254,11 +257,13 @@ h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
 h364.meetrics.de
+h375.meetrics.de
 h376.meetrics.de
 h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h427.meetrics.de
 h428.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
@@ -665,6 +670,7 @@ images-na.ssl-images-amazon.com
 images-na.ssl-images-amazon.com
 images-eu.ssl-images-amazon.com
 l0.awsstatic.com
+s3-eu-west-1.amazonaws.com
 smooth.l3.cdn.lovefilm.com
 static.amazon.de
 www.amazon.de
@@ -844,25 +850,30 @@ b.scorecardresearch.com
 # OOKLA Speedtest - start
 37.202.1.0/24	# Stadtwerke Neumuenster
 37.202.2.0/24	# Stadtwerke Neumuenster
+0914.global.ssl.fastly.net
 a.adroll.com
 a.c.appier.net
+a.speedtest.frankfurt.x-ion.de
+a.zdbb.net
 ad.afy11.net
 ads.ookla.com
 adx.g.doubleclick.net
 apex.go.sonobi.com
 api.ookla.com
-a.speedtest.frankfurt.x-ion.de
 b.cdnst.net
 beta.speedtest.net
 bid.contextweb.com
 by.uservoice.com
 c.betrad.com
+c.speedtest.net
 cdn.ads.ookla.com
 cdn.optimizely.com
 cdn.static.zdbb.net
 cm.g.doubleclick.net
 contextual.media.net
+cat.nl.eu.criteo.com
 cse.google.com
+csm.nl.eu.criteo.net
 c.speedtest.net
 d.adroll.com
 distillery.wistia.com
@@ -871,6 +882,7 @@ fastlane.rubiconproject.com
 fast.wistia.net
 fra36-speedtest-1.tele2.net
 googleads.g.doubleclick.net
+gurgle.zdbb.net
 ib.adnxs.com
 ih.adscale.de
 ip5886b6d3.dynamic.kabel-deutschland.de
@@ -882,10 +894,11 @@ ookla-d.openx.net
 openx2-match.dotomi.com
 pagead2.googlesyndication.com
 pipedream.wistia.com
+pix.eu.criteo.net
+pix.fr.eu.criteo.net
 pixel.adsafeprotected.com
 pixel.everesttech.net
 pixel.quantserve.com
-pix.fr.eu.criteo.net
 pubads.g.doubleclick.net
 px.adhigh.net
 px.moatads.com
@@ -896,8 +909,11 @@ rtb.districtm.io
 rtb.openx.net
 sadmin.brightcove.com
 sc.iasds01.com
+secure-us.imrworldwide.com
 server.debspace.org
 sl-02.wemacom.de
+sp1.hanne-fomenko.de
+sp1.netkom-line.de
 speed1.ktk.de
 speed.23media.de
 speedtest01.addix.net
@@ -909,11 +925,14 @@ speedtest.fra1.de.leaseweb.com
 #speedtest.hillcom.de
 speedtest.ip-projects.de
 speedtest.it-ohlendorf.de
+speedtest.newone.de
 speedtest.studiofunk.de
 speedtest.swnnms.net
 speedtest.tng.de
 speedtest.vodafone-ip.de
 speedtest.wtnet.de
+speedtest1.it-ohlendorf.de
+speedtest1.onlime.com
 static.eu.criteo.net
 sync.go.sonobi.com
 sync.mathtag.com
@@ -927,6 +946,7 @@ walker.zdbb.net
 www.alternateatmosphere.com
 www.base-mail.de
 www.base-mail.us
+www.decenthat.com
 www.fallingfalcon.com
 www.google-analytics.com
 www.speedtest.net
@@ -940,6 +960,7 @@ z.moatads.com
 www.amung.us
 amung.us
 # web.de - start
+217.72.192.0/20
 pop3.web.de
 imap.web.de
 navigator.web.de
@@ -965,6 +986,7 @@ uas-bs.web.de
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
 80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
 62.157.140.0/23	accounts.login.idm.telekom.com
+iss.t-online.de	# not redundant
 homad-global-configs.schneevonmorgen.com
 securesmtp.t-online.de
 #img.community.t-online.de	# not redundant - community site, bewusst nicht deanonymisiert
@@ -1732,7 +1754,7 @@ i.n.jwpltx.com
 108.168.160.0/19	# whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
-169.45.210.64/26	# whatsapp
+169.45.210.64/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
 169.45.248.96/27	# whatsapp
@@ -1851,6 +1873,8 @@ bam.nr-data.net
 208.71.184.0/22 ingameads.gameloft.com eve.gameloft.com
 # netflix start
 198.38.96.0/19	# nflxvideo.net
+45.57.0.0/17	# nflxvideo.net
+37.77.188.0/23	# nflxvideo.net
 ipv4_1-mce0-c051.1.fra001.ix.nflxvideo.net
 ipv4_1-lagg0-c293.1.nyc001.ix.nflxvideo.net
 s.thebrighttag.com
@@ -1922,7 +1946,10 @@ www.timmendorfer-strand.de
 www.meetup.com
 208.65.72.0/21	blackberry.net
 212.8.197.168/29 maritim-hotels.de
+# posteo - start
+posteo.de
 mail.posteo.de
+# posteo - end
 immonet.de
 # immobilienscoun24.de - start
 immobilienscout24.de
@@ -2986,3 +3013,91 @@ e.visualdna.com
 dis.criteo.com
 # truckscout24.de - end
 195.50.128.0/18	Arcor, now Vodafone
+192.44.68.0/23	#  crashlytics.com
+# king.com - start
+king.com
+k1.midasplayer.com
+contenido1.midasplayer.com
+royal1.midasplayer.com
+eden1.midasplayer.com
+platform.twitter.com
+badges.instagram.com
+edencanvas.king.com
+eden1.midasplayer.com
+scontent.xx.fbcdn.net
+p.midasplayer.com
+graph.facebook.com
+p.midasplayer.com
+mobilecrush.king.com
+# king.com - end
+stratum2-2.NTP.TechFak.NET
+# comdirect - start
+193.41.132.0/22	# comdirect
+# comdirect - end
+# salesforce - start
+85.222.128.0/19	# salesforce
+# salesforce - end
+#178.250.0.0/22	# criteo
+178.250.0.0/22	# criteo sslwidget.criteo.com
+# geocaching.com - start
+www.geocaching.com
+secure.quantserve.com
+static.hotjar.com
+rules.quantcount.com
+script.hotjar.com
+vars.hotjar.com
+pixel.quantserve.com
+# geocaching.com - end
+# 1drive.com - start (microsoft drive service)
+131.253.12.0/22	# microsoft.com
+131.253.16.0/23	# microsoft.com
+131.253.18.0/24	# microsoft.com
+ondrive.live.com
+spoprod-a.akamaihd.net
+nexus.ensighten.com
+c.microsoft.com
+cs.microsoft.com
+c1.microsoft.com
+connect.facebook.net
+sjs.bizographics.com
+ad.atdmt.com
+snap.licdn.com
+c.bing.com
+www.facebook.com
+cdn.optimizely.com
+browser.pipe.aria.microsoft.com
+dc.ads.linkedin.com
+# 1drive.com - end (microsoft drive service)
+# aol - start
+149.174.0.0/16	# aol/compuserve
+aol.com
+www.aol.com
+s.aolcdn.com
+www.blogsmithmedia.com
+o.aolcdn.com
+s3.amazonaws.com
+rs.aol.de
+gdk.gravity.com
+api.ukmedia.aol.com
+dpm.demdex.net
+fast.aol.demdex.net
+cm.everesttech.net
+o.sa.aol.com
+b.scorecardresearch.com
+fast.aol.demdex.net
+irqs.ioam.de
+videos.huffingtonpost.de
+dpm.demdex.net
+s.huffpost.com
+b.huffingtonpost.de
+passets-cdn.pinterest.com
+i.huffpost.com
+images.huffingtonpost.com
+s1.huffpost.com
+eu-services.babator.com
+s0.huffpost.com
+www.huffingtonpost.de
+b.aol.com
+www.decenthat.com
+rma-api.gravity.com
+# aol - end

@@ -34,20 +34,24 @@ ThisIsMailserver="no"
 FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
 echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
 
+FreifunkServerIp4List="5.9.144.194"
+#                        server2
+FreifunkServerIp6List="2a01:4f8:190:23c9::2"
+#                        server2
 
 GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
-#                     gw1          gw2          gw3            gw4          gw5        gw6          gw-test
+#                     gw1          gw2          gw3            gw4          gw5           gw6         gw-test
 
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
-#                     gw1                       gw2                       gw3                   gw4                       gw5                gw6                  gw-test
+#                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
-LocalGatewayHostnames="gattywatty01.my-gateway.de gattywatty02.my-gateway.de"
+LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
 LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32"
 RemoteGatewayIPv4List=""
 RemoteGatewayIPv6List=""
 for i in $LocalGatewayHostnames
 do
-	remoteIPv4=$(host -4 $i | grep -v IPv6 | cut -f4 -d\ )
+	remoteIPv4=$(host -4 $i | grep -v IPv6 | grep -v alias | cut -f4 -d\ )
 	if [ -n "$remoteIPv4" ]; then
 		if [ -z "$RemoteGatewayIPv4List" ]; then
 			#echo "I: Added 4"
@@ -57,7 +61,7 @@ do
 		fi
 	fi
 
-	remoteIPv6=$(host -4 $i | grep IPv6 | cut -f5 -d\ )
+	remoteIPv6=$(host -4 $i | grep IPv6 | grep -v alias | cut -f5 -d\ )
         if [ -n "$remoteIPv6" ]; then
 		#echo "remoteIPv6: $remoteIPv6"
 		if [ -z "$RemoteGatewayIPv6List" ]; then
