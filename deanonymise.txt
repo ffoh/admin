@@ -2997,6 +2997,12 @@ cw.addthis.com
 ib.adnxs.com
 e.visualdna.com
 dis.criteo.com
+ww2.autoscout24.de
+plankton-gtm.a.autoscout24.com
+cdn3.optimizely.com
+watchlist.a.autoscout24.com
+www.autoscout24.com
+www.autoscout24.eu
 # truckscout24.de - end
 195.50.128.0/18	Arcor, now Vodafone
 192.44.68.0/23	#  crashlytics.com
