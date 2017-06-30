@@ -210,11 +210,12 @@ picotech.com
 s-static.ak.facebook.com
 static.ak.facebook.com
 # Facebook - end
-# spiegel - start
+# spiegel.de - start
 104.244.40.0/21	twitter
 199.16.156.0/22	twitter.com analytics.twitter.com syndication.twitter.com
 79423.analytics.edgekey.net
 a.visualrevenue.com
+a.twiago.com
 ad.yieldlab.net
 ad2.adfarm1.adition.com
 ad8.adfarm1.adition.com
@@ -230,6 +231,7 @@ cdn2.spiegel.de
 cdn3.spiegel.de
 cdn4.spiegel.de
 count.spiegel.de
+dc1.s246.meetrics.net
 dc43.s290.meetrics.net
 dc44.s290.meetrics.net
 dc56.s290.meetrics.net
@@ -269,6 +271,7 @@ h429.meetrics.de
 h430.meetrics.de
 h546.meetrics.de
 i1.sndcdn.com
+ib.adnxs.com
 images.nl.eu.criteo.net
 images.nl.eu.criteo.net
 images.outbrain.com
@@ -276,7 +279,9 @@ imagesrv.adition.com
 jdn.monster.com
 jwpltx.com
 l9bjkkhaycw6f8f4.soundcloud.com	# discuss
+log.outbrain.com
 m.spiegel.de
+match.adsrvr.org
 ma140-r.analytics.edgekey.net
 magazin.spiegel.de
 nexxtv-we-events.servicebus.windows.net
@@ -294,10 +299,12 @@ s290.mxcdn.net
 sb.scorecardresearch.com
 scontent.xx.fbcdn.net
 script.ioam.de
+securepubads.g.doubleclick.net
 server.adform.net
 srv-2017-04-25-15.pixel.parsely.com	# discuss
 srv-2017-06-06-09.pixel.parsely.com	# discuss
 srv-2017-06-06-09.config.parsely.com	# discuss
+srv-2017-06-30-10.pixel.parsely.com	# discuss
 spiegel.de
 spiegel.ivwbox.de
 spiegel.met.vgwort.de
@@ -305,7 +312,9 @@ stat.flashtalking.com
 static.criteo.net
 static.parsely.com
 static.xx.fbcdn.net
+syndication.twitter.com
 uobsoe.com
+ups.xplosion.de
 video.spiegel.de
 video2.spiegel.de
 vrp.outbrain.com
@@ -317,11 +326,13 @@ wis.sndcdn.com
 www.google-analytics.com
 www.spiegel.de
 www.spiegel.tv
+x.bidswitch.net
 spiegeltv-prod-static.s3.amazonaws.com
 spiegeltv-ivms2-restapi.s3.amazonaws.com
 homad-global-configs-eu-fra.schneevonmorgen.com.s3.amazonaws.com
 d22mepmetc46uf.cloudfront.net
-# spiegel - end
+# spiegel.de - end
+
 # spotify - start
 194.14.177.0/24	spotify.com
 194.132.196.0/22	#spotify
@@ -666,7 +677,6 @@ fls-devo.vipinteg.amazon.com
 fls-eu.amazon.de
 g-ec2.images-amazon.com
 g-ecx.images-amazon.com
-images-na.ssl-images-amazon.com
 images-na.ssl-images-amazon.com
 images-eu.ssl-images-amazon.com
 l0.awsstatic.com
@@ -1925,7 +1935,20 @@ www.paypal.com
 www.paypalobjects.com
 # netflix end
 app.dailyme.tv
+# news.bbc.co.uk - start
 212.58.240.0/20	bbc.co.uk
+ichef.bbci.co.uk
+polling.bbc.co.uk
+ping.chartbeat.net
+search.files.bbci.co.uk
+sa.bbc.co.uk
+mybbc.files.bbci.co.uk
+www.bbc.co.uk
+fig.bbc.co.uk
+nav.files.bbci.co.uk
+www.bbc.com
+static.bbc.co.uk
+# news.bbc.co.uk - end
 91.189.94.0/24	canonical
 osmand.net
 128.102.0.0/16	NASA
@@ -3107,3 +3130,86 @@ b.aol.com
 www.decenthat.com
 rma-api.gravity.com
 # aol - end
+# heroku - start
+www.heroku.de
+rh.gd
+fis-na.amazon.com
+heroku.com
+www.heroku.com
+www-assets0.herokucdn.com
+www-assets1.herokucdn.com
+www-assets2.herokucdn.com
+www-assets3.herokucdn.com
+www.googletagmanager.com
+player.vimeo.com
+tag.marinsm.com
+dnn506yrbagrg.cloudfront.net
+pixel.mathtag.com
+jambox-p.herokuapp.com
+analytics.twitter.com
+platform.twitter.com
+t.co
+bat.bing.com
+www.facebook.com
+blog.heroku.com
+ssl.google-analytics.com
+f.vimeocdn.com
+pixel-geo.prfct.co
+cse.google.com
+u3s.mathtag.com
+mathid.mathtag.com
+p.univide.com
+secure.adnxs.com
+pixel-geo.prfct.co
+cw.addthis.com
+sync.mathtag.com
+pixel.prfct.co
+i.vimeocdn.com
+pi.pardot.com
+skyfire.vimeocdn.com
+164skyfiregce-vimeo.akamaized.net
+# heroku - end
+# verisign.com - start
+69.58.176.0/20	# Verisign.com
+static.chartbeat.com
+assets.adobedtm.com
+verisigninc.112.2o7.net
+gtrk.s3.amazonaws.com
+ping.chartbeat.net
+# verisign.com - end
+# redhat.com - start
+cdnssl.clicktale.net
+www.redhat.com
+api.demandbase.com
+s1795.t.eloqua.com
+redhat.sc.omtrdc.net
+scripts.demandbase.com
+img.en25.com
+assets.adobedtm.com
+cdn.tt.omtrdc.net
+dpm.demdex.net
+assets.adobedtm.com
+d2gfdmu30u15x7.cloudfront.net
+img.en25.com
+beacon.tracelytics.com
+s.ytimg.com
+redhat.force.com
+maps.googleapis.com
+maps.gstatic.com
+csi.gstatic.com
+developers.redhat.com
+cdnjs.cloudflare.com
+# redhat.com - end
+# openshift.com - start
+www.openshift.com
+assets.openshift.net
+jsonip.com
+rum-static.pingdom.net
+rum-collector.pingdom.net
+# openshift.com - end
+fresnel.vimeocdn.com
+player.vimeo.com
+www.verisign.com
+siteimproveanalytics.com
+us1.siteimprove.com
+assets.adobedtm.com
