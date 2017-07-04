@@ -49,20 +49,30 @@ LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ff
 LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32"
 RemoteGatewayIPv4List=""
 RemoteGatewayIPv6List=""
+
+echo "I: Iterating over local gateway hostnames - start"
+
 for i in $LocalGatewayHostnames
 do
-	remoteIPv4=$(host -4 $i | grep -v IPv6 | grep -v alias | cut -f4 -d\ )
+	echo -n "I:     $i : IPv4 -> "
+	remoteIPv4=$(LANG=C $HOST -4 $i  8.8.8.8 | $GREP address | $GREP -v IPv6 | $GREP -v alias | $CUT -f4 -d\ )
 	if [ -n "$remoteIPv4" ]; then
+		echo $remoteIPv4
 		if [ -z "$RemoteGatewayIPv4List" ]; then
 			#echo "I: Added 4"
 			RemoteGatewayIPv4List=$remoteIPv4
 		else
 			RemoteGatewayIPv4List="$RemoteGatewayIPv4List $remoteIPv4"
 		fi
+	else
+		echo "<no IPv4 address found>"
 	fi
 
-	remoteIPv6=$(host -4 $i | grep IPv6 | grep -v alias | cut -f5 -d\ )
+	echo -n "I:     $i : IPv6 -> "
+
+	remoteIPv6=$(LANG=C $HOST -4 $i 8.8.8.8 | $GREP IPv6 | $GREP -v alias | $CUT -f5 -d\ )
         if [ -n "$remoteIPv6" ]; then
+		echo $remoteIPv6
 		#echo "remoteIPv6: $remoteIPv6"
 		if [ -z "$RemoteGatewayIPv6List" ]; then
 			#echo "I: Added 6"
@@ -70,8 +80,11 @@ do
 		else
 			RemoteGatewayIPv6List="$RemoteGatewayIPv6List $remoteIPv6"
 		fi
+	else
+		echo "<no IPv6 address found>"
 	fi
 done
+echo "I: Iterating over local gateway hostnames - end"
 
 DEVICE=eth0
 if $IFCONFIG|$GREP -q eth0.101; then
@@ -231,7 +244,11 @@ $ECHO "I: JA: trusting all gateway IP4 gateway addresses, also the local ones - 
 for gw in $GatewayIp4List $RemoteGatewayIPv4List
 do
 	$ECHO -n "       gateway $gw "
-	FW4 "Fully_trusting_gateway" -A INPUT -s $gw/32 -j ACCEPT
+	if echo $gw | grep -q out; then
+		echo "Skipping gw $gw"
+	else
+		FW4 "Fully_trusting_gateway IPv4" -A INPUT -s $gw/32 -j ACCEPT
+	fi
 	$ECHO "- trusted"
 done
 
@@ -246,7 +263,7 @@ FW6 "Fully trusting all our other gateways - hetzner" -A INPUT -s $($HOST -t AAA
 for gw in $RemoteGatewayIPv6List
 do
 	$ECHO -n "       gateway $gw "
-	FW6 "Fully_trusting_gateway" -A INPUT -s $gw -j ACCEPT
+	FW6 "Fully_trusting_gateway IPv6" -A INPUT -s $gw -j ACCEPT
 done
 
 $ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
