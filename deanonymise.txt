@@ -3200,6 +3200,16 @@ csi.gstatic.com
 developers.redhat.com
 cdnjs.cloudflare.com
 # redhat.com - end
+# junge baeckerei- start
+80.157.236.224/27
+www.jb.de
+vpn.jb.de
+mail.jb.de
+stats.junge-hosting.net
+www.youtube.com
+scontent-frx5-1.xx.fbcdn.net
+video-frx5-1.xx.fbcdn.net
+# junge baeckerei - end
 # openshift.com - start
 www.openshift.com
 assets.openshift.net
