@@ -207,12 +207,9 @@ FWboth "" -P OUTPUT  ACCEPT
 
 $ECHO "I: Creating chain named 'log-drop'"
 FWboth "" -N log-drop
-
 # may not be a good idea to drop ICMP, in particular not for IPv6
-#FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
-
-# uncomment once important bits are no longer logged
-#FWboth "" -A log-drop -j DROP
+FWboth "log and drop ICMP" '-A log-drop -m limit --limit 5/min -j LOG --log-prefix Denied_IN: --log-level 7'
+FWboth "" -A log-drop -j DROP
 
 FWboth "" -N log-drop-out
 FWboth "log and drop TCP" '-A log-drop-out -m limit --limit 5/min -j LOG --log-prefix Denied_OUT: --log-level 7'
@@ -389,10 +386,9 @@ if [ -x /usr/sbin/dpkg-reconfigure ]; then
    fi
 fi
 
-$ECHO "I: update INPUT policy to DROP"
+$ECHO "I: update INPUT policy for IPv4 to DROP"
 #FWboth "" -P INPUT DROP
-#FW4 "" -P INPUT DROP
-FW4 "" -P INPUT ACCEPT
+FW4 "" -P INPUT DROP
 
 #$ECHO "I: adding blacklist from http://mirror.ip-projects.de/ip-blacklist"
 #$IPTABLES -t blacklist_ip_projects_de -F || $ECHO "[ignored]"
