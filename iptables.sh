@@ -266,16 +266,21 @@ done
 $ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    $ECHO "I: Machine recognised as gateway"
-   FW4 "Freifunk ICVPN" -A INPUT -s 10.207.0.0/16 -j ACCEPT
+   FW4 "Freifunk ICVPN" "-A INPUT -s 10.207.0.0/16 -j ACCEPT"
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
-   FWboth "Freifunk Network - DNS" '-A INPUT -p udp -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport domain -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport domain -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport mdns -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport mdns -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11281 or 11426
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 10000 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11280 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11281 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11426 -j ACCEPT'
+   # Multicast
+   FWboth "Freifunk Network - multicast" '-i bat0 -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
