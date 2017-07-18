@@ -221,11 +221,13 @@ ad2.adfarm1.adition.com
 ad8.adfarm1.adition.com
 ads.stickyadstv.com
 adserv.quality-channel.de
+api.soundcloud.com
 c.spiegel.de
 cas.criteo.com
 cat.nl.eu.criteo.com
 cdn.conative.de
 cdn.emetriq.de
+cdn.syndication.twimg.com
 cdn1.spiegel.de
 cdn2.spiegel.de
 cdn3.spiegel.de
@@ -246,6 +248,7 @@ dc81.s290.meetrics.net
 dc82.s290.meetrics.net
 dc83.s290.meetrics.net
 dc84.s290.meetrics.net
+de.ioam.de
 de-ipd.videoplaza.tv
 define.nuggad.net
 dmp.theadex.com
@@ -289,6 +292,7 @@ nx-i.akamaized.net
 nx-o.akamaized.net
 odb.outbrain.com
 platform.twitter.com	# not redundant
+pbs.twimg.com
 pp.lp4.io
 prod-static.spiegel.tv
 purl.org
@@ -301,6 +305,7 @@ scontent.xx.fbcdn.net
 script.ioam.de
 securepubads.g.doubleclick.net
 server.adform.net
+spiegel.met.vgwort.de
 srv-2017-04-25-15.pixel.parsely.com	# discuss
 srv-2017-06-06-09.pixel.parsely.com	# discuss
 srv-2017-06-06-09.config.parsely.com	# discuss
@@ -996,6 +1001,7 @@ uas-bs.web.de
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
 80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
 62.157.140.0/23	accounts.login.idm.telekom.com
+37.50.0.0/15	# seen for sip communication
 iss.t-online.de	# not redundant
 homad-global-configs.schneevonmorgen.com
 securesmtp.t-online.de
