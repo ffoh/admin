@@ -3229,3 +3229,4 @@ www.verisign.com
 siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
+169.46.12.64/26	upsight.com
