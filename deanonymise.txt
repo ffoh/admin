@@ -3216,6 +3216,7 @@ www.youtube.com
 scontent-frx5-1.xx.fbcdn.net
 video-frx5-1.xx.fbcdn.net
 # junge baeckerei - end
+193.9.230.0/24	# scandinavian seaways
 # openshift.com - start
 www.openshift.com
 assets.openshift.net
