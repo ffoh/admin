@@ -1698,11 +1698,9 @@ pvza-production.popcapsf.com
 # POPCAP - end
 imap.mail.de
 api.flattr.com
-# shared-by-many wetter.com
 s7.addthis.com
 m.addthis.com
 su.addthis.com
-# shared-by-many wetter.com
 # wetter.com - start
 wetter.com
 dev.visualwebsiteoptimizer.com
@@ -3230,3 +3228,7 @@ www.verisign.com
 siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
+# netatmo - start	# home security/IoT
+www.netatmo.com
+f4.netatmo.com
+# netatmo - end
