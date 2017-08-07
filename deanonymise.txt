@@ -2172,6 +2172,7 @@ js.revsci.net
 beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
+2.20.188.0/22	akamai.com	# CDN
 194.94.0.0/15	uni-erfurt.de
 132.176.0.0/16	fernuni-hagen.de
 # libreoffice - start
