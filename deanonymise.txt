@@ -965,6 +965,7 @@ www.decenthat.com
 www.fallingfalcon.com
 www.google-analytics.com
 www.speedtest.net
+www.summerhamster.com
 x1-6-00-26-b9-f3-01-88.cpe.webspeed.de
 zdbb.net
 zdstatic.speedtest.net
@@ -3231,3 +3232,13 @@ www.verisign.com
 siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
+# giga.de - start
+www.giga.de
+www.google-analytics.com
+go.giga-abs.de
+trc.taboola.com
+stats.g.doubleclick.net
+tracking.m6r.eu
+# giga.de - end
+mail.berlin.de
+
