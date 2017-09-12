@@ -1768,6 +1768,7 @@ i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
 108.168.160.0/19	# whatsapp
+158.85.58.32/27	# whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
 169.45.210.64/27	# whatsapp
@@ -2172,6 +2173,7 @@ js.revsci.net
 beacon.krxd.net
 pix04.revsci.net
 # hamburg.de - end
+2.20.188.0/22	akamai.com	# CDN
 194.94.0.0/15	uni-erfurt.de
 132.176.0.0/16	fernuni-hagen.de
 # libreoffice - start
@@ -3216,6 +3218,7 @@ www.youtube.com
 scontent-frx5-1.xx.fbcdn.net
 video-frx5-1.xx.fbcdn.net
 # junge baeckerei - end
+193.9.230.0/24	# scandinavian seaways
 # openshift.com - start
 www.openshift.com
 assets.openshift.net
