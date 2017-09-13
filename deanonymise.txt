@@ -1892,6 +1892,7 @@ bam.nr-data.net
 198.38.96.0/19	# nflxvideo.net
 45.57.0.0/17	# nflxvideo.net
 37.77.188.0/23	# nflxvideo.net
+37.77.190.0/23	# nflxvideo.net
 ipv4_1-mce0-c051.1.fra001.ix.nflxvideo.net
 ipv4_1-lagg0-c293.1.nyc001.ix.nflxvideo.net
 s.thebrighttag.com
@@ -2947,7 +2948,15 @@ haproxy1.sonnenbatterie.de
 # sonnenbatterie - end
 # scicrunch - start
 scicrunch.org
+www.scicrunch.org
+v2.zopim.com
+pbs.twimg.com
+cdn.syndication.twimg.com
+s7.addthis.com
+www.google-analytics.com
+stats.g.doubleclick.net
 ie24.zopim.com
+ie06.zopim.com
 maps.google.com
 maps.googleapis.com
 m.addthis.com
