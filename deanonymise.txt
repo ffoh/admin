@@ -257,6 +257,7 @@ dyn.emetriq.de
 files.adform.net
 geschichte.spiegel.de
 get.adobe.com
+h213.meetrics.de
 h237.meetrics.de
 h246.meetrics.de
 h342.meetrics.de
@@ -1772,6 +1773,7 @@ i.n.jwpltx.com
 169.45.210.64/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
+158.85.224.160/27	# whatsapp
 169.45.248.96/27	# whatsapp
 169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
