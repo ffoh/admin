@@ -258,6 +258,7 @@ dyn.emetriq.de
 files.adform.net
 geschichte.spiegel.de
 get.adobe.com
+h213.meetrics.de
 h237.meetrics.de
 h246.meetrics.de
 h342.meetrics.de
@@ -1703,11 +1704,9 @@ pvza-production.popcapsf.com
 # POPCAP - end
 imap.mail.de
 api.flattr.com
-# shared-by-many wetter.com
 s7.addthis.com
 m.addthis.com
 su.addthis.com
-# shared-by-many wetter.com
 # wetter.com - start
 wetter.com
 dev.visualwebsiteoptimizer.com
@@ -1773,11 +1772,13 @@ i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
 108.168.160.0/19	# whatsapp
+158.85.58.32/27	# whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
 169.45.210.64/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
+158.85.224.160/27	# whatsapp
 169.45.248.96/27	# whatsapp
 169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
@@ -1898,6 +1899,7 @@ bam.nr-data.net
 198.38.96.0/19	# nflxvideo.net
 45.57.0.0/17	# nflxvideo.net
 37.77.188.0/23	# nflxvideo.net
+37.77.190.0/23	# nflxvideo.net
 ipv4_1-mce0-c051.1.fra001.ix.nflxvideo.net
 ipv4_1-lagg0-c293.1.nyc001.ix.nflxvideo.net
 s.thebrighttag.com
@@ -2954,7 +2956,15 @@ haproxy1.sonnenbatterie.de
 # sonnenbatterie - end
 # scicrunch - start
 scicrunch.org
+www.scicrunch.org
+v2.zopim.com
+pbs.twimg.com
+cdn.syndication.twimg.com
+s7.addthis.com
+www.google-analytics.com
+stats.g.doubleclick.net
 ie24.zopim.com
+ie06.zopim.com
 maps.google.com
 maps.googleapis.com
 m.addthis.com
@@ -3248,3 +3258,37 @@ stats.g.doubleclick.net
 tracking.m6r.eu
 # giga.de - end
 mail.berlin.de
+# netatmo - start	# home security/IoT
+www.netatmo.com
+f4.netatmo.com
+# netatmo - end
+169.46.12.64/26	upsight.com
+# nugg.ad - start
+www.nugg.ad
+80.82.201.80/28	# define.nuggad.net
+# nugg.ad - end
+# slooh.com - start
+www.slooh.com
+www.googletagservices.com
+www.google-analytics.com
+ajax.googleapis.com
+use.fontawesome.com
+securepubads.g.doubleclick.net
+vega.slooh.com
+p.typekit.net
+slooh.com
+use.typekit.net
+castor.slooh.com
+# slooh.com - end
+# cewe - start
+company.cewe.de
+gwmob.cewecolor.de
+cewecolor.112.2o7.net
+charts3.equitystory.com
+piwik.cytrus.de
+ir.cewe.de
+www.cewe-print.de
+widgets.trustedshops.com
+cewecolor.d3.sc.omtrdc.net
+assets.adobedtm.com
+# cewe - end
