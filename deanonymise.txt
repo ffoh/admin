@@ -3242,3 +3242,20 @@ siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
 169.46.12.64/26	upsight.com
+# nugg.ad - start
+www.nugg.ad
+80.82.201.80/28	# define.nuggad.net
+# nugg.ad - end
+# slooh.com - start
+www.slooh.com
+www.googletagservices.com
+www.google-analytics.com
+ajax.googleapis.com
+use.fontawesome.com
+securepubads.g.doubleclick.net
+vega.slooh.com
+p.typekit.net
+slooh.com
+use.typekit.net
+castor.slooh.com
+# slooh.com - end
