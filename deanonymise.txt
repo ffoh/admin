@@ -3246,3 +3246,15 @@ www.netatmo.com
 f4.netatmo.com
 # netatmo - end
 169.46.12.64/26	upsight.com
+# cewe - start
+company.cewe.de
+gwmob.cewecolor.de
+cewecolor.112.2o7.net
+charts3.equitystory.com
+piwik.cytrus.de
+ir.cewe.de
+www.cewe-print.de
+widgets.trustedshops.com
+cewecolor.d3.sc.omtrdc.net
+assets.adobedtm.com
+# cewe - end
