@@ -270,6 +270,8 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport bootps -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport bootps -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport domain -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport domain -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport mdns -j ACCEPT'
