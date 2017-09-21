@@ -371,8 +371,14 @@ fi
 FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
 FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 
-$ECHO "I: NEIN: FTP"
-FWboth "FTP is not configured, should not be listening anyway, but .." '-A INPUT -p tcp --dport ftp -j log-drop'
+$ECHO "I: YES: FTP"
+FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp -j ACCEPT'
+FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport ftp -j ACCEPT'
+FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp-data -j ACCEPT'
+FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport ftp-data -j ACCEPT'
+FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
+FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
+$ECHO "I: YES: FTP"
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
 FWboth "No DNS from outside Freifunk" -A INPUT -p udp --dport domain -j log-drop
 
