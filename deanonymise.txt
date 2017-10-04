@@ -3294,3 +3294,5 @@ widgets.trustedshops.com
 cewecolor.d3.sc.omtrdc.net
 assets.adobedtm.com
 # cewe - end
+akamai.bintray.com	# brew
+homebrew.bintray.com	# brew
