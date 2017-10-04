@@ -190,8 +190,8 @@ picotech.com
 31.13.109.0/24	facebook
 31.13.64.0/24	connect.facebook.net facebook
 31.13.65.0/24	connect.facebook.com
-31.13.65.0/24	connect.facebook.com
 31.13.66.0/24	# facebook
+31.13.67.0/24	# facebook
 31.13.69.0/24	# facebook
 31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
@@ -202,6 +202,7 @@ picotech.com
 185.60.216.0/21	# facebook-ie
 31.13.77.0/24	# facebook
 31.13.80.0/24	connect.facebook.net
+31.13.84.0/24	facebook
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
@@ -262,6 +263,7 @@ h237.meetrics.de
 h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
+h359.meetrics.de
 h364.meetrics.de
 h375.meetrics.de
 h376.meetrics.de
@@ -269,10 +271,12 @@ h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h400.meetrics.de
 h427.meetrics.de
 h428.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
+h538.meetrics.de
 h546.meetrics.de
 i1.sndcdn.com
 ib.adnxs.com
@@ -966,6 +970,7 @@ www.decenthat.com
 www.fallingfalcon.com
 www.google-analytics.com
 www.speedtest.net
+www.summerhamster.com
 x1-6-00-26-b9-f3-01-88.cpe.webspeed.de
 zdbb.net
 zdstatic.speedtest.net
@@ -1779,12 +1784,14 @@ i.n.jwpltx.com
 169.45.248.96/27	# whatsapp
 169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
+169.47.5.224/27	# whatsapp
 169.47.35.32/27	# whatsapp
 169.47.40.128/27	# whatsapp
 169.47.42.96/27	# whatsapp
 169.47.42.192/27	# whatsapp
 169.47.42.224/27	# whatsapp
 169.53.71.224/27	# whatsapp
+169.55.69.160/27	# whatsapp
 169.55.75.96/27	# whatsapp
 169.55.67.224/27	# whatsapp
 173.192.192.0/19	# whatsapp
@@ -2872,6 +2879,7 @@ u32.badoo.com
 # badoo - end
 imap-a-mtc-a.mx.aol.com	# email as it seems
 77.234.45.0/24	# avast.com - anonymizer
+5.45.62.0/24	# avast.com - anonymizer
 mail-lp.helimail.de
 # schoen-kliniken - start
 www.schoen-kliniken.de
@@ -3243,6 +3251,15 @@ www.verisign.com
 siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
+# giga.de - start
+www.giga.de
+www.google-analytics.com
+go.giga-abs.de
+trc.taboola.com
+stats.g.doubleclick.net
+tracking.m6r.eu
+# giga.de - end
+mail.berlin.de
 # netatmo - start	# home security/IoT
 www.netatmo.com
 f4.netatmo.com
