@@ -453,13 +453,13 @@ if [ "yes" = "$ThisIsGateway" ]; then
 				echo "I: No IPv6 address for mullvad"
 			fi
 		fi
-	fi
 
-	if $IP rule show | $GREP -q freifunk; then
-		echo "W: ip rule iif bat0 already set, not adding additional rule"
-	else
-		echo "I: Adding ip rule for bat0 to look up in table freifunk"
-		ip rule add from all iif bat0 lookup freifunk
+		if $IP rule show | $GREP -q freifunk; then
+			echo "W: ip rule iif bat0 already set, not adding additional rule"
+		else
+			echo "I: Adding ip rule for bat0 to look up in table freifunk"
+			ip rule add from all iif bat0 lookup freifunk
+		fi
 	fi
 
 	$ECHO "[OK]"
