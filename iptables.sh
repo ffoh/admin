@@ -235,7 +235,7 @@ FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
 FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
 $ECHO "I: JA: trust myself on lo"
-FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
+FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
 
 $ECHO "I: JA: trusting all gateway IP4 gateway addresses, also the local ones - debateable"
 for gw in $GatewayIp4List $RemoteGatewayIPv4List
@@ -368,8 +368,8 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
 fi
 
-FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
-FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
+#FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
+#FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 
 $ECHO "I: YES: FTP"
 FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp -j ACCEPT'
