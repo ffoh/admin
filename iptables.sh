@@ -422,36 +422,38 @@ if [ "yes" = "$ThisIsGateway" ]; then
 	
 	anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 	if [ "" = "$anonymizer" ]; then
-		$ECHO "E: Could not determine IPv4 to Mullvad OpenVPN - restart that"
-	else
-		if $IFCONFIG | $GREP -q mullvad; then
+		$ECHO "I: Not using Mullvad OpenVPN"
+	fi
 
-			FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
+	# Always offer direct link to the net
 
-			if $IFCONFIG | $GREP -q eth0.102; then
-				#FIXME - abstract this is a device-independent way
-				#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
-				FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
-			fi
+	FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
 
-			FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
-			if $IFCONFIG | $GREP -q eth0.102; then
-				#FIXME - abstract this is a device-independent way
-				FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
-			fi
+	if $IFCONFIG | $GREP -q eth0.102; then
+		#FIXME - abstract this is a device-independent way
+		#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
+		FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
+	fi
 
-			$IP route replace default via $anonymizer table freifunk
+	if $IFCONFIG | $GREP -q mullvad; then
 
-			# IPv6 NAT
-			if ifconfig mullvad | grep -q inet6; then 
-				#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
-				echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
-				FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
-				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
-				$IP -6 route replace default dev mullvad table freifunk
-			else
-				echo "I: No IPv6 address for mullvad"
-			fi
+		FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
+		if $IFCONFIG | $GREP -q eth0.102; then
+			#FIXME - abstract this is a device-independent way
+			FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
+		fi
+
+		$IP route replace default via $anonymizer table freifunk
+
+		# IPv6 NAT
+		if ifconfig mullvad | grep -q inet6; then 
+			#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
+			echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
+			FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
+			FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
+			$IP -6 route replace default dev mullvad table freifunk
+		else
+			echo "I: No IPv6 address for mullvad"
 		fi
 
 		if $IP rule show | $GREP -q freifunk; then
