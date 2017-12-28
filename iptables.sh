@@ -46,7 +46,7 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
-LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32"
+LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32 192.168.178.23"
 RemoteGatewayIPv4List=""
 RemoteGatewayIPv6List=""
 
