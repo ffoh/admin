@@ -190,8 +190,8 @@ picotech.com
 31.13.109.0/24	facebook
 31.13.64.0/24	connect.facebook.net facebook
 31.13.65.0/24	connect.facebook.com
-31.13.65.0/24	connect.facebook.com
 31.13.66.0/24	# facebook
+31.13.67.0/24	# facebook
 31.13.69.0/24	# facebook
 31.13.70.0/24	facebook
 31.13.71.0/24	connect.facebook.net
@@ -202,6 +202,7 @@ picotech.com
 185.60.216.0/21	# facebook-ie
 31.13.77.0/24	# facebook
 31.13.80.0/24	connect.facebook.net
+31.13.84.0/24	facebook
 31.13.91.0/24	facebook
 31.13.92.0/24	facebook
 31.13.93.0/24	facebook
@@ -257,10 +258,12 @@ dyn.emetriq.de
 files.adform.net
 geschichte.spiegel.de
 get.adobe.com
+h213.meetrics.de
 h237.meetrics.de
 h246.meetrics.de
 h342.meetrics.de
 h343.meetrics.de
+h359.meetrics.de
 h364.meetrics.de
 h375.meetrics.de
 h376.meetrics.de
@@ -268,10 +271,12 @@ h377.meetrics.de
 h378.meetrics.de
 h380.meetrics.de
 h398.meetrics.de
+h400.meetrics.de
 h427.meetrics.de
 h428.meetrics.de
 h429.meetrics.de
 h430.meetrics.de
+h538.meetrics.de
 h546.meetrics.de
 i1.sndcdn.com
 ib.adnxs.com
@@ -965,6 +970,7 @@ www.decenthat.com
 www.fallingfalcon.com
 www.google-analytics.com
 www.speedtest.net
+www.summerhamster.com
 x1-6-00-26-b9-f3-01-88.cpe.webspeed.de
 zdbb.net
 zdstatic.speedtest.net
@@ -996,6 +1002,7 @@ uas-bs.web.de
 # T-online - start
 194.25.0.0/16	# Deutsche Telekom	email01.t-online.de mail.t-online.de
 62.153.158.0/23	www.t-online.de bilder.t-online.de img.toi.de dlc2.t-online.de login.idm.telekom.com stats.t-online.de # 62.153.158.0 - 62.153.159.255 
+62.156.0.0/14	# telekom as a provider - should be fine
 217.6.164.0/22	www.t-online.de bilder.t-online.de dlc2.t-online.de stats.t-online.de # 217.6.164.0 - 217.6.167.255
 62.157.140.0/23	tipi.api.t-online.de accounts.login.idm.telekom.com # 62.157.140.0 - 62.157.141.255
 80.156.84.0/22	p.toi.de p.t-online.de sportdaten.t-online.de tcmt.t-online.de mailing.fs.t-online.de s1.fs.t-online.de # 80.156.84.0 - 80.156.87.255
@@ -1766,21 +1773,25 @@ i.n.jwpltx.com
 # www.vi.nl - end
 # Whatsapp - start
 108.168.160.0/19	# whatsapp
+158.85.48.224/27	# whatsapp
 158.85.58.32/27	# whatsapp
 158.85.58.64/27	# whatsapp
 169.45.71.96/27	# whatsapp
 169.45.210.64/27	# whatsapp
 169.45.214.224/27	# whatsapp
 169.45.219.224/27	# whatsapp
+158.85.224.160/27	# whatsapp
 169.45.248.96/27	# whatsapp
 169.45.248.160/27	# whatsapp
 169.47.5.192/27	# whatsapp
+169.47.5.224/27	# whatsapp
 169.47.35.32/27	# whatsapp
 169.47.40.128/27	# whatsapp
 169.47.42.96/27	# whatsapp
 169.47.42.192/27	# whatsapp
 169.47.42.224/27	# whatsapp
 169.53.71.224/27	# whatsapp
+169.55.69.160/27	# whatsapp
 169.55.75.96/27	# whatsapp
 169.55.67.224/27	# whatsapp
 173.192.192.0/19	# whatsapp
@@ -2868,6 +2879,7 @@ u32.badoo.com
 # badoo - end
 imap-a-mtc-a.mx.aol.com	# email as it seems
 77.234.45.0/24	# avast.com - anonymizer
+5.45.62.0/24	# avast.com - anonymizer
 mail-lp.helimail.de
 # schoen-kliniken - start
 www.schoen-kliniken.de
@@ -3239,8 +3251,67 @@ www.verisign.com
 siteimproveanalytics.com
 us1.siteimprove.com
 assets.adobedtm.com
+# giga.de - start
+www.giga.de
+www.google-analytics.com
+go.giga-abs.de
+trc.taboola.com
+stats.g.doubleclick.net
+tracking.m6r.eu
+# giga.de - end
+mail.berlin.de
 # netatmo - start	# home security/IoT
 www.netatmo.com
 f4.netatmo.com
 # netatmo - end
 169.46.12.64/26	upsight.com
+# nugg.ad - start
+www.nugg.ad
+80.82.201.80/28	# define.nuggad.net
+# nugg.ad - end
+# slooh.com - start
+www.slooh.com
+www.googletagservices.com
+www.google-analytics.com
+ajax.googleapis.com
+use.fontawesome.com
+securepubads.g.doubleclick.net
+vega.slooh.com
+p.typekit.net
+slooh.com
+use.typekit.net
+castor.slooh.com
+# slooh.com - end
+# cewe - start
+company.cewe.de
+gwmob.cewecolor.de
+cewecolor.112.2o7.net
+charts3.equitystory.com
+piwik.cytrus.de
+ir.cewe.de
+www.cewe-print.de
+widgets.trustedshops.com
+cewecolor.d3.sc.omtrdc.net
+assets.adobedtm.com
+# cewe - end
+<<<<<<< HEAD
+# nasa - start
+137.78.0.0/16	nasa.gov
+www.nasa.gov
+s7.addthis.com
+m.addthis.com
+www.jpl.nasa.gov
+script.crazyegg.com
+imagecache.jpl.nasa.gov
+dap.digitalgov.gov
+ssd.jpl.nasa.gov
+# nasa - end
+160.111.0.0/16	#smithsonian institute, also minor planet center
+# esa - start
+131.176.0.0/16	# esa
+esamultimedia.esa.int
+multimedia.esa.int
+www.esa.int
+# esa - end
+akamai.bintray.com	# brew
+homebrew.bintray.com	# brew
