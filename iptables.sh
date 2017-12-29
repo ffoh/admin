@@ -287,6 +287,11 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
 
+   FWboth "Log new TCP connect from outside"    "-A FORWARD -m limit --limit 2/s -p tcp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_TCP_from_outside:  --log-level 4"
+   FWboth "Denied new TCP connect from outside" "-A FORWARD                      -p tcp -o bat0 -m state --state=NEW  -j DROP"
+   FWboth "Log new UDP connect from outside"    "-A FORWARD -m limit --limit 2/s -p udp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_UDP_from_outside:  --log-level 4"
+   FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o bat0 -m state --state=NEW  -j DROP"
+
    for FreifunkDevice in $FreifunkDevices
    do
       #FWboth "Freifunk Network - Web access" -A INPUT -p tcp -i $FreifunkDevice --dport http -j ACCEPT
