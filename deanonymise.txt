@@ -1008,6 +1008,7 @@ uas-bs.web.de
 80.149.113.160/27	smtp.telekom.de imap.telekom.de mail.telekom.de
 62.157.140.0/23	accounts.login.idm.telekom.com
 37.50.0.0/15	# seen for sip communication
+91.0.0.0/10	# Other Telekom customers
 iss.t-online.de	# not redundant
 homad-global-configs.schneevonmorgen.com
 securesmtp.t-online.de
