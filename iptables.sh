@@ -46,7 +46,7 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
-LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32"
+LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32 192.168.178.23"
 RemoteGatewayIPv4List=""
 RemoteGatewayIPv6List=""
 
@@ -235,7 +235,7 @@ FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
 FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
 $ECHO "I: JA: trust myself on lo"
-FWboth "Trusting local host" -A  INPUT -i lo -j ACCEPT
+FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
 
 $ECHO "I: JA: trusting all gateway IP4 gateway addresses, also the local ones - debateable"
 for gw in $GatewayIp4List $RemoteGatewayIPv4List
@@ -270,6 +270,8 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport bootps -j ACCEPT'
+   FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport bootps -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport domain -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport domain -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport mdns -j ACCEPT'
@@ -284,6 +286,11 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
+
+   FWboth "Log new TCP connect from outside"    "-A FORWARD -m limit --limit 2/s -p tcp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_TCP_from_outside:  --log-level 4"
+   FWboth "Denied new TCP connect from outside" "-A FORWARD                      -p tcp -o bat0 -m state --state=NEW  -j DROP"
+   FWboth "Log new UDP connect from outside"    "-A FORWARD -m limit --limit 2/s -p udp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_UDP_from_outside:  --log-level 4"
+   FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o bat0 -m state --state=NEW  -j DROP"
 
    for FreifunkDevice in $FreifunkDevices
    do
@@ -366,8 +373,8 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk ICVPN" "-A INPUT -i icvpn -p tcp --dport 179 -j ACCEPT"
 fi
 
-FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
-FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
+#FWboth "netperf" -A INPUT -p tcp --dport 12865 -j ACCEPT
+#FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 
 $ECHO "I: YES: FTP"
 FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp -j ACCEPT'
@@ -418,47 +425,59 @@ FW4 "" -P INPUT DROP
 if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
 
+	# Always offer direct link to the net
+
 	FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
+
+	if $IFCONFIG | $GREP -q eth0.102; then
+		#FIXME - abstract this is a device-independent way
+		#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
+		FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
+	fi
+
 	
 	anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 	if [ "" = "$anonymizer" ]; then
-		$ECHO "W: Could not determine IPv4 to Mullvad OpenVPN - restart that"
-	else
-		if $IFCONFIG | $GREP -q mullvad; then
+		$ECHO "I: Not using Mullvad OpenVPN"
+	fi
 
 
-			# We need both free slots at the very moment
-			#if $IFCONFIG | $GREP -q eth0.102; then
-			#	#FIXME - abstract this is a device-independent way
-			#	#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
-			#	FW4 "Directing 192.168.186.0/24 to the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
-			#fi
+	if $IFCONFIG | $GREP -q mullvad; then
 
-			FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
-			if $IFCONFIG | $GREP -q eth0.102; then
-				#FIXME - abstract this is a device-independent way
-				FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
-			fi
-
-			$IP route replace default via $anonymizer table freifunk
-
-			# IPv6 NAT
-			if ifconfig mullvad | grep -q inet6; then 
-				#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
-				echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
-				FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
-				FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
-				$IP -6 route replace default dev mullvad table freifunk
-			else
-				echo "I: No IPv6 address for mullvad"
-			fi
+		FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
+		if $IFCONFIG | $GREP -q eth0.102; then
+			#FIXME - abstract this is a device-independent way
+			FW4 "Routing 192.168.186.0/24 anonymously through mullvad." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o mullvad -j MASQUERADE"
 		fi
 
-		if $IP rule show | $GREP -q freifunk; then
-			echo "W: ip rule iif bat0 already set, not adding additional rule"
+		$IP route replace default via $anonymizer table freifunk
+
+		# IPv6 NAT
+		if ifconfig mullvad | grep -q inet6; then 
+			#anonymizer6=$($IP -6 address show dev mullvad | $GREP inet6 | $GREP -v fe80:: | $AWK '{print $2}' | $CUT -f1 -d/)
+			echo "I: Found IPv6 address for mullvad - also forwarding/anonymizing IPv6"
+			FW6 "Routing IPv6 to leave NATed" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o $DEVICE
+			FW6 "Routing IPv6 anonymously through mullvad" -t nat -A POSTROUTING -s fd73:111:e824::1/48 ! -d fd73:111:e824::1/48 -o mullvad -j MASQUERADE
+			$IP -6 route replace default dev mullvad table freifunk
 		else
+			echo "I: No IPv6 address for mullvad"
+		fi
+
+
+	fi
+
+	if $IP rule show | $GREP -q freifunk; then
+		if $IFCONFIG | $GREP -q mullvad; then
+			echo "I: ip rule iif bat0 already set, not adding additional rule"
+		else
+			echo "E: No active anonymizer but found Freifunk IP rule"
+		fi
+	else
+		if $IFCONFIG | $GREP -q mullvad; then
 			echo "I: Adding ip rule for bat0 to look up in table freifunk"
 			ip rule add from all iif bat0 lookup freifunk
+		else
+			echo "W: No active anonymizer, hence not adding lookup rule for freifunk"
 		fi
 	fi
 
