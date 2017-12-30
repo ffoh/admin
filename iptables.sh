@@ -417,20 +417,22 @@ FW4 "" -P INPUT DROP
 
 if [ "yes" = "$ThisIsGateway" ]; then
 	$ECHO "I: NAT"
+
+	FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
 	
 	anonymizer=$($IP route |$GREP mullvad | $AWK '{print $9}')
 	if [ "" = "$anonymizer" ]; then
-		$ECHO "E: Could not determine IPv4 to Mullvad OpenVPN - restart that"
+		$ECHO "W: Could not determine IPv4 to Mullvad OpenVPN - restart that"
 	else
 		if $IFCONFIG | $GREP -q mullvad; then
 
-			FW4 "Directing 10.135.0.0/17 leaving to the internet." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o $DEVICE -j MASQUERADE"
 
-			if $IFCONFIG | $GREP -q eth0.102; then
-				#FIXME - abstract this is a device-independent way
-				#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
-				FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
-			fi
+			# We need both free slots at the very moment
+			#if $IFCONFIG | $GREP -q eth0.102; then
+			#	#FIXME - abstract this is a device-independent way
+			#	#FW4 "Directing 192.168.186.0/24 o the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE ! -d 192.168.178.0/24 -j MASQUERADE"
+			#	FW4 "Directing 192.168.186.0/24 to the internet." "-t nat -A POSTROUTING -s 192.168.186.0/24 -o $DEVICE -j MASQUERADE"
+			#fi
 
 			FW4 "Routing 10.135.0.0/17 anonymously through mullvad." "-t nat -A POSTROUTING -s 10.135.0.0/17 -o mullvad -j MASQUERADE"
 			if $IFCONFIG | $GREP -q eth0.102; then
@@ -451,13 +453,13 @@ if [ "yes" = "$ThisIsGateway" ]; then
 				echo "I: No IPv6 address for mullvad"
 			fi
 		fi
-	fi
 
-	if $IP rule show | $GREP -q freifunk; then
-		echo "W: ip rule iif bat0 already set, not adding additional rule"
-	else
-		echo "I: Adding ip rule for bat0 to look up in table freifunk"
-		ip rule add from all iif bat0 lookup freifunk
+		if $IP rule show | $GREP -q freifunk; then
+			echo "W: ip rule iif bat0 already set, not adding additional rule"
+		else
+			echo "I: Adding ip rule for bat0 to look up in table freifunk"
+			ip rule add from all iif bat0 lookup freifunk
+		fi
 	fi
 
 	$ECHO "[OK]"
