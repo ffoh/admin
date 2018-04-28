@@ -234,6 +234,11 @@ FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
 FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
+FW4 "Do not spam port 7" -I OUTPUT -p tcp --dport 7 -j LOG --log-prefix VIRUS --log-level 7
+FW4 "Do not spam port 7" -I OUTPUT -p tcp --dport 7 -j DROP
+FW4 "Do not spam port 7" -I FORWARD -p tcp --dport 7 -j LOG --log-prefix VIRUS --log-level 7
+FW4 "Do not spam port 7" -I FORWARD -p tcp --dport 7 -j DROP
+
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
 
@@ -291,6 +296,12 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Denied new TCP connect from outside" "-A FORWARD                      -p tcp -o bat0 -m state --state=NEW  -j DROP ! -i bat0"
    FWboth "Log new UDP connect from outside"    "-A FORWARD -m limit --limit 2/s -p udp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_UDP_from_outside:  --log-level 4 ! -i bat0"
    FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o bat0 -m state --state=NEW  -j DROP ! -i bat0"
+#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p udp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
+#   FWboth "DROP contact to MIL" "-A FORWARD                      -p udp -d 30.0.0.0/8 -j DROP"
+#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p tcp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
+#   FWboth "DROP contact to MIL" "-A FORWARD                      -p tcp -d 30.0.0.0/8 -j DROP"
+#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p icmp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
+#   FWboth "DROP contact to MIL" "-A FORWARD                      -p icmp -d 30.0.0.0/8 -j DROP"
 
    for FreifunkDevice in $FreifunkDevices
    do
