@@ -47,13 +47,17 @@ do_start () {
 
 	$ADMINDIR/iptables.sh && echo "iptables OK" || echo "iptables failed"
 
-	(echo "Sleeping 5 seconds" && sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
+	# exiting directly, no need for extra direct routes
+	#(echo "Sleeping 5 seconds" && sleep 5 && cd $ADMINDIR && nice ./direct_route.sh > /dev/null)&
 
 	echo "I: Stopping alfred if running"
 	for i in $(pidof alfred); do
 		echo "W: Killing alfred with pid $i"
 		kill $i
 	done
+	echo "I: batctl gw server 100Mbit/20Mbit"
+	sleep 5 && batctl gw server 100Mbit/20MBit
+
 	echo "I: Starting alfred to listen on bat0"
 	/usr/sbin/alfred -i bat0 > /dev/null &
 }
