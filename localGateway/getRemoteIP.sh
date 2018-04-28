@@ -1,2 +1,2 @@
 #!/bin/dash
-w3m -M -dump whatismyip.com  | sed -e '1,/^Your/d'|head -n 1
+w3m -4 -M -dump whatismyip.com  | grep "Your Public"|head -n 1
