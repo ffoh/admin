@@ -46,7 +46,7 @@ GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
-LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32 192.168.178.23"
+LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32 192.168.178.23 192.168.178.21"
 RemoteGatewayIPv4List=""
 RemoteGatewayIPv6List=""
 
@@ -234,10 +234,14 @@ FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
 FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
-FW4 "Do not spam port 7" -I OUTPUT -p tcp --dport 7 -j LOG --log-prefix VIRUS --log-level 7
-FW4 "Do not spam port 7" -I OUTPUT -p tcp --dport 7 -j DROP
-FW4 "Do not spam port 7" -I FORWARD -p tcp --dport 7 -j LOG --log-prefix VIRUS --log-level 7
-FW4 "Do not spam port 7" -I FORWARD -p tcp --dport 7 -j DROP
+FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j LOG --log-prefix "VIRUS: " --log-level 7
+FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j DROP
+FWboth "Do not spam port 7" -A FORWARD -p tcp --dport 7 -j LOG --log-prefix "VIRUS: " --log-level 7
+FWboth "Do not spam port 7" -A FORWARD -p tcp --dport 7 -j DROP
+FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j LOG --log-prefix "VIRUS: " --log-level 7
+FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j DROP
+FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j LOG --log-prefix "VIRUS: " --log-level 7
+FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j DROP
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
