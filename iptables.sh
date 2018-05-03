@@ -234,13 +234,26 @@ FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
 FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
 
-FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j LOG --log-prefix "VIRUS: " --log-level 7
+FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j LOG --log-prefix VIRUS: --log-level 7
 FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j DROP
-FWboth "Do not spam port 7" -A FORWARD -p tcp --dport 7 -j LOG --log-prefix "VIRUS: " --log-level 7
+FWboth "Do not spam port 7" -A FORWARD -p tcp --dport 7 -j LOG --log-prefix VIRUS: --log-level 7
 FWboth "Do not spam port 7" -A FORWARD -p tcp --dport 7 -j DROP
-FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j LOG --log-prefix "VIRUS: " --log-level 7
+FW4 "Telecom DNS - funny"             -A FORWARD -o $DEVICE -d 10.74.210.210 -j REJECT # REJECT not DROP to speed things up
+FW4 "KD Router - funny"          -A FORWARD -o $DEVICE -d 192.168.178.1 -j REJECT # REJECT not DROP to speed things up
+FW4 "Telecom Router - funny"          -A FORWARD -o $DEVICE -d 192.168.2.1 -j REJECT # REJECT not DROP to speed things up
+FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.1.1 -j REJECT # REJECT not DROP to speed things up
+FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.0.1 -j REJECT # REJECT not DROP to speed things up
+FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j DROP
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -d 255.0.0.0/8 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -d 255.0.0.0/8 -j DROP
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 32761 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 32761 -j DROP
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j DROP
+FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j LOG --log-prefix VIRUS: --log-level 7
 FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j DROP
-FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j LOG --log-prefix "VIRUS: " --log-level 7
+FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j LOG --log-prefix VIRUS: --log-level 7
 FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j DROP
 
 $ECHO "I: JA: trust myself on lo"
@@ -300,12 +313,12 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Denied new TCP connect from outside" "-A FORWARD                      -p tcp -o bat0 -m state --state=NEW  -j DROP ! -i bat0"
    FWboth "Log new UDP connect from outside"    "-A FORWARD -m limit --limit 2/s -p udp -o bat0 -m state --state=NEW  -j LOG --log-prefix DROP_UDP_from_outside:  --log-level 4 ! -i bat0"
    FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o bat0 -m state --state=NEW  -j DROP ! -i bat0"
-#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p udp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
-#   FWboth "DROP contact to MIL" "-A FORWARD                      -p udp -d 30.0.0.0/8 -j DROP"
-#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p tcp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
-#   FWboth "DROP contact to MIL" "-A FORWARD                      -p tcp -d 30.0.0.0/8 -j DROP"
-#   FWboth "DROP contact to MIL" "-A FORWARD -m limit --limit 2/s -p icmp -d 30.0.0.0/8 -j LOG --log-prefix DROP_contact_MIL: --log-level 4"
-#   FWboth "DROP contact to MIL" "-A FORWARD                      -p icmp -d 30.0.0.0/8 -j DROP"
+   FW4 "DROP contact to DoD MIL" -I OUTPUT -m limit --limit 2/s -d 30.0.0.0/8 -j LOG --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I OUTPUT                      -d 30.0.0.0/8 -j DROP
+   FW4 "DROP contact to DoD MIL" -I INPUT -m limit --limit 2/s -s 30.0.0.0/8 -j LOG --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I INPUT                      -s 30.0.0.0/8 -j DROP
+   FW4 "DROP contact to DoD MIL" -I FORWARD -m limit --limit 2/s -d 30.0.0.0/8 -j LOG --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I FORWARD                      -d 30.0.0.0/8 -j DROP
 
    for FreifunkDevice in $FreifunkDevices
    do
