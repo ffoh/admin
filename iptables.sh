@@ -218,12 +218,12 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 set n=0
-for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 
+for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 43.0.0.0/8
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
-	FW4 "Dropping Chinese/American/Korean attacker $n" -s $i -I INPUT -j DROP
-	FW4 "Dropping Chinese/American/Korean attacker $n" -d $i -I OUTPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -s $i -I INPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -d $i -I OUTPUT -j DROP
 done
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
@@ -255,6 +255,8 @@ FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j LOG --log-pr
 FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j DROP
 FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j LOG --log-prefix VIRUS: --log-level 7
 FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j DROP
+FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j LOG --log-prefix VIRUS_BSI: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j LOG --log-prefix VIRUS_BSI: --log-level 7
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
@@ -299,10 +301,18 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport mdns -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport mdns -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11281 or 11426
-   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 10000 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11280 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11281 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served" '-A INPUT -p udp --dport 11426 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 10000 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11280 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11281 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11282 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11426 -j ACCEPT'
+   # Be verbose about apparent missconfigurations
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -j DROP
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -j DROP
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -j DROP
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
    # Multicast
    FWboth "Freifunk Network - multicast" '-i bat0 -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
    # Intercity Gateway
@@ -332,6 +342,7 @@ fi
 if [ "yes"="$ThisIsWebserver" ]; then
    $ECHO "I: Machine is a webserver"
 
+   # This looks redundant - please check
    for FreifunkDevice in $FreifunkDevices
    do
       # Accept port 10000 when it comes from the network's IP Address
