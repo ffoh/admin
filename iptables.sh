@@ -307,12 +307,12 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11282 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11426 -j ACCEPT'
    # Be verbose about apparent missconfigurations
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -j DROP
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -j DROP
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -j DROP
+#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
    # Multicast
    FWboth "Freifunk Network - multicast" '-i bat0 -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
    # Intercity Gateway
