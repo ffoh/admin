@@ -243,20 +243,20 @@ FW4 "KD Router - funny"          -A FORWARD -o $DEVICE -d 192.168.178.1 -j REJEC
 FW4 "Telecom Router - funny"          -A FORWARD -o $DEVICE -d 192.168.2.1 -j REJECT # REJECT not DROP to speed things up
 FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.1.1 -j REJECT # REJECT not DROP to speed things up
 FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.0.1 -j REJECT # REJECT not DROP to speed things up
-FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j LOG --log-prefix INTERN: --log-level 7
 FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j DROP
-FW4 "Whatever - evil" -A FORWARD -o $DEVICE -d 255.0.0.0/8 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "Do not try to reach 10.... via provider" -A FORWARD -d 192.168.0.0/13 -o $DEVICE -j LOG --log-prefix INTERN: --log-level 7
+FW4 "Do not try to reach 10.... via provider" -A FORWARD -d 192.168.0.0/13 -o $DEVICE -j DROP
+FW4 "Do not try to reach 10.... via provider" -A FORWARD -d 192.178.0.0/13 -o $DEVICE -j LOG --log-prefix INTERN: --log-level 7
+FW4 "Do not try to reach 10.... via provider" -A FORWARD -d 192.178.0.0/13 -o $DEVICE -j DROP
+FW4 "Whatever - evil" -A FORWARD -o $DEVICE -d 255.0.0.0/8 -j LOG --log-prefix INTERN: --log-level 7
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -d 255.0.0.0/8 -j DROP
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 32761 -j LOG --log-prefix VIRUS: --log-level 7
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 32761 -j DROP
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j LOG --log-prefix VIRUS: --log-level 7
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j DROP
-FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j LOG --log-prefix VIRUS: --log-level 7
-FW4 "Do not spam port 7" -A FORWARD -d 192.168.0.0/15 -o $DEVICE -j DROP
-FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j LOG --log-prefix VIRUS: --log-level 7
-FW4 "Do not spam port 7" -A FORWARD -d 10.0.0.0/7 -o $DEVICE -j DROP
-FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j LOG --log-prefix VIRUS_BSI: --log-level 7
-FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j LOG --log-prefix VIRUS_BSI: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j LOG --log-prefix VIRUS: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j LOG --log-prefix VIRUS: --log-level 7
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
@@ -301,18 +301,18 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p udp --dport mdns -j ACCEPT'
    FWboth "Freifunk Network - DNS" '-A INPUT -i bat0 -p tcp --dport mdns -j ACCEPT'
    # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11281 or 11426
-   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 10000 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11280 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11281 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11282 -j ACCEPT'
-   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -i $DEVICE -p udp --dport 11426 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 10000 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11280 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11281 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11282 -j ACCEPT'
+   FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11426 -j ACCEPT'
    # Be verbose about apparent missconfigurations
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
 #   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -j DROP
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
 #   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -j DROP
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
 #   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -j DROP
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
    # Multicast
    FWboth "Freifunk Network - multicast" '-i bat0 -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
    # Intercity Gateway
