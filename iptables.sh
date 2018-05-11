@@ -31,7 +31,7 @@ Mailip="109.75.177.24"
 ThisIsGateway="no"
 ThisIsWebserver="no"
 ThisIsMailserver="no"
-FreifunkDevices=$($IP route |$EGREP "dev bat[0-9]" | $CUT -f3 -d\  )
+FreifunkDevices=$($IP route |$EGREP "dev bat[0-9G]W*" | $CUT -f3 -d\  )
 echo "Freifunk Devices: " $(echo $FreifunkDevices | tr '\n' ' ')
 
 FreifunkServerIp4List="5.9.144.194"
@@ -294,7 +294,7 @@ if [ "yes"="$ThisIsGateway" ]; then
    # Trust WWW machine to ping
    FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
-   for bat in bat0 batGW
+   for bat in $FreifunkDevices
    do
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport bootps -j ACCEPT"
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport bootps -j ACCEPT"
@@ -310,22 +310,24 @@ if [ "yes"="$ThisIsGateway" ]; then
    FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11282 -j ACCEPT'
    FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 11426 -j ACCEPT'
    # Be verbose about apparent missconfigurations
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11282 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11282 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11280 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 11426 -o $DEVICE -j DROP
-   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
-#   FWboth "Do not support fastd from within bat0" -A FORWARD -i bat0 -p udp --dport 10000 -o $DEVICE -j DROP
-   # Multicast
-   FWboth "Freifunk Network - multicast" '-i bat0 -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
-   FWboth "Freifunk Network - multicast" '-i batGW -A INPUT -m pkttype --pkt-type multicast -j ACCEPT'
+   for bat in $FreifunkDevices
+   do
+      FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11282 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11282 -o $DEVICE -j DROP
+      FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11280 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11280 -o $DEVICE -j DROP
+      FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11426 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 11426 -o $DEVICE -j DROP
+      FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 10000 -o $DEVICE -m limit --limit 1/min -j LOG --log-prefix fastd-connect: --log-level 7
+#   FWboth "Do not support fastd from within $bat" -A FORWARD -i $bat -p udp --dport 10000 -o $DEVICE -j DROP
+      # Multicast
+      FWboth "Freifunk Network - multicast" "-i $bat -A INPUT -m pkttype --pkt-type multicast -j ACCEPT"
+   done
    # Intercity Gateway
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p udp --dport 656 -j ACCEPT'
    FWboth "Freifunk Network - tinc for ICVPN" '-A INPUT -p tcp --dport 656 -j ACCEPT'
 
-   for bat in bat0 batGW
+   for bat in $FreifunkDevices
    do
      FWboth "Log new TCP connect from outside"    "-A FORWARD -m limit --limit 2/s -p tcp -o $bat -m state --state=NEW  -j LOG --log-prefix DROP_TCP_from_outside:  --log-level 4 ! -i $bat"
      FWboth "Denied new TCP connect from outside" "-A FORWARD                      -p tcp -o $bat -m state --state=NEW  -j DROP ! -i $bat"
