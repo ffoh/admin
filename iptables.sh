@@ -291,8 +291,6 @@ $ECHO "I: JA fuer Freifunk: PING, FASTD, DNS"
 if [ "yes"="$ThisIsGateway" ]; then
    $ECHO "I: Machine recognised as gateway"
    FW4 "Freifunk ICVPN" "-A INPUT -s 10.207.0.0/16 -j ACCEPT"
-   # Trust WWW machine to ping
-   FW4 "Freifunk Network - ping from WWW external IP" "-A INPUT -p icmp -s ${WWWip}/32 -j ACCEPT"
    # DNS service
    for bat in $FreifunkDevices
    do
@@ -434,6 +432,14 @@ FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp-d
 FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport ftp-data -j ACCEPT'
 FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
 FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
+
+for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de gw6.ffoh.de gattywatty03.ffoh.de	# our machines with fixed external IPs
+do
+   FWboth "DNS, NTP allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports domain,ntp -j ACCEPT
+   FWboth "DNS, ssh, http, NTP allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports domain,ssh,http,https,ntp -j ACCEPT
+   FWboth "Ping from Freifunk machine" "-A INPUT -p icmp -s $host -j ACCEPT"
+done
+
 $ECHO "I: YES: FTP"
 FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
 FWboth "No DNS from outside Freifunk" -A INPUT -p udp --dport domain -j log-drop
