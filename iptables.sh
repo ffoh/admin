@@ -218,12 +218,12 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 set n=0
-for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 43.0.0.0/8
+for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 43.0.0.0/8 157.240.0.0/16 31.31.0.0/16 185.60.0.0/16
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
-	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -s $i -I INPUT -j DROP
-	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -d $i -I OUTPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian/Facebook attacker $n" -s $i -I INPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian/Facebook attacker $n" -d $i -I OUTPUT -j DROP
 done
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
