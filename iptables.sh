@@ -218,7 +218,9 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 set n=0
-for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 43.0.0.0/8
+for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 \
+	58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 \
+	43.0.0.0/8
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
@@ -226,13 +228,16 @@ do
 	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -d $i -I OUTPUT -j DROP
 done
 
-FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
+FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j log-drop
+FW6 "IPv6 ICMP" -A INPUT -p ipv6-icmp -j ACCEPT
+FW6 "IPv6 router advertising" -A INPUT -p tcp -m tcp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
+FW6 "IPv6 router advertising" -A INPUT -p udp -m udp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
 FW4 "Portmap from localhost is ok" -p tcp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from localhost is ok" -p udp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from local IP" -p tcp -s $myIP --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
-FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
-FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
+FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j log-drop
+FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j log-drop
 
 FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
 FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j DROP
