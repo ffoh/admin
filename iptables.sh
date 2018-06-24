@@ -39,8 +39,8 @@ FreifunkServerIp4List="5.9.144.194"
 FreifunkServerIp6List="2a01:4f8:190:23c9::2"
 #                        server2
 
-GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
-#                     gw1          gw2          gw3            gw4          gw5           gw6         gw-test
+GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
+#                     gw1          gw2          gw3            gw5           gw6         gw-test     gw4
 
 GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
@@ -92,6 +92,9 @@ if $IFCONFIG|$GREP -q eth0.101; then
     ThisIsGateway="yes"
 elif $IFCONFIG|$GREP -q enp4s0; then
     DEVICE=enp4s0
+    ThisIsGateway="yes"
+elif $IFCONFIG|$GREP -q enp3s0; then
+    DEVICE=enp3s0
     ThisIsGateway="yes"
 fi
 
@@ -338,12 +341,13 @@ if [ "yes"="$ThisIsGateway" ]; then
      FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o $bat -m state --state=NEW  -j DROP ! -i $bat"
    done
 
-   FW4 "DROP contact to DoD MIL" -I OUTPUT -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   # With -I, the rule is inserted at the top, hence DROP is inserted prior to LOG
    FW4 "DROP contact to DoD MIL" -I OUTPUT                      -d 30.0.0.0/8 -j DROP
-   FW4 "DROP contact to DoD MIL" -I INPUT -m limit --limit 2/s -s 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I OUTPUT -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
    FW4 "DROP contact to DoD MIL" -I INPUT                      -s 30.0.0.0/8 -j DROP
-   FW4 "DROP contact to DoD MIL" -I FORWARD -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I INPUT -m limit --limit 2/s -s 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
    FW4 "DROP contact to DoD MIL" -I FORWARD                      -d 30.0.0.0/8 -j DROP
+   FW4 "DROP contact to DoD MIL" -I FORWARD -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
 
    for FreifunkDevice in $FreifunkDevices
    do
