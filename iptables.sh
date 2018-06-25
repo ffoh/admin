@@ -42,7 +42,8 @@ FreifunkServerIp6List="2a01:4f8:190:23c9::2"
 GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
 #                     gw1          gw2          gw3            gw5           gw6         gw-test     gw4
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a01:4f8:161:3171::4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+ 
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
@@ -134,7 +135,7 @@ fi
 
 iptablesoptions=""
 iptablesversion=$(iptables --version | cut -f2 -d\  | cut -f1,2 -d.)
-if [ "v1.4" = "$iptablesversion" ]; then
+if [ "v1.4" = "$iptablesversion" ]; then
    iptablesoptions=""
 else
    iptablesoptions="-w 5"
@@ -150,6 +151,8 @@ RemoteGatewayIPv6List: $RemoteGatewayIPv6List
 iptablesversion: '$iptablesversion'
 iptablesoptions: '$iptablesoptions'
 EOCAT
+
+exit
 
 function FWboth {
    FW4="/sbin/iptables $iptablesoptions "
