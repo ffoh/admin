@@ -223,7 +223,7 @@ FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELA
 set n=0
 for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 \
 	58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 \
-	43.0.0.0/8
+	43.0.0.0/8 47.52.0.0/16
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
