@@ -39,10 +39,10 @@ FreifunkServerIp4List="5.9.144.194"
 FreifunkServerIp6List="2a01:4f8:190:23c9::2"
 #                        server2
 
-GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.177.17 109.75.184.140 5.9.63.137 109.75.188.10"
-#                     gw1          gw2          gw3            gw4          gw5           gw6         gw-test
+GatewayIp4List="141.101.36.19 37.228.134.150 195.201.40.16 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
+#                     gw1          gw2          gw3            gw5           gw6         gw-test     gw4
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a01:4f8:1c1c:4b4a::3 2a00:12c0:1015:166::1:4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de"
@@ -92,6 +92,9 @@ if $IFCONFIG|$GREP -q eth0.101; then
     ThisIsGateway="yes"
 elif $IFCONFIG|$GREP -q enp4s0; then
     DEVICE=enp4s0
+    ThisIsGateway="yes"
+elif $IFCONFIG|$GREP -q enp3s0; then
+    DEVICE=enp3s0
     ThisIsGateway="yes"
 fi
 
@@ -218,7 +221,10 @@ FWboth "" -A log-drop-out -j DROP
 FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 set n=0
-for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 43.0.0.0/8 157.240.0.0/16 31.31.0.0/16 185.60.0.0/16
+for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 \
+	58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 \
+	43.0.0.0/8 157.240.0.0/16 31.31.0.0/16 185.60.0.0/16 47.52.0.0/16 \
+	46.229.160.0/20 139.219.0.0/16
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
@@ -226,13 +232,16 @@ do
 	FW4 "Dropping Chinese/American/Korean/Russian/Facebook attacker $n" -d $i -I OUTPUT -j DROP
 done
 
-FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j DROP
+FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j log-drop
+FW6 "IPv6 ICMP" -A INPUT -p ipv6-icmp -j ACCEPT
+FW6 "IPv6 router advertising" -A INPUT -p tcp -m tcp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
+FW6 "IPv6 router advertising" -A INPUT -p udp -m udp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
 FW4 "Portmap from localhost is ok" -p tcp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from localhost is ok" -p udp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from local IP" -p tcp -s $myIP --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from local IP" -p udp -s $myIP --dport 111 -A INPUT -j ACCEPT
-FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j DROP
-FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j DROP
+FW4 "Portmap from elsewhere is not ok" -p tcp --dport 111 -A INPUT -j log-drop
+FW4 "Portmap from elsewhere is not ok" -p udp --dport 111 -A INPUT -j log-drop
 
 FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
 FWboth "Do not spam port 7" -A OUTPUT -p tcp --dport 7 -j DROP
@@ -333,12 +342,13 @@ if [ "yes"="$ThisIsGateway" ]; then
      FWboth "Denied new UDP connect from outside" "-A FORWARD                      -p udp -o $bat -m state --state=NEW  -j DROP ! -i $bat"
    done
 
-   FW4 "DROP contact to DoD MIL" -I OUTPUT -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   # With -I, the rule is inserted at the top, hence DROP is inserted prior to LOG
    FW4 "DROP contact to DoD MIL" -I OUTPUT                      -d 30.0.0.0/8 -j DROP
-   FW4 "DROP contact to DoD MIL" -I INPUT -m limit --limit 2/s -s 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I OUTPUT -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
    FW4 "DROP contact to DoD MIL" -I INPUT                      -s 30.0.0.0/8 -j DROP
-   FW4 "DROP contact to DoD MIL" -I FORWARD -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
+   FW4 "DROP contact to DoD MIL" -I INPUT -m limit --limit 2/s -s 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
    FW4 "DROP contact to DoD MIL" -I FORWARD                      -d 30.0.0.0/8 -j DROP
+   FW4 "DROP contact to DoD MIL" -I FORWARD -m limit --limit 2/s -d 30.0.0.0/8 -j LOG -m limit --limit 1/min --log-prefix DROP_VIRUS_contact_MIL: --log-level 4
 
    for FreifunkDevice in $FreifunkDevices
    do
