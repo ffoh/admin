@@ -39,10 +39,10 @@ FreifunkServerIp4List="5.9.144.194"
 FreifunkServerIp6List="2a01:4f8:190:23c9::2"
 #                        server2
 
-GatewayIp4List="141.101.36.19 37.228.134.150 109.75.188.36 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
+GatewayIp4List="141.101.36.19 37.228.134.150 195.201.40.16 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
 #                     gw1          gw2          gw3            gw5           gw6         gw-test     gw4
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a00:12c0:1015:166::1:3 2a01:4f8:161:3171::4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a06:1c40::30b 2a00:12c0:1015:166::1:2 2a01:4f8:1c1c:4b4a::1 2a01:4f8:161:3171::4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
  
 #                     gw1                                     gw2                       gw3                   gw4                       gw5                gw6                                        gw-test
 
@@ -226,12 +226,13 @@ FWboth "Allow related packages" -A INPUT -m conntrack --ctstate ESTABLISHED,RELA
 set n=0
 for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 \
 	58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 \
-	43.0.0.0/8
+	43.0.0.0/8 157.240.0.0/16 31.31.0.0/16 185.60.0.0/16 47.52.0.0/16 \
+	46.229.160.0/20 139.219.0.0/16
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
-	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -s $i -I INPUT -j DROP
-	FW4 "Dropping Chinese/American/Korean/Russian attacker $n" -d $i -I OUTPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian/Facebook attacker $n" -s $i -I INPUT -j DROP
+	FW4 "Dropping Chinese/American/Korean/Russian/Facebook attacker $n" -d $i -I OUTPUT -j DROP
 done
 
 FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j log-drop
@@ -267,7 +268,9 @@ FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j DROP
 FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j DROP
 FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j DROP
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
