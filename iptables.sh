@@ -265,7 +265,9 @@ FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
 FW4 "Whatever - evil" -A FORWARD -o $DEVICE -m state --state=NEW -p udp --dport 7680 -j DROP
 FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 66.220.23.114 -j DROP
 FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j LOG -m limit --limit 1/min --log-prefix VIRUS: --log-level 7
+FW4 "BSI virus alert" -A FORWARD -d 184.105.76.250 -j DROP
 
 $ECHO "I: JA: trust myself on lo"
 FWboth "Trusting local host on loopback dev" -A  INPUT -i lo -j ACCEPT
