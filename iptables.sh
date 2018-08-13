@@ -152,7 +152,7 @@ iptablesversion: '$iptablesversion'
 iptablesoptions: '$iptablesoptions'
 EOCAT
 
-exit
+#exit
 
 function FWboth {
    FW4="/sbin/iptables $iptablesoptions "
@@ -255,6 +255,8 @@ FW4 "KD Router - funny"          -A FORWARD -o $DEVICE -d 192.168.178.1 -j REJEC
 FW4 "Telecom Router - funny"          -A FORWARD -o $DEVICE -d 192.168.2.1 -j REJECT # REJECT not DROP to speed things up
 FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.1.1 -j REJECT # REJECT not DROP to speed things up
 FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 192.168.0.1 -j REJECT # REJECT not DROP to speed things up
+# 10.135.0.0 goes to bat0, not to $DEVICE, hence save to reject
+FW4 "Whatever default Router - funny" -A FORWARD -o $DEVICE -d 10.0.0.0/8 -j REJECT # REJECT not DROP to speed things up
 FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j LOG -m limit --limit 1/min --log-prefix INTERN: --log-level 7
 FW4 "Whatever - strange" -A FORWARD -o $DEVICE -d 198.18.0.0/15 -j DROP
 FW4 "Do not try to reach 10.... via provider" -A FORWARD -d 192.168.0.0/13 -o $DEVICE -j LOG -m limit --limit 1/min --log-prefix INTERN: --log-level 7
