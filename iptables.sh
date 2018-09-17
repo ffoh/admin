@@ -152,7 +152,13 @@ iptablesversion: '$iptablesversion'
 iptablesoptions: '$iptablesoptions'
 EOCAT
 
-#exit
+if [ "-h" = "$1" -o "--help" = "$1" ]; then
+   cat <<EOHELP
+
+This script sets the iptables for maskerading the bat0 network with Freifunk traffic to the World Wide Web.
+EOHELP
+   exit
+fi
 
 function FWboth {
    FW4="/sbin/iptables $iptablesoptions "
