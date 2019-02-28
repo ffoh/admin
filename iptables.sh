@@ -318,8 +318,12 @@ if [ "yes"="$ThisIsGateway" ]; then
    # DNS service
    for bat in $FreifunkDevices
    do
-     FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport bootps -j ACCEPT"
-     FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport bootps -j ACCEPT"
+     # Just caused problems with netfilter
+#    FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport bootps -j ACCEPT"
+#    FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport bootps -j ACCEPT"
+     FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport 67 -j ACCEPT"
+     FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport 67 -j ACCEPT"
+
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport domain -j ACCEPT"
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport domain -j ACCEPT"
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport mdns -j ACCEPT"
@@ -421,8 +425,11 @@ done
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i $DEVICE -p icmpv6 -j ACCEPT
 FW6 "Freifunk Intercity IPv6 - allowed to ping" -A INPUT -i icvpn -p icmpv6 -j ACCEPT
 
+# caused trouble with netfilter
 #FWboth "Receive NTP packages" '-A INPUT -p udp -i $DEVICE --dport ntp -j ACCEPT'
 #FWboth "Receive NTP packages" '-A INPUT -p tcp -i $DEVICE --dport ntp -j ACCEPT'
+FWboth "Receive NTP packages" '-A INPUT -p udp -i $DEVICE --dport 123 -j ACCEPT'
+FWboth "Receive NTP packages" '-A INPUT -p tcp -i $DEVICE --dport 123 -j ACCEPT'
 
 # Always trust all gateways and Webservers, also for their external IPs
 for gw in $GatwayIp4List
@@ -460,8 +467,12 @@ FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp
 
 for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de gw6.ffoh.de gattywatty03.ffoh.de	# our machines with fixed external IPs
 do
-   FWboth "DNS, NTP allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports domain,ntp -j ACCEPT
-   FWboth "DNS, ssh, http, NTP allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports domain,ssh,http,https,ntp -j ACCEPT
+   FWboth "DNS allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports domain -j ACCEPT
+   # just had problem with netfilter
+   #FWboth "NTP allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports ntp -j ACCEPT
+   FWboth "DNS, ssh, http allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports domain,ssh,http,https -j ACCEPT
+   # just had problem with netfilter
+   #FWboth "NTP allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports ntp -j ACCEPT
    FWboth "Ping from Freifunk machine" "-A INPUT -p icmp -s $host -j ACCEPT"
 done
 
