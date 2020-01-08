@@ -237,7 +237,7 @@ set n=0
 for i in 1.0.0.0/8 115.0.0.0/8 183.0.0.0/8 221.0.0.0/8 222.0.0.0/8 116.0.0.0/10 \
 	58.0.0.0/8 121.0.0.0/8 123.0.0.0/8 116.0.0.0/8 189.0.0.0/8 14.32.0.0/10 \
 	43.0.0.0/8 157.240.0.0/16 31.31.0.0/16 185.60.0.0/16 47.52.0.0/16 \
-        46.229.160.0/20 139.219.0.0/16 210.48.144.0/20 122.228.0.0/16
+        46.229.160.0/20 139.219.0.0/16 112.121.0.0/16 210.48.144.0/20 122.228.0.0/16
 	# 104.0.0.0/8 - too strict, https://source.codeaurora.org/ affected
 do
 	set n=$(($n+1))
@@ -331,7 +331,6 @@ if [ "yes"="$ThisIsGateway" ]; then
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport domain -j ACCEPT"
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport domain -j ACCEPT"
      FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p udp --dport mdns -j ACCEPT"
-     FWboth "Freifunk Network - DNS" "-A INPUT -i $bat -p tcp --dport mdns -j ACCEPT"
    done
    # Gateways are gateways for fastd and always listen to port 10000 or 11280 or 11281 or 11426
    FWboth "Freifunk Network - fastd always served on INPUT from outside" '-A INPUT -p udp --dport 10000 -j ACCEPT'
@@ -462,37 +461,37 @@ fi
 #FWboth "netperf" -A INPUT -p udp --dport 12865 -j ACCEPT
 
 $ECHO "I: YES: FTP"
-FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp -j ACCEPT'
-FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport ftp -j ACCEPT'
-FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p tcp --dport ftp-data -j ACCEPT'
-FWboth "FTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport ftp-data -j ACCEPT'
-FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
-FWboth "TFTP allowed from within Freifunk" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
+FWboth "'FTP allowed from within Freifunk'" '-A INPUT -i bat0 -p tcp --dport ftp -j ACCEPT'
+FWboth "'FTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport ftp -j ACCEPT'
+FWboth "'FTP allowed from within Freifunk'" '-A INPUT -i bat0 -p tcp --dport ftp-data -j ACCEPT'
+FWboth "'FTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport ftp-data -j ACCEPT'
+FWboth "'TFTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
+FWboth "'TFTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
 
-for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de gw6.ffoh.de gattywatty03.ffoh.de	# our machines with fixed external IPs
+for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de gw6.ffoh.de #gattywatty03.ffoh.de	# our machines with fixed external IPs
 do
-   FWboth "DNS allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports domain -j ACCEPT
+   FWboth "'DNS allow from Freifunk machine $host'" -A INPUT -p udp -s $host -m multiport --dports domain -j ACCEPT
    # just had problem with netfilter
    #FWboth "NTP allow from Freifunk machine $host"      -A INPUT -p udp -s $host -m multiport --dports ntp -j ACCEPT
-   FWboth "DNS, ssh, http allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports domain,ssh,http,https -j ACCEPT
+   FWboth "'DNS, ssh, http allow from Freifunk machine $host'" -A INPUT -p tcp -s $host -m multiport --dports domain,ssh,http,https -j ACCEPT
    # just had problem with netfilter
    #FWboth "NTP allow from Freifunk machine $host" -A INPUT -p tcp -s $host -m multiport --dports ntp -j ACCEPT
-   FWboth "Ping from Freifunk machine" "-A INPUT -p icmp -s $host -j ACCEPT"
+   FWboth "'Ping from Freifunk machine'" "-A INPUT -p icmp -s $host -j ACCEPT"
 done
 
 $ECHO "I: YES: FTP"
-FWboth "No DNS from outside Freifunk" -A INPUT -p tcp --dport domain -j log-drop
-FWboth "No DNS from outside Freifunk" -A INPUT -p udp --dport domain -j log-drop
+FWboth "'No DNS from outside Freifunk'" -A INPUT -p tcp --dport domain -j log-drop
+FWboth "'No DNS from outside Freifunk'" -A INPUT -p udp --dport domain -j log-drop
 
 $ECHO "I: JA: SSH, WWW, PING"
-FWboth "SSH login possible from everywhere except above Chinese sites" '-A INPUT -p tcp --dport ssh -j ACCEPT'
-FW4 "Report fragmented Pings from outside Freifunk and drop them." '-A INPUT -p icmp --fragment -j ACCEPT'
-FWboth "Do accept Pings from outside Freifunk" '-A INPUT -p icmp -j ACCEPT'
+FWboth "'SSH login possible from everywhere except above Chinese sites'" '-A INPUT -p tcp --dport ssh -j ACCEPT'
+FW4 "'Report fragmented Pings from outside Freifunk and drop them.'" '-A INPUT -p icmp --fragment -j ACCEPT'
+FWboth "'Do accept Pings from outside Freifunk'" '-A INPUT -p icmp -j ACCEPT'
 
 $ECHO "I: drop anything else"
-FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport microsoft-ds -j DROP'
-FWboth "dropping common hack target, not logged" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
-FWboth "log-dropping input at end of chain" '-A INPUT -j log-drop'
+FWboth "'dropping common hack target, not logged'" '-A INPUT -p tcp --dport microsoft-ds -j DROP'
+FWboth "'dropping common hack target, not logged'" '-A INPUT -p tcp --dport ms-sql-s -j DROP'
+FWboth "'log-dropping input at end of chain'" '-A INPUT -j log-drop'
 
 
 if [ -x /usr/sbin/dpkg-reconfigure ]; then
