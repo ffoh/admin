@@ -39,12 +39,12 @@ FreifunkServerIp4List="5.9.144.194"
 FreifunkServerIp6List="2a01:4f8:190:23c9::2"
 #                        server2
 
-GatewayIp4List="141.101.36.19 176.9.9.216 195.201.40.16 109.75.184.140 5.9.63.137 109.75.188.10 5.9.42.117"
-#                     gw1          gw2          gw3            gw5           gw6         gw-test     gw4
+GatewayIp4List="141.101.36.19 176.9.9.216 195.201.40.16 109.75.184.140 109.75.188.10 5.9.42.117"
+#                     gw1          gw2          gw3            gw5      gw-test     gw4
 
-GatewayIp6List="2a00:12c0:1015:166::1:1 2a01:4f8:141:528f::2 2a01:4f8:1c1c:4b4a::1 2a01:4f8:161:3171::4 2a00:12c0:1015:166::1:5 2a01:4f8:161:6487::6 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
+GatewayIp6List="2a00:12c0:1015:166::1:1 2a01:4f8:141:528f::2 2a01:4f8:1c1c:4b4a::1 2a01:4f8:161:3171::4 2a00:12c0:1015:166::1:5 2a00:12c0:1015:166::1:7 2a00:12c0:1015:198::1"
  
-#                     gw1                gw2                    gw3 (coco)               gw4                    gw5                gw6                                        gw-test
+#                     gw1                gw2                    gw3 (coco)               gw4                    gw5                                          gw-test
 
 LocalGatewayHostnames="gattywatty01.ffoh.de gattywatty02.ffoh.de gattywatty03.ffoh.de gattywatty04.ffoh.de"
 LocalGatewayIpv4List="192.168.178.42 192.168.178.44 192.168.178.32 192.168.178.23 192.168.178.21 192.168.178.142"
@@ -307,7 +307,8 @@ fi
 
 #$ECHO "I: JA: trusting all gateway IP6 gateway addresses on $DEVICE"
 FW6 "Fully trusting all our other gateways - filoo.de" -A INPUT -s 2a00:12c0:1015:166::1:1/120 -j ACCEPT
-FW6 "Fully trusting all our other gateways - hetzner" -A INPUT -s $($HOST -t AAAA gw6.ffoh.de | cut -f5 -d\  ) -j ACCEPT
+FW6 "Fully trusting all our other gateways - hetzner - gw2" -A INPUT -s $($HOST -t AAAA gw2.ffoh.de | cut -f5 -d\  ) -j ACCEPT
+FW6 "Fully trusting all our other gateways - hetzner - gw4" -A INPUT -s $($HOST -t AAAA gw2.ffoh.de | cut -f5 -d\  ) -j ACCEPT
 
 for gw in $RemoteGatewayIPv6List
 do
@@ -468,7 +469,7 @@ FWboth "'FTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport ftp
 FWboth "'TFTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
 FWboth "'TFTP allowed from within Freifunk'" '-A INPUT -i bat0 -p udp --dport tftp -j ACCEPT'
 
-for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de gw6.ffoh.de #gattywatty03.ffoh.de	# our machines with fixed external IPs
+for host in www.ffoh.de gw1.ffoh.de gw2.ffoh.de gw3.ffoh.de gw4.ffoh.de gw5.ffoh.de #gattywatty03.ffoh.de	# our machines with fixed external IPs
 do
    FWboth "'DNS allow from Freifunk machine $host'" -A INPUT -p udp -s $host -m multiport --dports domain -j ACCEPT
    # just had problem with netfilter
