@@ -249,6 +249,8 @@ FWboth "dropping telnet " -p tcp --dport 23 -I INPUT -j log-drop
 FW6 "IPv6 ICMP" -A INPUT -p ipv6-icmp -j ACCEPT
 FW6 "IPv6 router advertising" -A INPUT -p tcp -m tcp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
 FW6 "IPv6 router advertising" -A INPUT -p udp -m udp -m multiport -s fe80::/16 -d ff02::1:2 -i bat0 -j ACCEPT --dports 546,547
+FW6 "IPv6 router advertising" -A INPUT -p tcp -m tcp -m multiport -s fe80::/16 -d ff05::1:2 -i bat0 -j ACCEPT --dports 546,547
+FW6 "IPv6 router advertising" -A INPUT -p udp -m udp -m multiport -s fe80::/16 -d ff05::1:2 -i bat0 -j ACCEPT --dports 546,547
 FW4 "Portmap from localhost is ok" -p tcp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from localhost is ok" -p udp -s 127.0.0.0/24 --dport 111 -A INPUT -j ACCEPT
 FW4 "Portmap from local IP" -p tcp -s $myIP --dport 111 -A INPUT -j ACCEPT
